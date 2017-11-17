@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-using BedrijfsOpleiding.View;
-using BedrijfsOpleiding.ViewModel;
+﻿using BedrijfsOpleiding.ViewModel;
 
 namespace BedrijfsOpleiding.View
 {
@@ -12,11 +10,11 @@ namespace BedrijfsOpleiding.View
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowView = new MainWindowVM();
-            MainWindowView.CurrentView = new BlueScreen(MainWindowView, Colors.Tomato);
+            MainWindowView = new MainWindowVM
+            {
+                CurrentView = new LoginView.LoginView(MainWindowView)
+            };
             DataContext = MainWindowView;
-
-            
         }
     }
 }
