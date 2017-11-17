@@ -6,6 +6,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid ScrollViewer.CanContentScroll="True">
-       
+        <Button Content="Button" HorizontalAlignment="Left" Margin="218,289,0,0" VerticalAlignment="Top" Width="74"/>
+
     </Grid>
 </Window>
