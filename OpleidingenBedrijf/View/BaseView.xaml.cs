@@ -13,11 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BedrijfsOpleiding
+namespace BedrijfsOpleiding.View
 {
-    public partial class MainWindow
+    /// <summary>
+    /// Interaction logic for BaseView.xaml
+    /// </summary>
+    public partial class BaseView : UserControl
     {
-        public MainWindow()
+        public BaseView()
         {
             InitializeComponent();
         }
