@@ -4,21 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:local="clr-namespace:BedrijfsOpleiding"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
     <Grid Background="White">
-        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="11,240,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
-        <Button x:Name="btnRegister" Content="Registreren" HorizontalAlignment="Left" Margin="160,240,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="49,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" RenderTransformOrigin="0.5,0.5" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-        <Label Content="Gebruikersnaam&#xD;&#xA;" HorizontalAlignment="Left" Margin="44,68,0,0" VerticalAlignment="Top" Height="28" Width="96"/>
-        <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="44,147,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.528,-0.424"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="49,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-        <Label Content="Inloggen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,21,0,0" Width="89" FontSize="20"/>
-        <fa:ImageAwesome Icon="User" VerticalAlignment="Center" Margin="10,94,263,178" Height="28" RenderTransformOrigin="0.784,0.15"></fa:ImageAwesome>
-        <fa:ImageAwesome Icon="Lock" Margin="11,172,265,100" Height="28"/>
-
-
+        <Grid Width="300" Height="300">
+            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="11,240,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
+            <Button x:Name="btnRegister" Content="Registreren" HorizontalAlignment="Left" Margin="160,240,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="49,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" RenderTransformOrigin="0.5,0.5" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+            <Label Content="Gebruikersnaam&#xD;&#xA;" HorizontalAlignment="Left" Margin="44,68,0,0" VerticalAlignment="Top" Height="28" Width="96"/>
+            <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="44,147,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.528,-0.424"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="49,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+            <Label Content="Inloggen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,21,0,0" Width="89" FontSize="20"/>
+            <fa:ImageAwesome Icon="User" VerticalAlignment="Center" Margin="10,94,263,178" Height="28" RenderTransformOrigin="0.784,0.15"></fa:ImageAwesome>
+            <fa:ImageAwesome Icon="Lock" Margin="11,172,265,100" Height="28"/>
+        </Grid>
     </Grid>
 </UserControl>
