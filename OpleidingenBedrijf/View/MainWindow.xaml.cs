@@ -4,17 +4,12 @@ namespace BedrijfsOpleiding.View
 {
     public partial class MainWindow
     {
-
-        public MainWindowVM MainWindowView { get; }
-
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowView = new MainWindowVM
-            {
-                CurrentView = new LoginView.LoginView(MainWindowView)
-            };
-            DataContext = MainWindowView;
+            MainWindowVM mainWindowView = new MainWindowVM();
+            mainWindowView.CurrentView = new LoginView.LoginView(mainWindowView);
+            DataContext = mainWindowView;
         }
     }
 }

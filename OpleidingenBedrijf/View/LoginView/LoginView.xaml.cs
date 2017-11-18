@@ -6,27 +6,20 @@ namespace BedrijfsOpleiding.View.LoginView
 {
     public partial class LoginView
     {
-        private BaseViewModel _parent;
-        private BaseViewModel _ownViewModel;
-
-        public LoginView(BaseViewModel parent)
+        public LoginView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
-
-            _parent = parent;
-            _ownViewModel = new LoginVM();
-
-            DataContext = _ownViewModel;
+            OwnViewModel = new LoginVM(this);
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            // _parent.CurrentView = new RegistrationView(_parent);
+            // ParentViewModel.CurrentView = new RegistrationView(_parent);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            //_ownViewModel.Login();
+            ((LoginVM)OwnViewModel).Login();
         }
     }
 }
