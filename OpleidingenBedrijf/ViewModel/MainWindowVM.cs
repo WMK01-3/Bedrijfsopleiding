@@ -1,11 +1,16 @@
-﻿using System.Windows.Controls;
-
-namespace BedrijfsOpleiding.ViewModel
+﻿namespace BedrijfsOpleiding.ViewModel
 {
     public class MainWindowVM : BaseViewModel
     {
-        public MainWindowVM() : base(null)
+       // public User CurUser { get; }
+
+        public MainWindowVM() : base(boundView: null)
         {
+        }
+
+        public void SetUser(/*User user*/)
+        {
+            //CurUser = user;
         }
     }
 }
