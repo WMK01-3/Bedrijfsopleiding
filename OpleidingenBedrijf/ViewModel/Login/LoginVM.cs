@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Login
@@ -13,16 +14,12 @@ namespace BedrijfsOpleiding.ViewModel.Login
         {
             LoginView loginV = (LoginView) CurrentView;
 
-            //Get username and password
-            //Check them against the database
-
-            //if (loginV.txtPassword.Text == "test" && loginV.txtUsername.Text == "test")
-            //{
-                //switch between roles
-
-                //Cursist/student
-                //CurrentView = new 
-            //}
+            loginV.ErrorMessage.Visibility = Visibility.Hidden;
+            if (loginV.Username.Text == "" || loginV.Password.Text == "")
+            {
+                loginV.ErrorMessage.Visibility = Visibility.Visible;
+                loginV.ErrorMessageMessage.Content = "Een of meerdere velden zijn leeg";
+            }
         }
     }
 }

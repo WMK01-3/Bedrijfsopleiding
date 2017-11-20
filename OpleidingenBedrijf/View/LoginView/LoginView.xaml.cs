@@ -21,12 +21,6 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            ErrorMessage.Visibility = Visibility.Hidden;
-            if (Username.Text == "" || Password.Text == "")
-            {
-                ErrorMessage.Visibility = Visibility.Visible;
-                ErrorMessageMessage.Content = "Een of meerdere velden zijn leeg";
-            }
             ((LoginVM)OwnViewModel).Login();
                 
         }
