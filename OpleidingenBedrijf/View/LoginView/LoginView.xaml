@@ -6,18 +6,37 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:BedrijfsOpleiding"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" Width="321">
 
-    <Grid Background="White">
-        <Button Content="Login" HorizontalAlignment="Left" Margin="11,240,0,0" VerticalAlignment="Top" Width="137" Click="Button_Click"/>
-        <Button Content="Registreren" HorizontalAlignment="Left" Margin="160,240,0,0" VerticalAlignment="Top" Width="130"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="49,96,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" RenderTransformOrigin="0.5,0.5" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-        <Label Content="Gebruikersnaam&#xD;&#xA;" HorizontalAlignment="Left" Margin="44,68,0,0" VerticalAlignment="Top" Height="28" Width="96"/>
-        <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="44,147,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.528,-0.424"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="49,174,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-        <Label Content="Inloggen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,21,0,0" Width="89" FontSize="20"/>
-        <fa:ImageAwesome Icon="User" VerticalAlignment="Center" Margin="10,94,263,178" Height="28" RenderTransformOrigin="0.784,0.15"></fa:ImageAwesome>
-        <fa:ImageAwesome Icon="Lock" Margin="11,172,265,100" Height="28"/>
+    <Grid Background="White" Margin="-25,0,0,57">
+
+
+        <Border HorizontalAlignment="Left" Height="27" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="129" Margin="100,21,0,0"/>
+
+
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="63,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+
+        <Button Content="Login" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="137" Click="Button_Click"/>
+        <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,213,0,0" VerticalAlignment="Top" Width="130"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="63,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="241" RenderTransformOrigin="0.5,0.5" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+        <Label Content="Gebruikersnaam&#xA;" HorizontalAlignment="Left" Margin="58,70,0,0" VerticalAlignment="Top" Height="28" Width="96"/>
+        <Label Content="Wachtwoord" HorizontalAlignment="Left" Margin="58,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.528,-0.424"/>
+        <fa:ImageAwesome Icon="User" VerticalAlignment="Center" Margin="-1,73,274,142" Height="28" RenderTransformOrigin="0.784,0.15"/>
+        <fa:ImageAwesome Icon="Lock" Margin="0,152,276,63" Height="28"/>
+        <fa:ImageAwesome Icon="ExclamationCircle" Margin="99,26,220,257"  RenderTransformOrigin="-0.123,0.501" Foreground="#FFF7F7F7" >
+            <fa:ImageAwesome.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.402"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.443"/>
+                </TransformGroup>
+            </fa:ImageAwesome.RenderTransform>
+        </fa:ImageAwesome>
+        <Label Content="Wachtwoord of Inlognaam incorrect" FontSize="6"  HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.868,1.577" Margin="122,26,0,0" Width="107" Foreground="#FFEEEEEE"/>
+        <DockPanel HorizontalAlignment="Left" Height="100" LastChildFill="False" Margin="407,26,-161,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
+        <Grid HorizontalAlignment="Left" Height="27" Margin="100,21,0,0" Name="ErrorMessage" VerticalAlignment="Top" Width="129"/>
+
 
 
     </Grid>

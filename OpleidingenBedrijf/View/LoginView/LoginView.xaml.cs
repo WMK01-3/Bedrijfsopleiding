@@ -32,7 +32,7 @@ namespace BedrijfsOpleiding
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            ErrorMessage.Visibility = Visibility.Collapsed;
         }
 
     }
