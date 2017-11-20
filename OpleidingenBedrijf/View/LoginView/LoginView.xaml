@@ -22,21 +22,21 @@
                         </TransformGroup>
                     </fa:ImageAwesome.RenderTransform>
                 </fa:ImageAwesome>
-                <Label Content="Wachtwoord of Inlognaam incorrect" FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center"/>
+                <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center"/>
             </Grid>
 
             <!--Username Grid-->
             <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0 50, 0, 0">
                 <fa:ImageAwesome Icon="User" VerticalAlignment="Center" HorizontalAlignment="Left"  Height="28" />
                 <Label Content="Gebruikersnaam" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96"/>
-                <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+                <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" Name="Username" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
             </Grid>
 
             <!--Password Grid-->
             <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0, 110, 0, 0">
                 <fa:ImageAwesome Icon="Lock" VerticalAlignment="Center" HorizontalAlignment="Left" Height="28"/>
                 <Label Content="Wachtwoord" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96"/>
-                <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+                <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" Name="Password" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
             </Grid>
 
             <Grid VerticalAlignment="Bottom" Margin="0, 0, 0, 10">
