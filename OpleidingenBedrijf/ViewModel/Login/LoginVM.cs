@@ -16,13 +16,13 @@ namespace BedrijfsOpleiding.ViewModel.Login
             //Get username and password
             //Check them against the database
 
-            if (loginV.txtPassword.Text == "test" && loginV.txtUsername.Text == "test")
-            {
+            //if (loginV.txtPassword.Text == "test" && loginV.txtUsername.Text == "test")
+            //{
                 //switch between roles
 
                 //Cursist/student
                 //CurrentView = new 
-            }
+            //}
         }
     }
 }
