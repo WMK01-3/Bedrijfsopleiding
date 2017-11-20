@@ -9,9 +9,10 @@ namespace BedrijfsOpleiding.Models
 {
     public class Address
     {
-        public string Street;
-        public string City;
-        public string Zipcode;
+        public int AddressID;
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string Zipcode { get; set; }
 
     }
 }

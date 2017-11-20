@@ -8,9 +8,10 @@ namespace BedrijfsOpleiding.Models
 {
     public class Location
     {
-        public Address Address;
-        public string Classroom;
+        public int LocationId;
+        public string Classroom { get; set; }
 
-
+        public virtual Address Address { get; set; }
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

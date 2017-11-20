@@ -11,16 +11,15 @@ namespace BedrijfsOpleiding.Models
     {
         public enum RoleEnum { Employee, Teacher, Customer };
 
-        public int ID;
-        public RoleEnum Role;
-        public Name Name;
-        public string Email;
-        public Address Address;
+        public int UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool Gender { get; set; }
+        public string Email { get; set; }
+        public RoleEnum Role { get; set; }
 
 
-        public User(RoleEnum role)
-        {
-            this.Role = role;
-        }
+        public virtual Address Address { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }
