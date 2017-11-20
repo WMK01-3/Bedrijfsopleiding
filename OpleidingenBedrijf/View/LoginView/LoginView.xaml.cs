@@ -19,6 +19,7 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            ErrorMessage.Visibility = Visibility.Collapsed;
             ((LoginVM)OwnViewModel).Login();
         }
     }
