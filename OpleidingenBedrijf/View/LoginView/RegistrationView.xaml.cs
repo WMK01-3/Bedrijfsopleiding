@@ -12,6 +12,14 @@ namespace BedrijfsOpleiding.View.LoginView
             InitializeComponent();
         }
 
-       
+        private void btnCancel_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ParentViewModel.CurrentView = new LoginView(ParentViewModel);
+        }
+
+        private void btnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

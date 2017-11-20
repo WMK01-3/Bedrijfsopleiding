@@ -10,6 +10,7 @@ namespace BedrijfsOpleiding.View
             MainWindowVM mainWindowView = new MainWindowVM();
             mainWindowView.CurrentView = new LoginView.LoginView(mainWindowView);
             DataContext = mainWindowView;
+            animatedContentControl.ShouldAnimate = true;
         }
     }
 }

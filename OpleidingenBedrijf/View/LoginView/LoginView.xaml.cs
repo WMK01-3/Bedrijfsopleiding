@@ -1,6 +1,8 @@
-﻿using System.Windows;
-        using BedrijfsOpleiding.ViewModel;
-        using BedrijfsOpleiding.ViewModel.Login;
+﻿using System.Diagnostics;
+using System.Windows;
+using AnimatedContentControlSample.ViewModels;
+using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Login;
 
 namespace BedrijfsOpleiding.View.LoginView
 {
@@ -16,13 +18,13 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-             ParentViewModel.CurrentView = new RegistrationView(ParentViewModel);
+            ParentViewModel.CurrentView = new RegistrationView(ParentViewModel);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             ((LoginVM)OwnViewModel).Login();
-                
         }
+
     }
 }
