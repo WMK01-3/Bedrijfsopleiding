@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="BedrijfsOpleiding.View.LoginView.RegistrationView"
+﻿<view:BaseView x:Class="BedrijfsOpleiding.View.LoginView.RegistrationView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BedrijfsOpleiding.View.LoginView"
+             xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
     <Grid Background="White">
@@ -28,4 +29,4 @@
 
 
     </Grid>
-</UserControl>
+</view:BaseView>
