@@ -10,13 +10,10 @@ namespace BedrijfsOpleiding
 {
     class CustomDbContext : DbContext
     {
-        //public CustomDbContext() : base("UniContext") { }
-
+        public CustomDbContext() : base("CustomDbContext") { }
 
 
         public DbSet<User> Users { get; set; }
-
-        public DbSet<Address> Addresses { get; set; }
 
         public DbSet<Location> Locations { get; set; }
 
