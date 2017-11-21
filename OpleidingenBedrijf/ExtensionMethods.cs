@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace BedrijfsOpleiding
 {
@@ -48,5 +43,13 @@ namespace BedrijfsOpleiding
         /// <returns></returns>
         public static bool IsPassword(this string str) =>
             Regex.IsMatch(str, @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,24}$");
+
+        /// <summary>
+        /// Check if string is empty e.g. ""
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsEmpty(this string str) =>
+            str.Length == 0;
     }
 }

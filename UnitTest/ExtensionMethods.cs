@@ -47,8 +47,12 @@ namespace UnitTest
         #endregion
 
         #region IsName() : bool
-        
-       
+
+        [TestMethod]
+        public void IsFirstNameCorrect()
+        {
+            Assert.IsTrue("Jelle".IsFirstName());
+        }
 
         #endregion
     }
