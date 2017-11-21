@@ -37,24 +37,26 @@ namespace BedrijfsOpleiding
             // EF stuff
             //Debug.WriteLine("Testing db");
 
-            //using (var context = new CustomDbContext())
-            //{
+            using (var context = new CustomDbContext())
+            {
             //    Debug.WriteLine("Adding address");
 
-            //    var testUser = new User()
-            //    {
-            //        FirstName = "Dirk",
-            //        LastName = "Van RuyterHoffe",
-            //        Gender = User.GenderEnum.Male,
-            //        Email = "DikkeDirk@gmail.com",
-            //        Role = User.RoleEnum.Customer,
-            //        Street = "Bierweg 69",
-            //        City = "middleOfNowhereTown",
-            //        Zipcode = "1337 EZ"
-            //    };
 
-            //    context.Users.Add(testUser);
-            //    context.SaveChanges();
+                var testUser = new User()
+                {
+                    FirstName = "Dirk",
+                    LastName = "Van RuyterHoffe",
+                    UserName = "DikkeDirk123",
+                    PassWord = "Welkom01",
+                    Email = "DikkeDirk@gmail.com",
+                    Role = User.RoleEnum.Customer,
+                    Street = "Bierweg 69",
+                    City = "middleOfNowhereTown",
+                    Zipcode = "1337 EZ"
+                };
+
+                context.Users.Add(testUser);
+                context.SaveChanges();
 
             //    Debug.WriteLine("Done");
 
@@ -73,21 +75,9 @@ namespace BedrijfsOpleiding
 
             //    Debug.WriteLine("Done");
 
-                /*
-                    var user = new User
-                    {
-                        FirstName = "Dirk",
-                        LastName = "Bietsma",
-                        Gender = User.GenderEnum.Male,
-                        Email = "DikkeDirk@gmail.com",
-                        Role = User.RoleEnum.Customer,
-                    
-                        EnrollmentDate = DateTime.Parse(DateTime.Today.ToString())
-                    };
 
-                    context.Students.Add(student);
-                */
-       //     }
+
+            }
         }
     }
 }
