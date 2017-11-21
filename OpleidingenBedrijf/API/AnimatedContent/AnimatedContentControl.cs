@@ -6,7 +6,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BedrijfsOpleiding
+namespace BedrijfsOpleiding.API.AnimatedContent
 {
     /// <inheritdoc />
     /// <summary>
