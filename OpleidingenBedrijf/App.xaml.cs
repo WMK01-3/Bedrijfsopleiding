@@ -44,7 +44,8 @@ namespace BedrijfsOpleiding
                 {
                     FirstName = "Dirk",
                     LastName = "Van RuyterHoffe",
-                    Gender = User.GenderEnum.Male,
+                    UserName = "DikkeDirk123",
+                    PassWord = "Welkom01",
                     Email = "DikkeDirk@gmail.com",
                     Role = User.RoleEnum.Customer,
                     Street = "Bierweg 69",
@@ -56,35 +57,21 @@ namespace BedrijfsOpleiding
                 context.SaveChanges();
 
                 Debug.WriteLine("Done");
-
-                var users = (from s in context.Users
-                    orderby s.Street
-                    select s).ToList<User>();
-
-                Debug.WriteLine("Fetching users from db");
-
-
-                foreach (var usr in users)
-                {
-                    string name = usr.FirstName + " " + usr.LastName;
-                    Console.WriteLine(@"ID: {0}, Name: {1}", usr.UserID, name);
-                }
-
-                Debug.WriteLine("Done");
-
                 /*
-                    var user = new User
-                    {
-                        FirstName = "Dirk",
-                        LastName = "Bietsma",
-                        Gender = User.GenderEnum.Male,
-                        Email = "DikkeDirk@gmail.com",
-                        Role = User.RoleEnum.Customer,
-                    
-                        EnrollmentDate = DateTime.Parse(DateTime.Today.ToString())
-                    };
+                    var users = (from s in context.Users
+                        orderby s.Street
+                        select s).ToList<User>();
 
-                    context.Students.Add(student);
+                    Debug.WriteLine("Fetching users from db");
+
+
+                    foreach (var usr in users)
+                    {
+                        string name = usr.FirstName + " " + usr.LastName;
+                        Console.WriteLine(@"ID: {0}, Name: {1}", usr.UserID, name);
+                    }
+
+                    Debug.WriteLine("Done");
                 */
             }
         }
