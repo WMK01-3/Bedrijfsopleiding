@@ -22,7 +22,7 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ((RegistrationVM) OwnViewModel).RegisterUser();
+           ((RegistrationVM) OwnViewModel).RegisterUser();
         }
     }
 }

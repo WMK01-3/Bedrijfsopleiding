@@ -8,22 +8,30 @@
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d">
     <Grid Background="White">
-        <Grid Width="600" Height="500">
-            <Label FontSize="30" HorizontalAlignment="Center" Content="Registratie" Margin="226,10,225,-10"  />
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,95,0,382" >Gebruikersnaam</Label>
+        <Grid Width="600" Height="800">
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,95,0,680" >Gebruikersnaam</Label>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbGebruikersnaam"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,163,0,314" Content="Voornaam" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbVoornaam"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="310,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbAchternaam"/>
-            <Button Name="btnRegister" Content="Registreer" HorizontalAlignment="Left" Margin="115,422,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click"/>
-            <Button Name="btnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="332,422,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,234,0,243" Content="Geboortedatum" />
-            <DatePicker HorizontalAlignment="Left" Margin="135,260,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpGeboortedatum"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,299,0,178" Content="Wachtwoord" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,320,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbWachtwoord"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,361,0,116" Content="Wachtwoord herhalen" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,382,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbWachtwoordHerhalen"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="306,163,0,314" Content="Achternaam" />
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,160,0,619" Content="Voornaam" />
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbVoornaam"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="310,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbAchternaam"/>
+            <Button Name="btnRegister"  Content="Registreer" HorizontalAlignment="Left" Margin="106,705,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click"/>
+            <Button Name="btnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="362,705,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,229,0,550" Content="Geboortedatum" />
+            <DatePicker HorizontalAlignment="Left" Margin="135,255,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpGeboortedatum"/>
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,558,0,221" Content="Wachtwoord" />
+            <PasswordBox  HorizontalAlignment="Left" Height="23" Margin="135,579,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbWachtwoord"  />
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,618,0,159" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
+            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,641,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbWachtwoordHerhalen"/>
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="306,160,0,619" Content="Achternaam" />
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,305,0,470" Content="E-mail adres" />
+            <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,375,0,400" Content="Postcode" />
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbZipCode"/>
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,443,0,332" Content="Straatnaam en huisnummer&#xD;&#xA;" />
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,468,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbStreet"/>
+            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,508,0,267" Content="Plaatsnaam&#xA;" />
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,533,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbPlace"/>
+           
         </Grid>
     </Grid>
 </view:BaseView>
