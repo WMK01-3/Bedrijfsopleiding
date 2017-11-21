@@ -20,7 +20,6 @@ namespace BedrijfsOpleiding.ViewModel.Login
         {
             RegistrationView RV = (RegistrationView)CurrentView;
             string o = RV.dpGeboortedatum.ToString().Length > 0 ? "oi" : "w";
-
         }
     }
 }

@@ -33,7 +33,7 @@ namespace BedrijfsOpleiding
                 mainWindow.WindowState = WindowState.Minimized;
             }
             mainWindow.Show();
-
+            
             // EF stuff
             //Debug.WriteLine("Testing db");
 

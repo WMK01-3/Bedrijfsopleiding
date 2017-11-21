@@ -1,5 +1,7 @@
 ﻿using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
+﻿using System.Diagnostics;
+using BedrijfsOpleiding.ViewModel;
 
 namespace BedrijfsOpleiding.View.LoginView
 {

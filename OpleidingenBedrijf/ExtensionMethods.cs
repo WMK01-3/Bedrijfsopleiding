@@ -19,5 +19,11 @@ namespace BedrijfsOpleiding
         /// <returns>boolean if string is an email</returns>
         public static bool IsEmail(this string str) =>
             Regex.IsMatch(str, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+
+        public static bool IsFirstName(this string str) =>
+            Regex.IsMatch(str, @"^[a-zA-Z]{2,24}\z$");
+
+        public static bool IsLastName(this string str) =>
+            Regex.IsMatch(str, @"^[a-z A-Z]{2,24}\b\z$");
     }
 }
