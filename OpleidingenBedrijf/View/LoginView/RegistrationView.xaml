@@ -11,18 +11,18 @@
         <Grid Width="600" Height="500">
             <Label FontSize="30" HorizontalAlignment="Center" Content="Registratie" Margin="226,10,225,-10"  />
             <Label FontSize="10" HorizontalAlignment="Left" Margin="131,95,0,382" >Gebruikersnaam</Label>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbGebruikersnaam"/>
             <Label FontSize="10" HorizontalAlignment="Left" Margin="130,163,0,314" Content="Voornaam" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="310,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbVoornaam"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="310,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbAchternaam"/>
             <Button Name="btnRegister" Content="Registreer" HorizontalAlignment="Left" Margin="115,422,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click"/>
             <Button Name="btnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="332,422,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
             <Label FontSize="10" HorizontalAlignment="Left" Margin="130,234,0,243" Content="Geboortedatum" />
-            <DatePicker HorizontalAlignment="Left" Margin="135,260,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+            <DatePicker HorizontalAlignment="Left" Margin="135,260,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpGeboortedatum"/>
             <Label FontSize="10" HorizontalAlignment="Left" Margin="130,299,0,178" Content="Wachtwoord" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,320,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,320,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbWachtwoord"/>
             <Label FontSize="10" HorizontalAlignment="Left" Margin="130,361,0,116" Content="Wachtwoord herhalen" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,382,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374"/>
+            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,382,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbWachtwoordHerhalen"/>
             <Label FontSize="10" HorizontalAlignment="Left" Margin="306,163,0,314" Content="Achternaam" />
         </Grid>
     </Grid>

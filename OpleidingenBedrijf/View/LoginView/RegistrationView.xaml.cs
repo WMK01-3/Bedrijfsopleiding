@@ -1,4 +1,5 @@
 ﻿using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Login;
 
 namespace BedrijfsOpleiding.View.LoginView
 {
@@ -10,6 +11,8 @@ namespace BedrijfsOpleiding.View.LoginView
         public RegistrationView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
+            OwnViewModel = new RegistrationVM(this);
+           
         }
 
         private void btnCancel_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -19,7 +22,7 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            ((RegistrationVM) OwnViewModel).RegisterUser();
         }
     }
 }

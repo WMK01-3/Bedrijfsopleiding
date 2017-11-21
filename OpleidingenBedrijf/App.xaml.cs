@@ -35,43 +35,43 @@ namespace BedrijfsOpleiding
             mainWindow.Show();
 
             // EF stuff
-            Debug.WriteLine("Testing db");
+            //Debug.WriteLine("Testing db");
 
-            using (var context = new CustomDbContext())
-            {
-                Debug.WriteLine("Adding address");
+            //using (var context = new CustomDbContext())
+            //{
+            //    Debug.WriteLine("Adding address");
 
-                var testUser = new User()
-                {
-                    FirstName = "Dirk",
-                    LastName = "Van RuyterHoffe",
-                    Gender = User.GenderEnum.Male,
-                    Email = "DikkeDirk@gmail.com",
-                    Role = User.RoleEnum.Customer,
-                    Street = "Bierweg 69",
-                    City = "middleOfNowhereTown",
-                    Zipcode = "1337 EZ"
-                };
+            //    var testUser = new User()
+            //    {
+            //        FirstName = "Dirk",
+            //        LastName = "Van RuyterHoffe",
+            //        Gender = User.GenderEnum.Male,
+            //        Email = "DikkeDirk@gmail.com",
+            //        Role = User.RoleEnum.Customer,
+            //        Street = "Bierweg 69",
+            //        City = "middleOfNowhereTown",
+            //        Zipcode = "1337 EZ"
+            //    };
 
-                context.Users.Add(testUser);
-                context.SaveChanges();
+            //    context.Users.Add(testUser);
+            //    context.SaveChanges();
 
-                Debug.WriteLine("Done");
+            //    Debug.WriteLine("Done");
 
-                var users = (from s in context.Users
-                    orderby s.Street
-                    select s).ToList<User>();
+            //    var users = (from s in context.Users
+            //        orderby s.Street
+            //        select s).ToList<User>();
 
-                Debug.WriteLine("Fetching users from db");
+            //    Debug.WriteLine("Fetching users from db");
 
 
-                foreach (var usr in users)
-                {
-                    string name = usr.FirstName + " " + usr.LastName;
-                    Console.WriteLine(@"ID: {0}, Name: {1}", usr.UserID, name);
-                }
+            //    foreach (var usr in users)
+            //    {
+            //        string name = usr.FirstName + " " + usr.LastName;
+            //        Console.WriteLine(@"ID: {0}, Name: {1}", usr.UserID, name);
+            //    }
 
-                Debug.WriteLine("Done");
+            //    Debug.WriteLine("Done");
 
                 /*
                     var user = new User
@@ -87,7 +87,7 @@ namespace BedrijfsOpleiding
 
                     context.Students.Add(student);
                 */
-            }
+       //     }
         }
     }
 }
