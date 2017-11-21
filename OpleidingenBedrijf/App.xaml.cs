@@ -27,6 +27,7 @@ namespace BedrijfsOpleiding
 
             // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow();
+            
             if (startMinimized)
             {
                 mainWindow.WindowState = WindowState.Minimized;

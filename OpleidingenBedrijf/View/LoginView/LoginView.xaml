@@ -41,7 +41,7 @@
 
             <Grid VerticalAlignment="Bottom" Margin="0, 0, 0, 10">
                 <Button Content="Login" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
-                <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,213,0,0" VerticalAlignment="Top" Width="130"/>
+                <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,213,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
             </Grid>
         </Grid>
     </Grid>

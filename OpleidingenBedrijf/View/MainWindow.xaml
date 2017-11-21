@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:bedrijfsOpleiding="clr-namespace:BedrijfsOpleiding"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <ContentControl Content="{Binding CurrentView}"></ContentControl>
+        <bedrijfsOpleiding:AnimatedContentControl x:Name="animatedContentControl" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
+
