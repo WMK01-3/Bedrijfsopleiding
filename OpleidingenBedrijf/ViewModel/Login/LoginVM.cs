@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Login
@@ -30,7 +32,13 @@ namespace BedrijfsOpleiding.ViewModel.Login
                 loginV.Password.BorderBrush = System.Windows.Media.Brushes.Red;
                 loginV.ErrorMessageMessage.Content = "Een of meerdere velden zijn leeg";
             }
-            //if(loginV.Username.Text == )
+            using (var context = new CustomDbContext())
+            {
+                var password = (from u in context.Users
+                                where u.
+                                select )
+            }
+                if (loginV.Username.Text ==  )
         }
     }
 }
