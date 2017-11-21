@@ -75,7 +75,6 @@
     <Compile Include="AnimatedContentControl.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="CustomDbContext.cs" />
-    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Location.cs" />
@@ -134,7 +133,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
