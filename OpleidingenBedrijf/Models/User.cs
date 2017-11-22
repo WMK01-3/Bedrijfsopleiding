@@ -12,13 +12,13 @@ namespace BedrijfsOpleiding.Models
     public class User
     {
         public enum RoleEnum { Employee, Teacher, Customer }
-        public enum GenderEnum { Male, Female }
 
         [Key]
         public int UserID { get; set; }
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public GenderEnum Gender { get; set; }
         public string Email { get; set; }
         public RoleEnum Role { get; set; }
 
