@@ -36,7 +36,7 @@ namespace BedrijfsOpleiding
 
             // EF stuff
             //Debug.WriteLine("Testing db");
-
+            /*
             using (var context = new CustomDbContext())
             {
             //    Debug.WriteLine("Adding address");
@@ -59,8 +59,8 @@ namespace BedrijfsOpleiding
 
                 context.Users.Add(testUser);
                 context.SaveChanges();
-
-
+                }
+    */
 
 
 
@@ -85,7 +85,7 @@ namespace BedrijfsOpleiding
 
 
 
-            }
+            
         }
     }
 }

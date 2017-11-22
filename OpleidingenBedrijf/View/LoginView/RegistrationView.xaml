@@ -40,17 +40,17 @@
             <fa:ImageAwesome Height="20" Name="ecCityName" Icon="ExclamationCircle"  Margin="465,540,108,290" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
             <fa:ImageAwesome Height="20" Name="ecPassword" Icon="ExclamationCircle"  Margin="464,603,109,227" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
             <fa:ImageAwesome Height="20" Name="ecRepeatPassword" Icon="ExclamationCircle"  Margin="464,672,109,158" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <Label Name="elbUsername" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="316,209,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,284,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,358,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,426,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,494,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,562,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbUsername" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbFirstName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name ="elbLastName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbBirthDate" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbEmail" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbZipCode" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,420,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name ="elbStreetName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,490,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbCityName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,558,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <fa:ImageAwesome Name="ecLastName" Icon="ExclamationCircle"  Margin="464,183,118,647" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,630,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,696,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbPassword" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="elbPasswordRepeat" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,691,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
 
 
         </Grid>
