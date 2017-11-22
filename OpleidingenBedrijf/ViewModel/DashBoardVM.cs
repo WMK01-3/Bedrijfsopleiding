@@ -10,6 +10,8 @@ namespace BedrijfsOpleiding.ViewModel
 
         public bool IsCursist => ((MainWindowVM)_parent).IsEmployee == false;
 
+        public bool IsEmployee => ((MainWindowVM)_parent).IsEmployee;
+
         public DashBoardVM(BaseViewModel parent, UserControl boundView) : base(boundView)
         {
             _parent = parent;

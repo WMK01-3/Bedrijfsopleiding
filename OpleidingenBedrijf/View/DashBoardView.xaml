@@ -12,9 +12,43 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <!--Google Maps-->
         <Grid Column="0">
-            <Grid Background="GreenYellow" Margin="10"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Employee Data-->
+            <Grid>
+                <!--Amount of Students-->
+                <Grid HorizontalAlignment="Left" Background="White" Width="100" Margin="10, 0, 0, 0">
+                    <Border BorderThickness="2" BorderBrush="DarkSlateGray" CornerRadius="10"/>
+                    <Label Content="Cursisten" HorizontalContentAlignment="Center" FontSize="20"/>
+                </Grid >
+                <!--Amount of Courses-->
+                <Grid HorizontalAlignment="Center" Background="White" Width="100">
+                    <Border BorderThickness="2" BorderBrush="DarkSlateGray" CornerRadius="10"/>
+                    <Label Content="Cursussen" HorizontalContentAlignment="Center" FontSize="20"/>
+                </Grid>
+                <!--Amount of Teachers-->
+                <Grid HorizontalAlignment="Right"  Background="White" Width="100"  Margin="0, 0, 10, 0">
+                    <Border BorderThickness="2" BorderBrush="DarkSlateGray" CornerRadius="10"/>
+                    <Label Content="Docenten" HorizontalContentAlignment="Center" FontSize="20"/>
+                </Grid>
+                <Grid.Style>
+                    <Style TargetType="{x:Type Grid}">
+                        <Setter Property="Height" Value="100"/>
+                        <Setter Property="Margin" Value="10"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsEmployee}" Value="False">
+                                <Setter Property="Height" Value="0"/>
+                                <Setter Property="Margin" Value="0"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+            </Grid>
+            <!--Google Maps-->
+            <Grid Row="1" Margin="10"/>
         </Grid>
         <Grid Column="1">
             <Grid.ColumnDefinitions>
@@ -23,12 +57,12 @@
             </Grid.ColumnDefinitions>
 
             <!--Updates-->
-            <Grid Column="0" Background="Tomato" Margin="10">
+            <Grid Column="0" Margin="10">
 
             </Grid>
 
             <!--Upcoming-->
-            <Grid Column="1" Background="DodgerBlue" Margin="10">
+            <Grid Column="1" Margin="10">
                 <Grid.Style>
                     <Style TargetType="{x:Type Grid}">
                         <Setter Property="Width" Value="200"/>
