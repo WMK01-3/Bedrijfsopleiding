@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="BedrijfsOpleiding.View.MenuBar"
+﻿<view:BaseView x:Class="BedrijfsOpleiding.View.MenuBar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
+             xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1680">
     <!--Outer grid-->
@@ -16,10 +18,10 @@
 
         <!--Button Grid-->
         <Grid Margin="75 0 0 0">
-            <Button HorizontalAlignment="Left" Width="150" Height="50" Content="DashBoard"/>
-            <Button HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Height="50" Content="Cursussen"/>
-            <Button HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Height="50" Content="Klanten">
-                <Button.Style>
+            <uiElements:FlatButton x:Name="BtnDashBoard" HorizontalAlignment="Left" Width="150" Height="50" Content="DashBoard" Click="BtnDashBoard_Click"/>
+            <uiElements:FlatButton x:Name="BtnCourseOverview" HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Height="50" Content="Cursussen" Click="BtnCourseOverview_Click"/>
+            <uiElements:FlatButton x:Name="BtnCustomerOverview" HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Height="50" Content="Klanten" Click="BtnCustomerOverview_Click">
+                <uiElements:FlatButton.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Visibility" Value="Visible"/>
                         <Style.Triggers>
@@ -28,8 +30,8 @@
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </Button.Style>
-            </Button>
+                </uiElements:FlatButton.Style>
+            </uiElements:FlatButton>
         </Grid>
 
         <!--User Profile grid -->
@@ -48,4 +50,4 @@
             <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF3069B1"/>
         </Grid>
     </Grid>
-</UserControl>
+</view:BaseView>

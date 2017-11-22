@@ -12,17 +12,33 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BedrijfsOpleiding.ViewModel;
 
 namespace BedrijfsOpleiding.View
 {
     /// <summary>
     /// Interaction logic for MenuBar.xaml
     /// </summary>
-    public partial class MenuBar : UserControl
+    public partial class MenuBar
     {
-        public MenuBar()
+        public MenuBar(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
+        }
+
+        private void BtnDashBoard_Click(object sender, RoutedEventArgs e)
+        {
+            ParentViewModel.CurrentView = new DashBoardView(ParentViewModel);
+        }
+
+        private void BtnCourseOverview_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnCustomerOverview_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
