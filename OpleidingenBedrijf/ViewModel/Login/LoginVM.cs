@@ -25,7 +25,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
             loginV.Password.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.Username.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.ErrorMessage.Visibility = Visibility.Hidden;
-            if (loginV.Username.Text == "" || loginV.Password.Text == "")
+            if (loginV.Username.Text == "" || loginV.Password.Password == "")
             {
                 loginV.ErrorMessage.Visibility = Visibility.Visible;
                 loginV.Username.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -43,7 +43,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     {
                         Password = element;
                     }
-                    if (Password == loginV.Password.Text)
+                    if (Password == loginV.Password.Password)
                     {
                         //loginV.ParentViewModel.CurrentView = new DashboardView(loginV.ParentViewModel);
                     }
