@@ -1,13 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Animation;
-using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Login
