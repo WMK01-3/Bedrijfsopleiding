@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media;
 using BedrijfsOpleiding.Models;
 
 namespace BedrijfsOpleiding.ViewModel
@@ -30,10 +31,13 @@ namespace BedrijfsOpleiding.ViewModel
             }
         }
         #endregion
-
+        
         public User CurUser { get; private set; }
 
-        public MainWindowVM() : base(boundView: null)
+        public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;
+
+
+        public MainWindowVM() : base(null)
         {
         }
 

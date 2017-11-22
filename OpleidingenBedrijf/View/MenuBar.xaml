@@ -2,8 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BedrijfsOpleiding.View"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="1680">
@@ -16,16 +15,22 @@
         </Grid.ColumnDefinitions>
 
         <!--Button Grid-->
-        <ListView Margin="75 0 0 0">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <Button Width="150" Height="50" Content="DashBoard"/>
-                <Button Width="150" Height="50" Content="Cursussen"></Button>
-            <Button Width="150" Height="50" Content="Klanten"></Button>
-        </ListView>
+        <Grid Margin="75 0 0 0">
+            <Button HorizontalAlignment="Left" Width="150" Height="50" Content="DashBoard"/>
+            <Button HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Height="50" Content="Cursussen"/>
+            <Button HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Height="50" Content="Klanten">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsEmployee}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
 
         <!--User Profile grid -->
         <Grid Width="200" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 100 0">

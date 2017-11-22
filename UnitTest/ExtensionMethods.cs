@@ -46,12 +46,31 @@ namespace UnitTest
 
         #endregion
 
-        #region IsName() : bool
+        #region IsFirstName() : bool
 
         [TestMethod]
         public void IsFirstNameCorrect()
         {
-            Assert.IsTrue("Jelle".IsFirstName());
+            Assert.IsTrue("Cornelus".IsFirstName());
+        }
+
+        [TestMethod]
+        public void IsFirstNameWithSpace()
+        {
+            Assert.IsFalse("Corn elus".IsFirstName());
+        }
+
+        [TestMethod]
+        public void IsFirstNameWithNumbers()
+        {
+            Assert.IsFalse("Corn3lus".IsFirstName());
+        }
+
+        [TestMethod]
+        public void IsFirstNameAtLeastTwoChars()
+        {
+            Assert.IsTrue("Co".IsFirstName());
+            Assert.IsFalse("C".IsFirstName());
         }
 
         #endregion
