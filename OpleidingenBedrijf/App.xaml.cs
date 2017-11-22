@@ -60,6 +60,12 @@ namespace BedrijfsOpleiding
                 context.Users.Add(testUser);
                 context.SaveChanges();
 
+
+
+
+
+
+
             //    Debug.WriteLine("Done");
 
             //    var users = (from s in context.Users
