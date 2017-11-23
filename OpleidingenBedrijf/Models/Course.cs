@@ -22,6 +22,7 @@ namespace BedrijfsOpleiding.Models
         public List<DateTime> StartDate { get; set; }
         public DurationEnum Duration { get; set; }
         public decimal Price { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Dates { get; set; }        // all of the active course dates
         public DateTime Created_at = DateTime.Now;

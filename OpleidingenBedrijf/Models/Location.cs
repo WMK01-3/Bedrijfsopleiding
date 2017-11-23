@@ -15,21 +15,20 @@ namespace BedrijfsOpleiding.Models
         public int LocationID { get; set; }
         public string Classroom { get; set; }
 
+        // Address stuff
+        public string Street { get; set; }
+        public string City { get; set; }
+        public string Zipcode { get; set; }
+
         public virtual ICollection<Course> Courses { get; set; }
 
-        public static Location GetLocationByID(int locationid)
+
+        public Location(string classroom, string street, string city, string zipcode)
         {
-            Location location;
-
-            using (CustomDbContext context = new CustomDbContext())
-            {
-                Location query = (from q in context.Locations
-                                  where q.LocationID == locationid
-                                  select q).First();
-
-                location = query;
-            }
-            return location;
+            this.Classroom = classroom;
+            this.Street = street;
+            this.City = city;
+            this.Zipcode = zipcode;
         }
     }
 }
