@@ -1,28 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.View.CourseView
 {
-    /// <summary>
-    /// Interaction logic for CourseView.xaml
-    /// </summary>
-    public partial class CourseView : UserControl
+    public partial class CourseView : BaseView
     {
-        public CourseView()
+        public CourseView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
+            OwnViewModel = new CourseVM(this);
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ((CourseVM)OwnViewModel).Info();
         }
     }
 }

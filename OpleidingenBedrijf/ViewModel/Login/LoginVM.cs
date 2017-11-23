@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.LoginView;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.ViewModel.Login
 {
@@ -15,6 +17,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
         public void Login()
         {
             LoginView loginV = (LoginView)CurrentView;
+            loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
             loginV.Password.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.Username.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.ErrorMessage.Visibility = Visibility.Hidden;
@@ -38,7 +41,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     }
                     if (Password == loginV.Password.Password)
                     {
-                        //loginV.ParentViewModel.CurrentView = new DashboardView(loginV.ParentViewModel);
+                        loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
                     }
                     else
                     {

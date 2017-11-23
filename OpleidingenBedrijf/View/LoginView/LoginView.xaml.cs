@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
 
 namespace BedrijfsOpleiding.View.LoginView
 {
-    public partial class LoginView
+    public partial class LoginView : BaseView
     {
         public LoginView(BaseViewModel parent) : base(parent)
         {

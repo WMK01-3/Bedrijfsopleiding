@@ -55,8 +55,8 @@ namespace BedrijfsOpleiding
                     Zipcode = "1337 EZ"
                 };
 
-                context.Users.Add(testUser);
-                context.SaveChanges();
+                //context.Users.Add(testUser);
+                //context.SaveChanges();
 
             //    Debug.WriteLine("Done");
 
