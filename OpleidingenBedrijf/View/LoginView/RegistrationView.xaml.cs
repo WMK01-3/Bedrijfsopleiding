@@ -1,15 +1,33 @@
-﻿using BedrijfsOpleiding.ViewModel;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Security;
+using System.Windows;
+using System.Windows.Media;
+using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
+using FontAwesome.WPF;
 
 namespace BedrijfsOpleiding.View.LoginView
 {
-    public partial class RegistrationView
+    /// <summary>
+    /// Interaction logic for RegistrationView.xaml
+    /// </summary>
+    public partial class RegistrationView : BaseView
     {
         public RegistrationView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
             OwnViewModel = new RegistrationVM(this);
 
+            #region hideControls
+            ecUsername.Visibility = Visibility.Hidden;
+            ecBirthdate.Visibility = Visibility.Hidden;
+            ecEmail.Visibility = Visibility.Hidden;
+            ecFirstName.Visibility = Visibility.Hidden;
+            ecLastName.Visibility = Visibility.Hidden;
+            ecPassword.Visibility = Visibility.Hidden;
+            ecRepeatPassword.Visibility = Visibility.Hidden;
+            #endregion
         }
 
         private void btnCancel_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -19,7 +37,7 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ((RegistrationVM)OwnViewModel).RegisterUser();
+           ((RegistrationVM) OwnViewModel).RegisterUser();
         }
     }
 }

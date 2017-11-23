@@ -6,8 +6,9 @@ namespace UnitTest
     [TestClass]
     public class ExtensionMethods
     {
-        #region IsEmail() : bool
 
+        #region IsEmail() : bool
+       
         /// <summary>
         /// Checks if a correct email does pass
         /// </summary>
@@ -45,6 +46,7 @@ namespace UnitTest
         }
 
         #endregion
+
 
         #region IsFirstName() : bool
 

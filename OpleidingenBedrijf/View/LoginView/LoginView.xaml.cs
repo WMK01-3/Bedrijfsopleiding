@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Windows;
+using AnimatedContentControlSample.ViewModels;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
 
@@ -7,6 +8,7 @@ namespace BedrijfsOpleiding.View.LoginView
 {
     public partial class LoginView
     {
+
         public LoginView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();

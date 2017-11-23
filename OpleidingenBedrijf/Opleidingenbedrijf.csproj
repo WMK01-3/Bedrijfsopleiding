@@ -174,16 +174,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Invoices\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
 </Project>

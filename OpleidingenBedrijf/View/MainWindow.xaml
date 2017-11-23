@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bedrijfsOpleiding="clr-namespace:BedrijfsOpleiding"
-        xmlns:animatedContent="clr-namespace:BedrijfsOpleiding.API.AnimatedContent"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="640">
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="10"/>
@@ -19,7 +19,8 @@
         <!--Navigation box-->
         <ContentControl Content="{Binding NavigationView}" x:Name="CntNavigation" Grid.Row="1"/>
         <!--Main Content-->
-        <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
+        <bedrijfsOpleiding:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
+
     </Grid>
 </Window>
 
