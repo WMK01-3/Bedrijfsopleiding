@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
@@ -14,7 +15,7 @@ namespace BedrijfsOpleiding.Tools
 {
     static class generateInvoice
     {
-        public static void NewPdf(Invoice invoice)
+        public static string NewPdf(Invoice invoice)
         {
             PdfDocument document = new PdfDocument();
             document.Info.Title = "Created with PDFsharp";
@@ -124,13 +125,56 @@ namespace BedrijfsOpleiding.Tools
             string filename = $"{DateTime.Now.ToString("yyyyMMdd")}_{invoice.Customer.LastName},{invoice.Customer.FirstName}_Factuur.pdf";
             string filepath = @"..\..\Invoices\";
             document.Save(filepath + filename);
-            //Process.Start(filepath + filename);
+            return filename;
         }
 
-        public static void DrawImage(XGraphics gfx, string jpegSamplePath, int x, int y, int width, int height)
+        private static void DrawImage(XGraphics gfx, string jpegSamplePath, int x, int y, int width, int height)
         {
             XImage image = XImage.FromFile(jpegSamplePath);
             gfx.DrawImage(image, x, y, width, height);
+        }
+
+        public static void mailInvoice(string pdf,  Invoice invoice)
+        {
+            try
+            {
+                MailMessage m = new MailMessage();
+                System.Net.Mail.SmtpClient sc = new System.Net.Mail.SmtpClient("smtp.gmail.com");
+
+                m.From = new System.Net.Mail.MailAddress("sales@dopecourses.com");
+                m.To.Add("");  // "to" email
+
+                m.Subject = "Confimation on your order #null";
+                m.Attachments.Add(new Attachment(@"..\..\Invoices\" + pdf));
+
+
+                // what I must do for sending a pdf with this email 
+
+                m.Body =  $"Heya, {invoice.Customer.FirstName}";
+                m.Body += $"\n\nWe've succesfully received your order on the DOPE Courses desktop application.";
+                m.Body += $"\n\nWe've added the invoice for you to check, if something is wrong or if you have any questions, please contact us by mail or phone";
+                m.Body += "\n\nYours sincerly";
+                m.Body += "\n\nThe Dope Sales team";
+                m.Body += "\nTel: +31 6 34 12 32 12";
+                m.Body += "\nEmail: sales@dopecourses.co.uk";
+
+                sc.Port = 587;
+                sc.Host = "smtp.gmail.com";
+                sc.EnableSsl = true;
+                sc.Timeout = 10000;
+                sc.DeliveryMethod = SmtpDeliveryMethod.Network;
+                sc.UseDefaultCredentials = false;
+                sc.Credentials = new System.Net.NetworkCredential("dopecourses@gmail.com", "lwcZTyvUJw");
+
+                sc.Send(m);
+
+
+            }
+            catch (Exception ex)
+            {
+                string bad = "Error: " + ex;
+                Debug.WriteLine("shit failed, " + bad);
+            }
         }
 
     }

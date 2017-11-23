@@ -24,5 +24,7 @@ namespace BedrijfsOpleiding.Models
         {
             this.Enrollments.Add(enrollment);
         }
+
+
     }
 }

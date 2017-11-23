@@ -40,9 +40,9 @@ namespace BedrijfsOpleiding
             Invoice testInvoice = generateTestData();
 
             
-
-            generateInvoice.NewPdf(testInvoice);
-            
+            // PDF genereren
+            //string pdf = generateInvoice.NewPdf(testInvoice);
+            //generateInvoice.mailInvoice(pdf, testInvoice);
         }
 
         private Invoice generateTestData()
