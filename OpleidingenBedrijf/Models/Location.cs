@@ -17,19 +17,18 @@ namespace BedrijfsOpleiding.Models
 
         public virtual ICollection<Course> Courses { get; set; }
 
-        public static Location getLocationByID(int locationid)
+        public static Location GetLocationByID(int locationid)
         {
             Location location;
 
-            using (var context = new CustomDbContext())
+            using (CustomDbContext context = new CustomDbContext())
             {
-                var query = (from q in context.Locations
-                            where q.LocationID == locationid
-                            select q).First();
+                Location query = (from q in context.Locations
+                                  where q.LocationID == locationid
+                                  select q).First();
 
                 location = query;
             }
-
             return location;
         }
     }

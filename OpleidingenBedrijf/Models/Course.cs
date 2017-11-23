@@ -19,11 +19,11 @@ namespace BedrijfsOpleiding.Models
         public string Name { get; set; }
         public DifficultyEnum Difficulty { get; set; }
         public int MaxParticipants { get; set; }
-        public DateTime StartDate { get; set; }
+        public List<DateTime> StartDate { get; set; }
         public DurationEnum Duration { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public List<DateTime> Dates { get; set; }        // all of the active course dates
+        public DateTime Dates { get; set; }        // all of the active course dates
         public DateTime Created_at = DateTime.Now;
 
         //public virtual Location Location { get; set; }
