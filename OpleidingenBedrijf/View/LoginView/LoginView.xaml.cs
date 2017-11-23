@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows;
-using AnimatedContentControlSample.ViewModels;
+﻿using System.Windows;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
 

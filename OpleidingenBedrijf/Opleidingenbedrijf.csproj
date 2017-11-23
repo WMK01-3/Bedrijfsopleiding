@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UIElements\FlatButton.cs" />
+    <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\Course\CourseSignUpVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
     <Compile Include="View\CourseView\CourseSignUpView.xaml.cs">

@@ -1,18 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Security;
-using System.Windows;
-using System.Windows.Media;
+﻿using System.Windows;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
-using FontAwesome.WPF;
 
 namespace BedrijfsOpleiding.View.LoginView
 {
-    /// <summary>
-    /// Interaction logic for RegistrationView.xaml
-    /// </summary>
-    public partial class RegistrationView : BaseView
+    public partial class RegistrationView
     {
         public RegistrationView(BaseViewModel parent) : base(parent)
         {
@@ -30,14 +22,14 @@ namespace BedrijfsOpleiding.View.LoginView
             #endregion
         }
 
-        private void btnCancel_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             ParentViewModel.CurrentView = new LoginView(ParentViewModel);
         }
 
-        private void btnRegister_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-           ((RegistrationVM) OwnViewModel).RegisterUser();
+            ((RegistrationVM)OwnViewModel).RegisterUser();
         }
     }
 }

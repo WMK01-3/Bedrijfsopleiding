@@ -20,18 +20,18 @@ namespace BedrijfsOpleiding.ViewModel
         #endregion
 
         #region NavigationView : UserControl
-        private UserControl _navigationView;
-        public UserControl NavigationView
+        private string _navigationView;
+        public string NavigationText
         {
             get => _navigationView;
             set
             {
                 _navigationView = value;
-                OnPropertyChanged(nameof(NavigationView));
+                OnPropertyChanged(nameof(NavigationText));
             }
         }
         #endregion
-        
+
         public User CurUser { get; private set; }
 
         public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;

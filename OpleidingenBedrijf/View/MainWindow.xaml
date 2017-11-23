@@ -3,23 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:bedrijfsOpleiding="clr-namespace:BedrijfsOpleiding"
+        xmlns:animatedContent="clr-namespace:BedrijfsOpleiding.API.AnimatedContent"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="640">
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--The menu-->
         <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
         <!--Navigation box-->
-        <ContentControl Content="{Binding NavigationView}" x:Name="CntNavigation" Grid.Row="1"/>
+        <Label Content="{Binding NavigationText}" Background="LightGray" x:Name="CntNavigation" Grid.Row="1"/>
         <!--Main Content-->
-        <bedrijfsOpleiding:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
+        <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
 
     </Grid>
 </Window>
