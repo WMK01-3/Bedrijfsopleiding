@@ -11,7 +11,7 @@
         <Grid Width="350" Height="320" VerticalAlignment="Top">
             <Label Content="Inloggen" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
 
-            <Grid Height="400" Margin="0, 70, 0, 0">
+            <Grid Height="200" Margin="0, 70, 0, 0">
                 <!--Error Message Grid-->
                 <Grid  Height="32" x:Name="ErrorMessage" VerticalAlignment="Top" Width="250">
                     <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="250" />
@@ -42,8 +42,8 @@
                 </Grid>
 
                 <Grid VerticalAlignment="Bottom" Margin="0, 0, 0, 10">
-                    <Button Content="Login" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
-                    <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,213,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
+                    <Button Content="Login" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
+                    <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,0,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
                 </Grid>
             </Grid>
         </Grid>

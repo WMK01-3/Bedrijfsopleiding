@@ -34,6 +34,7 @@ namespace BedrijfsOpleiding
             }
             mainWindow.Show();
             
+            /*
             // EF stuff
             //Debug.WriteLine("Testing db");
 
@@ -77,7 +78,7 @@ namespace BedrijfsOpleiding
 
 
 
-            }
+            }*/
         }
     }
 }

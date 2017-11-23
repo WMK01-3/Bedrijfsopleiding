@@ -48,7 +48,6 @@
                 </Grid.Style>
             </Grid>
             <!--Google Maps-->
-            <Grid Row="1" Margin="10"/>
         </Grid>
         <Grid Column="1">
             <Grid.ColumnDefinitions>
