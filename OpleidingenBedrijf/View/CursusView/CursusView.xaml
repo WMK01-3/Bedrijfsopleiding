@@ -1,4 +1,5 @@
-﻿<UserControl x:Class="BedrijfsOpleiding.View.CursusView.CursusView"
+﻿<view:BaseView
+    xmlns:view="clr-namespace:BedrijfsOpleiding.View" x:Class="BedrijfsOpleiding.View.CursusView.CursusView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,15 +8,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="633.865">
 
-    <Grid Background="white" Width="450" Margin="100,0">
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="214,66,0,0" TextWrapping="Wrap" Text="Cursus" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged"/>
-        <ComboBox HorizontalAlignment="Left" Margin="214,94,0,0" VerticalAlignment="Top" Width="120"/>
-        <Slider HorizontalAlignment="Left" Margin="214,121,0,0" VerticalAlignment="Top" Width="120"/>
-        <Slider HorizontalAlignment="Left" Margin="214,144,0,0" VerticalAlignment="Top" Width="120"/>
-        <DatePicker HorizontalAlignment="Left" Margin="214,167,0,0" VerticalAlignment="Top" Width="120"/>
-        <Slider HorizontalAlignment="Left" Margin="214,196,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="214,219,0,0" TextWrapping="Wrap" Text="Locatie" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="214,247,0,0" TextWrapping="Wrap" Text="Prijs" VerticalAlignment="Top" Width="120"/>
+    <Grid Background="white" Width="450" Height="640" Margin="100,0">
+        <TextBox x:Name="CourseName" HorizontalAlignment="Left" Height="23" Margin="214,66,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="Teacher" HorizontalAlignment="Left" Margin="214,94,0,0" VerticalAlignment="Top" Width="120" Loaded="Teacher_Loaded" DropDownClosed="Teacher_DropDownClosed"/>
+        <Slider x:Name="MaxParticipants" HorizontalAlignment="Left" Margin="214,146,0,0" VerticalAlignment="Top" Width="120" Maximum="50" ValueChanged="MaxParticipants_ValueChanged"/>
+        <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="214,167,0,0" VerticalAlignment="Top" Width="120" />
+        <TextBox x:Name="Price" HorizontalAlignment="Left" Height="23" Margin="214,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Cursus Naam&#xD;&#xA;" HorizontalAlignment="Left" Margin="79,66,0,0" VerticalAlignment="Top" Height="23"/>
         <Label Content="Docent&#xD;&#xA;" HorizontalAlignment="Left" Margin="79,91,0,0" VerticalAlignment="Top" Height="26"/>
         <Label Content="Moeilijkheids niveau&#xD;&#xA;" HorizontalAlignment="Left" Margin="79,116,0,0" VerticalAlignment="Top" Height="28" Width="117"/>
@@ -24,7 +22,22 @@
         <Label Content="Tijdsduur" HorizontalAlignment="Left" Margin="79,190,0,0" VerticalAlignment="Top" Height="28" Width="117"/>
         <Label Content="Locatie&#xA;" HorizontalAlignment="Left" Margin="79,215,0,0" VerticalAlignment="Top" Height="28" Width="117"/>
         <Label Content="Prijs&#xD;&#xA;&#xA;" HorizontalAlignment="Left" Margin="79,243,0,0" VerticalAlignment="Top" Height="28" Width="117"/>
+        <Label Content="Beschrijving&#xD;&#xA;" HorizontalAlignment="Left" Margin="79,276,0,0" VerticalAlignment="Top"/>
+        <RichTextBox x:Name="Description" HorizontalAlignment="Left" Height="100" Margin="214,280,0,0" VerticalAlignment="Top" Width="120">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text=""/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Button x:Name="SaveCourse" Content="Opslaan" HorizontalAlignment="Left" Margin="88,400,0,0" VerticalAlignment="Top" Width="246" Click="SaveCourse_Click"/>
+        <Label x:Name="MaxParticipantsLabel" Content="0" HorizontalAlignment="Left" Margin="339,142,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="Duration" HorizontalAlignment="Left" Margin="214,194,0,0" VerticalAlignment="Top" Width="120" Loaded="Duration_Loaded"/>
+        <ComboBox x:Name="Difficulty" HorizontalAlignment="Left" Margin="214,121,0,0" VerticalAlignment="Top" Width="120" Loaded="Difficulty_Loaded"/>
+        <ComboBox x:Name="Location" HorizontalAlignment="Left" Margin="214,221,0,0" VerticalAlignment="Top" Width="120" Loaded="Location_Loaded" DropDownClosed="Location_DropDownClosed_1"/>
+        <TextBox x:Name="TeacherID" HorizontalAlignment="Left" Height="23" Margin="339,94,-9,0" Visibility="Hidden" IsEnabled="False" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LocationID" HorizontalAlignment="Left" Height="23" Margin="339,221,-9,0" Visibility="Hidden" IsEnabled="True"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 
-</UserControl>
+</view:BaseView>

@@ -20,6 +20,6 @@ namespace BedrijfsOpleiding
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Enrollment> Enrollments { get; set; }
-        
+
     }
 }

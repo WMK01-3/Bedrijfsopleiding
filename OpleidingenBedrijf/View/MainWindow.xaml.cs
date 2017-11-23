@@ -8,7 +8,8 @@ namespace BedrijfsOpleiding.View
         {
             InitializeComponent();
             MainWindowVM mainWindowView = new MainWindowVM();
-            mainWindowView.CurrentView = new LoginView.LoginView(mainWindowView);
+            //mainWindowView.CurrentView = new LoginView.LoginView(mainWindowView);
+            mainWindowView.CurrentView = new CursusView.CursusView(mainWindowView);
             DataContext = mainWindowView;
         }
     }

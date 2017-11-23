@@ -40,20 +40,72 @@ namespace BedrijfsOpleiding
             {
                 Debug.WriteLine("Adding address");
 
-                var testUser = new User()
-                {
-                    FirstName = "Dirk",
-                    LastName = "Van RuyterHoffe",
-                    Gender = User.GenderEnum.Male,
-                    Email = "DikkeDirk@gmail.com",
-                    Role = User.RoleEnum.Customer,
-                    Street = "Bierweg 69",
-                    City = "middleOfNowhereTown",
-                    Zipcode = "1337 EZ"
-                };
+                //var testUser = new User()
+                //{
+                //    FirstName = "Dirk",
+                //    LastName = "Van RuyterHoffe",
+                //    Gender = User.GenderEnum.Male,
+                //    Email = "DikkeDirk@gmail.com",
+                //    Role = User.RoleEnum.Customer,
+                //    Street = "Bierweg 69",
+                //    City = "middleOfNowhereTown",
+                //    Zipcode = "1337 EZ"
+                //};
 
+                //var testTeacher = new User()
+                //{
+                //    FirstName = "Robin",
+                //    LastName = "Schult",
+                //    Gender = User.GenderEnum.Male,
+                //    Email = "RS@gmail.com",
+                //    Role = User.RoleEnum.Teacher,
+                //    Street = "Bierweg 69",
+                //    City = "middleOfNowhereTown",
+                //    Zipcode = "1337 EZ"
+                //};
+
+                //var testTeacher2 = new User()
+                //{
+                //    FirstName = "Lola",
+                //    LastName = "Trola",
+                //    Gender = User.GenderEnum.Male,
+                //    Email = "LT@gmail.com",
+                //    Role = User.RoleEnum.Teacher,
+                //    Street = "Bierweg 69",
+                //    City = "middleOfNowhereTown",
+                //    Zipcode = "1337 EZ"
+                //};
+
+                //var testTeacher3 = new User()
+                //{
+                //    FirstName = "Mike",
+                //    LastName = "Edinger",
+                //    Gender = User.GenderEnum.Male,
+                //    Email = "MGM@gmail.com",
+                //    Role = User.RoleEnum.Teacher,
+                //    Street = "Snepg 69",
+                //    City = "middleOfNowhereTown",
+                //    Zipcode = "1337 EZ"
+                //};
+
+                //var location1 = new Location()
+                //{
+                //    Classroom = "X4.01"
+                //};
+
+                //var location2 = new Location()
+                //{
+                //    Classroom = "C2.65"
+                //};
+
+                //context.Locations.Add(location1);
+                //context.Locations.Add(location2);
                 //context.Users.Add(testUser);
-                context.SaveChanges();
+                //context.Users.Add(testTeacher);
+                //context.Users.Add(testTeacher2);
+                //context.Users.Add(testTeacher3);
+
+                //context.SaveChanges();
 
                 Debug.WriteLine("Done");
 

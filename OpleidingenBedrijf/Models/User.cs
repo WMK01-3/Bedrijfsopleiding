@@ -28,5 +28,21 @@ namespace BedrijfsOpleiding.Models
         public string Zipcode { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
-    }
+
+        public static User getUserByID(int userid)
+        {
+            User rUser;
+
+            using (var context = new CustomDbContext())
+            {
+                var user = (from u in context.Users
+                            where u.UserID == userid
+                            select u).First();
+
+                rUser = user;
+            }
+
+            return rUser;
+        }
+    }   
 }
