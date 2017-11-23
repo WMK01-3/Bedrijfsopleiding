@@ -50,10 +50,10 @@ namespace BedrijfsOpleiding.View.CursusView
                     string lastname = Teacher.Text.Split(' ')[2];
 
                     int user = (from u in context.Users
-                        where u.Role == User.RoleEnum.Teacher &&
-                              u.FirstName == firstname &&
-                              u.LastName == tussenvoegsel + " " + lastname
-                        select u.UserID).First();
+                                where u.Role == User.RoleEnum.Teacher &&
+                                      u.FirstName == firstname &&
+                                      u.LastName == tussenvoegsel + " " + lastname
+                                select u.UserID).First();
 
                     TeacherID.Text = user.ToString();
                 }
@@ -63,8 +63,8 @@ namespace BedrijfsOpleiding.View.CursusView
                     string lastname = Teacher.Text.Split(' ')[1];
 
                     int user = (from u in context.Users
-                        where u.Role == User.RoleEnum.Teacher && (u.FirstName == firstname) && (u.LastName == lastname)
-                        select u.UserID).First();
+                                where u.Role == User.RoleEnum.Teacher && (u.FirstName == firstname) && (u.LastName == lastname)
+                                select u.UserID).First();
 
                     TeacherID.Text = user.ToString();
                 }
@@ -91,7 +91,6 @@ namespace BedrijfsOpleiding.View.CursusView
                 Name = CourseName.Text,
                 Difficulty = (Course.DifficultyEnum)Difficulty.SelectedItem,
                 MaxParticipants = (int)MaxParticipants.Value,
-                StartDate = StartDate.SelectedDate.Value.Date,
                 Duration = (Course.DurationEnum)Duration.SelectedItem,
                 Price = int.Parse(Price.Text),
                 Description = new TextRange(Description.Document.ContentStart, Description.Document.ContentEnd).Text,

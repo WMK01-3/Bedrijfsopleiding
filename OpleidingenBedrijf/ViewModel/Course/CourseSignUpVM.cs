@@ -34,7 +34,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         #endregion
 
-        public IEnumerable<DateTime> CourseDates => new ObservableCollection<DateTime> { Course.Dates };
+        //public IEnumerable<DateTime> CourseDates => new ObservableCollection<DateTime> { Course.Dates };
 
         public CourseSignUpVM(Models.Course course, UserControl boundView) : base(boundView)
         {
