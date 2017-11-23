@@ -7,7 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <bedrijfsOpleiding:AnimatedContentControl x:Name="animatedContentControl" Content="{Binding CurrentView}"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--The menu-->
+        <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
+        <!--Navigation box-->
+        <ContentControl Content="{Binding NavigationView}" x:Name="CntNavigation" Grid.Row="1"/>
+        <!--Main Content-->
+        <bedrijfsOpleiding:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
+
     </Grid>
 </Window>
 

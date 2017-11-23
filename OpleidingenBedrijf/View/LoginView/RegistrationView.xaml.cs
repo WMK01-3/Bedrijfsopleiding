@@ -22,27 +22,11 @@ namespace BedrijfsOpleiding.View.LoginView
             #region hideControls
             ecUsername.Visibility = Visibility.Hidden;
             ecBirthdate.Visibility = Visibility.Hidden;
-            ecCityName.Visibility = Visibility.Hidden;
             ecEmail.Visibility = Visibility.Hidden;
             ecFirstName.Visibility = Visibility.Hidden;
             ecLastName.Visibility = Visibility.Hidden;
-            ecZipCode.Visibility = Visibility.Hidden;
-            ecStreetName.Visibility = Visibility.Hidden;
-            ecCityName.Visibility = Visibility.Hidden;
             ecPassword.Visibility = Visibility.Hidden;
             ecRepeatPassword.Visibility = Visibility.Hidden;
-            elbUsername.Visibility = Visibility.Hidden;
-            elbBirthDate.Visibility = Visibility.Hidden;
-            elbEmail.Visibility = Visibility.Hidden;
-            elbZipCode.Visibility = Visibility.Hidden;
-            elbFirstName.Visibility = Visibility.Hidden;
-            elbLastName.Visibility = Visibility.Hidden;
-            elbPassword.Visibility = Visibility.Hidden;
-            elbPasswordRepeat.Visibility = Visibility.Hidden;
-            elbStreetName.Visibility = Visibility.Hidden;
-            elbCityName.Visibility = Visibility.Hidden;
-
-
             #endregion
         }
 

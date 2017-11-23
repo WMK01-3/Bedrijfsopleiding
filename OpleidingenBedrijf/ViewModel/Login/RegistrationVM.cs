@@ -28,62 +28,162 @@ namespace BedrijfsOpleiding.ViewModel.Login
         {
             errorCount = 0;
             RegistrationView RV = (RegistrationView)CurrentView;
-            #region ErrorControllers
-            #region ErrorIcons
-            RV.ecUsername.Visibility = RV.tbUsername.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
+            using (var context = new CustomDbContext())
+            {
+                var userNameCount = (from u in context.Users
+                    where u.UserName == RV.tbUsername.Text
+                              select u.UserName).Count();
+
+                
+
+
+                #region ErrorControllers
+                #region ErrorIcons
+
+                if (RV.tbUsername.Text.Length == 0)
+                {
+                    RV.ecUsername.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    RV.ecUsername.Visibility = userNameCount == 0 ? Visibility.Hidden: Visibility.Visible;
+                }
+                
+            
             RV.ecBirthdate.Visibility = RV.dpBirthDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden;
             RV.ecFirstName.Visibility = RV.tbFirstName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
             RV.ecEmail.Visibility = RV.tbEmail.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
             RV.ecLastName.Visibility = RV.tbLastName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.ecCityName.Visibility = RV.tbCityName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.ecStreetName.Visibility = RV.tbStreetName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.ecZipCode.Visibility = RV.tbZipCode.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
             RV.ecPassword.Visibility = RV.pbPassword.Password.Length == 0 ? Visibility.Visible : Visibility.Hidden;
             RV.ecRepeatPassword.Visibility = RV.pbPasswordRepeat.Password.Length == 0 ? Visibility.Visible : Visibility.Hidden;
+            RV.ecLastName.Visibility = RV.tbLastName.Text.IsName() ? Visibility.Hidden : Visibility.Visible;
+            RV.ecEmail.Visibility = RV.tbEmail.Text.IsEmail() ? Visibility.Hidden : Visibility.Visible;
+            RV.ecFirstName.Visibility = RV.tbFirstName.Text.IsName() ? Visibility.Hidden : Visibility.Visible;
+            RV.ecPassword.Visibility = RV.pbPassword.Password.IsPassword() ? Visibility.Hidden : Visibility.Visible;
+            RV.ecRepeatPassword.Visibility = RV.pbPasswordRepeat.Password.IsPassword() ? Visibility.Hidden : Visibility.Visible;
+            
+            
+                
             #endregion
             #region ErrorBorders
-            RV.tbUsername.BorderBrush = RV.tbUsername.Text.Length == 0 ? _redBrush : _blueBrush;
+            
             RV.pbPassword.BorderBrush = RV.pbPassword.Password.Length == 0 ? _redBrush : _blueBrush;
             RV.tbFirstName.BorderBrush = RV.tbFirstName.Text.Length == 0 ? _redBrush : _blueBrush;
             RV.tbLastName.BorderBrush = RV.tbLastName.Text.Length == 0 ? _redBrush : _blueBrush;
             RV.dpBirthDate.BorderBrush = RV.dpBirthDate.ToString().Length == 0 ? _redBrush : _blueBrush;
             RV.tbEmail.BorderBrush = RV.tbEmail.Text.Length == 0 ? _redBrush : _blueBrush;
-            RV.tbZipCode.BorderBrush = RV.tbZipCode.Text.Length == 0 ? _redBrush : _blueBrush;
-            RV.tbStreetName.BorderBrush = RV.tbStreetName.Text.Length == 0 ? _redBrush : _blueBrush;
-            RV.tbCityName.BorderBrush = RV.tbCityName.Text.Length == 0 ? _redBrush : _blueBrush;
             RV.pbPasswordRepeat.BorderBrush = RV.pbPasswordRepeat.Password.Length == 0 ? _redBrush : _blueBrush;
+            RV.tbFirstName.BorderBrush = RV.tbFirstName.Text.IsName() ? _blueBrush : _redBrush;
+            RV.tbLastName.BorderBrush = RV.tbLastName.Text.IsName() ? _blueBrush : _redBrush;
+            RV.tbEmail.BorderBrush = RV.tbEmail.Text.IsEmail() ? _blueBrush : _redBrush;
+            RV.pbPassword.BorderBrush = RV.pbPassword.Password.IsPassword() ? _blueBrush : _redBrush;
+            RV.pbPasswordRepeat.BorderBrush = RV.pbPasswordRepeat.Password.IsPassword() ? _blueBrush : _redBrush;
+            RV.tbUsername.BorderBrush = userNameCount == 0 ?  _blueBrush : _redBrush;
+                if (RV.tbUsername.Text.Length == 0)
+                {
+                    RV.tbUsername.BorderBrush = _redBrush;
+                }
+                else
+                {
+                    RV.tbUsername.BorderBrush = userNameCount == 0 ? _blueBrush : _redBrush;
+                }
             #endregion
             #region ErrorMessages
-            RV.elbUsername.Visibility = RV.tbUsername.Text.Length==0?Visibility.Visible:Visibility.Hidden;
-            RV.elbPassword.Visibility = RV.pbPassword.Password.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbPasswordRepeat.Visibility = RV.pbPasswordRepeat.Password.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbEmail.Visibility = RV.tbEmail.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbFirstName.Visibility = RV.tbFirstName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbLastName.Visibility = RV.tbLastName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbZipCode.Visibility = RV.tbZipCode.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbCityName.Visibility = RV.tbCityName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbStreetName.Visibility = RV.tbStreetName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-            RV.elbBirthDate.Visibility = RV.dpBirthDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden;
+            RV.elbPassword.Content = RV.pbPassword.Password.Length == 0 ? "Dit veld is verplicht. " : "";
+            RV.elbBirthDate.Content = RV.dpBirthDate.ToString().Length == 0 ? "Dit veld is verplicht. " : "";
+            RV.elbLastName.Content = RV.tbLastName.Text.Length == 0 ? "Dit veld is verplicht. " : "";
+            RV.elbPasswordRepeat.Content = RV.pbPasswordRepeat.Password.Length == 0 ? "Dit veld is verplicht. " : "";
+           
+
+                if (RV.tbUsername.Text.Length == 0)
+                {
+                    RV.elbUsername.Content = "Dit veld is verplicht";
+                }
+                else
+                {
+                    if (userNameCount == 0)
+                    {
+                        RV.elbUsername.Content = "";
+                    }
+                    else
+                    {
+                        RV.elbUsername.Content = "Deze gebruikersnaam is al in gebruik.";
+                    }
+                }
+            if (RV.tbEmail.Text.Length == 0)
+            {
+                RV.elbEmail.Content = "Dit veld is verplicht.";
+            }
+            else
+            {
+                RV.elbEmail.Content = !RV.tbEmail.Text.IsEmail() ? "Email adres voldoet niet aan de eisen." : "";
+            }
+            if (RV.tbFirstName.Text.Length == 0)
+            {
+                RV.elbFirstName.Content = "Dit veld is verplicht.";
+            }
+            else
+            {
+                RV.elbFirstName.Content = !RV.tbFirstName.Text.IsName() ? "Voornaam voldoet niet aan de eisen." : "";
+            }
+            if (RV.tbLastName.Text.Length == 0)
+            {
+                RV.elbLastName.Content = "Dit veld is verplicht.";
+            }
+            else
+            {
+                RV.elbLastName.Content = !RV.tbLastName.Text.IsName() ? "Achternaam voldoet niet aan de eisen." : "";
+            }
+            if (RV.pbPassword.Password.Length == 0)
+            {
+                RV.elbPassword.Content = "Dit veld is verplicht.";
+            }
+            else
+            {
+                RV.elbPassword.Content = !RV.pbPassword.Password.IsPassword() ? "Wachtwoord veriest een 1 number, 1 letter, 1 special character, between 8 and 24 characters" : "";
+                if (!Equals(RV.pbPassword.Password, RV.pbPasswordRepeat.Password))
+                {
+                    RV.elbPassword.Content = "Wachtwoorden komen niet overeen.";
+                }
+            }
+            if (RV.pbPasswordRepeat.Password.Length == 0)
+            {
+                RV.elbPasswordRepeat.Content = "Dit veld is verplicht.";
+            }
+            else
+            {
+                RV.elbPasswordRepeat.Content = !RV.pbPasswordRepeat.Password.IsPassword() ? "Wachtwoord veriest een 1 number, 1 letter, 1 special character, between 8 and 24 characters" : "";
+            }
             #endregion
+            #endregion
+
+
             errorCount += RV.tbEmail.Text.Length == 0 ? 1 : 0;
-            errorCount += RV.tbStreetName.Text.Length == 0 ? 1 : 0;
-            errorCount += RV.tbCityName.Text.Length == 0 ? 1 : 0;
-            errorCount += RV.tbZipCode.Text.Length == 0 ? 1 : 0;
+
+            errorCount += userNameCount == 0 ? 0 : 1;
+   
             errorCount += RV.tbFirstName.Text.Length == 0 ? 1 : 0;
+         
             errorCount += RV.tbLastName.Text.Length == 0 ? 1 : 0;
+           
             errorCount += RV.tbUsername.Text.Length == 0 ? 1 : 0;
+            
             errorCount += RV.pbPassword.Password.Length == 0 ? 1 : 0;
             errorCount += RV.pbPasswordRepeat.Password.Length == 0 ? 1 : 0;
             errorCount += RV.dpBirthDate.ToString().Length == 0 ? 1 : 0;
-            if (RV.pbPassword.Password != RV.pbPasswordRepeat.Password)
-            {
-                errorCount += 1;
-            }
-            #endregion
-            if (errorCount == 0)
-            {
-                using (var context = new CustomDbContext())
+            errorCount += Equals(RV.pbPassword.Password, RV.pbPasswordRepeat.Password) ? 0 : 1;
+            errorCount += RV.tbEmail.Text.IsEmail() ? 0 : 1;
+            errorCount += RV.pbPassword.Password.IsPassword() ? 0 : 1;
+            errorCount += RV.tbFirstName.Text.IsName() ? 0 : 1;
+            errorCount += RV.tbLastName.Text.IsName() ? 0 : 1;
+
+
+
+
+
+                if (errorCount == 0)
                 {
+
                     var addedUser = new User()
                     {
                         FirstName = RV.tbFirstName.Text,
@@ -92,12 +192,13 @@ namespace BedrijfsOpleiding.ViewModel.Login
                         PassWord = RV.pbPassword.Password,
                         Email = RV.tbEmail.Text,
                         Role = User.RoleEnum.Customer,
-                        Street = RV.tbStreetName.Text,
-                        City = RV.tbCityName.Text,
-                        Zipcode = RV.tbZipCode.Text
+                        Street = "yet to be implemented street",
+                        City = "Yet to be implemented city",
+                        Zipcode = "Yet to be implemented zip"
                     };
                     context.Users.Add(addedUser);
                     context.SaveChanges();
+                    RV.ParentViewModel.CurrentView = new LoginView(RV.ParentViewModel);
                 }
             }
             

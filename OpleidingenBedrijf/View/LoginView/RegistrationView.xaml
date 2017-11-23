@@ -8,51 +8,43 @@
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d">
     <Grid Background="White">
-        <Grid Width="600" Height="850">
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,95,0,680" >Gebruikersnaam</Label>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbUsername"/>
-            <fa:ImageAwesome Name="ecUsername" Icon="ExclamationCircle"  Margin="465,111,118,694" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,160,0,619" Content="Voornaam" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="318,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
-            <Button Name="btnRegister"  Content="Registreer" HorizontalAlignment="Left" Margin="104,759,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click" RenderTransformOrigin="0.472,2.48"/>
-            <Button Name="btnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="362,759,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,229,0,550" Content="Geboortedatum" />
-            <DatePicker HorizontalAlignment="Left" Margin="135,255,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpBirthDate"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,582,0,247" Content="Wachtwoord" />
-            <PasswordBox  HorizontalAlignment="Left" Height="23" Margin="135,603,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbPassword"  />
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="130,647,0,130" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,670,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="316,160,0,619" Content="Achternaam" />
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,305,0,470" Content="E-mail adres" />
-            <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,375,0,400" Content="Postcode" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbZipCode"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,443,0,332" Content="Straatnaam en huisnummer&#xD;&#xA;" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,468,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbStreetName"/>
-            <Label FontSize="10" HorizontalAlignment="Left" Margin="131,512,0,313" Content="Plaatsnaam&#xA;" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,539,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbCityName"/>
-            <fa:ImageAwesome Name="ecFirstName" Icon="ExclamationCircle"  Margin="290,169,292,633" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
-            <fa:ImageAwesome Name="ecBirthdate" Icon="ExclamationCircle" Height="20"  Margin="235,255,338,575" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Name="ecEmail" Icon="ExclamationCircle" Height="20" Margin="464,330,109,500" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Name="ecZipCode" Icon="ExclamationCircle" Height="20"  Margin="290,403,283,427" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Name="ecStreetName" Height="20" Icon="ExclamationCircle"  Margin="465,443,108,336" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Height="20" Name="ecCityName" Icon="ExclamationCircle"  Margin="465,540,108,290" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Height="20" Name="ecPassword" Icon="ExclamationCircle"  Margin="464,603,109,227" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Height="20" Name="ecRepeatPassword" Icon="ExclamationCircle"  Margin="464,672,109,158" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <Label Name="elbUsername" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbFirstName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name ="elbLastName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbBirthDate" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbEmail" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbZipCode" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,420,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name ="elbStreetName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,490,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbCityName" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,558,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <fa:ImageAwesome Name="ecLastName" Icon="ExclamationCircle"  Margin="464,183,118,647" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
-            <Label Name="elbPassword" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,623,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbPasswordRepeat" Content="Dit veld is verplicht" HorizontalAlignment="Left" Margin="130,691,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="-2,0,1.8,0">
+            <Grid Width="600" Height="700">
+                <Label Content="Registreren" Height="50" VerticalAlignment="Top" Margin="0,30,0,0" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="131,92,0,583" RenderTransformOrigin="0.482,0.169" >Gebruikersnaam</Label>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbUsername"/>
+                <fa:ImageAwesome Name="ecUsername" Icon="ExclamationCircle"  Margin="465,121,118,559" Foreground="#FFCD0000" Height="20"/>
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="130,162,0,509" Content="Voornaam" />
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="318,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
+                <Button Name="btnRegister"  Content="Registreer" HorizontalAlignment="Left" Margin="108,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click" RenderTransformOrigin="0.472,2.48"/>
+                <Button Name="btnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="366,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="131,225,0,450" Content="Geboortedatum" />
+                <DatePicker HorizontalAlignment="Left" Margin="135,255,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpBirthDate"/>
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="129,389,0,287" Content="Wachtwoord" />
+                <PasswordBox  HorizontalAlignment="Left" Height="23" Margin="135,413,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbPassword"  />
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="130,465,0,212" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
+                <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,488,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="316,160,0,511" Content="Achternaam" />
+                <Label FontSize="12" HorizontalAlignment="Left" Margin="131,305,0,370" Content="E-mail adres" />
+                <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
+                <fa:ImageAwesome Name="ecFirstName" Icon="ExclamationCircle"  Margin="290,183,292,497" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
+                <fa:ImageAwesome Name="ecBirthdate" Icon="ExclamationCircle" Height="20"  Margin="235,255,338,425" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
+                <fa:ImageAwesome Name="ecEmail" Icon="ExclamationCircle" Height="20" Margin="464,333,114,347" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
+                <fa:ImageAwesome Height="20" Name="ecPassword" Icon="ExclamationCircle"  Margin="464,416,109,264" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
+                <fa:ImageAwesome Height="20" Name="ecRepeatPassword" Icon="ExclamationCircle"  Margin="464,491,109,189" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
+                <Label Name="elbUsername"  HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+                <Label Name="elbFirstName"  HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+                <Label Name ="elbLastName"  HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+                <Label Name="elbBirthDate"  HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+                <Label Name="elbEmail"  HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+                <fa:ImageAwesome Name="ecLastName" Icon="ExclamationCircle"  Margin="464,181,118,499" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
+                <Label Name="elbPassword"  HorizontalAlignment="Left" Margin="130,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+                <Label Name="elbPasswordRepeat"  HorizontalAlignment="Left" Margin="130,509,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
 
 
-        </Grid>
+
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </view:BaseView>
