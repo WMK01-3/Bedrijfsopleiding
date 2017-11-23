@@ -17,7 +17,7 @@ namespace BedrijfsOpleiding.Models
         {
             this.Date = date;
             this.Enrollments = new List<Enrollment>();
-            this.Customer = Customer;
+            this.Customer = customer;
         }
 
         public void Add(Enrollment enrollment)

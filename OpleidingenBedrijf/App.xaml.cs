@@ -36,14 +36,13 @@ namespace BedrijfsOpleiding
             mainWindow.Show();
 
             // PDF TEST
-            /*
-                Debug.WriteLine("Testing PDF");
-                Invoice testInvoice = generateTestData();
+            Debug.WriteLine("Testing PDF");
+            Invoice testInvoice = generateTestData();
 
             
 
-                generateInvoice.Init(testInvoice);
-            */
+            generateInvoice.NewPdf(testInvoice);
+            
         }
 
         private Invoice generateTestData()
