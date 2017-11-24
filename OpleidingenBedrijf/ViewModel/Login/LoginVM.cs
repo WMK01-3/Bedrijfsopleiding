@@ -17,7 +17,6 @@ namespace BedrijfsOpleiding.ViewModel.Login
         public void Login()
         {
             LoginView loginV = (LoginView)CurrentView;
-            loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
             loginV.Password.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.Username.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.ErrorMessage.Visibility = Visibility.Hidden;

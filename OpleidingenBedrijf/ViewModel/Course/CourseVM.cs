@@ -1,23 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using BedrijfsOpleiding.View.CourseView;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
     public class CourseVM : BaseViewModel
     {
+        public List<Models.Course> CourseList => GetCourseList();
+
         public CourseVM(UserControl boundView) : base(boundView)
         {
         }
 
-        public void Info()
+        public List<Models.Course> GetCourseList()
         {
-            CourseView CourseV = (CourseView)CurrentView;
-            CourseV.CourseInfo.Text = "Test";
+            var courseList = new List<Models.Course>();
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                IQueryable<Models.Course> result = (from c in context.Courses
+                              select c);
+
+                foreach (Models.Course course in result)
+                {
+                    courseList.Add(course);
+                }
+            }
+            return courseList;
         }
     }
 }

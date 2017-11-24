@@ -13,7 +13,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            ((CourseVM)OwnViewModel).Info();
+            //((CourseVM) OwnViewModel).MoreInfo();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
     {
         public RegistrationVM(UserControl boundView) : base(boundView)
         {
-
+            
         }
 
         public void RegisterUser()

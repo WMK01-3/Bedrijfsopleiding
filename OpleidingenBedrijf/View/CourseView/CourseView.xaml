@@ -22,12 +22,19 @@
         <Label Content="Niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 410"/>
         <ComboBox HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
         <Label Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
-        <DataGrid Grid.Column="1" HorizontalAlignment="Left" Height="900" Margin="20,20,0,0" VerticalAlignment="Top" Width="700" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White"/>
+        <DataGrid ItemsSource="{Binding Source=CourseList}" Grid.Column="1" Name="Courses" HorizontalAlignment="Left" Height="900" Margin="20,20,0,0" VerticalAlignment="Top" Width="700" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
+         <DataGrid.Columns>
+             <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Path=Title}" Width="200"/>
+             <DataGridTextColumn Header="Kosten" IsReadOnly="True"  Binding="{Binding Path=T}" Width="170"/>
+             <DataGridTextColumn Header="Locatie" IsReadOnly="True"  Binding="{Binding Path=Test2}" Width="170"/>
+             <DataGridTextColumn Header="Nivea" IsReadOnly="True"  Binding="{Binding Path=Test2}" Width="170"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2" CornerRadius="20" HorizontalAlignment="Left" Height="900" Margin="20,22,0,0" VerticalAlignment="Top" Width="700">
             <TextBlock TextWrapping="Wrap" Margin="9,9,9,97" Name="CourseInfo" Background="White"/>
         </Border>
         <Grid Grid.Column="2" HorizontalAlignment="Left" Height="98" Margin="20,822,0,0" VerticalAlignment="Top" Name="Enroll" Width="700">
-            <Button Content="Inschrijven" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="100" Margin="560,40,0,0" Click="Button_Click"/>
+            <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="150" Margin="540,40,0,0" Click="Button_Click"/>
             <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15" Margin="20,40,0,0" VerticalAlignment="Top"/>
             <Label Content="Aantal lessen:" HorizontalAlignment="Left" FontSize="15" Margin="300,40,0,0" VerticalAlignment="Top"/>
         </Grid>
