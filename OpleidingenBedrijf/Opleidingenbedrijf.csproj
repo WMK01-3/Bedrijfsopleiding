@@ -79,7 +79,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="AnimatedContentControl.cs" />
+    <Compile Include="API\AnimatedContent\AnimatedContentControl.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="CustomDbContext.cs" />
     <Compile Include="Models\Course.cs" />
@@ -91,6 +91,7 @@
     <Compile Include="Tools\generateInvoice.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Login\LoginVM.cs" />
+    <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Page Include="View\LoginView\RegistrationView.xaml">
       <Generator>MSBuild:Compile</Generator>
