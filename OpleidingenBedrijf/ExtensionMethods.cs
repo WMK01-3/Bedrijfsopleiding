@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
 namespace BedrijfsOpleiding
 {
@@ -20,20 +15,21 @@ namespace BedrijfsOpleiding
         public static bool IsEmail(this string str) =>
             Regex.IsMatch(str, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
+
         /// <summary>
         /// Check if string is a first name
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool IsFirstName(this string str) =>
-            Regex.IsMatch(str, @"^[a-zA-Z]{2,24}\z$");
+     //   public static bool IsFirstName(this string str) =>
+     //       Regex.IsMatch(str, @"^[a-zA-Z]{2,24}\z$");
 
         /// <summary>
         /// Check if string is a Last name
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool IsLastName(this string str) =>
+        public static bool IsName(this string str) =>
             Regex.IsMatch(str, @"^[a-z A-Z]{2,24}\b\z$");
 
         /// <summary>
@@ -48,5 +44,14 @@ namespace BedrijfsOpleiding
         /// <returns></returns>
         public static bool IsPassword(this string str) =>
             Regex.IsMatch(str, @"^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,24}$");
+
+        /// <summary>
+        /// Check if string is empty e.g. ""
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsEmpty(this string str) =>
+            str.Length == 0;
+
     }
 }

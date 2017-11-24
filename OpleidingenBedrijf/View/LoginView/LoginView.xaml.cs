@@ -6,6 +6,7 @@ namespace BedrijfsOpleiding.View.LoginView
 {
     public partial class LoginView : BaseView
     {
+
         public LoginView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
@@ -20,7 +21,8 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            ((LoginVM)OwnViewModel).Login();
+            ((MainWindowVM) ParentViewModel).MenuView = new MenuBar(ParentViewModel);
+            // ((LoginVM)OwnViewModel).Login();
         }
     }
 }

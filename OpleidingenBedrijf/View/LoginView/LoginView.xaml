@@ -8,40 +8,45 @@
              mc:Ignorable="d">
 
     <Grid Background="White">
-        <Grid Width="350" Height="260">
-            <!--Error Message Grid-->
-            <Grid  Height="32" x:Name="ErrorMessage" VerticalAlignment="Top" Width="250">
-                <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="250" />
-                <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
-                    <fa:ImageAwesome.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="-0.402"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0.443"/>
-                        </TransformGroup>
-                    </fa:ImageAwesome.RenderTransform>
-                </fa:ImageAwesome>
-                <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center"/>
-            </Grid>
+        <Grid Width="350" Height="320" VerticalAlignment="Top">
+            <Label Content="Inloggen" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
 
-            <!--Username Grid-->
-            <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0 50, 0, 0">
-                <fa:ImageAwesome Icon="User" VerticalAlignment="Center" HorizontalAlignment="Left"  Height="28" />
-                <Label Content="Gebruikersnaam" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96"/>
-                <TextBox HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" Name="Username" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-            </Grid>
-
-            <!--Password Grid-->
-            <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0, 110, 0, 0">
-                <fa:ImageAwesome Icon="Lock" VerticalAlignment="Center" HorizontalAlignment="Left" Height="28"/>
-                <Label Content="Wachtwoord" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96"/>
-                <PasswordBox HorizontalAlignment="Right" Height="23" VerticalAlignment="Bottom" Width="241" Name="Password" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
-            </Grid>
-
-            <Grid VerticalAlignment="Bottom" Margin="0, 0, 0, 10">
-                <Button Content="Login" HorizontalAlignment="Left" Margin="10,213,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
-                <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,213,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
+            <Grid Height="200" Margin="0, 70, 0, 0">
+                <!--Error Message Grid-->
+                <Grid  Height="32" x:Name="ErrorMessage" VerticalAlignment="Top" Width="250">
+                    <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="250" />
+                    <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
+                        <fa:ImageAwesome.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform AngleY="-0.402"/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="0.443"/>
+                            </TransformGroup>
+                        </fa:ImageAwesome.RenderTransform>
+                    </fa:ImageAwesome>
+                    <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center"/>
+                </Grid>
+                <!--Username Grid-->
+                <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0 50, 0, 0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="19*"/>
+                        <RowDefinition Height="21*"/>
+                    </Grid.RowDefinitions>
+                    <fa:ImageAwesome Icon="User" VerticalAlignment="Center" HorizontalAlignment="Left"  Height="28" Margin="0,6" Grid.RowSpan="2" />
+                    <Label Grid.Row="0" Content="Gebruikersnaam" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96" Grid.RowSpan="2"/>
+                    <TextBox Grid.Row="1" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" Name="Username" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.RowSpan="2"/>
+                </Grid>
+                <!--Password Grid-->
+                <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0, 110, 0, 0">
+                    <fa:ImageAwesome Icon="Lock" VerticalAlignment="Center" HorizontalAlignment="Left" Height="28"/>
+                    <Label Content="Wachtwoord" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96"/>
+                    <PasswordBox HorizontalAlignment="Right" Height="23" VerticalAlignment="Bottom" Width="241" Name="Password" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+                </Grid>
+                <Grid VerticalAlignment="Bottom" Margin="0, 0, 0, 10">
+                    <Button Content="Login" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>
+                    <Button Content="Registreren" HorizontalAlignment="Left" Margin="206,0,0,0" VerticalAlignment="Top" Width="130" Click="btnRegister_Click"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

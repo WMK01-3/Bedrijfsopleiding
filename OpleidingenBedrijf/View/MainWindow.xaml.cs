@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using BedrijfsOpleiding.ViewModel;
+﻿using BedrijfsOpleiding.ViewModel;
 
 namespace BedrijfsOpleiding.View
 {
