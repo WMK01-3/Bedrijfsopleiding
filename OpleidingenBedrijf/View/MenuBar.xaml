@@ -1,0 +1,53 @@
+﻿<view:BaseView x:Class="BedrijfsOpleiding.View.MenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
+             xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="1680">
+    <!--Outer grid-->
+    <Grid Background="White">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Button Grid-->
+        <Grid Margin="75 0 0 0">
+            <uiElements:FlatButton x:Name="BtnDashBoard" HorizontalAlignment="Left" Width="150" Height="50" Content="DashBoard" Click="BtnDashBoard_Click"/>
+            <uiElements:FlatButton x:Name="BtnCourseOverview" HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Height="50" Content="Cursussen" Click="BtnCourseOverview_Click"/>
+            <uiElements:FlatButton x:Name="BtnCustomerOverview" HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Height="50" Content="Klanten" Click="BtnCustomerOverview_Click">
+                <uiElements:FlatButton.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsEmployee}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </uiElements:FlatButton.Style>
+            </uiElements:FlatButton>
+        </Grid>
+
+        <!--User Profile grid -->
+        <Grid Width="200" Grid.Column="1" HorizontalAlignment="Right" Margin="0 0 100 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="52"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Profile Icon-->
+            <fa:ImageAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="UserCircleOutline" Width="48" Foreground="Black"/>
+            <!--User name-->
+            <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0 20 0 0" Content="Merlijn Medewerker"/>
+
+            <Button Content="Profiel" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Left" Margin="8 30 0 0" IsHitTestVisible="True" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF3069B1"/>
+            <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF3069B1"/>
+        </Grid>
+    </Grid>
+</view:BaseView>

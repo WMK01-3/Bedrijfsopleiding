@@ -32,7 +32,7 @@ namespace BedrijfsOpleiding
             {
                 mainWindow.WindowState = WindowState.Minimized;
             }
-            mainWindow.Show();            
+            mainWindow.Show();
         }
     }
 }

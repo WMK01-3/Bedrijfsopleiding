@@ -6,8 +6,9 @@ namespace UnitTest
     [TestClass]
     public class ExtensionMethods
     {
-        #region IsEmail() : bool
 
+        #region IsEmail() : bool
+       
         /// <summary>
         /// Checks if a correct email does pass
         /// </summary>
@@ -46,9 +47,33 @@ namespace UnitTest
 
         #endregion
 
-        #region IsName() : bool
-        
-       
+
+        #region IsFirstName() : bool
+
+        [TestMethod]
+        public void IsFirstNameCorrect()
+        {
+            Assert.IsTrue("Cornelus".IsFirstName());
+        }
+
+        [TestMethod]
+        public void IsFirstNameWithSpace()
+        {
+            Assert.IsFalse("Corn elus".IsFirstName());
+        }
+
+        [TestMethod]
+        public void IsFirstNameWithNumbers()
+        {
+            Assert.IsFalse("Corn3lus".IsFirstName());
+        }
+
+        [TestMethod]
+        public void IsFirstNameAtLeastTwoChars()
+        {
+            Assert.IsTrue("Co".IsFirstName());
+            Assert.IsFalse("C".IsFirstName());
+        }
 
         #endregion
     }

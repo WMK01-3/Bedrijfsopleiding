@@ -1,4 +1,3 @@
-﻿using System;
 using System.Diagnostics;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Diagnostics;
@@ -8,7 +7,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using BedrijfsOpleiding.Models;
-﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -25,6 +23,8 @@ namespace BedrijfsOpleiding.ViewModel.Login
 
         public void Login()
         {
+
+            
             LoginView loginV = (LoginView)CurrentView;
             loginV.Password.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.Username.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
