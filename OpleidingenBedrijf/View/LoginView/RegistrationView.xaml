@@ -23,6 +23,7 @@
             <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,320,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbWachtwoord"/>
             <Label FontSize="10" HorizontalAlignment="Left" Margin="130,361,0,116" Content="Wachtwoord herhalen" />
             <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,382,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbWachtwoordHerhalen"/>
+
             <Label FontSize="10" HorizontalAlignment="Left" Margin="306,163,0,314" Content="Achternaam" />
         </Grid>
     </Grid>

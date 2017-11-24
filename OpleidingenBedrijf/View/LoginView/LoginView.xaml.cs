@@ -23,5 +23,6 @@ namespace BedrijfsOpleiding.View.LoginView
         {
             ((LoginVM)OwnViewModel).Login();
         }
+
     }
 }

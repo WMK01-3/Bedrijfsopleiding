@@ -6,9 +6,9 @@
         xmlns:bedrijfsOpleiding="clr-namespace:BedrijfsOpleiding"
         xmlns:animatedContent="clr-namespace:BedrijfsOpleiding.API.AnimatedContent"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525">    
     <Grid>
-        <animatedContent:AnimatedContentControl x:Name="animatedContentControl" Content="{Binding CurrentView}"/>
+        <bedrijfsOpleiding:AnimatedContentControl x:Name="animatedContentControl" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
 

@@ -18,6 +18,7 @@ namespace BedrijfsOpleiding.Models
         public DifficultyEnum Difficulty { get; set; }
         public int MaxParticipants { get; set; }
         public decimal Price { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public List<DateTime> Dates { get; set; }        // all of the active course dates
         public int Duration{ get; set; }                // the duration of the lessons

@@ -14,7 +14,6 @@ namespace BedrijfsOpleiding.View.LoginView
         {
             InitializeComponent();
             OwnViewModel = new RegistrationVM(this);
-           
         }
 
         private void btnCancel_Click(object sender, System.Windows.RoutedEventArgs e)
