@@ -1,11 +1,8 @@
 <ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-
-
 	xmlns:local="clr-namespace:BedrijfsOpleiding.UIElements"
 	xmlns:bedrijfsOpleiding="clr-namespace:BedrijfsOpleiding">
-
 
     <Style TargetType="{x:Type bedrijfsOpleiding:AnimatedContentControl}">
         <Setter Property="Template">
@@ -41,5 +38,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

@@ -28,5 +28,17 @@ namespace BedrijfsOpleiding.Models
         public string Zipcode { get; set; }
 
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+
+        public User()
+        {
+
+        }
+        public User(string firstname, string lastname, string email)
+        {
+            this.FirstName = firstname;
+            this.LastName = LastName;
+            this.Email = email;
+        }
     }
 }

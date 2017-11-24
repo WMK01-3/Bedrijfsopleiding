@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:bedrijfsOpleiding="clr-namespace:BedrijfsOpleiding"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525">    
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="10"/>
@@ -20,7 +19,6 @@
         <ContentControl Content="{Binding NavigationView}" x:Name="CntNavigation" Grid.Row="1"/>
         <!--Main Content-->
         <bedrijfsOpleiding:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
-
     </Grid>
 </Window>
 
