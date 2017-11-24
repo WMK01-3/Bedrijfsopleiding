@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.View
 {
@@ -33,7 +34,7 @@ namespace BedrijfsOpleiding.View
 
         private void BtnCourseOverview_Click(object sender, RoutedEventArgs e)
         {
-
+            ParentViewModel.CurrentView = new CourseView.CourseView(ParentViewModel);
         }
 
         private void BtnCustomerOverview_Click(object sender, RoutedEventArgs e)

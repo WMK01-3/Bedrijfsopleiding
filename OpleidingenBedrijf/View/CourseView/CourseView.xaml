@@ -22,12 +22,12 @@
         <Label Content="Niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 410"/>
         <ComboBox HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
         <Label Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
-        <DataGrid ItemsSource="{Binding Source=CourseList}" Grid.Column="1" Name="Courses" HorizontalAlignment="Left" Height="900" Margin="20,20,0,0" VerticalAlignment="Top" Width="700" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
-         <DataGrid.Columns>
-             <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Path=Title}" Width="200"/>
-             <DataGridTextColumn Header="Kosten" IsReadOnly="True"  Binding="{Binding Path=T}" Width="170"/>
-             <DataGridTextColumn Header="Locatie" IsReadOnly="True"  Binding="{Binding Path=Test2}" Width="170"/>
-             <DataGridTextColumn Header="Nivea" IsReadOnly="True"  Binding="{Binding Path=Test2}" Width="170"/>
+        <DataGrid AutoGenerateColumns="False" Grid.Column="1" Name="Courses" HorizontalAlignment="Left" Height="900" Margin="20,20,0,0" VerticalAlignment="Top" Width="700" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="200"/>
+                <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price}" Width="100"/>
+                <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding Location}" Width="100"/>
+                <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Binding="{Binding Difficulty}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Column="2" CornerRadius="20" HorizontalAlignment="Left" Height="900" Margin="20,22,0,0" VerticalAlignment="Top" Width="700">

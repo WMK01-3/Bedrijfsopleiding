@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UserControl = System.Windows.Controls.UserControl;
+using System.Windows.Controls;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -11,6 +10,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public CourseVM(UserControl boundView) : base(boundView)
         {
+
         }
 
         public List<Models.Course> GetCourseList()
@@ -18,7 +18,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
             var courseList = new List<Models.Course>();
 
             using (CustomDbContext context = new CustomDbContext())
-            {
+            { 
                 IQueryable<Models.Course> result = (from c in context.Courses
                               select c);
 
