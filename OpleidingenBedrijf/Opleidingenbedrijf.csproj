@@ -78,6 +78,7 @@
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\Course\CourseSignUpVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
+    <Compile Include="View\BaseView.cs" />
     <Compile Include="View\CourseView\CourseSignUpView.xaml.cs">
       <DependentUpon>CourseSignUpView.xaml</DependentUpon>
     </Compile>
@@ -128,7 +129,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\BaseView.cs" />
     <Compile Include="View\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
     </Compile>
@@ -168,6 +168,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

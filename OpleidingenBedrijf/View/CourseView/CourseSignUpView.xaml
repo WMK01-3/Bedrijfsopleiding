@@ -8,56 +8,100 @@
              mc:Ignorable="d" 
              d:DesignHeight="940" d:DesignWidth="1680">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <!--Info Grid-->
-        <Grid Grid.Column="0" Margin="10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="310"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Grid.Row="0" Content="a{Binding CourseTitle}" HorizontalContentAlignment="Center" Height="110" VerticalAlignment="Top" FontFamily="Arial" FontSize="60" FontWeight="Bold"/>
-            <TextBlock Grid.Row="0" Text="a{Binding CourseDesc}" Height="200" VerticalAlignment="Top" Margin="0 110 0 0" FontFamily="Arial" FontSize="16"/>
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <!--Price-->
-                <Label Grid.Column="0" Content="a{Binding CoursePrice}" Height="30" VerticalAlignment="Top" Margin="0 40 0 0" FontSize="16" FontFamily="Arial"/>
-                <!--Total amount of Lessons-->
-                <Label Grid.Column="0" Content="a{Binding CourseLessonCount}" Height="30" VerticalAlignment="Top" Margin="0 80 0 0" FontSize="16" FontFamily="Arial"/>
-                <!--Minutes per lesson-->
-                <Label Grid.Column="0" Content="a{Binding CourseMinutesPerLesson}" Height="30" VerticalAlignment="Top" Margin="0 120 0 0" FontSize="16" FontFamily="Arial"/>
-                <!--Amount of people-->
-                <Label Grid.Column="0" Content="a{Binding CourseParticipants}" Height="30" VerticalAlignment="Top" Margin="0 160 0 0" FontSize="16" FontFamily="Arial"/>
-                <!--Level of difficulty-->
-                <Label Grid.Column="0" Content="a{Binding CourseLevel}" Height="30" VerticalAlignment="Top" Margin="0 200 0 0" FontSize="16" FontFamily="Arial"/>
+        <Button Width="150" Height="60" HorizontalAlignment="Left" Margin="10" Content="Terug" FontSize="30"/>
 
-                <!--Location-->
-                <Label Grid.Column="0" Content="Adres" Height="30" VerticalAlignment="Top" Margin="0 300 0 0" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
-                <!--Street-->
-                <Label Grid.Column="0" Content="a{Binding CourseStreet}" Height="30" VerticalAlignment="Top" Margin="0 340 0 0" FontSize="16" FontFamily="Arial"/>
-                <!--City And PostalCode-->
-                <Label Grid.Column="0" Content="a{Binding CourseCity}" Height="30" VerticalAlignment="Top" Margin="0 340 0 0" FontSize="16" FontFamily="Arial"/>
+        <Border Grid.Row="1" Grid.Column="0" Margin="10" BorderThickness="2" BorderBrush="Black" CornerRadius="50">
+            <!--Info Grid-->
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="310"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding CourseTitle}" HorizontalContentAlignment="Center" Height="110" VerticalAlignment="Top" FontFamily="Arial" FontSize="60" FontWeight="Bold"/>
+                <TextBlock Grid.Row="0" Text="{Binding CourseDesc}" Height="200" VerticalAlignment="Top" Margin="0 110 0 0" FontFamily="Arial" FontSize="16"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Price-->
+                    <Label Grid.Column="0" Content="{Binding CoursePrice}" Height="30" VerticalAlignment="Top" Margin="0 40 0 0" FontSize="16" FontFamily="Arial"/>
+                    <!--Total amount of Lessons-->
+                    <Label Grid.Column="0" Content="{Binding CourseLessonCount}" Height="30" VerticalAlignment="Top" Margin="0 80 0 0" FontSize="16" FontFamily="Arial"/>
+                    <!--Minutes per lesson-->
+                    <Label Grid.Column="0" Content="{Binding CourseMinutesPerLesson}" Height="30" VerticalAlignment="Top" Margin="0 120 0 0" FontSize="16" FontFamily="Arial"/>
+                    <!--Amount of people-->
+                    <Label Grid.Column="0" Content="{Binding CourseParticipants}" Height="30" VerticalAlignment="Top" Margin="0 160 0 0" FontSize="16" FontFamily="Arial"/>
+                    <!--Level of difficulty-->
+                    <Label Grid.Column="0" Content="{Binding CourseLevel}" Height="30" VerticalAlignment="Top" Margin="0 200 0 0" FontSize="16" FontFamily="Arial"/>
 
+                    <!--Location-->
+                    <Label Grid.Column="0" Content="Adres" Height="30" VerticalAlignment="Top" Margin="0 300 0 0" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+                    <!--Street-->
+                    <Label Grid.Column="0" Content="{Binding CourseStreet}" Height="30" VerticalAlignment="Top" Margin="0 340 0 0" FontSize="16" FontFamily="Arial"/>
+                    <!--City And PostalCode-->
+                    <Label Grid.Column="0" Content="{Binding CourseCity}" Height="30" VerticalAlignment="Top" Margin="0 340 0 0" FontSize="16" FontFamily="Arial"/>
 
-
-                <!--Course Dates-->
-                <Label Grid.Column="1" Height="30" Content="Cursus Data" Width="200" VerticalAlignment="Top" Margin="40" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
-                <ItemsControl  Grid.Column="1" ItemsSource="{Binding CourseDates}" Width="200" Margin="0 70 0 0" FontFamily="Arial" FontSize="16"/>
+                    <!--Course Dates-->
+                    <Label Grid.Column="1" Height="30" Content="Cursus Data" Width="200" VerticalAlignment="Top" Margin="40" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
+                    <ItemsControl  Grid.Column="1" ItemsSource="{Binding CourseDates}" Width="200" Margin="0 70 0 0" FontFamily="Arial" FontSize="16"/>
+                </Grid>
             </Grid>
-        </Grid>
+        </Border>
         <!--Sign up Grid-->
-        <Grid Grid.Column="1" Margin="10">
-            <Label Height="60" VerticalAlignment="Top" Margin="0 20 0 0" Content="a{Binding CourseTitle}" FontFamily="Arial" FontWeight="Bold" FontSize="36" HorizontalContentAlignment="Center"/>
-            <Label Height="30" VerticalAlignment="Top" Margin="40 300 0 0" Content="Factuur verzenden naar:" FontSize="16"/>
-            <TextBox Height="30" Width="300" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50 340 0 0" Text="a{Binding UserEmail}"></TextBox>
-            <uiElements:FlatButton Height="30" Width="120" HorizontalAlignment="Right" Margin="0 60 90 0" Content="Inschrijven"></uiElements:FlatButton>
-        </Grid>
+        <Border Grid.Row="1"  Grid.Column="1" Margin="10" BorderThickness="2" BorderBrush="Black" CornerRadius="50">
+            <Grid Margin="10">
+                <Label Height="60" VerticalAlignment="Top" Margin="0 20 0 0" Content="a{Binding CourseTitle}" FontFamily="Arial" FontWeight="Bold" FontSize="36" HorizontalContentAlignment="Center"/>
+
+                <!--Only the normal user can see this-->
+                <Grid>
+                    <Label Height="30" VerticalAlignment="Top" Margin="40 300 0 0" Content="Factuur verzenden naar:" FontSize="16"/>
+                    <TextBox Height="30" Width="300" VerticalAlignment="Top" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50 340 0 0" Text="a{Binding UserEmail}"></TextBox>
+                    <uiElements:FlatButton Height="30" Width="120" HorizontalAlignment="Right" Margin="0 60 90 0" Content="Inschrijven" Name="btnSignUp" Click="BtnSignUp_OnClick"/>
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsUser}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                </Grid>
+
+                <!--Only an Employee can see this-->
+                <Grid>
+                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 150 0 0" Width="160" Click="BtnEditCourse_OnClick" x:Name="btnEditCourse" Content="Cursus Wijzigen"/>
+                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 250 0 0" Width="160" Click="BtnDelCourse_OnClick" x:Name="btnDelCourse" Content="Cursus Verwijderen"/>
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsEmployee}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                </Grid>
+
+                <!--Only a professor can see this-->
+                <Grid>
+                    <Label></Label>
+                </Grid>
+
+            </Grid>
+        </Border>
     </Grid>
 </view:BaseView>
 
