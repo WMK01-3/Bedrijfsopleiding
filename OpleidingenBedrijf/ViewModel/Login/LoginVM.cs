@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.LoginView;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.ViewModel.Login
 {
@@ -38,7 +40,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     }
                     if (Password == loginV.Password.Password)
                     {
-                        //loginV.ParentViewModel.CurrentView = new DashboardView(loginV.ParentViewModel);
+                        loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
                     }
                     else
                     {

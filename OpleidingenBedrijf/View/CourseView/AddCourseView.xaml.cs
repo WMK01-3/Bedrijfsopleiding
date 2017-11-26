@@ -98,8 +98,7 @@ namespace BedrijfsOpleiding.View.CursusView
                 UserID = short.Parse(TeacherID.Text),
                 LocationID = int.Parse(TeacherID.Text)
             };
-
-            ((CourseVM)OwnViewModel).AddCourse(course);
+            
         }
 
         private void Difficulty_Loaded(object sender, RoutedEventArgs e)
