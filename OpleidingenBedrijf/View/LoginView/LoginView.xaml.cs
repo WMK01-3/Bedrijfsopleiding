@@ -24,5 +24,6 @@ namespace BedrijfsOpleiding.View.LoginView
             ((MainWindowVM) ParentViewModel).MenuView = new MenuBar(ParentViewModel);
             // ((LoginVM)OwnViewModel).Login();
         }
+
     }
 }

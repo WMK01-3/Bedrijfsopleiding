@@ -10,7 +10,7 @@ namespace BedrijfsOpleiding.View.LoginView
         {
             InitializeComponent();
             OwnViewModel = new RegistrationVM(this);
-
+            
             #region hideControls
             ecUsername.Visibility = Visibility.Hidden;
             ecBirthdate.Visibility = Visibility.Hidden;
