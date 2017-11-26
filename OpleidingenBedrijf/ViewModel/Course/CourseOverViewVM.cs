@@ -4,11 +4,11 @@ using System.Windows.Controls;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
-    public class CourseVM : BaseViewModel
+    public class CourseOverViewVM : BaseViewModel
     {
         public List<Models.Course> CourseList => GetCourseList();
 
-        public CourseVM(UserControl boundView) : base(boundView)
+        public CourseOverViewVM(UserControl boundView) : base(boundView)
         {
 
         }

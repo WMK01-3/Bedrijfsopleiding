@@ -1,4 +1,5 @@
-﻿using BedrijfsOpleiding.ViewModel;
+﻿using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.View.CourseView
@@ -8,14 +9,15 @@ namespace BedrijfsOpleiding.View.CourseView
         public CourseView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
-            OwnViewModel = new CourseVM(this);
+            OwnViewModel = new CourseOverViewVM(this);
 
-            Courses.ItemsSource = ((CourseVM) OwnViewModel).CourseList;
+            courses.ItemsSource = ((CourseOverViewVM)OwnViewModel).CourseList;
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ToCourseInfo(object sender, System.Windows.RoutedEventArgs e)
         {
-            //((CourseVM) OwnViewModel).MoreInfo();
+
+            ParentViewModel.CurrentView = new CourseInfoView(((Course)courses.SelectedItem).CourseID, ParentViewModel);
         }
     }
 }

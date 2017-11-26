@@ -34,11 +34,12 @@ namespace BedrijfsOpleiding.Models
         {
 
         }
+
         public User(string firstname, string lastname, string email)
         {
-            this.FirstName = firstname;
-            this.LastName = LastName;
-            this.Email = email;
+            FirstName = firstname;
+            LastName = lastname;
+            Email = email;
         }
     }
 }

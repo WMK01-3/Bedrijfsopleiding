@@ -77,11 +77,10 @@
     </ApplicationDefinition>
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
-    <Compile Include="ViewModel\Course\CourseSignUpVM.cs" />
+    <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
-    <Compile Include="View\BaseView.cs" />
-    <Compile Include="View\CourseView\CourseSignUpView.xaml.cs">
-      <DependentUpon>CourseSignUpView.xaml</DependentUpon>
+    <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
+      <DependentUpon>CourseInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
@@ -90,8 +89,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\CourseView\CourseView.xaml"/>
-    <Page Include="View\CourseView\CourseSignUpView.xaml">
+    <Page Include="View\CourseView\CourseView.xaml" />
+    <Page Include="View\CourseView\CourseInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,7 +114,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Tools\generateInvoice.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Course\CourseVM.cs" />
+    <Compile Include="ViewModel\Course\CourseOverViewVM.cs" />
     <Compile Include="ViewModel\Login\LoginVM.cs" />
     <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
@@ -29,15 +23,17 @@ namespace BedrijfsOpleiding
             MainWindow mainWindow = new MainWindow();
             
             if (startMinimized)
-            {
                 mainWindow.WindowState = WindowState.Minimized;
-            }
+
             mainWindow.Show();
-            
-            using (var context = new CustomDbContext())
+
+
+            Database.SetInitializer<CustomDbContext>(null);
+
+            using (CustomDbContext context = new CustomDbContext())
             {
                 Location loc = new Location("T5", "Shitstreet", "Shitcity", "1234SH");
-                
+
                 Course course = new Course
                 {
                     Price = 230,

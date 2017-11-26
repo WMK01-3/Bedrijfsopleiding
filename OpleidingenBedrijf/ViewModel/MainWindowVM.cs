@@ -32,7 +32,13 @@ namespace BedrijfsOpleiding.ViewModel
         }
         #endregion
 
-        public User CurUser { get; private set; }
+        private User _user;
+
+        public User CurUser
+        {
+            get => _user ?? new User{Role = User.RoleEnum.Customer};
+            private set => _user = value;
+        }
 
         public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;
 

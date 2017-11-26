@@ -1,21 +1,20 @@
-﻿using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Course;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
-using static System.Enum;
+using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
 
-namespace BedrijfsOpleiding.View.CursusView
+namespace BedrijfsOpleiding.View.CourseView
 {
-    public partial class CursusView
+    public partial class AddCourseView
     {
-        public CursusView(BaseViewModel parent) : base(parent)
+        public AddCourseView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
-            OwnViewModel = new CourseVM(this);
+            OwnViewModel = new CourseOverViewVM(this);
         }
 
         private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -73,7 +72,7 @@ namespace BedrijfsOpleiding.View.CursusView
 
         private void Duration_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Course.DurationEnum> data = GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
+            List<Course.DurationEnum> data = Enum.GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
 
             Duration.ItemsSource = data;
             Duration.SelectedIndex = 0;
@@ -88,7 +87,7 @@ namespace BedrijfsOpleiding.View.CursusView
 
             Course course = new Course
             {
-                Name = CourseName.Text,
+                Title = CourseName.Text,
                 Difficulty = (Course.DifficultyEnum)Difficulty.SelectedItem,
                 MaxParticipants = (int)MaxParticipants.Value,
                 Duration = (Course.DurationEnum)Duration.SelectedItem,
@@ -103,7 +102,7 @@ namespace BedrijfsOpleiding.View.CursusView
 
         private void Difficulty_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Course.DifficultyEnum> data = GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
+            List<Course.DifficultyEnum> data = Enum.GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
 
             Difficulty.ItemsSource = data;
             Difficulty.SelectedIndex = 0;

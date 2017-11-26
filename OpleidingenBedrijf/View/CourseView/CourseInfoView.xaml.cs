@@ -5,12 +5,12 @@ using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.View.CourseView
 {
-    public partial class CourseSignUpView
+    public partial class CourseInfoView
     {
-        public CourseSignUpView(Course course, BaseViewModel parent) : base(parent)
+        public CourseInfoView(int courseId, BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
-            DataContext = new CourseSignUpVM(course, this);
+            DataContext = new CourseInfoVM(courseId, this);
         }
 
         private void BtnEditCourse_OnClick(object sender, RoutedEventArgs e)
@@ -20,7 +20,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void BtnDelCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            ((CourseSignUpVM) OwnViewModel).DeleteCourse();
+            ((CourseInfoVM) OwnViewModel).DeleteCourse();
         }
         
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
