@@ -18,7 +18,7 @@
         <!--Navigation box-->
         <Label Content="{Binding NavigationText}" Background="LightGray" x:Name="CntNavigation" Grid.Row="1"/>
         <!--Main Content-->
-        <bedrijfsOpleiding:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
+        <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
     </Grid>
 </Window>
 
