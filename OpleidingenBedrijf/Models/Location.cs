@@ -22,6 +22,10 @@ namespace BedrijfsOpleiding.Models
 
         public virtual ICollection<Course> Courses { get; set; }
 
+        public Location()
+        {
+            
+        }
 
         public Location(string classroom, string street, string city, string zipcode)
         {

@@ -1,21 +1,9 @@
-﻿﻿using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BedrijfsOpleiding.View;
 using BedrijfsOpleiding.View.CourseView;
-using System.Diagnostics;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Animation;
-using BedrijfsOpleiding.Models;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using BedrijfsOpleiding.View.LoginView;
-using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.ViewModel.Login
 {
@@ -41,19 +29,14 @@ namespace BedrijfsOpleiding.ViewModel.Login
             }
             else
             {
-                using (var context = new CustomDbContext())
+                using (CustomDbContext context = new CustomDbContext())
                 {
-                    var result = (from u in context.Users
-                                  where u.UserName == loginV.Username.Text
-                                  select u.PassWord);
-                    foreach (var element in result)
-                    {
-                        Password = element;
-                    }
+                    Password = (from u in context.Users
+                                where u.UserName == loginV.Username.Text
+                                select u.PassWord).First();
+
                     if (Password == loginV.Password.Password)
-                    {
-                        loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
-                    }
+                        ((MainWindowVM) loginV.ParentViewModel).Login();
                     else
                     {
                         loginV.ErrorMessage.Visibility = Visibility.Visible;

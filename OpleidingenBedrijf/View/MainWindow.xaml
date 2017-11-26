@@ -16,7 +16,7 @@
         <!--The menu-->
         <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
         <!--Navigation box-->
-        <Label Content="{Binding NavigationText}" Background="LightGray" x:Name="CntNavigation" Grid.Row="1"/>
+        <Label Content="{Binding NavigationText}" Visibility="Hidden" Background="LightGray" x:Name="CntNavigation" Grid.Row="1"/>
         <!--Main Content-->
         <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
     </Grid>
