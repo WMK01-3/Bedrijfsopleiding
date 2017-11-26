@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
 using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.LoginView;
@@ -31,12 +32,12 @@ namespace BedrijfsOpleiding.ViewModel.Login
             {
                 using (CustomDbContext context = new CustomDbContext())
                 {
-                    Password = (from u in context.Users
+                    User user = (from u in context.Users
                                 where u.UserName == loginV.Username.Text
-                                select u.PassWord).First();
+                                select u).First();
 
-                    if (Password == loginV.Password.Password)
-                        ((MainWindowVM) loginV.ParentViewModel).Login();
+                    if (user.PassWord == loginV.Password.Password)
+                        ((MainWindowVM) loginV.ParentViewModel).Login(user);
                     else
                     {
                         loginV.ErrorMessage.Visibility = Visibility.Visible;

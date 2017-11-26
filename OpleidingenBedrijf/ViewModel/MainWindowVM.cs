@@ -24,6 +24,7 @@ namespace BedrijfsOpleiding.ViewModel
         #endregion
 
         #region NavigationView : UserControl
+
         private string _navigationView;
         public string NavigationText
         {
@@ -34,16 +35,22 @@ namespace BedrijfsOpleiding.ViewModel
                 OnPropertyChanged(nameof(NavigationText));
             }
         }
+
         #endregion
 
-        private User _user;
+        #region CurUser : User
 
+        private User _user;
         public User CurUser
         {
             get => _user ?? new User { Role = User.RoleEnum.Customer };
             private set => _user = value;
         }
 
+        #endregion
+
+
+        public string FullUserName => $"{CurUser?.FirstName} {CurUser?.LastName}";
         public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;
 
 
@@ -57,8 +64,9 @@ namespace BedrijfsOpleiding.ViewModel
             CurUser = user;
         }
 
-        public void Login()
+        public void Login(User user)
         {
+            CurUser = user;
             MenuView = new MenuBar(this);
             _mainWindowView.CntNavigation.Visibility = Visibility.Visible;
             CurrentView = new DashBoardView(this);

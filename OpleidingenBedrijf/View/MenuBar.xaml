@@ -44,7 +44,7 @@
             <!--Profile Icon-->
             <fa:ImageAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="UserCircleOutline" Width="48" Foreground="Black"/>
             <!--User name-->
-            <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0 20 0 0" Content="Merlijn Medewerker"/>
+            <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0 20 0 0" Content="{Binding FullUserName}"/>
 
             <Button Content="Profiel" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Left" Margin="8 30 0 0" IsHitTestVisible="True" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF3069B1"/>
             <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF3069B1"/>

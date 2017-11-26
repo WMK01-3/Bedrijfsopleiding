@@ -26,20 +26,6 @@ namespace BedrijfsOpleiding
             mainWindow.Show();
             
             Database.SetInitializer<CustomDbContext>(null);
-            /*
-            using (CustomDbContext context = new CustomDbContext())
-            {
-                Course course = new Course
-                {
-                    Price = 230,
-                    Title = "How to be a professional shit",
-                    UserID = 1,
-                    LocationID = 1
-                };
-                context.Courses.Add(course);
-                context.SaveChanges();
-            }
-            */
         }
     }
 }

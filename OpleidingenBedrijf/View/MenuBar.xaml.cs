@@ -8,6 +8,7 @@ namespace BedrijfsOpleiding.View
         public MenuBar(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
+            DataContext = (MainWindowVM) parent;
         }
 
         private void BtnDashBoard_Click(object sender, RoutedEventArgs e)
