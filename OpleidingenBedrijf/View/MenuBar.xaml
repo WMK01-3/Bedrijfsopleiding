@@ -7,10 +7,9 @@
              xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="1680">
+             d:DesignHeight="60" d:DesignWidth="1250">
     <!--Outer grid-->
-    <Grid Background="#62B2E3">
-
+    <Grid Background="#34495E">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="300"/>
@@ -18,9 +17,9 @@
 
         <!--Button Grid-->
         <Grid Margin="75 0 0 0">
-            <uiElements:SimpleButton x:Name="BtnDashBoard" HorizontalAlignment="Left" Width="150" Height="50" Content="DashBoard" Click="BtnDashBoard_Click"/>
-            <uiElements:SimpleButton x:Name="BtnCourseOverview" HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Height="50" Content="Cursussen" Click="BtnCourseOverview_Click"/>
-            <uiElements:SimpleButton x:Name="BtnCustomerOverview" HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Height="50" Content="Klanten" Click="BtnCustomerOverview_Click">
+            <uiElements:SimpleButton x:Name="btnDashBoard" HorizontalAlignment="Left" Width="150" Content="DashBoard" Click="BtnDashBoard_Click"/>
+            <uiElements:SimpleButton x:Name="btnCourseOverview" HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Content="Cursussen" Click="BtnCourseOverview_Click"/>
+            <uiElements:SimpleButton x:Name="btnCustomerOverview" HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Content="Klanten" Click="BtnCustomerOverview_Click">
                 <uiElements:SimpleButton.Style>
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Visibility" Value="Visible"/>
@@ -42,12 +41,12 @@
             </Grid.ColumnDefinitions>
 
             <!--Profile Icon-->
-            <fa:ImageAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="UserCircleOutline" Width="48" Foreground="Black"/>
+            <fa:ImageAwesome HorizontalAlignment="Left" Grid.Column="0" Icon="UserCircleOutline" Width="48" Foreground="White"/>
             <!--User name-->
-            <Label Grid.Column="1" HorizontalContentAlignment="Center" Margin="0 20 0 0" Content="{Binding FullUserName}"/>
+            <Label Grid.Column="1" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Margin="0 10 0 0" Content="{Binding FullUserName}" Foreground="White"/>
 
-            <Button Content="Profiel" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Left" Margin="8 30 0 0" IsHitTestVisible="True" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF3069B1"/>
-            <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF3069B1"/>
+            <Button Content="Profiel" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Left" Margin="8 30 0 0" IsHitTestVisible="True" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF5297F0"/>
+            <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF5297F0"/>
         </Grid>
     </Grid>
 </view:BaseView>

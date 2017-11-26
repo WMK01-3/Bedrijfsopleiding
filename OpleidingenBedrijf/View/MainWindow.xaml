@@ -8,7 +8,7 @@
         Title="MainWindow" Height="800" Width="1250">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -16,7 +16,7 @@
         <!--The menu-->
         <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
         <!--Navigation box-->
-        <Label Content="{Binding NavigationText}" Visibility="Hidden" Background="LightGray" x:Name="CntNavigation" Grid.Row="1"/>
+        <Label Content="{Binding NavigationText}" Visibility="Hidden" Background="#FF5C7FA2" x:Name="CntNavigation" Grid.Row="1"/>
         <!--Main Content-->
         <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
     </Grid>

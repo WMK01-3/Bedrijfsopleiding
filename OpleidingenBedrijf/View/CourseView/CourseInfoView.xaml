@@ -66,7 +66,7 @@
                 <!--Only the normal user can see this-->
                 <Grid>
                     <Label Height="30" VerticalAlignment="Center" Margin="40 0 0 70" Content="Factuur verzenden naar:" FontSize="16"/>
-                    <TextBox Height="30" Width="300" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50 0 0 0" x:Name="EmailText"></TextBox>
+                    <TextBox Height="30" Width="300" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="50 0 0 0" x:Name="EmailText" Text="{Binding UserEmail, Mode=OneTime}"/>
                     <uiElements:FlatButton Height="30" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Right" Margin="0 0 10 40" Content="Inschrijven" x:Name="btnSignUp" Click="BtnSignUp_OnClick"/>
                     <Grid.Style>
                         <Style TargetType="{x:Type Grid}">
@@ -96,9 +96,19 @@
                     </Grid.Style>
                 </Grid>
 
-                <!--Only a professor can see this-->
+                <!--Only a Teacher can see this-->
                 <Grid>
                     <Label></Label>
+                    <Grid.Style>
+                        <Style TargetType="{x:Type Grid}">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsTeacher}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
                 </Grid>
 
             </Grid>

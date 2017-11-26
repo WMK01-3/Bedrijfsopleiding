@@ -32,12 +32,16 @@ namespace BedrijfsOpleiding.ViewModel.Login
             {
                 using (CustomDbContext context = new CustomDbContext())
                 {
-                    User user = (from u in context.Users
-                                where u.UserName == loginV.Username.Text
-                                select u).First();
+                    IQueryable<User> result = from u in context.Users
+                                              where u.UserName == loginV.Username.Text
+                                              select u;
+
+                    if (!result.Any()) return;
+
+                    User user = result.First();
 
                     if (user.PassWord == loginV.Password.Password)
-                        ((MainWindowVM) loginV.ParentViewModel).Login(user);
+                        ((MainWindowVM)loginV.ParentViewModel).Login(user);
                     else
                     {
                         loginV.ErrorMessage.Visibility = Visibility.Visible;
