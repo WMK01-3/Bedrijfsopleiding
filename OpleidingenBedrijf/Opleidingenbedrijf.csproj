@@ -33,9 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
       <HintPath>packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
@@ -46,6 +43,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,7 +76,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UIElements\FlatButton.cs" />
+    <Compile Include="UIElements\SimpleButton.cs" />
+    <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
+    <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
+      <DependentUpon>CourseInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
@@ -83,7 +89,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\DashBoardView.xaml">
+    <Page Include="View\CourseView\CourseView.xaml" />
+    <Page Include="View\CourseView\CourseInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DashBoardView.xaml" />
+    <Page Include="View\CourseView\AddCourseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -91,7 +103,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="AnimatedContentControl.cs" />
+    <Compile Include="API\AnimatedContent\AnimatedContentControl.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="CustomDbContext.cs" />
     <Compile Include="Models\Course.cs" />
@@ -102,6 +114,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Tools\generateInvoice.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Course\CourseOverViewVM.cs" />
     <Compile Include="ViewModel\Login\LoginVM.cs" />
     <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
@@ -117,10 +130,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="View\BaseView.cs" />
+    <Compile Include="View\CourseView\CourseView.xaml.cs">
+      <DependentUpon>CourseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CourseView\AddCourseView.xaml.cs">
+      <DependentUpon>AddCourseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -155,15 +173,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
-using BedrijfsOpleiding.Tools;
 
 namespace BedrijfsOpleiding
 {
@@ -29,10 +22,29 @@ namespace BedrijfsOpleiding
             MainWindow mainWindow = new MainWindow();
             
             if (startMinimized)
-            {
                 mainWindow.WindowState = WindowState.Minimized;
-            }
             mainWindow.Show();
+
+
+            Database.SetInitializer<CustomDbContext>(null);
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                Location loc = new Location("T5", "Shitstreet", "Shitcity", "1234SH");
+
+                Course course = new Course
+                {
+                    Price = 230,
+                    Title = "How to be a professional shit",
+                    UserID = 1,
+                    LocationID = 1
+                };
+
+                context.Locations.Add(loc);
+                context.SaveChanges();
+                context.Courses.Add(course);
+                context.SaveChanges();
+            }
         }
     }
 }

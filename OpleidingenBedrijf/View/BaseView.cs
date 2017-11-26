@@ -1,6 +1,5 @@
 ﻿using System.Windows.Controls;
 using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Login;
 
 namespace BedrijfsOpleiding.View
 {

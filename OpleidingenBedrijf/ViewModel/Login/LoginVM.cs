@@ -1,3 +1,7 @@
+﻿﻿using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
+using BedrijfsOpleiding.View.CourseView;
 using System.Diagnostics;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Diagnostics;
@@ -11,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BedrijfsOpleiding.View.LoginView;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.ViewModel.Login
 {
@@ -23,8 +28,6 @@ namespace BedrijfsOpleiding.ViewModel.Login
 
         public void Login()
         {
-
-            
             LoginView loginV = (LoginView)CurrentView;
             loginV.Password.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
             loginV.Username.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
@@ -49,7 +52,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     }
                     if (Password == loginV.Password.Password)
                     {
-                        //loginV.ParentViewModel.CurrentView = new DashboardView(loginV.ParentViewModel);
+                        loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
                     }
                     else
                     {

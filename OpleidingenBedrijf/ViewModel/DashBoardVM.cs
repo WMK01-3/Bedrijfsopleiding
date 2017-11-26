@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows.Controls;
-using BedrijfsOpleiding.View;
+﻿using System.Windows.Controls;
 
 namespace BedrijfsOpleiding.ViewModel
 {
