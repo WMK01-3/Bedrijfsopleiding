@@ -14,6 +14,7 @@ namespace BedrijfsOpleiding.View.CourseView
         public AddCourseView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
+
             OwnViewModel = new AddCourseVM(this);
 
             #region hideControls
@@ -26,7 +27,11 @@ namespace BedrijfsOpleiding.View.CourseView
 
 
             #endregion
+
         }
+
+       
+
 
         private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -87,7 +92,6 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void Duration_Loaded(object sender, RoutedEventArgs e)
         {
-            
             List<Course.DurationEnum> data = Enum.GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
 
             Duration.ItemsSource = data;
@@ -101,14 +105,31 @@ namespace BedrijfsOpleiding.View.CourseView
             Console.WriteLine(@"TeacherID:" + TeacherID.Text);
             Console.WriteLine(@"LocationID:" + LocationID.Text);
 
+
+          /*  if (StartDate.SelectedDate == null) return;
+
+            Course course = new Course
+            {
+                Title = CourseName.Text,
+                Difficulty = (Course.DifficultyEnum)Difficulty.SelectedItem,
+                MaxParticipants = (int)MaxParticipants.Value,
+                Duration = (Course.DurationEnum)Duration.SelectedItem,
+                Price = int.Parse(Price.Text),
+                Description = new TextRange(Description.Document.ContentStart, Description.Document.ContentEnd).Text,
+
+                UserID = short.Parse(TeacherID.Text),
+                LocationID = int.Parse(TeacherID.Text)
+            };*/
+
             
             ((AddCourseVM)OwnViewModel).AddCourse();
+
             
         }
 
         private void Difficulty_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             List<Course.DifficultyEnum> data = Enum.GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
 
             Difficulty.ItemsSource = data;

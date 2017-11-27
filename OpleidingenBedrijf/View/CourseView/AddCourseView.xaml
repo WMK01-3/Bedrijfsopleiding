@@ -3,9 +3,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+<<<<<<< HEAD
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+=======
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BedrijfsOpleiding.View.CourseView"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
+>>>>>>> origin/CursusAanmaken
              mc:Ignorable="d" 
              d:DesignHeight="940" d:DesignWidth="1680">
     <Grid>
