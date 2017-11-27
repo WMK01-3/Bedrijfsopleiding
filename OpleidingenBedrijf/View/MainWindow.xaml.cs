@@ -7,7 +7,7 @@ namespace BedrijfsOpleiding.View
         public MainWindow()
         {
             InitializeComponent();
-            MainWindowVM mainWindowView = new MainWindowVM();
+            MainWindowVM mainWindowView = new MainWindowVM(this);
             mainWindowView.CurrentView = new LoginView.LoginView(mainWindowView);
             DataContext = mainWindowView;
             animatedContentControl.ShouldAnimate = true;

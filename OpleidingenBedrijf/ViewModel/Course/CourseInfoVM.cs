@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
@@ -10,31 +13,33 @@ namespace BedrijfsOpleiding.ViewModel.Course
     public class CourseInfoVM : BaseViewModel
     {
         private User _user;
+        private Location _location;
+
         public Models.Course Course { get; }
         public string CourseDesc => Course.Description;
         public string CourseTitle => Course.Title;
         public string CoursePrice => $"Prijs: €{Course.Price.ToString(CultureInfo.CurrentCulture)} / les";
         public string CourseLessonCount => $"{Course.Dates} lessen";
         public string CourseMinutesPerLesson => $"Minuten per les: {Course.Duration}";
-
         public string CourseParticipants =>
             Course.Enrollments == null ? "Aantal deelnemers: ONBEKEND" : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
-
         public string CourseLevel => $"Niveau: {Course.Difficulty}";
+
         public bool IsEmployee => _user.Role == User.RoleEnum.Employee;
         public bool IsUser => _user.Role == User.RoleEnum.Customer;
+        public bool IsTeacher => _user.Role == User.RoleEnum.Teacher;
+
         public string UserEmail => _user.Email;
+        public string CourseStreet => _location.Street;
+        public string CourseCity => $"{_location.City} , {_location.Zipcode}";
 
-
-        //public IEnumerable<DateTime> CourseDates => new ObservableCollection<DateTime> { Course.Dates };
+        public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
 
         public CourseInfoVM(int courseId, UserControl boundView) : base(boundView)
         {
             CourseInfoView signup = (CourseInfoView)boundView;
             MainWindowVM mainWindow = (MainWindowVM)signup.ParentViewModel;
             _user = mainWindow.CurUser;
-
-            ((CourseInfoView) boundView).EmailText.Text = _user.Email;
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -56,6 +61,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     Price = c.Price,
                     Title = c.Title
                 };
+
+                _location = (from location in context.Locations
+                             where location.LocationID == Course.LocationID
+                             select location).First();
             }
         }
 
@@ -64,6 +73,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
             using (CustomDbContext context = new CustomDbContext())
             {
                 context.Courses.Remove(Course);
+                context.SaveChanges();
+            }
+        }
+
+        public void SignUserUp()
+        {
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                Models.Course course = (from c in context.Courses
+                                        where c.CourseID == Course.CourseID
+                                        select c).First();
+
+                course.Enrollments.Add(new Enrollment(_user, course));
                 context.SaveChanges();
             }
         }

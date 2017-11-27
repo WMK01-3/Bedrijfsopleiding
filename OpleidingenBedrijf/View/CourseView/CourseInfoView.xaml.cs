@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
@@ -9,8 +10,11 @@ namespace BedrijfsOpleiding.View.CourseView
     {
         public CourseInfoView(int courseId, BaseViewModel parent) : base(parent)
         {
+            CourseInfoVM viewModel = new CourseInfoVM(courseId, this);
+
+            DataContext = viewModel;
+            OwnViewModel = viewModel;
             InitializeComponent();
-            DataContext = new CourseInfoVM(courseId, this);
         }
 
         private void BtnEditCourse_OnClick(object sender, RoutedEventArgs e)
@@ -20,12 +24,18 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void BtnDelCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            ((CourseInfoVM) OwnViewModel).DeleteCourse();
+            ((CourseInfoVM)OwnViewModel).DeleteCourse();
         }
-        
+
+        /// <summary>
+        /// Sign the customer up for the Course
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            ((CourseInfoVM)OwnViewModel).SignUserUp();
         }
+
     }
 }

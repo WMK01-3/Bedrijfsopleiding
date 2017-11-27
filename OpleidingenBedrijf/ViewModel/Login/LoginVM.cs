@@ -1,21 +1,10 @@
-﻿﻿using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using BedrijfsOpleiding.View.CourseView;
-using System.Diagnostics;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media.Animation;
 using BedrijfsOpleiding.Models;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+using BedrijfsOpleiding.View;
+using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.LoginView;
-using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.ViewModel.Login
 {
@@ -41,19 +30,18 @@ namespace BedrijfsOpleiding.ViewModel.Login
             }
             else
             {
-                using (var context = new CustomDbContext())
+                using (CustomDbContext context = new CustomDbContext())
                 {
-                    var result = (from u in context.Users
-                                  where u.UserName == loginV.Username.Text
-                                  select u.PassWord);
-                    foreach (var element in result)
-                    {
-                        Password = element;
-                    }
-                    if (Password == loginV.Password.Password)
-                    {
-                        loginV.ParentViewModel.CurrentView = new CourseView(loginV.ParentViewModel);
-                    }
+                    IQueryable<User> result = from u in context.Users
+                                              where u.UserName == loginV.Username.Text
+                                              select u;
+
+                    if (!result.Any()) return;
+
+                    User user = result.First();
+
+                    if (user.PassWord == loginV.Password.Password)
+                        ((MainWindowVM)loginV.ParentViewModel).Login(user);
                     else
                     {
                         loginV.ErrorMessage.Visibility = Visibility.Visible;

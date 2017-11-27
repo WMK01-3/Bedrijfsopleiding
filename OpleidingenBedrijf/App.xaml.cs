@@ -24,27 +24,8 @@ namespace BedrijfsOpleiding
             if (startMinimized)
                 mainWindow.WindowState = WindowState.Minimized;
             mainWindow.Show();
-
-
+            
             Database.SetInitializer<CustomDbContext>(null);
-
-            using (CustomDbContext context = new CustomDbContext())
-            {
-                Location loc = new Location("T5", "Shitstreet", "Shitcity", "1234SH");
-
-                Course course = new Course
-                {
-                    Price = 230,
-                    Title = "How to be a professional shit",
-                    UserID = 1,
-                    LocationID = 1
-                };
-
-                context.Locations.Add(loc);
-                context.SaveChanges();
-                context.Courses.Add(course);
-                context.SaveChanges();
-            }
         }
     }
 }

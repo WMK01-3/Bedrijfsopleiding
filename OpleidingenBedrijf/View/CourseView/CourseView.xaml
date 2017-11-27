@@ -12,14 +12,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Slider Grid.Column="0" HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="160"/>
-        <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="5,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
-        <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="160,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
-        <Label Grid.Column="0" Content="Locatie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 300"/>
-        <ComboBox Grid.Column="0" HorizontalAlignment="Left" Margin="15,327,0,0" VerticalAlignment="Top" Width="170"/>
-        <Label Grid.Column="0" Content="Niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 410"/>
-        <ComboBox Grid.Column="0" HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
-        <Label Grid.Column="0" Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
+        <Grid Grid.Column="0" Visibility="Hidden">
+            <Slider HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="160"/>
+        <TextBox  HorizontalAlignment="Left" Height="23" Margin="5,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="160,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
+        <Label Content="Locatie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 300"/>
+        <ComboBox HorizontalAlignment="Left" Margin="15,327,0,0" VerticalAlignment="Top" Width="170"/>
+        <Label Content="Niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 410"/>
+        <ComboBox HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
+        <Label Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        
         <DataGrid AutoGenerateColumns="False" Grid.Column="1" Name="courses" Margin="10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>

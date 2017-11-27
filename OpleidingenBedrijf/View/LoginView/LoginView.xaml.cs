@@ -21,9 +21,7 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindowVM) ParentViewModel).MenuView = new MenuBar(ParentViewModel);
-            // ((LoginVM)OwnViewModel).Login();
+            ((LoginVM)OwnViewModel).Login();
         }
-
     }
 }

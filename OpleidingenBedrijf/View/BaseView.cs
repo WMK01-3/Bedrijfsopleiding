@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using BedrijfsOpleiding.ViewModel;
 
 namespace BedrijfsOpleiding.View
@@ -11,7 +13,6 @@ namespace BedrijfsOpleiding.View
         public BaseView(BaseViewModel parent)
         {
             ParentViewModel = parent;
-
             DataContext = OwnViewModel;
         }
     }

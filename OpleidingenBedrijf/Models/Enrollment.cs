@@ -9,15 +9,25 @@ using System.Threading.Tasks;
 namespace BedrijfsOpleiding.Models
 {
     [Table("Enrollments")]
-    public class Enrollment
+    public sealed class Enrollment
     {
         [Key]
         public int EnrollmentID { get; set; }
         public DateTime Timestamp;
         public bool Payed;
 
+        public Course Course { get; set; }
+        public User User { get; set; }
 
-        public virtual Course Course { get; set; }
-        public virtual User User { get; set; }
+        public Enrollment()
+        {
+            
+        }
+
+        public Enrollment(User user, Course course)
+        {
+            User = user;
+            Course = course;
+        }
     }
 }
