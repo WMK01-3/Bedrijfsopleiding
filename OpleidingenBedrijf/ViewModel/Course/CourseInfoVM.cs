@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
@@ -72,8 +73,15 @@ namespace BedrijfsOpleiding.ViewModel.Course
         {
             using (CustomDbContext context = new CustomDbContext())
             {
-                context.Courses.Remove(Course);
+                Models.Course course = (from c in context.Courses
+                    where c.CourseID == Course.CourseID
+                    select c).First();
+
+                context.Courses.Remove(course);
                 context.SaveChanges();
+
+                ((MainWindowVM) ((CourseInfoView) CurrentView).ParentViewModel).CurrentView = new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
+
             }
         }
 
