@@ -62,20 +62,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             av.ErrorMessage.Visibility = Visibility.Hidden;
 
+            Models.Course course = new Models.Course();
+            course.Title = av.CourseName.Text;
+            course.Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem;
+            course.MaxParticipants = (int)av.MaxParticipants.Value;
+            course.Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem;
+            course.Price = int.Parse(av.Price.Text);
+            course.Description = new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text;
+            course.UserID = short.Parse(av.TeacherID.Text);
+            course.LocationID = int.Parse(av.LocationID.Text);
+            //course.Dates.Add(av.StartDate.);
+
             using (CustomDbContext context = new CustomDbContext())
             {
-                Models.Course course = new Models.Course
-                {
-                    Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem,
-                    MaxParticipants = (int)av.MaxParticipants.Value,
-                    Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem,
-                    Price = int.Parse(av.Price.Text),
-                    Description = new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text,
-
-                    UserID = short.Parse(av.TeacherID.Text),
-                    LocationID = int.Parse(av.TeacherID.Text)
-                };
-
                 context.Courses.Add(course);
                 context.SaveChanges();
             }
@@ -91,15 +90,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                            where c.CourseID == av.CourseId
                                            select c).First();
 
+                oldCourse.Title = av.CourseName.Text;
                 oldCourse.Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem;
                 oldCourse.MaxParticipants = (int)av.MaxParticipants.Value;
                 oldCourse.Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem;
                 oldCourse.Price = decimal.Parse(av.Price.Text);
                 oldCourse.Description =
                     new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text;
-                oldCourse.UserID = short.Parse(av.TeacherID.Text);
-                oldCourse.LocationID = int.Parse(av.TeacherID.Text);
 
+
+                // oldCourse.UserID = short.Parse(av.TeacherID.Text);
+                //oldCourse.LocationID = int.Parse(av.TeacherID.Text);
+
+                context.Courses.AddOrUpdate(oldCourse);
                 context.SaveChanges();
             }
         }

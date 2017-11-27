@@ -35,7 +35,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void BtnAddCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            ParentViewModel.CurrentView = new AddCourseView(ParentViewModel);
         }
     }
 }
