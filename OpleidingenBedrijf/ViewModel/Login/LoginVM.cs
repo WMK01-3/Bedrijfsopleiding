@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.View;
-using BedrijfsOpleiding.View.CourseView;
+
+using System.Windows.Media;
+
 using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Login
@@ -11,6 +11,9 @@ namespace BedrijfsOpleiding.ViewModel.Login
     public class LoginVM : BaseViewModel
     {
         public string Password { get; set; }
+        private readonly SolidColorBrush _redBrush = new SolidColorBrush(Colors.Tomato);
+        private readonly SolidColorBrush _blueBrush = new SolidColorBrush(Colors.CornflowerBlue);
+
         public LoginVM(UserControl boundView) : base(boundView)
         {
         }
@@ -18,14 +21,14 @@ namespace BedrijfsOpleiding.ViewModel.Login
         public void Login()
         {
             LoginView loginV = (LoginView)CurrentView;
-            loginV.Password.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
-            loginV.Username.BorderBrush = System.Windows.Media.Brushes.CornflowerBlue;
+            loginV.Password.BorderBrush = _blueBrush;
+            loginV.Username.BorderBrush = _blueBrush;
             loginV.ErrorMessage.Visibility = Visibility.Hidden;
             if (loginV.Username.Text == "" || loginV.Password.Password == "")
             {
                 loginV.ErrorMessage.Visibility = Visibility.Visible;
-                loginV.Username.BorderBrush = System.Windows.Media.Brushes.Red;
-                loginV.Password.BorderBrush = System.Windows.Media.Brushes.Red;
+                loginV.Username.BorderBrush = _redBrush;
+                loginV.Password.BorderBrush = _redBrush;
                 loginV.ErrorMessageMessage.Content = "Een of meerdere velden zijn leeg";
             }
             else
@@ -45,8 +48,8 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     else
                     {
                         loginV.ErrorMessage.Visibility = Visibility.Visible;
-                        loginV.Username.BorderBrush = System.Windows.Media.Brushes.Red;
-                        loginV.Password.BorderBrush = System.Windows.Media.Brushes.Red;
+                        loginV.Username.BorderBrush = _redBrush;
+                        loginV.Password.BorderBrush = _redBrush;
                         loginV.ErrorMessageMessage.Content = "Gebruikersnaam of wachtwoord fout";
                     }
                 }
