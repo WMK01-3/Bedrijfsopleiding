@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
@@ -14,13 +13,14 @@ namespace BedrijfsOpleiding.View.CourseView
             InitializeComponent();
 
             courses.ItemsSource = ((CourseOverViewVM)OwnViewModel).CourseList;
-            if (((MainWindowVM)ParentViewModel).IsEmployee == false)
-            {
-                btnAddCourse.Height = 0;
-                btnAddCourse.Visibility = Visibility.Hidden;
-                Thickness thickness = btnAddCourse.Margin;
-                thickness.Top = 0;
-            }
+
+            if (((MainWindowVM) ParentViewModel).IsEmployee) return;
+
+            btnAddCourse.Height = 0;
+            btnAddCourse.Visibility = Visibility.Hidden;
+            Thickness thickness = btnAddCourse.Margin;
+            thickness.Top = 0;
+            thickness.Bottom = 0;
         }
 
         private void ToCourseInfo(object sender, RoutedEventArgs e)
