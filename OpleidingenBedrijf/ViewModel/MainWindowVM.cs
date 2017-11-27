@@ -44,7 +44,7 @@ namespace BedrijfsOpleiding.ViewModel
         public User CurUser
         {
             get => _user ?? new User { Role = User.RoleEnum.Customer };
-            private set => _user = value;
+            set => _user = value;
         }
 
         #endregion
