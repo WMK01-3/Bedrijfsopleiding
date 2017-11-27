@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using System.Windows;
+using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.Tools;
+using BedrijfsOpleiding.View;
+using System.Linq;
 
 namespace BedrijfsOpleiding
 {
@@ -22,14 +21,24 @@ namespace BedrijfsOpleiding
                 if (e.Args[i] == "/StartMinimized")
                     startMinimized = true;
             }
-
             // Create main application window, starting minimized if specified
             MainWindow mainWindow = new MainWindow();
+
             if (startMinimized)
-            {
                 mainWindow.WindowState = WindowState.Minimized;
-            }
             mainWindow.Show();
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                if (context.Database.Exists())
+                    Database.SetInitializer<CustomDbContext>(null);
+
+                User user = (from u in context.Users
+                             select u).First();
+
+                Invoice invoice = new Invoice(DateTime.Now, user);
+                GenerateInvoice.NewPdf(invoice);
+            }
         }
     }
 }
