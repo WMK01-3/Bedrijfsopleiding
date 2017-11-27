@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 
 namespace BedrijfsOpleiding.View
@@ -24,6 +25,13 @@ namespace BedrijfsOpleiding.View
         private void BtnCustomerOverview_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            ParentViewModel.CurrentView = new LoginView.LoginView(ParentViewModel);
+            ((MainWindowVM) ParentViewModel).CurUser = null;
+            ((MainWindowVM) ParentViewModel).MenuView = null;
         }
     }
 }

@@ -46,7 +46,7 @@
             <Label Grid.Column="1" VerticalAlignment="Top"  HorizontalContentAlignment="Center" Margin="0 10 0 0" Content="{Binding FullUserName}" Foreground="White"/>
 
             <Button Content="Profiel" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Left" Margin="8 30 0 0" IsHitTestVisible="True" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="#FF5297F0"/>
-            <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF5297F0"/>
+            <Button Content="Uitloggen" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0 30 18 0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF5297F0" Click="BtnLogout_Click"/>
         </Grid>
     </Grid>
 </view:BaseView>
