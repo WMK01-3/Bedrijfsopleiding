@@ -8,6 +8,7 @@ using BedrijfsOpleiding.Models;
 
 namespace BedrijfsOpleiding
 {
+   
     class CustomDbContext : DbContext
     {
         public CustomDbContext() : base("CustomDbContext") { }

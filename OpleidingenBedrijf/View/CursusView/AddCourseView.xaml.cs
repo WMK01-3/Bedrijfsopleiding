@@ -1,17 +1,18 @@
-﻿using System;
+﻿using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
-using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Course;
+using static System.Enum;
 
-namespace BedrijfsOpleiding.View.CourseView
+namespace BedrijfsOpleiding.View.CursusView
 {
-    public partial class AddCourseView
+    public partial class CursusView
     {
-        public AddCourseView(BaseViewModel parent) : base(parent)
+        public CursusView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
             OwnViewModel = new CourseVM(this);
@@ -24,7 +25,6 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void Teacher_Loaded(object sender, RoutedEventArgs e)
         {
-            
             using (CustomDbContext context = new CustomDbContext())
             {
                 var data = new List<string>();
@@ -35,12 +35,10 @@ namespace BedrijfsOpleiding.View.CourseView
                 Teacher.ItemsSource = data;
                 Teacher.SelectedIndex = 0;
             }
-            
         }
 
         private void Teacher_DropDownClosed(object sender, EventArgs e)
         {
-            
             //TeacherID in hidden input stoppen
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -71,22 +69,18 @@ namespace BedrijfsOpleiding.View.CourseView
                     TeacherID.Text = user.ToString();
                 }
             }
-            
         }
 
         private void Duration_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            List<Course.DurationEnum> data = Enum.GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
+            List<Course.DurationEnum> data = GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
 
             Duration.ItemsSource = data;
             Duration.SelectedIndex = 0;
-            
         }
 
         private void SaveCourse_Click(object sender, RoutedEventArgs e)
         {
-            
             Console.WriteLine(@"TeacherID:" + TeacherID.Text);
             Console.WriteLine(@"LocationID:" + LocationID.Text);
 
@@ -106,34 +100,28 @@ namespace BedrijfsOpleiding.View.CourseView
             };
 
             ((CourseVM)OwnViewModel).AddCourse(course);
-            
         }
 
         private void Difficulty_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            List<Course.DifficultyEnum> data = Enum.GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
+            List<Course.DifficultyEnum> data = GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
 
             Difficulty.ItemsSource = data;
             Difficulty.SelectedIndex = 0;
-            
         }
 
         private void Location_Loaded(object sender, RoutedEventArgs e)
         {
-            
             using (CustomDbContext context = new CustomDbContext())
             {
                 List<string> data = context.Locations.Select(location => location.Classroom).ToList();
                 Location.ItemsSource = data;
                 Location.SelectedIndex = 0;
             }
-            
         }
 
         private void Location_DropDownClosed_1(object sender, EventArgs e)
         {
-            
             //LocationID in hidden input stoppen
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -142,8 +130,6 @@ namespace BedrijfsOpleiding.View.CourseView
                                 select l.LocationID).First();
                 LocationID.Text = location.ToString();
             }
-
-            
         }
     }
 }
