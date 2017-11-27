@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Windows;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
@@ -26,7 +28,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string CourseMinutesPerLesson => $"Minuten per les: {Course.Duration}";
 
         public string CourseParticipants =>
-            Course.Enrollments == null ? "Aantal deelnemers: ONBEKEND" : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
+            Course.Enrollments == null
+                ? "Aantal deelnemers: ONBEKEND"
+                : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
+
         public string CourseLevel => $"Niveau: {Course.Difficulty}";
 
         public bool IsEmployee => _user.Role == User.RoleEnum.Employee;
@@ -59,7 +64,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     Description = c.Description,
                     Difficulty = c.Difficulty,
                     Duration = c.Duration,
-                    Enrollments = c.Enrollments,
+                    UserID = c.UserID,
                     LocationID = c.LocationID,
                     MaxParticipants = c.MaxParticipants,
                     Price = c.Price,
@@ -88,21 +93,50 @@ namespace BedrijfsOpleiding.ViewModel.Course
         {
             using (CustomDbContext context = new CustomDbContext())
             {
-                context.Courses.Remove(Course);
-                context.SaveChanges();
-            }
-        }
-
-        public void SignUserUp()
-        {
-            using (CustomDbContext context = new CustomDbContext())
-            {
                 Models.Course course = (from c in context.Courses
                                         where c.CourseID == Course.CourseID
                                         select c).First();
 
-                course.Enrollments.Add(new Enrollment(_user, course));
+                context.Courses.Remove(course);
                 context.SaveChanges();
+
+                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView =
+                    new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
+
+            }
+        }
+
+        public bool SignUserUp(bool ischeck)
+        {
+            if (!ischeck)
+            {
+                using (CustomDbContext context = new CustomDbContext())
+                {
+                    IQueryable<Enrollment> result = (from e in context.Enrollments
+                                                     where e.UserID == _user.UserID && e.CourseID == Course.CourseID
+                                                     select e);
+
+                    if (!result.Any())
+                    {
+                        context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
+                        context.SaveChanges();
+                        return false;
+                    }
+                    return true;
+                }
+            }
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                IQueryable<Enrollment> result = (from e in context.Enrollments
+                                                 where e.UserID == _user.UserID && e.CourseID == Course.CourseID
+                                                 select e);
+                if (!result.Any())
+                {
+                    return false;
+                }
+                return true;
+
             }
         }
     }

@@ -26,7 +26,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public void AddCourse()
         {
             _errorCount = 0;
-            AddCourseView av = (AddCourseView)CurrentView;
+            AddCourseView av = (AddCourseView) CurrentView;
 
             #region ErrorIcons
             av.ecCourseName.Visibility = (av.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
@@ -80,6 +80,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
             }
         }
 
+
         public void SaveCourse()
         {
             AddCourseView av = (AddCourseView)CurrentView;
@@ -89,7 +90,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Models.Course oldCourse = (from c in context.Courses
                                            where c.CourseID == av.CourseId
                                            select c).First();
-
+                                           
                 oldCourse.Title = av.CourseName.Text;
                 oldCourse.Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem;
                 oldCourse.MaxParticipants = (int)av.MaxParticipants.Value;
@@ -97,7 +98,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 oldCourse.Price = decimal.Parse(av.Price.Text);
                 oldCourse.Description =
                     new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text;
-
 
                 // oldCourse.UserID = short.Parse(av.TeacherID.Text);
                 //oldCourse.LocationID = int.Parse(av.TeacherID.Text);

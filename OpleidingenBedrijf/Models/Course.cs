@@ -22,13 +22,21 @@ namespace BedrijfsOpleiding.Models
         public List<DateTime> Dates { get; set; }        // all of the active course dates
         public DateTime Created_at = DateTime.Now;
 
-        //public virtual Location Location { get; set; }
-        //public virtual User Teacher { get; set; }
-
         public int UserID { get; set; }
         public int LocationID { get; set; }
+        [ForeignKey("LocationID")]
+        public virtual Location Location { get; set; }
+        [ForeignKey("UserID")]
+        public virtual User User { get; set; }
+
+        //[ForeignKey("LocationID")]
+        //public virtual Location Location { get; set; }
+        //[ForeignKey("UserID")]
+        //public virtual User User { get; set; }
+
 
         // Dit zijn de inschrijvingen
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }
+    

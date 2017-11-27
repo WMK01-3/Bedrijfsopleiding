@@ -3,6 +3,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Mail;
 
 namespace BedrijfsOpleiding.Tools
