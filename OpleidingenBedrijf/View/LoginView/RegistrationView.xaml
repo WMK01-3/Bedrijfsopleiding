@@ -30,7 +30,7 @@
                 <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
                 <fa:ImageAwesome Name="ecFirstName" Icon="ExclamationCircle"  Margin="290,183,292,497" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
                 <fa:ImageAwesome Name="ecBirthdate" Icon="ExclamationCircle" Height="20"  Margin="235,255,338,425" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-                <fa:ImageAwesome Name="ecEmail" Icon="ExclamationCircle" Height="20" Margin="464,333,114,347" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
+                <fa:ImageAwesome Name="ecEmail" Icon="ExclamationCircle" Height="20" Margin="467,333,111,347" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
                 <fa:ImageAwesome Height="20" Name="ecPassword" Icon="ExclamationCircle"  Margin="464,416,109,264" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
                 <fa:ImageAwesome Height="20" Name="ecRepeatPassword" Icon="ExclamationCircle"  Margin="464,491,109,189" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
                 <Label Name="elbUsername"  HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
