@@ -1,4 +1,5 @@
-﻿using BedrijfsOpleiding.Models;
+﻿using System.Diagnostics;
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
 
@@ -17,8 +18,8 @@ namespace BedrijfsOpleiding.View.CourseView
         private void ToCourseInfo(object sender, System.Windows.RoutedEventArgs e)
         {
             if (courses.SelectedItem == null) return;
-
-            if (courses.SelectedItem.GetType() != typeof(Course)) return;
+            
+            if (courses.SelectedItem is Course == false) return;
 
             ParentViewModel.CurrentView =
                 new CourseInfoView(((Course)courses.SelectedItem).CourseID, ParentViewModel);
