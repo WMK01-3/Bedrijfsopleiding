@@ -30,7 +30,17 @@ namespace BedrijfsOpleiding.View.CourseView
 
         }
 
-       
+        public AddCourseView(MainWindowVM parentViewModel, int id) : base(parentViewModel)
+        {
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                var x = (from u in context.Courses
+                    where u.CourseID == id
+                    select u).First();
+               CourseName.Text = x.Title;
+            }
+
+        }
 
 
         private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

@@ -26,7 +26,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         {
             _errorCount = 0;
             AddCourseView av = (AddCourseView) CurrentView;
-            Console.WriteLine("LOL ");
+            
 
             #region ErrorIcons
             av.ecCourseName.Visibility = (av.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
@@ -70,7 +70,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 Models.Course course = new Models.Course
                 {
-                    Name = av.CourseName.Text,
                     Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem,
                     MaxParticipants = (int)av.MaxParticipants.Value,
                     Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem,

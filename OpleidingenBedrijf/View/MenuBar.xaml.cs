@@ -1,10 +1,11 @@
 ﻿using System.Windows;
-<<<<<<< HEAD
+
 using BedrijfsOpleiding.Models;
-=======
+
 using BedrijfsOpleiding.View.CourseView;
->>>>>>> origin/CursusAanmaken
+
 using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.View
 {
@@ -24,8 +25,8 @@ namespace BedrijfsOpleiding.View
         private void BtnCourseOverview_Click(object sender, RoutedEventArgs e)
         {
 
-           // ParentViewModel.CurrentView = new CursusView.CursusView(ParentViewModel);
-            ParentViewModel.CurrentView = new AddCourseView(ParentViewModel);
+            // ParentViewModel.CurrentView = new CursusView.CursusView(ParentViewModel);
+            ParentViewModel.CurrentView = new CourseView.CourseView(ParentViewModel);
 
         }
 
