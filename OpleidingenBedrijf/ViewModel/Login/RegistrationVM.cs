@@ -23,6 +23,10 @@ namespace BedrijfsOpleiding.ViewModel.Login
             _errorCount = 0;
             RegistrationView rv = (RegistrationView)CurrentView;
 
+
+
+            
+
             using (CustomDbContext context = new CustomDbContext())
             {
                 int userNameCount = (from u in context.Users
@@ -144,11 +148,21 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     Street = "yet to be implemented street",
                     City = "Yet to be implemented city",
                     Zipcode = "Yet to be implemented zip"
+                    //FirstName = "Diederik",
+                    //LastName = "Achternaam",
+                    //UserName = "DiederikDocent",
+                    //PassWord = "Welkom1!",
+                    //Email = "DiederikDocent@mail.com",
+                    //Role = User.RoleEnum.Teacher,
+                    //Street = "yet to be implemented street",
+                    //City = "Yet to be implemented city",
+                    //Zipcode = "Yet to be implemented zip"
                 };
                 context.Users.Add(addedUser);
                 context.SaveChanges();
                 rv.ParentViewModel.CurrentView = new LoginView(rv.ParentViewModel);
             }
+            
         }
     }
 }

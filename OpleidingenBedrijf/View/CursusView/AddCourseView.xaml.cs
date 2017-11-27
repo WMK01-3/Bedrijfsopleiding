@@ -1,55 +1,21 @@
-﻿using System;
+﻿using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
-using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Course;
+using static System.Enum;
 
-namespace BedrijfsOpleiding.View.CourseView
+namespace BedrijfsOpleiding.View.CursusView
 {
-    public partial class AddCourseView
+    public partial class CursusView
     {
-        public int CourseId = 0;
-
-        public AddCourseView(BaseViewModel parent) : base(parent)
+        public CursusView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
-            OwnViewModel = new AddCourseVM(this);
-
-            #region hideControls
-            ecCourseName.Visibility = Visibility.Hidden;
-            ecMaxParticipants.Visibility = Visibility.Hidden;
-            ecStartDate.Visibility = Visibility.Hidden;
-            ecPrice.Visibility = Visibility.Hidden;
-            ecDescription.Visibility = Visibility.Hidden;
-            ErrorMessage.Visibility = Visibility.Hidden;
-
-
-            #endregion
-        }
-
-        public AddCourseView(BaseViewModel parentViewModel, int id) : this(parentViewModel)
-        {
-            CourseId = id;
-
-            using (CustomDbContext context = new CustomDbContext())
-            {
-                Course x = (from u in context.Courses
-                            where u.CourseID == id
-                            select u).First();
-
-                CourseName.Text = x.Title;
-                Difficulty.Text = x.Difficulty.ToString();
-                Duration.Text = x.Duration.ToString();
-                Price.Text = x.Price.ToString(CultureInfo.InvariantCulture);
-                MaxParticipants.Value = x.MaxParticipants;
-                Teacher.Text = x.UserID.ToString();
-                Description.Document.Blocks.Add(new Paragraph(new Run(x.Description)));
-                Location.Text = x.LocationID.ToString();
-            }
+            OwnViewModel = new CourseVM(this);
         }
 
         private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -97,7 +63,7 @@ namespace BedrijfsOpleiding.View.CourseView
                     string lastname = Teacher.Text.Split(' ')[1];
 
                     int user = (from u in context.Users
-                                where u.Role == User.RoleEnum.Teacher && u.FirstName == firstname && u.LastName == lastname
+                                where u.Role == User.RoleEnum.Teacher && (u.FirstName == firstname) && (u.LastName == lastname)
                                 select u.UserID).First();
 
                     TeacherID.Text = user.ToString();
@@ -107,7 +73,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void Duration_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Course.DurationEnum> data = Enum.GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
+            List<Course.DurationEnum> data = GetValues(typeof(Course.DurationEnum)).Cast<Course.DurationEnum>().ToList();
 
             Duration.ItemsSource = data;
             Duration.SelectedIndex = 0;
@@ -115,29 +81,30 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void SaveCourse_Click(object sender, RoutedEventArgs e)
         {
-            /*  if (StartDate.SelectedDate == null) return;
+            Console.WriteLine(@"TeacherID:" + TeacherID.Text);
+            Console.WriteLine(@"LocationID:" + LocationID.Text);
 
-              Course course = new Course
-              {
-                  Title = CourseName.Text,
-                  Difficulty = (Course.DifficultyEnum)Difficulty.SelectedItem,
-                  MaxParticipants = (int)MaxParticipants.Value,
-                  Duration = (Course.DurationEnum)Duration.SelectedItem,
-                  Price = int.Parse(Price.Text),
-                  Description = new TextRange(Description.Document.ContentStart, Description.Document.ContentEnd).Text,
+            if (StartDate.SelectedDate == null) return;
 
-                  UserID = short.Parse(TeacherID.Text),
-                  LocationID = int.Parse(TeacherID.Text)
-              };*/
-            if (CourseId > 0)
-                ((AddCourseVM)OwnViewModel).SaveCourse();
-            else
-                ((AddCourseVM)OwnViewModel).AddCourse();
+            Course course = new Course
+            {
+                Name = CourseName.Text,
+                Difficulty = (Course.DifficultyEnum)Difficulty.SelectedItem,
+                MaxParticipants = (int)MaxParticipants.Value,
+                Duration = (Course.DurationEnum)Duration.SelectedItem,
+                Price = int.Parse(Price.Text),
+                Description = new TextRange(Description.Document.ContentStart, Description.Document.ContentEnd).Text,
+
+                UserID = short.Parse(TeacherID.Text),
+                LocationID = int.Parse(TeacherID.Text)
+            };
+
+            ((CourseVM)OwnViewModel).AddCourse(course);
         }
 
         private void Difficulty_Loaded(object sender, RoutedEventArgs e)
         {
-            List<Course.DifficultyEnum> data = Enum.GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
+            List<Course.DifficultyEnum> data = GetValues(typeof(Course.DifficultyEnum)).Cast<Course.DifficultyEnum>().ToList();
 
             Difficulty.ItemsSource = data;
             Difficulty.SelectedIndex = 0;
@@ -163,8 +130,6 @@ namespace BedrijfsOpleiding.View.CourseView
                                 select l.LocationID).First();
                 LocationID.Text = location.ToString();
             }
-
-
         }
     }
 }

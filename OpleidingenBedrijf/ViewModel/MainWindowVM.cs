@@ -1,6 +1,4 @@
-﻿using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
 
@@ -8,8 +6,6 @@ namespace BedrijfsOpleiding.ViewModel
 {
     public class MainWindowVM : BaseViewModel
     {
-        private readonly MainWindow _mainWindowView;
-
         #region MenuView : UserControl
         private UserControl _menuView;
         public UserControl MenuView
@@ -25,13 +21,13 @@ namespace BedrijfsOpleiding.ViewModel
 
         #region NavigationView : UserControl
 
-        private string _navigationView;
+        private string _navigationText = "";
         public string NavigationText
         {
-            get => _navigationView;
+            get => _navigationText;
             set
             {
-                _navigationView = value;
+                _navigationText = value;
                 OnPropertyChanged(nameof(NavigationText));
             }
         }
@@ -49,27 +45,25 @@ namespace BedrijfsOpleiding.ViewModel
 
         #endregion
 
+        public bool NavigationEmpty => NavigationText.IsEmpty();
 
         public string FullUserName => $"{CurUser?.FirstName} {CurUser?.LastName}";
         public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;
 
 
-        public MainWindowVM(MainWindow mainWindowView) : base(null)
+        public MainWindowVM() : base(null)
         {
-            _mainWindowView = mainWindowView;
         }
 
-        public void SetUser(User user)
-        {
-            CurUser = user;
-        }
+        public void SetUser(User user) => CurUser = user;
 
         public void Login(User user)
         {
             CurUser = user;
             MenuView = new MenuBar(this);
-            _mainWindowView.CntNavigation.Visibility = Visibility.Visible;
             CurrentView = new DashBoardView(this);
         }
+
+        public void SetNavigationText(string text) => NavigationText = text;
     }
 }
