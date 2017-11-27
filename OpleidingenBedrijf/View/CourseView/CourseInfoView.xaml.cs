@@ -19,7 +19,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void BtnEditCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            //((MainWindowVM) ParentViewModel).CurrentView = new AddCourseView();
+            ((MainWindowVM) ParentViewModel).CurrentView = new AddCourseView(ParentViewModel);
         }
 
         private void BtnDelCourse_OnClick(object sender, RoutedEventArgs e)

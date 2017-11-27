@@ -17,6 +17,9 @@ namespace BedrijfsOpleiding.View.CourseView
             OwnViewModel = new CourseOverViewVM(this);
         }
 
+       
+
+
         private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             MaxParticipantsLabel.Content = Math.Round(MaxParticipants.Value, 0);
