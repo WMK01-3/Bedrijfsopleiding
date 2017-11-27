@@ -16,8 +16,12 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void ToCourseInfo(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (courses.SelectedItem == null) return;
 
-            ParentViewModel.CurrentView = new CourseInfoView(((Course)courses.SelectedItem).CourseID, ParentViewModel);
+            if (courses.SelectedItem.GetType() != typeof(Course)) return;
+
+            ParentViewModel.CurrentView =
+                new CourseInfoView(((Course)courses.SelectedItem).CourseID, ParentViewModel);
         }
     }
 }
