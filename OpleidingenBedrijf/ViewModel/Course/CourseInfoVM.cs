@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Windows;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.View;
 using BedrijfsOpleiding.View.CourseView;
-using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -101,12 +95,12 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 context.SaveChanges();
 
                 ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView =
-                    new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
+                    new CourseOverView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
 
             }
         }
 
-        public bool SignUserUp(bool ischeck)
+        public bool IsUserSignedUp(bool ischeck)
         {
             if (!ischeck)
             {
@@ -116,27 +110,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                                      where e.UserID == _user.UserID && e.CourseID == Course.CourseID
                                                      select e);
 
-                    if (!result.Any())
-                    {
-                        context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
-                        context.SaveChanges();
-                        return false;
-                    }
-                    return true;
+                    if (result.Any()) return true;
+
+                    context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
+                    context.SaveChanges();
+                    return false;
                 }
             }
 
             using (CustomDbContext context = new CustomDbContext())
             {
-                IQueryable<Enrollment> result = (from e in context.Enrollments
-                                                 where e.UserID == _user.UserID && e.CourseID == Course.CourseID
-                                                 select e);
-                if (!result.Any())
-                {
-                    return false;
-                }
-                return true;
-
+                return (from e in context.Enrollments
+                        where e.UserID == _user.UserID && e.CourseID == Course.CourseID
+                        select e).Any();
             }
         }
     }

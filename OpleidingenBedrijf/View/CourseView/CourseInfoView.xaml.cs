@@ -16,7 +16,7 @@ namespace BedrijfsOpleiding.View.CourseView
             DataContext = viewModel;
             OwnViewModel = viewModel;
             InitializeComponent();
-            bool isSignedUp = ((CourseInfoVM)OwnViewModel).SignUserUp(true);
+            bool isSignedUp = ((CourseInfoVM)OwnViewModel).IsUserSignedUp(true);
             if (isSignedUp)
             {
                 btnSignUp.Visibility = Visibility.Hidden;
@@ -46,7 +46,7 @@ namespace BedrijfsOpleiding.View.CourseView
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
 
-            bool isSignedUp = ((CourseInfoVM)OwnViewModel).SignUserUp(false);
+            bool isSignedUp = ((CourseInfoVM)OwnViewModel).IsUserSignedUp(false);
             if (isSignedUp)
             {
                 btnSignUp.Visibility = Visibility.Hidden;
