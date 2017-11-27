@@ -3,6 +3,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Mail;
 
 namespace BedrijfsOpleiding.Tools
@@ -71,26 +72,42 @@ namespace BedrijfsOpleiding.Tools
 
             foreach (Enrollment enrollment in invoice.Enrollments)
             {
-                int heightBorder = 350 + i * 16;
-                int heightText = 345 + i * 16;
+                using (CustomDbContext context = new CustomDbContext())
+                {
+                    Course course = (from c in context.Courses
+                                     where c.CourseID == enrollment.CourseID
+                                     select c).First();
 
 
-                string classes = $"{enrollment.Course.Dates.Count} x {enrollment.Course.Duration} min";
-                decimal priceClass = Math.Round(enrollment.Course.Price / enrollment.Course.Dates.Count / 100 * 79, 2, MidpointRounding.AwayFromZero);
-                decimal totalPrice = Math.Round(enrollment.Course.Price / 100 * 79, 2, MidpointRounding.AwayFromZero);
-                decimal btwPrice = Math.Round(enrollment.Course.Price / 100 * 21, 2, MidpointRounding.AwayFromZero);
+                    int heightBorder = 350 + i * 16;
+                    int heightText = 345 + i * 16;
 
-                // draw course row
-                gfx.DrawString(classes, normalFont, XBrushes.Black, 25, heightText);
-                gfx.DrawString(enrollment.Course.Title, normalFont, XBrushes.Black, 120, heightText);
-                gfx.DrawString(s: $"€ {priceClass:0.00}", font: normalFont, brush: XBrushes.Black, x: 280, y: heightText);
-                gfx.DrawString(s: $"€ {totalPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 420, y: heightText);
-                gfx.DrawString(s: $"€ {btwPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 520, y: heightText);
-                gfx.DrawLine(tableLine, 25, heightBorder, 575, heightBorder);
 
-                // saving prices
-                total[0] += totalPrice; total[1] += btwPrice; total[2] += enrollment.Course.Price;
-                i++;
+                    string classes = $"{course.Dates.Count} x {course.Duration} min";
+                    decimal priceClass = Math.Round(course.Price / course.Dates.Count / 100 * 79,
+                        2, MidpointRounding.AwayFromZero);
+                    decimal totalPrice = Math.Round(course.Price / 100 * 79, 2,
+                        MidpointRounding.AwayFromZero);
+                    decimal btwPrice = Math.Round(course.Price / 100 * 21, 2, MidpointRounding.AwayFromZero);
+
+                    // draw course row
+                    gfx.DrawString(classes, normalFont, XBrushes.Black, 25, heightText);
+                    gfx.DrawString(course.Title, normalFont, XBrushes.Black, 120, heightText);
+                    gfx.DrawString(s: $"€ {priceClass:0.00}", font: normalFont, brush: XBrushes.Black, x: 280,
+                        y: heightText);
+                    gfx.DrawString(s: $"€ {totalPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 420,
+                        y: heightText);
+                    gfx.DrawString(s: $"€ {btwPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 520,
+                        y: heightText);
+                    gfx.DrawLine(tableLine, 25, heightBorder, 575, heightBorder);
+
+                    // saving prices
+                    total[0] += totalPrice;
+                    total[1] += btwPrice;
+                    total[2] += course.Price;
+                    i++;
+
+                }
             }
 
             // Drawing subtotal && total

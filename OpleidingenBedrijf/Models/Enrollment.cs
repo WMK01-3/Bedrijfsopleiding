@@ -18,15 +18,25 @@ namespace BedrijfsOpleiding.Models
 
         public int CourseID { get; set; }
         public int UserID { get; set; }
+
+       // public virtual ICollection<User> Users { get; set; }
+
+        //[ForeignKey("CourseID")]
+        //public virtual Course Course { get; set; }
+        //[ForeignKey("UserID")]
+        //public virtual User User { get; set; }
+
+
         public Enrollment()
         {
             
         }
 
-        public Enrollment(User user, Course course)
+
+        public Enrollment(int userid, int courseid)
         {
-            User = user;
-            Course = course;
+            UserID = userid;
+            CourseID = courseid;
         }
     }
 }

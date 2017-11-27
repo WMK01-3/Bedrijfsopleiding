@@ -42,7 +42,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 using (CustomDbContext context = new CustomDbContext())
                 {
                     IQueryable<Enrollment> result = (from e in context.Enrollments
-                                         where e.User.UserID == _user.UserID && e.Course.CourseID == Course.CourseID
+                                         where e.UserID == _user.UserID && e.CourseID == Course.CourseID
                                          select e);
 
                     return result.Any() ? Visibility.Visible : Visibility.Hidden;
@@ -73,7 +73,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     Description = c.Description,
                     Difficulty = c.Difficulty,
                     Duration = c.Duration,
-                    Enrollments = c.Enrollments,
+                    UserID = c.UserID,
                     LocationID = c.LocationID,
                     MaxParticipants = c.MaxParticipants,
                     Price = c.Price,
@@ -110,7 +110,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                         where c.CourseID == Course.CourseID
                                         select c).First();
 
-                course.Enrollments.Add(new Enrollment(_user, course));
+                course.Enrollments.Add(new Enrollment(_user.UserID, course.CourseID));
                 context.SaveChanges();
             }
         }
