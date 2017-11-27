@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Windows;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
@@ -33,6 +34,22 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
         public string CourseCity => $"{_location.City} , {_location.Zipcode}";
+
+        public Visibility IsUserSignedUp
+        {
+            get
+            {
+                using (CustomDbContext context = new CustomDbContext())
+                {
+                    IQueryable<Enrollment> result = (from e in context.Enrollments
+                                         where e.User.UserID == _user.UserID && e.Course.CourseID == Course.CourseID
+                                         select e);
+
+                    return result.Any() ? Visibility.Visible : Visibility.Hidden;
+                    
+                }
+            }
+        }
 
         public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
 
@@ -74,13 +91,13 @@ namespace BedrijfsOpleiding.ViewModel.Course
             using (CustomDbContext context = new CustomDbContext())
             {
                 Models.Course course = (from c in context.Courses
-                    where c.CourseID == Course.CourseID
-                    select c).First();
+                                        where c.CourseID == Course.CourseID
+                                        select c).First();
 
                 context.Courses.Remove(course);
                 context.SaveChanges();
 
-                ((MainWindowVM) ((CourseInfoView) CurrentView).ParentViewModel).CurrentView = new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
+                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView = new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
 
             }
         }

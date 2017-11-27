@@ -16,9 +16,8 @@ namespace BedrijfsOpleiding.Models
         public DateTime Timestamp;
         public bool Payed;
 
-        public Course Course { get; set; }
-        public User User { get; set; }
-
+        public int CourseID { get; set; }
+        public int UserID { get; set; }
         public Enrollment()
         {
             

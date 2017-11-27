@@ -63,6 +63,8 @@
             <Grid Margin="10">
                 <Label Height="60" VerticalAlignment="Top" Margin="0 20 0 0" Content="{Binding CourseTitle}" FontFamily="Arial" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center"/>
 
+                <Label Content="U bent ingeschreven" Visibility="{Binding IsUserSignedUp}" FontSize="20" HorizontalContentAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Margin="53,116,0,0" Width="300" Grid.Row="1" VerticalAlignment="Top"/>
+                
                 <!--Only the normal user can see this-->
                 <Grid>
                     <Label Height="30" VerticalAlignment="Center" Margin="40 0 0 70" Content="Factuur verzenden naar:" FontSize="16"/>
