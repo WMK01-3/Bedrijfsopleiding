@@ -26,7 +26,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
         {
             _errorCount = 0;
             AddCourseView av = (AddCourseView) CurrentView;
-            Console.WriteLine("LOL ");
 
             #region ErrorIcons
             av.ecCourseName.Visibility = (av.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
@@ -78,12 +77,12 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     Description = new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text,
 
                     UserID = short.Parse(av.TeacherID.Text),
-                    LocationID = int.Parse(av.TeacherID.Text)
+                    LocationID = int.Parse(av.LocationID.Text)
                 };
 
 
-                //context.Courses.Add(course);
-                //context.SaveChanges();
+                context.Courses.Add(course);
+                context.SaveChanges();
             }
 
         }
