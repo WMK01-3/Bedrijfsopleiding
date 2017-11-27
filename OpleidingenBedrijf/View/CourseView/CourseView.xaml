@@ -28,7 +28,7 @@
                 <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>
                 <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="200"/>
                 <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price}" Width="100"/>
-                <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding Location}" Width="100"/>
+                <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding LocationID}" Width="100"/>
                 <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Binding="{Binding Difficulty}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -24,6 +24,10 @@ namespace BedrijfsOpleiding.Models
 
         public int UserID { get; set; }
         public int LocationID { get; set; }
+        [ForeignKey("LocationID")]
+        public virtual Location Location { get; set; }
+        [ForeignKey("UserID")]
+        public virtual User User { get; set; }
 
         //[ForeignKey("LocationID")]
         //public virtual Location Location { get; set; }

@@ -104,6 +104,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public void SignUserUp()
         {
+            
             using (CustomDbContext context = new CustomDbContext())
             {
                 Models.Course course = (from c in context.Courses
@@ -111,6 +112,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                         select c).First();
 
                 course.Enrollments.Add(new Enrollment(_user.UserID, course.CourseID));
+
                 context.SaveChanges();
             }
         }
