@@ -16,7 +16,20 @@
         <!--The menu-->
         <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
         <!--Navigation box-->
-        <Label Content="{Binding NavigationText}" Visibility="Hidden" Background="#FF5C7FA2" x:Name="CntNavigation" Grid.Row="1"/>
+        <Grid Grid.Row="1">
+            <Label Content="{Binding NavigationText}" Visibility="Hidden" Background="#FF5C7FA2" x:Name="CntNavigation"/>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding NavigationEmpty}" Value="False">
+                            <Setter Property="Visibility" Value="Visible"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+        </Grid>
+        
         <!--Main Content-->
         <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="2"/>
     </Grid>
