@@ -1,7 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using System.Windows;
 using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.Tools;
 using BedrijfsOpleiding.View;
+using System.Linq;
 
 namespace BedrijfsOpleiding
 {
@@ -29,6 +32,12 @@ namespace BedrijfsOpleiding
             {
                 if (context.Database.Exists())
                     Database.SetInitializer<CustomDbContext>(null);
+
+                User user = (from u in context.Users
+                             select u).First();
+
+                Invoice invoice = new Invoice(DateTime.Now, user);
+                GenerateInvoice.NewPdf(invoice);
             }
         }
     }
