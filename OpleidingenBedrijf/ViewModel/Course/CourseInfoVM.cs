@@ -24,7 +24,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string CoursePrice => $"Prijs: €{Course.Price.ToString(CultureInfo.CurrentCulture)} / les";
         public string CourseLessonCount => $"{Course.Dates} lessen";
         public string CourseMinutesPerLesson => $"Minuten per les: {Course.Duration}";
-        
+
         public string CourseParticipants =>
             Course.Enrollments == null ? "Aantal deelnemers: ONBEKEND" : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
         public string CourseLevel => $"Niveau: {Course.Difficulty}";
@@ -77,13 +77,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
             using (CustomDbContext context = new CustomDbContext())
             {
                 int id = (from course in context.Courses
-                    where course.CourseID == Course.CourseID
-                    select course.CourseID).First();
-
-
+                          where course.CourseID == Course.CourseID
+                          select course.CourseID).First();
 
                 ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView = new AddCourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel, id);
-
             }
         }
 
