@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using System.Windows.Media;
-
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Login

@@ -69,7 +69,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 Models.Course course = new Models.Course
                 {
-                    Name = av.CourseName.Text,
+                    
+                    Title = av.CourseName.Text,
                     Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem,
                     MaxParticipants = (int)av.MaxParticipants.Value,
                     Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem,

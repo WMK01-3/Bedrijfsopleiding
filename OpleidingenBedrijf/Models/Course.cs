@@ -39,3 +39,4 @@ namespace BedrijfsOpleiding.Models
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }
+    

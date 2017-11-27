@@ -90,7 +90,6 @@
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\Course\AddCourseVM.cs" />
-    <Compile Include="ViewModel\Course\CourseSignUpVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>

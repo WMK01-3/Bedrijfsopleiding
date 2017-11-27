@@ -23,8 +23,12 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string CoursePrice => $"Prijs: €{Course.Price.ToString(CultureInfo.CurrentCulture)} / les";
         public string CourseLessonCount => $"{Course.Dates} lessen";
         public string CourseMinutesPerLesson => $"Minuten per les: {Course.Duration}";
+
         public string CourseParticipants =>
-            Course.Enrollments == null ? "Aantal deelnemers: ONBEKEND" : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
+            Course.Enrollments == null
+                ? "Aantal deelnemers: ONBEKEND"
+                : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
+
         public string CourseLevel => $"Niveau: {Course.Difficulty}";
 
         public bool IsEmployee => _user.Role == User.RoleEnum.Employee;
@@ -34,22 +38,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
         public string CourseCity => $"{_location.City} , {_location.Zipcode}";
-
-        public Visibility IsUserSignedUp
-        {
-            get
-            {
-                using (CustomDbContext context = new CustomDbContext())
-                {
-                    IQueryable<Enrollment> result = (from e in context.Enrollments
-                                         where e.UserID == _user.UserID && e.CourseID == Course.CourseID
-                                         select e);
-
-                    return result.Any() ? Visibility.Visible : Visibility.Hidden;
-                    
-                }
-            }
-        }
 
         public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
 
@@ -97,23 +85,43 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 context.Courses.Remove(course);
                 context.SaveChanges();
 
-                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView = new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
+                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView =
+                    new CourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
 
             }
         }
 
-        public void SignUserUp()
+        public bool SignUserUp(bool ischeck)
         {
-            
+            if (!ischeck)
+            {
+                using (CustomDbContext context = new CustomDbContext())
+                {
+                    IQueryable<Enrollment> result = (from e in context.Enrollments
+                                                     where e.UserID == _user.UserID && e.CourseID == Course.CourseID
+                                                     select e);
+
+                    if (!result.Any())
+                    {
+                        context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
+                        context.SaveChanges();
+                        return false;
+                    }
+                    return true;
+                }
+            }
+
             using (CustomDbContext context = new CustomDbContext())
             {
-                Models.Course course = (from c in context.Courses
-                                        where c.CourseID == Course.CourseID
-                                        select c).First();
+                IQueryable<Enrollment> result = (from e in context.Enrollments
+                                                 where e.UserID == _user.UserID && e.CourseID == Course.CourseID
+                                                 select e);
+                if (!result.Any())
+                {
+                    return false;
+                }
+                return true;
 
-                course.Enrollments.Add(new Enrollment(_user.UserID, course.CourseID));
-
-                context.SaveChanges();
             }
         }
     }
