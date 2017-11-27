@@ -8,7 +8,9 @@ using System.Runtime.ExceptionServices;
 using System.Windows;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.View;
 using BedrijfsOpleiding.View.CourseView;
+using BedrijfsOpleiding.View.LoginView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -17,6 +19,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         private User _user;
         private Location _location;
 
+        //THIS IS THE CURRENT LOADED COURSE
         public Models.Course Course { get; }
         public string CourseDesc => Course.Description;
         public string CourseTitle => Course.Title;
@@ -71,6 +74,18 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 _location = (from location in context.Locations
                              where location.LocationID == Course.LocationID
                              select location).First();
+            }
+        }
+
+        internal void EditCourse()
+        {
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                int id = (from course in context.Courses
+                          where course.CourseID == Course.CourseID
+                          select course.CourseID).First();
+
+                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView = new AddCourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel, id);
             }
         }
 

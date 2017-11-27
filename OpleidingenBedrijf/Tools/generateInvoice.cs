@@ -25,14 +25,12 @@ namespace BedrijfsOpleiding.Tools
 
             XPen tableLine = new XPen(XColors.DarkSlateGray, 0.5);
             XPen footerLine = new XPen(XColors.Gray, 0.5);
-
-
+            
             // Bedrijf info
             gfx.DrawString("DOPE B.V.", titleFont, XBrushes.Black, 460, 41);
             gfx.DrawString("Vanderlaenstraat 420", normalFont, XBrushes.Black, 460, 58);
             gfx.DrawString("1337 EZ, Zwollywood", normalFont, XBrushes.Black, 460, 72);
-
-
+            
             gfx.DrawString("Tel: (055) 420 69 69", normalFont, XBrushes.Black, 460, 97);
             gfx.DrawString("sales@dopecourses.co.uk", normalFont, XBrushes.Black, 460, 111);
 
@@ -43,8 +41,7 @@ namespace BedrijfsOpleiding.Tools
             // Logo
             const string imageLoc = @"..\..\images\Logo.png";
             DrawImage(gfx, imageLoc, 15, 20, 200, 113);
-
-
+            
             // Factuur info
             gfx.DrawString("FACTUUR", titleFont, XBrushes.Black, 25, 214);
             gfx.DrawString("Factuurdatum:", normalFont, XBrushes.Black, 25, 232);
@@ -54,8 +51,7 @@ namespace BedrijfsOpleiding.Tools
             gfx.DrawString(invoice.Date.ToString("d-MM-2017"), normalFont, XBrushes.Black, 115, 232);
             gfx.DrawString("#1106", normalBoldFont, XBrushes.Black, 115, 246);
             gfx.DrawString("Denket niet eh", normalBoldFont, XBrushes.Black, 115, 260);
-
-
+            
             // Table first row
             gfx.DrawString("Lessen", normalBoldFont, XBrushes.Black, 25, 345);
             gfx.DrawString("Cursus", normalBoldFont, XBrushes.Black, 120, 345);
@@ -63,8 +59,6 @@ namespace BedrijfsOpleiding.Tools
             gfx.DrawString("Totaal", normalBoldFont, XBrushes.Black, 420, 345);
             gfx.DrawString("Btw", normalBoldFont, XBrushes.Black, 520, 345);
             gfx.DrawLine(tableLine, 25, 350, 575, 350);
-            //gfx.DrawLine(tableLine, 25, 316, 575, 320);
-
 
             // generate enrollment data
             var i = 1;
@@ -72,42 +66,25 @@ namespace BedrijfsOpleiding.Tools
 
             foreach (Enrollment enrollment in invoice.Enrollments)
             {
-                using (CustomDbContext context = new CustomDbContext())
-                {
-                    Course course = (from c in context.Courses
-                                     where c.CourseID == enrollment.CourseID
-                                     select c).First();
+                int heightBorder = 350 + i * 16;
+                int heightText = 345 + i * 16;
+                
+                string classes = $"{enrollment.Course.Dates.Count} x {enrollment.Course.Duration} min";
+                decimal priceClass = Math.Round(enrollment.Course.Price / enrollment.Course.Dates.Count / 100 * 79, 2, MidpointRounding.AwayFromZero);
+                decimal totalPrice = Math.Round(enrollment.Course.Price / 100 * 79, 2, MidpointRounding.AwayFromZero);
+                decimal btwPrice = Math.Round(enrollment.Course.Price / 100 * 21, 2, MidpointRounding.AwayFromZero);
 
+                // draw course row
+                gfx.DrawString(classes, normalFont, XBrushes.Black, 25, heightText);
+                gfx.DrawString(enrollment.Course.Title, normalFont, XBrushes.Black, 120, heightText);
+                gfx.DrawString(s: $"€ {priceClass:0.00}", font: normalFont, brush: XBrushes.Black, x: 280, y: heightText);
+                gfx.DrawString(s: $"€ {totalPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 420, y: heightText);
+                gfx.DrawString(s: $"€ {btwPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 520, y: heightText);
+                gfx.DrawLine(tableLine, 25, heightBorder, 575, heightBorder);
 
-                    int heightBorder = 350 + i * 16;
-                    int heightText = 345 + i * 16;
-
-
-                    string classes = $"{course.Dates.Count} x {course.Duration} min";
-                    decimal priceClass = Math.Round(course.Price / course.Dates.Count / 100 * 79,
-                        2, MidpointRounding.AwayFromZero);
-                    decimal totalPrice = Math.Round(course.Price / 100 * 79, 2,
-                        MidpointRounding.AwayFromZero);
-                    decimal btwPrice = Math.Round(course.Price / 100 * 21, 2, MidpointRounding.AwayFromZero);
-
-                    // draw course row
-                    gfx.DrawString(classes, normalFont, XBrushes.Black, 25, heightText);
-                    gfx.DrawString(course.Title, normalFont, XBrushes.Black, 120, heightText);
-                    gfx.DrawString(s: $"€ {priceClass:0.00}", font: normalFont, brush: XBrushes.Black, x: 280,
-                        y: heightText);
-                    gfx.DrawString(s: $"€ {totalPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 420,
-                        y: heightText);
-                    gfx.DrawString(s: $"€ {btwPrice:0.00}", font: normalFont, brush: XBrushes.Black, x: 520,
-                        y: heightText);
-                    gfx.DrawLine(tableLine, 25, heightBorder, 575, heightBorder);
-
-                    // saving prices
-                    total[0] += totalPrice;
-                    total[1] += btwPrice;
-                    total[2] += course.Price;
-                    i++;
-
-                }
+                // saving prices
+                total[0] += totalPrice; total[1] += btwPrice; total[2] += enrollment.Course.Price;
+                i++;
             }
 
             // Drawing subtotal && total
@@ -132,8 +109,10 @@ namespace BedrijfsOpleiding.Tools
             gfx.DrawString(footer2, footerFont, XBrushes.Gray, new XRect(0, 823, page.Width, 10), XStringFormats.Center);
 
             string filename = $"{DateTime.Now:yyyyMMdd}_{invoice.Customer.LastName},{invoice.Customer.FirstName}_Factuur.pdf";
+
             const string filepath = @"..\..\Invoices\";
             document.Save(filepath + filename);
+
             return filename;
         }
 
@@ -156,9 +135,7 @@ namespace BedrijfsOpleiding.Tools
                 m.Subject = "Confimation on your order #null";
                 m.Attachments.Add(new Attachment(@"..\..\Invoices\" + pdf));
 
-
                 // what I must do for sending a pdf with this email 
-
                 m.Body = $"Heya, {invoice.Customer.FirstName}";
                 m.Body += "\n\nWe've succesfully received your order on the DOPE Courses desktop application.";
                 m.Body += "\n\nWe've added the invoice for you to check, if something is wrong or if you have any questions, please contact us by mail or phone";
@@ -179,8 +156,7 @@ namespace BedrijfsOpleiding.Tools
             }
             catch (Exception ex)
             {
-                string bad = "Error: " + ex;
-                Debug.WriteLine("shit failed, " + bad);
+                // ignored
             }
         }
     }

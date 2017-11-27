@@ -101,7 +101,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\CourseView\CourseView.xaml" />
+    <Page Include="View\CourseView\CourseOverView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\CourseView\CourseInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,7 +126,7 @@
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Tools\generateInvoice.cs" />
+    <Compile Include="Tools\GenerateInvoice.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Course\CourseOverViewVM.cs" />
     <Compile Include="ViewModel\Login\LoginVM.cs" />
@@ -143,8 +145,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="View\BaseView.cs" />
-    <Compile Include="View\CourseView\CourseView.xaml.cs">
-      <DependentUpon>CourseView.xaml</DependentUpon>
+    <Compile Include="View\CourseView\CourseOverView.xaml.cs">
+      <DependentUpon>CourseOverView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>

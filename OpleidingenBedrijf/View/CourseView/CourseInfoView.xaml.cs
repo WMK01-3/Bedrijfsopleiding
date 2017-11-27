@@ -1,5 +1,6 @@
 ﻿    using System.Diagnostics;
 using System.Windows;
+using System.Windows.Data;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
@@ -28,8 +29,8 @@ namespace BedrijfsOpleiding.View.CourseView
         }
 
         private void BtnEditCourse_OnClick(object sender, RoutedEventArgs e)
-        {
-            ((MainWindowVM) ParentViewModel).CurrentView = new AddCourseView(ParentViewModel);
+        { 
+            ((CourseInfoVM)OwnViewModel).EditCourse();
         }
 
         private void BtnDelCourse_OnClick(object sender, RoutedEventArgs e)
