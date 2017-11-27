@@ -35,6 +35,7 @@ namespace BedrijfsOpleiding.View.CourseView
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
             ((CourseInfoVM)OwnViewModel).SignUserUp();
+            btnSignUp.Content = "Uitschrijven";
         }
 
     }
