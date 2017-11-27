@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ using BedrijfsOpleiding.View.CourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
-    class AddCourseVM : BaseViewModel
+    public class AddCourseVM : BaseViewModel
     {
         private int _errorCount;
         private readonly SolidColorBrush _redBrush = new SolidColorBrush(Colors.Tomato);
@@ -25,15 +26,14 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public void AddCourse()
         {
             _errorCount = 0;
-            AddCourseView av = (AddCourseView) CurrentView;
-            
+            AddCourseView av = (AddCourseView)CurrentView;
 
             #region ErrorIcons
             av.ecCourseName.Visibility = (av.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
             av.ecMaxParticipants.Visibility = (av.MaxParticipants.Value == 0 ? Visibility.Visible : Visibility.Hidden);
             av.ecStartDate.Visibility = (av.StartDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden);
             av.ecPrice.Visibility = (av.Price.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
-        
+
             #endregion
 
             #region ErrorBorders
@@ -45,7 +45,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             #endregion
 
-
             #region ErrorCount
 
             _errorCount += av.CourseName.Text.Length == 0 ? 1 : 0;
@@ -55,7 +54,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             #endregion
 
-
             if (_errorCount != 0)
             {
                 av.ErrorMessage.Visibility = Visibility.Visible;
@@ -64,10 +62,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             av.ErrorMessage.Visibility = Visibility.Hidden;
 
-
             using (CustomDbContext context = new CustomDbContext())
             {
-
                 Models.Course course = new Models.Course
                 {
                     Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem,
@@ -80,11 +76,32 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     LocationID = int.Parse(av.TeacherID.Text)
                 };
 
-
-                //context.Courses.Add(course);
-                //context.SaveChanges();
+                context.Courses.Add(course);
+                context.SaveChanges();
             }
+        }
 
+        public void SaveCourse()
+        {
+            AddCourseView av = (AddCourseView)CurrentView;
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                Models.Course oldCourse = (from c in context.Courses
+                                           where c.CourseID == av.CourseId
+                                           select c).First();
+
+                oldCourse.Difficulty = (Models.Course.DifficultyEnum)av.Difficulty.SelectedItem;
+                oldCourse.MaxParticipants = (int)av.MaxParticipants.Value;
+                oldCourse.Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem;
+                oldCourse.Price = decimal.Parse(av.Price.Text);
+                oldCourse.Description =
+                    new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text;
+                oldCourse.UserID = short.Parse(av.TeacherID.Text);
+                oldCourse.LocationID = int.Parse(av.TeacherID.Text);
+
+                context.SaveChanges();
+            }
         }
     }
 }
