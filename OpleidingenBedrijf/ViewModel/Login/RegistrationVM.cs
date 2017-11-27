@@ -144,19 +144,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     UserName = rv.tbUsername.Text,
                     PassWord = rv.pbPassword.Password,
                     Email = rv.tbEmail.Text,
-                    Role = User.RoleEnum.Customer,
-                    Street = "yet to be implemented street",
-                    City = "Yet to be implemented city",
-                    Zipcode = "Yet to be implemented zip"
-                    //FirstName = "Diederik",
-                    //LastName = "Achternaam",
-                    //UserName = "DiederikDocent",
-                    //PassWord = "Welkom1!",
-                    //Email = "DiederikDocent@mail.com",
-                    //Role = User.RoleEnum.Teacher,
-                    //Street = "yet to be implemented street",
-                    //City = "Yet to be implemented city",
-                    //Zipcode = "Yet to be implemented zip"
+                    Role = User.RoleEnum.Customer
                 };
                 context.Users.Add(addedUser);
                 context.SaveChanges();

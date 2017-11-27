@@ -22,12 +22,7 @@ namespace BedrijfsOpleiding.Models
         public string Email { get; set; }
         public RoleEnum Role { get; set; }
 
-        // Address stuff
-        public string Street { get; set; }
-        public string City { get; set; }
-        public string Zipcode { get; set; }
-
-        public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<int> EnrollMentID { get; set; }
 
 
         public User()

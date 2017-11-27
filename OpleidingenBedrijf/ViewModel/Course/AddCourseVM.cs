@@ -29,9 +29,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
             AddCourseView av = (AddCourseView) CurrentView;
 
             #region ErrorIcons
+
             av.ecCourseName.Visibility = (av.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
             av.ecMaxParticipants.Visibility = (av.MaxParticipants.Value == 0 ? Visibility.Visible : Visibility.Hidden);
-            av.ecStartDate.Visibility = (av.StartDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden);
+            //av.ecStartDate.Visibility = (av.StartDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden);
             av.ecPrice.Visibility = (av.Price.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
 
             #endregion
@@ -40,7 +41,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             av.CourseName.BorderBrush = av.CourseName.Text.Length == 0 ? _redBrush : _blueBrush;
             av.MaxParticipants.Background = av.MaxParticipants.Value == 0 ? _redBrush : _blueBrush;
-            av.StartDate.BorderBrush = av.StartDate.ToString().Length == 0 ? _redBrush : _blueBrush;
+            //av.StartDate.BorderBrush = av.StartDate.ToString().Length == 0 ? _redBrush : _blueBrush;
             av.Price.BorderBrush = av.Price.Text.Length == 0 ? _redBrush : _blueBrush;
 
             #endregion
@@ -49,7 +50,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             _errorCount += av.CourseName.Text.Length == 0 ? 1 : 0;
             _errorCount += av.MaxParticipants.Value == 0 ? 1 : 0;
-            _errorCount += av.StartDate.ToString().Length == 0 ? 1 : 0;
+            //_errorCount += av.StartDate.ToString().Length == 0 ? 1 : 0;
             _errorCount += av.Price.Text.Length == 0 ? 1 : 0;
 
             #endregion
@@ -69,14 +70,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
             course.Duration = (Models.Course.DurationEnum)av.Duration.SelectedItem;
             course.Price = int.Parse(av.Price.Text);
             course.Description = new TextRange(av.Description.Document.ContentStart, av.Description.Document.ContentEnd).Text;
-            course.UserID = short.Parse(av.TeacherID.Text);
-            course.LocationID = int.Parse(av.LocationID.Text);
+            //course.UserID = short.Parse(av.TeacherID.Text);
+            //course.LocationID = int.Parse(av.LocationID.Text);
             //course.Dates.Add(av.StartDate.);
+
+            course.LocationID = 1;
+            course.UserID = 1;
 
             using (CustomDbContext context = new CustomDbContext())
             {
                 context.Courses.Add(course);
                 context.SaveChanges();
+
+                ((MainWindowVM)((AddCourseView)CurrentView).ParentViewModel).CurrentView = new CourseOverView((MainWindowVM)((AddCourseView)CurrentView).ParentViewModel);
             }
         }
 
@@ -104,6 +110,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 context.Courses.AddOrUpdate(oldCourse);
                 context.SaveChanges();
+
+                ((MainWindowVM)((AddCourseView)CurrentView).ParentViewModel).CurrentView = new CourseOverView((MainWindowVM)((AddCourseView)CurrentView).ParentViewModel);
             }
         }
     }

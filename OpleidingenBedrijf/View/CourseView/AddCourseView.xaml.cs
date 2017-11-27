@@ -59,6 +59,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void Teacher_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
             using (CustomDbContext context = new CustomDbContext())
             {
                 var data = new List<string>();
@@ -69,10 +70,12 @@ namespace BedrijfsOpleiding.View.CourseView
                 Teacher.ItemsSource = data;
                 Teacher.SelectedIndex = 0;
             }
+            */
         }
 
         private void Teacher_DropDownClosed(object sender, EventArgs e)
         {
+            /*
             //TeacherID in hidden input stoppen
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -103,6 +106,7 @@ namespace BedrijfsOpleiding.View.CourseView
                     TeacherID.Text = user.ToString();
                 }
             }
+            */
         }
 
         private void Duration_Loaded(object sender, RoutedEventArgs e)
@@ -129,6 +133,7 @@ namespace BedrijfsOpleiding.View.CourseView
                   UserID = short.Parse(TeacherID.Text),
                   LocationID = int.Parse(TeacherID.Text)
               };*/
+
             if (CourseId > 0)
                 ((AddCourseVM)OwnViewModel).SaveCourse();
             else
@@ -145,16 +150,19 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void Location_Loaded(object sender, RoutedEventArgs e)
         {
+            /*
             using (CustomDbContext context = new CustomDbContext())
             {
                 List<string> data = context.Locations.Select(location => location.Classroom).ToList();
                 Location.ItemsSource = data;
                 Location.SelectedIndex = 0;
             }
+            */
         }
 
         private void Location_DropDownClosed_1(object sender, EventArgs e)
         {
+            /*
             //LocationID in hidden input stoppen
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -163,7 +171,7 @@ namespace BedrijfsOpleiding.View.CourseView
                                 select l.LocationID).First();
                 LocationID.Text = location.ToString();
             }
-
+            */
 
         }
     }

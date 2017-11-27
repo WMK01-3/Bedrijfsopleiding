@@ -53,7 +53,7 @@
             <!--Teacher-->
             <Grid Row="2">
                 <Label Content="Docent"/>
-                <ComboBox x:Name="Teacher" Width="120" Loaded="Teacher_Loaded" Height="20" DropDownClosed="Teacher_DropDownClosed"/>
+                <ComboBox IsEnabled="False" x:Name="Teacher" Width="120" Loaded="Teacher_Loaded" Height="20" DropDownClosed="Teacher_DropDownClosed"/>
             </Grid>
             <!--Difficulty-->
             <Grid Row="3">
@@ -71,7 +71,7 @@
             <Grid Row="5">
                 <fa:ImageAwesome HorizontalAlignment="Right" Icon="ExclamationCircle" Height="20"  Foreground="#FFCD0000" Name="ecStartDate" />
                 <Label Content="Start datum" HorizontalAlignment="Left"/>
-                <DatePicker x:Name="StartDate"  VerticalAlignment="Top" Width="120" />
+                <DatePicker  IsEnabled="False" x:Name="StartDate"  VerticalAlignment="Top" Width="120" />
             </Grid>
             <!--Duration-->
             <Grid Row="6">
@@ -81,7 +81,7 @@
             <!--Location-->
             <Grid Row="7">
                 <Label Content="Locatie" HorizontalAlignment="Left" />
-                <ComboBox x:Name="Location" Width="120" Height="20" Loaded="Location_Loaded" DropDownClosed="Location_DropDownClosed_1"/>
+                <ComboBox IsEnabled="False" x:Name="Location" Width="120" Height="20" Loaded="Location_Loaded" DropDownClosed="Location_DropDownClosed_1"/>
             </Grid>
             <!--Price-->
             <Grid Row="8">

@@ -33,11 +33,13 @@ namespace BedrijfsOpleiding
                 if (context.Database.Exists())
                     Database.SetInitializer<CustomDbContext>(null);
 
+
+                /*
                 User user = (from u in context.Users
                              select u).First();
 
                 Invoice invoice = new Invoice(DateTime.Now, user);
-                GenerateInvoice.NewPdf(invoice);
+                GenerateInvoice.NewPdf(invoice);*/
             }
         }
     }
