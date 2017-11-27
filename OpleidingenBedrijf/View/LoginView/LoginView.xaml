@@ -14,7 +14,11 @@
             <Grid Height="200" Margin="0, 70, 0, 0">
                 <!--Error Message Grid-->
                 <Grid  Height="32" x:Name="ErrorMessage" VerticalAlignment="Top" Width="250">
-                    <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="250" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="88*"/>
+                        <ColumnDefinition Width="37*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="2" />
                     <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
                         <fa:ImageAwesome.RenderTransform>
                             <TransformGroup>
@@ -25,7 +29,7 @@
                             </TransformGroup>
                         </fa:ImageAwesome.RenderTransform>
                     </fa:ImageAwesome>
-                    <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center"/>
+                    <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="30,4"/>
                 </Grid>
                 <!--Username Grid-->
                 <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0 50, 0, 0">

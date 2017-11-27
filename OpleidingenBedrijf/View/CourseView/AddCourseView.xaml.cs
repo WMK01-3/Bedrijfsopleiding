@@ -14,7 +14,18 @@ namespace BedrijfsOpleiding.View.CourseView
         public AddCourseView(BaseViewModel parent) : base(parent)
         {
             InitializeComponent();
-            OwnViewModel = new CourseVM(this);
+            OwnViewModel = new AddCourseVM(this);
+
+            #region hideControls
+            ecCourseName.Visibility = Visibility.Hidden;
+            ecMaxParticipants.Visibility = Visibility.Hidden;
+            ecStartDate.Visibility = Visibility.Hidden;
+            ecPrice.Visibility = Visibility.Hidden;
+            ecDescription.Visibility = Visibility.Hidden;
+            ErrorMessage.Visibility = Visibility.Hidden;
+
+
+            #endregion
         }
 
         private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -90,22 +101,8 @@ namespace BedrijfsOpleiding.View.CourseView
             Console.WriteLine(@"TeacherID:" + TeacherID.Text);
             Console.WriteLine(@"LocationID:" + LocationID.Text);
 
-            if (StartDate.SelectedDate == null) return;
-
-            Course course = new Course
-            {
-                Name = CourseName.Text,
-                Difficulty = (Course.DifficultyEnum)Difficulty.SelectedItem,
-                MaxParticipants = (int)MaxParticipants.Value,
-                Duration = (Course.DurationEnum)Duration.SelectedItem,
-                Price = int.Parse(Price.Text),
-                Description = new TextRange(Description.Document.ContentStart, Description.Document.ContentEnd).Text,
-
-                UserID = short.Parse(TeacherID.Text),
-                LocationID = int.Parse(TeacherID.Text)
-            };
-
-            ((CourseVM)OwnViewModel).AddCourse(course);
+            
+            ((AddCourseVM)OwnViewModel).AddCourse();
             
         }
 

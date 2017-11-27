@@ -9,10 +9,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="940" d:DesignWidth="1680">
     <Grid>
-        <Grid Background="white" Width="450" Height="640" Margin="615,151,615,149">
+        <Grid Background="white" Width="450" Height="640">
+            <Grid  Height="32" x:Name="ErrorMessage" VerticalAlignment="Top" Width="250" Margin="83,24,117,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="88*"/>
+                    <ColumnDefinition Width="37*"/>
+                </Grid.ColumnDefinitions>
+                <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="297" Grid.ColumnSpan="2" Margin="0,0,-47,0" />
+                <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
+                    <fa:ImageAwesome.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="-0.402"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.443"/>
+                        </TransformGroup>
+                    </fa:ImageAwesome.RenderTransform>
+                </fa:ImageAwesome>
+                <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="30,4"/>
+            </Grid>
             <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,66,69,554" Foreground="#FFCD0000" Name="ecCourseName"/>
-            <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,169,69,451" Foreground="#FFCD0000" Name="ecDate" />
-            <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,144,69,476" Foreground="#FFCD0000" Name="ecAvailableSpace" />
+            <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,169,69,451" Foreground="#FFCD0000" Name="ecStartDate" />
+            <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,144,69,476" Foreground="#FFCD0000" Name="ecMaxParticipants" />
             <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,248,69,372" Foreground="#FFCD0000" Name="ecPrice" />
             <fa:ImageAwesome Icon="ExclamationCircle" Height="20" Margin="357,355,69,260" Foreground="#FFCD0000" Name="ecDescription" />
 
