@@ -19,7 +19,7 @@ namespace BedrijfsOpleiding.View
 
         private void BtnCourseOverview_Click(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new CourseView.CourseView(ParentViewModel);
+            ParentViewModel.CurrentView = new CourseView.CourseOverView(ParentViewModel);
         }
 
         private void BtnCustomerOverview_Click(object sender, RoutedEventArgs e)
