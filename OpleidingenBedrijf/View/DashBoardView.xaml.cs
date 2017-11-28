@@ -5,11 +5,21 @@ namespace BedrijfsOpleiding.View
 {
     public partial class DashBoardView
     {
+        #region OwnViewModel : BaseViewModel
 
-        public DashBoardView(BaseViewModel parent) : base(parent)
+        private DashBoardVM _viewModel;
+        public DashBoardVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new DashBoardVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public DashBoardView(MainWindowVM mainVM) : base(mainVM)
         {
             InitializeComponent();
-            DataContext = new DashBoardVM(parent, this);
+            DataContext = new DashBoardVM(mainVM, this);
         }
     }
 }

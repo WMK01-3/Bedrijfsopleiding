@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
-using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.View.CourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -11,7 +8,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
     {
         public List<Models.Course> CourseList => GetCourseList();
 
-        public CourseOverViewVM(UserControl boundView) : base(boundView)
+        public CourseOverViewVM(MainWindowVM vm, UserControl boundView) : base(vm)
         {
 
         }

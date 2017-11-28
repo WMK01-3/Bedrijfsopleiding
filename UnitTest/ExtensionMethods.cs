@@ -8,7 +8,7 @@ namespace UnitTest
     {
 
         #region IsEmail() : bool
-       
+
         /// <summary>
         /// Checks if a correct email does pass
         /// </summary>
@@ -50,8 +50,26 @@ namespace UnitTest
 
         #region IsFirstName() : bool
 
-       
+
 
         #endregion
+
+        [TestMethod]
+        public void IsMoney()
+        {
+            Assert.IsTrue("12,00".IsMoney());
+        }
+
+        [TestMethod]
+        public void IsMoneyThreeComma()
+        {
+            Assert.IsFalse("12,000".IsMoney());
+        }
+
+        [TestMethod]
+        public void IsMoneyNoComma()
+        {
+            Assert.IsTrue("12000".IsMoney());
+        }
     }
 }

@@ -6,11 +6,21 @@ namespace BedrijfsOpleiding.View.LoginView
 {
     public partial class RegistrationView
     {
-        public RegistrationView(BaseViewModel parent) : base(parent)
+        #region OwnViewModel : BaseViewModel
+
+        private RegistrationVM _viewModel;
+        public RegistrationVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new RegistrationVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public RegistrationView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-            OwnViewModel = new RegistrationVM(this);
-            
+
             #region hideControls
             ecUsername.Visibility = Visibility.Hidden;
             ecBirthdate.Visibility = Visibility.Hidden;
@@ -24,12 +34,12 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new LoginView(ParentViewModel);
+            MainVM.CurrentView = new LoginView(MainVM);
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            ((RegistrationVM)OwnViewModel).RegisterUser();
+            _viewModel.RegisterUser();
         }
     }
 }

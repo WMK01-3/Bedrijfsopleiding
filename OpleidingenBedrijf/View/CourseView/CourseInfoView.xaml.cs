@@ -1,4 +1,4 @@
-﻿    using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Data;
 using BedrijfsOpleiding.Models;
@@ -9,14 +9,26 @@ namespace BedrijfsOpleiding.View.CourseView
 {
     public partial class CourseInfoView
     {
-        public CourseInfoView(int courseId, BaseViewModel parent) : base(parent)
-        {
-            CourseInfoVM viewModel = new CourseInfoVM(courseId, this);
+        private readonly int courseID;
 
-            DataContext = viewModel;
-            OwnViewModel = viewModel;
+        #region OwnViewModel : BaseViewModel
+
+        private CourseInfoVM _viewModel;
+        public CourseInfoVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new CourseInfoVM(courseID, MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public CourseInfoView(int courseId, MainWindowVM vm) : base(vm)
+        {
+            courseID = courseId;
             InitializeComponent();
-            bool isSignedUp = ((CourseInfoVM)OwnViewModel).IsUserSignedUp(true);
+
+            bool isSignedUp = _viewModel.IsUserSignedUp(true);
+
             if (isSignedUp)
             {
                 btnSignUp.Visibility = Visibility.Hidden;
@@ -29,13 +41,13 @@ namespace BedrijfsOpleiding.View.CourseView
         }
 
         private void BtnEditCourse_OnClick(object sender, RoutedEventArgs e)
-        { 
-            ((CourseInfoVM)OwnViewModel).EditCourse();
+        {
+            _viewModel.EditCourse();
         }
 
         private void BtnDelCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            ((CourseInfoVM)OwnViewModel).DeleteCourse();
+            _viewModel.DeleteCourse();
         }
 
         /// <summary>
@@ -46,7 +58,7 @@ namespace BedrijfsOpleiding.View.CourseView
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
 
-            bool isSignedUp = ((CourseInfoVM)OwnViewModel).IsUserSignedUp(false);
+            bool isSignedUp = _viewModel.IsUserSignedUp(false);
             if (isSignedUp)
             {
                 btnSignUp.Visibility = Visibility.Hidden;

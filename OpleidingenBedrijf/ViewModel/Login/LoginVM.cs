@@ -1,7 +1,5 @@
 ﻿using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-
 using System.Windows.Media;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.LoginView;
@@ -10,47 +8,48 @@ namespace BedrijfsOpleiding.ViewModel.Login
 {
     public class LoginVM : BaseViewModel
     {
+        private LoginView _view;
         public string Password { get; set; }
         private readonly SolidColorBrush _redBrush = new SolidColorBrush(Colors.Tomato);
         private readonly SolidColorBrush _blueBrush = new SolidColorBrush(Colors.CornflowerBlue);
 
-        public LoginVM(UserControl boundView) : base(boundView)
+        public LoginVM(MainWindowVM vm, LoginView v) : base(vm)
         {
+            _view = v;
         }
 
         public void Login()
         {
-            LoginView loginV = (LoginView)CurrentView;
-            loginV.Password.BorderBrush = _blueBrush;
-            loginV.Username.BorderBrush = _blueBrush;
-            loginV.ErrorMessage.Visibility = Visibility.Hidden;
-            if (loginV.Username.Text == "" || loginV.Password.Password == "")
+            _view.Password.BorderBrush = _blueBrush;
+            _view.Username.BorderBrush = _blueBrush;
+            _view.ErrorMessage.Visibility = Visibility.Hidden;
+            if (_view.Username.Text == "" || _view.Password.Password == "")
             {
-                loginV.ErrorMessage.Visibility = Visibility.Visible;
-                loginV.Username.BorderBrush = _redBrush;
-                loginV.Password.BorderBrush = _redBrush;
-                loginV.ErrorMessageMessage.Content = "Een of meerdere velden zijn leeg";
+                _view.ErrorMessage.Visibility = Visibility.Visible;
+                _view.Username.BorderBrush = _redBrush;
+                _view.Password.BorderBrush = _redBrush;
+                _view.ErrorMessageMessage.Content = "Een of meerdere velden zijn leeg";
             }
             else
             {
                 using (CustomDbContext context = new CustomDbContext())
                 {
                     IQueryable<User> result = from u in context.Users
-                                              where u.UserName == loginV.Username.Text
+                                              where u.UserName == _view.Username.Text
                                               select u;
 
                     if (!result.Any()) return;
 
                     User user = result.First();
 
-                    if (user.PassWord == loginV.Password.Password)
-                        ((MainWindowVM)loginV.ParentViewModel).Login(user);
+                    if (user.PassWord == _view.Password.Password)
+                        MainVM.Login(user);
                     else
                     {
-                        loginV.ErrorMessage.Visibility = Visibility.Visible;
-                        loginV.Username.BorderBrush = _redBrush;
-                        loginV.Password.BorderBrush = _redBrush;
-                        loginV.ErrorMessageMessage.Content = "Gebruikersnaam of wachtwoord fout";
+                        _view.ErrorMessage.Visibility = Visibility.Visible;
+                        _view.Username.BorderBrush = _redBrush;
+                        _view.Password.BorderBrush = _redBrush;
+                        _view.ErrorMessageMessage.Content = "Gebruikersnaam of wachtwoord fout";
                     }
                 }
             }

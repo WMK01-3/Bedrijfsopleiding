@@ -5,12 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="1250">
+             d:DesignHeight="640" d:DesignWidth="1250"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="15" Color="LightGray" Direction="-90"></DropShadowEffect>
+        </Grid.Effect>
 
         <Grid Column="0" Margin="10">
             <Grid.RowDefinitions>
@@ -20,15 +24,15 @@
             <!--Employee Data-->
             <Grid Grid.Row="0" Margin="0 0 0 10">
                 <!--Amount of Students-->
-                <Grid HorizontalAlignment="Left" Background="White" Width="100">
+                <Grid HorizontalAlignment="Left" Width="100">
                     <Label Background="#FFB2E696" Content="Cursisten" HorizontalContentAlignment="Center" FontSize="20"/>
                 </Grid >
                 <!--Amount of Courses-->
-                <Grid HorizontalAlignment="Center" Background="White" Width="100">
+                <Grid HorizontalAlignment="Center" Width="100">
                     <Label Content="Cursussen" HorizontalContentAlignment="Center" FontSize="20" Background="#FFF3D775"/>
                 </Grid>
                 <!--Amount of Teachers-->
-                <Grid HorizontalAlignment="Right"  Background="White" Width="100" >
+                <Grid HorizontalAlignment="Right"  Width="100" >
                     <Label Content="Docenten" HorizontalContentAlignment="Center" FontSize="20" Background="#FFA0D6F0"/>
                 </Grid>
                 <Grid.Style>
@@ -45,7 +49,7 @@
                 </Grid.Style>
             </Grid>
             <!--Google Maps-->
-            <Grid Grid.Row="1" Background="#DDD" Margin="0 10 0 0">
+            <Grid Grid.Row="1" Background="White" Margin="0 10 0 0">
                 
             </Grid>
         </Grid>
@@ -57,12 +61,12 @@
             </Grid.ColumnDefinitions>
 
             <!--Updates-->
-            <Grid Column="0" Margin="10" Background="#DDD">
+            <Grid Column="0" Margin="10" Background="White">
 
             </Grid>
 
             <!--Upcoming-->
-            <Grid Column="1" Margin="10" Background="#DDD" Width="200">
+            <Grid Column="1" Margin="10" Background="White" Width="200">
                
             </Grid>
         </Grid>

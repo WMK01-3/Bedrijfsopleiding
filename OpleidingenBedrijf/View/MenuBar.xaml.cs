@@ -1,25 +1,26 @@
 ﻿using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
 
 namespace BedrijfsOpleiding.View
 {
     public partial class MenuBar
     {
-        public MenuBar(BaseViewModel parent) : base(parent)
+        public MenuBar(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-            DataContext = (MainWindowVM) parent;
+            DataContext = vm;
         }
 
         private void BtnDashBoard_Click(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new DashBoardView(ParentViewModel);
+            MainVM.CurrentView = new DashBoardView(MainVM);
         }
 
         private void BtnCourseOverview_Click(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new CourseView.CourseOverView(ParentViewModel);
+            MainVM.CurrentView = new CourseView.CourseOverView(MainVM);
         }
 
         private void BtnCustomerOverview_Click(object sender, RoutedEventArgs e)
@@ -29,9 +30,9 @@ namespace BedrijfsOpleiding.View
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new LoginView.LoginView(ParentViewModel);
-            ((MainWindowVM) ParentViewModel).CurUser = null;
-            ((MainWindowVM) ParentViewModel).MenuView = null;
+            MainVM.CurrentView = new LoginView.LoginView(MainVM);
+            MainVM.CurUser = null;
+            MainVM.MenuView = null;
         }
     }
 }

@@ -38,11 +38,9 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
 
-        public CourseInfoVM(int courseId, UserControl boundView) : base(boundView)
+        public CourseInfoVM(int courseId, MainWindowVM vm, UserControl boundView) : base(vm)
         {
-            CourseInfoView signup = (CourseInfoView)boundView;
-            MainWindowVM mainWindow = (MainWindowVM)signup.ParentViewModel;
-            _user = mainWindow.CurUser;
+            _user = vm.CurUser;
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -79,7 +77,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                           where course.CourseID == Course.CourseID
                           select course.CourseID).First();
 
-                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView = new AddCourseView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel, id);
+                MainVM.CurrentView = new AddCourseView(MainVM, id);
             }
         }
 
@@ -94,9 +92,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 context.Courses.Remove(course);
                 context.SaveChanges();
 
-                ((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel).CurrentView =
-                    new CourseOverView((MainWindowVM)((CourseInfoView)CurrentView).ParentViewModel);
-
+                MainVM.CurrentView = new CourseOverView(MainVM);
             }
         }
 
@@ -106,9 +102,9 @@ namespace BedrijfsOpleiding.ViewModel.Course
             {
                 using (CustomDbContext context = new CustomDbContext())
                 {
-                    IQueryable<Enrollment> result = (from e in context.Enrollments
-                                                     where e.UserID == _user.UserID && e.CourseID == Course.CourseID
-                                                     select e);
+                    IQueryable<Enrollment> result = from e in context.Enrollments
+                                                    where e.UserID == _user.UserID && e.CourseID == Course.CourseID
+                                                    select e;
 
                     if (result.Any()) return true;
 

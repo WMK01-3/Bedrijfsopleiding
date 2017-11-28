@@ -4,24 +4,34 @@ using BedrijfsOpleiding.ViewModel.Login;
 
 namespace BedrijfsOpleiding.View.LoginView
 {
-    public partial class LoginView : BaseView
+    public partial class LoginView
     {
 
-        public LoginView(BaseViewModel parent) : base(parent)
+        #region OwnViewModel : BaseViewModel
+
+        private LoginVM _viewModel;
+        public LoginVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new LoginVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public LoginView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
             ErrorMessage.Visibility = Visibility.Hidden;
-            OwnViewModel = new LoginVM(this);
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new RegistrationView(ParentViewModel);
+            MainVM.CurrentView = new RegistrationView(MainVM);
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            ((LoginVM)OwnViewModel).Login();
+            _viewModel.Login();
         }
     }
 }

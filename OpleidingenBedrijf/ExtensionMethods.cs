@@ -15,17 +15,8 @@ namespace BedrijfsOpleiding
         public static bool IsEmail(this string str) =>
             Regex.IsMatch(str, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
-
         /// <summary>
-        /// Check if string is a first name
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-     //   public static bool IsFirstName(this string str) =>
-     //       Regex.IsMatch(str, @"^[a-zA-Z]{2,24}\z$");
-
-        /// <summary>
-        /// Check if string is a Last name
+        /// Check if string is a name
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -52,6 +43,19 @@ namespace BedrijfsOpleiding
         /// <returns></returns>
         public static bool IsEmpty(this string str) =>
             str.Length == 0;
+
+        /// <summary>
+        /// Check if string is money : XXXX,XX
+        /// Edited for own use
+        /// 
+        /// regex source:
+        /// https://stackoverflow.com/questions/1028221/regex-for-money
+        /// balpha
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool IsMoney(this string str) =>
+            Regex.IsMatch(str, @"^(\d+(,\d{1,2})?)$");
 
     }
 }

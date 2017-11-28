@@ -6,7 +6,7 @@
         xmlns:animatedContent="clr-namespace:BedrijfsOpleiding.API.AnimatedContent"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1250">
-    <Grid>
+    <Grid Background="#EEE">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="20"/>

@@ -12,12 +12,22 @@ namespace BedrijfsOpleiding.View.CourseView
 {
     public partial class AddCourseView
     {
-        public int CourseId = 0;
+        #region OwnViewModel : BaseViewModel
 
-        public AddCourseView(BaseViewModel parent) : base(parent)
+        private AddCourseVM _viewModel;
+        public AddCourseVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new AddCourseVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public int CourseId;
+
+        public AddCourseView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-            OwnViewModel = new AddCourseVM(this);
 
             #region hideControls
             ecCourseName.Visibility = Visibility.Hidden;
@@ -31,7 +41,7 @@ namespace BedrijfsOpleiding.View.CourseView
             #endregion
         }
 
-        public AddCourseView(BaseViewModel parentViewModel, int id) : this(parentViewModel)
+        public AddCourseView(MainWindowVM vm, int id) : this(vm)
         {
             CourseId = id;
 
@@ -135,9 +145,9 @@ namespace BedrijfsOpleiding.View.CourseView
               };*/
 
             if (CourseId > 0)
-                ((AddCourseVM)OwnViewModel).SaveCourse();
+                _viewModel.SaveCourse();
             else
-                ((AddCourseVM)OwnViewModel).AddCourse();
+                _viewModel.AddCourse();
         }
 
         private void Difficulty_Loaded(object sender, RoutedEventArgs e)
@@ -173,6 +183,17 @@ namespace BedrijfsOpleiding.View.CourseView
             }
             */
 
+        }
+
+        private void Price_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (char.IsDigit(c) || c.Equals(',') && Price.Text.Contains(",") == false) continue;
+
+                e.Handled = true;
+                break;
+            }
         }
     }
 }

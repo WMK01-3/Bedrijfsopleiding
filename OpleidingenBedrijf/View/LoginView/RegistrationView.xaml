@@ -5,9 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
-             mc:Ignorable="d">
-    <Grid Background="White">
-        <Grid Width="600" Height="700">
+             mc:Ignorable="d"
+               DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+    
+    <Grid>
+        <Grid Width="600" Height="700" Background="White">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+            </Grid.Effect>
             <Label Content="Registreren" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="131,92,0,583" RenderTransformOrigin="0.482,0.169" >Gebruikersnaam</Label>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbUsername"/>

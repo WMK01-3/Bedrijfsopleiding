@@ -1,10 +1,13 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
+using BedrijfsOpleiding.Annotations;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
 
 namespace BedrijfsOpleiding.ViewModel
 {
-    public class MainWindowVM : BaseViewModel
+    public class MainWindowVM : INotifyPropertyChanged
     {
         #region MenuView : UserControl
         private UserControl _menuView;
@@ -45,15 +48,25 @@ namespace BedrijfsOpleiding.ViewModel
 
         #endregion
 
+        #region CurrentView : UserControl
+
+        private UserControl _currentView;
+        public UserControl CurrentView
+        {
+            get => _currentView;
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged(nameof(CurrentView));
+            }
+        }
+
+        #endregion
+
         public bool NavigationEmpty => NavigationText.IsEmpty();
 
         public string FullUserName => $"{CurUser?.FirstName} {CurUser?.LastName}";
         public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;
-
-
-        public MainWindowVM() : base(null)
-        {
-        }
 
         public void SetUser(User user) => CurUser = user;
 
@@ -65,5 +78,11 @@ namespace BedrijfsOpleiding.ViewModel
         }
 
         public void SetNavigationText(string text) => NavigationText = text;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

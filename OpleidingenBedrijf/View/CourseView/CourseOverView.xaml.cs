@@ -7,14 +7,24 @@ namespace BedrijfsOpleiding.View.CourseView
 {
     public partial class CourseOverView
     {
-        public CourseOverView(BaseViewModel parent) : base(parent)
+        #region OwnViewModel : BaseViewModel
+
+        private CourseOverViewVM _viewModel;
+        public CourseOverViewVM ViewModel
         {
-            OwnViewModel = new CourseOverViewVM(this);
+            get => _viewModel = _viewModel ?? new CourseOverViewVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public CourseOverView(MainWindowVM vm) : base(vm)
+        {
             InitializeComponent();
 
-            courses.ItemsSource = ((CourseOverViewVM)OwnViewModel).CourseList;
+            courses.ItemsSource = _viewModel.CourseList;
 
-            if (((MainWindowVM) ParentViewModel).IsEmployee) return;
+            if (MainVM.IsEmployee) return;
 
             btnAddCourse.Height = 0;
             btnAddCourse.Visibility = Visibility.Hidden;
@@ -29,13 +39,14 @@ namespace BedrijfsOpleiding.View.CourseView
 
             if (courses.SelectedItem is Course == false) return;
 
-            ParentViewModel.CurrentView =
-                new CourseInfoView(((Course)courses.SelectedItem).CourseID, ParentViewModel);
+            MainVM.CurrentView =
+                new CourseInfoView(((Course)courses.SelectedItem).CourseID, MainVM);
         }
 
         private void BtnAddCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            ParentViewModel.CurrentView = new AddCourseView(ParentViewModel);
+            MainVM.CurrentView = new AddCourseView(MainVM);
+            MainVM.CurrentView = new AddCourseView(MainVM);
         }
     }
 }
