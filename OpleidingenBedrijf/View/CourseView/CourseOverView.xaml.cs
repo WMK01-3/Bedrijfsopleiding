@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
@@ -38,6 +39,7 @@ namespace BedrijfsOpleiding.View.CourseView
             if (courses.SelectedItem == null) return;
 
             if (courses.SelectedItem is Course == false) return;
+            
 
             MainVM.CurrentView =
                 new CourseInfoView(((Course)courses.SelectedItem).CourseID, MainVM);

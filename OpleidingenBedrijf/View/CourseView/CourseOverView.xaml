@@ -38,10 +38,11 @@
             <DataGrid Grid.Row="1" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>
-                    <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="200"/>
-                    <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price}" Width="100"/>
-                    <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding Location}" Width="100"/>
-                    <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Binding="{Binding Difficulty}" Width="100"/>
+                    <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="2*"/>
+                    <DataGridTextColumn Header="Prijs" IsReadOnly="True" Binding="{Binding Price}" Width="1*"/>
+                    <DataGridTextColumn Header="Locatie" IsReadOnly="True" Binding="{Binding Location}" Width="1*"/>
+                    <DataGridTextColumn Header="Moeilijkheid" IsReadOnly="True" Binding="{Binding Difficulty}" Width="1*"/>
+                    <DataGridTextColumn Header="Gearchiveerd" IsReadOnly="True" Binding="{Binding Archieved}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
