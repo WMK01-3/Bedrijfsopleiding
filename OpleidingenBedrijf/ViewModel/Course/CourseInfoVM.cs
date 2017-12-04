@@ -113,7 +113,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     return false;
                 }
             }
-
             using (CustomDbContext context = new CustomDbContext())
             {
                 return (from e in context.Enrollments

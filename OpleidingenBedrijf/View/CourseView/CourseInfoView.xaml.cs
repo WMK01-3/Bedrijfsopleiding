@@ -27,6 +27,7 @@ namespace BedrijfsOpleiding.View.CourseView
             courseID = courseId;
             InitializeComponent();
 
+
             bool isSignedUp = _viewModel.IsUserSignedUp(true);
 
             if (isSignedUp)
@@ -59,15 +60,9 @@ namespace BedrijfsOpleiding.View.CourseView
         {
 
             bool isSignedUp = _viewModel.IsUserSignedUp(false);
-            if (isSignedUp)
-            {
                 btnSignUp.Visibility = Visibility.Hidden;
                 SignedUp.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                btnSignUp.Visibility = Visibility.Visible;
-            }
+            
         }
 
     }

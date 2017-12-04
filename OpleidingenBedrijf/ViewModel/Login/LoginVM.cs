@@ -38,7 +38,13 @@ namespace BedrijfsOpleiding.ViewModel.Login
                                               where u.UserName == _view.Username.Text
                                               select u;
 
-                    if (!result.Any()) return;
+                    if (!result.Any())
+                    {
+                        _view.ErrorMessage.Visibility = Visibility.Visible;
+                        _view.Username.BorderBrush = _redBrush;
+                        _view.ErrorMessageMessage.Content = "Gebruikersnaam bestaat niet";
+                        return;
+                    }
 
                     User user = result.First();
 
