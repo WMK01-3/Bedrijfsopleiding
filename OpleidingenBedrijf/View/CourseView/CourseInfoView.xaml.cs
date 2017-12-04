@@ -68,7 +68,6 @@ namespace BedrijfsOpleiding.View.CourseView
             {
                 btnSignUp.Visibility = Visibility.Visible;
             }
-            btnSignUp.Content = "Uitschrijven";
         }
 
     }
