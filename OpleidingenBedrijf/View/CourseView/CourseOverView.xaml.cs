@@ -22,7 +22,7 @@ namespace BedrijfsOpleiding.View.CourseView
         {
             InitializeComponent();
 
-            courses.ItemsSource = _viewModel.CourseList;
+            //courses.ItemsSource = _viewModel.CourseList;
 
             if (MainVM.IsEmployee) return;
 
@@ -45,8 +45,8 @@ namespace BedrijfsOpleiding.View.CourseView
 
         private void BtnAddCourse_OnClick(object sender, RoutedEventArgs e)
         {
-            MainVM.CurrentView = new AddCourseView(MainVM);
-            MainVM.CurrentView = new AddCourseView(MainVM);
+            MainVM.CurrentView = new AddCourse.AddCourseView(MainVM);
+            MainVM.CurrentView = new AddCourse.AddCourseView(MainVM);
         }
     }
 }

@@ -38,6 +38,7 @@
         </Setter>
     </Style>
     
+    <!--Simple Button-->
     <Style TargetType="{x:Type local:SimpleButton}">
         <Setter Property="Template">
             <Setter.Value>
