@@ -10,7 +10,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
 
     <Grid>
-        <TabControl x:Name="tabControl">
+        <TabControl x:Name="tabControl" Background="#EEE">
             <TabItem Header="Nieuwe Cursus" IsEnabled="False">
                 <ContentControl Content="{Binding MainTab}" Margin="10"/>
             </TabItem>

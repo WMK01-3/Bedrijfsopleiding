@@ -11,6 +11,9 @@
         <!--Filter-->
         <Grid Width="250" HorizontalAlignment="Left">
             <Grid Margin="10 20 10 110" Background="White">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+                </Grid.Effect>
                 <Label Content="Filter" HorizontalAlignment="Center" FontSize="25"/>
                 <ScrollViewer Margin="10 50 10 10" VerticalScrollBarVisibility="Auto">
                     <ListBox ItemsSource="{Binding Categories}" Background="#FAFAFA">
@@ -29,31 +32,64 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
-
-            <DataGrid ItemsSource="{Binding TeacherInfo}" AutoGenerateColumns="False" CanUserAddRows="False" Grid.Row="0" Margin="10">
+            <!--DataGrid-->
+            <DataGrid ItemsSource="{Binding TeacherInfo}" Grid.Row="0">
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Margin" Value="10"></Setter>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="RowHeaderWidth" Value="0"/>
+                        <Setter Property="AutoGenerateColumns" Value="False"/>
+                        <Setter Property="GridLinesVisibility" Value="None"/>
+                        <!--Can User-->
+                        <Setter Property="CanUserReorderColumns" Value="False"/>
+                        <Setter Property="CanUserDeleteRows" Value="False"/>
+                        <Setter Property="CanUserResizeRows" Value="False"/>
+                        <Setter Property="CanUserResizeColumns" Value="False"/>
+                        <Setter Property="CanUserAddRows" Value="False"/>
+
                         <Setter Property="ColumnHeaderStyle">
                             <Setter.Value>
                                 <Style TargetType="DataGridColumnHeader">
                                     <!--The header style-->
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Height" Value="25"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                    <Setter Property="BorderBrush" Value="#AFAFAF"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CellStyle">
+                            <Setter.Value>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                    <Setter Property="BorderBrush" Value="#CFCFCF"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
                                 </Style>
                             </Setter.Value>
                         </Setter>
                     </Style>
                 </DataGrid.Style>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="2*" Header="Naam" Binding="{Binding FullName}"/>
-                    <DataGridTemplateColumn Width="3*" Header="Vakkundigheid">
+                    <DataGridTextColumn Width="2*" Header="  Naam" Binding="{Binding FullName}"/>
+                    <DataGridTemplateColumn Width="3*" Header="  Vakkundigheid">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox Loaded="ListBox_Loaded" />
+                                <ListBox Loaded="ListBox_Loaded" Background="White" BorderThickness="0"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-
+            <!--Buttons-->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
@@ -62,7 +98,6 @@
                 <Button Name="btnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="BtnPrevious_OnClick"/>
                 <Button Grid.Column="1" Height="30" Margin="10" Content="Data Kiezen" Background="CornflowerBlue"/>
             </Grid>
-
         </Grid>
     </Grid>
 
