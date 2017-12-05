@@ -15,15 +15,17 @@
         </Grid.ColumnDefinitions>
 
         <!--Filter grid-->
-        <Grid Grid.Column="0" Visibility="Hidden">
+        <Grid Grid.Column="0">
             <Slider HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="160"/>
             <TextBox  HorizontalAlignment="Left" Height="23" Margin="5,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="160,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
             <Label Content="Locatie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 300"/>
             <ComboBox HorizontalAlignment="Left" Margin="15,327,0,0" VerticalAlignment="Top" Width="170"/>
-            <Label Content="Niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 410"/>
             <ComboBox HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
             <Label Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
+            <Label Content="Niveau" HorizontalAlignment="Left" Margin="10,406,0,0" VerticalAlignment="Top"/>
+            <Label Content="Vakkunde" HorizontalAlignment="Left" Margin="10,515,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Right" Margin="0,541,15,0" VerticalAlignment="Top" Width="170"/>
         </Grid>
 
         <!--Middle Grid-->
@@ -54,7 +56,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <TextBlock TextWrapping="Wrap" Margin="10" Name="courseInfo" Background="White"/>
+                <TextBlock TextWrapping="Wrap" Margin="10" Name="courseInfo" Background="#aaa"/>
 
                 <!--More info Button-->
                 <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="0, 1, 0, 0" >
@@ -67,6 +69,7 @@
                 </Border>
             </Grid>
         </Border>
+        <Label Content="Label" HorizontalAlignment="Left" Height="0" Margin="-273,497,0,0" VerticalAlignment="Top" Width="3"/>
     </Grid>
 </view:BaseView>
 

@@ -21,7 +21,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
             {
                 IQueryable<Models.Course> result = (from c in context.Courses
                                                     select c);
-
                 foreach (Models.Course course in result)
                 {
                     courseList.Add(course);
