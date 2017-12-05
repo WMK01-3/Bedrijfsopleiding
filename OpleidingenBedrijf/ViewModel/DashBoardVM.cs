@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using BedrijfsOpleiding.View;
+using Newtonsoft.Json;
 
 namespace BedrijfsOpleiding.ViewModel
 {
@@ -10,6 +11,11 @@ namespace BedrijfsOpleiding.ViewModel
 
         public DashBoardVM(MainWindowVM vm, DashBoardView v) : base(vm)
         {
+        }
+
+        public void LoadMarkers(WebBrowser wbMaps)
+        {
+            
         }
     }
 }
