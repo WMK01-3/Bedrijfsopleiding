@@ -10,8 +10,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="525*"/>
+            <ColumnDefinition Width="127*"/>
+            <ColumnDefinition Width="398*"/>
         </Grid.ColumnDefinitions>
 
         <!--Filter grid-->
@@ -19,13 +20,16 @@
             <Slider HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="160"/>
             <TextBox  HorizontalAlignment="Left" Height="23" Margin="5,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="160,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
-            <Label Content="Locatie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 300"/>
-            <ComboBox HorizontalAlignment="Left" Margin="15,327,0,0" VerticalAlignment="Top" Width="170"/>
-            <ComboBox HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
+            <ComboBox HorizontalAlignment="Left" Margin="15,285,0,0" VerticalAlignment="Top" Width="170"/>
             <Label Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
-            <Label Content="Niveau" HorizontalAlignment="Left" Margin="10,406,0,0" VerticalAlignment="Top"/>
-            <Label Content="Vakkunde" HorizontalAlignment="Left" Margin="10,515,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Right" Margin="0,541,15,0" VerticalAlignment="Top" Width="170"/>
+            <Label Content="Niveau" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
+            <Label Content="Vakkunde" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Right" Margin="0,390,15,0" VerticalAlignment="Top" Width="170">
+                <ComboBoxItem>Computers</ComboBoxItem>
+                <ComboBoxItem>Hobby</ComboBoxItem>
+                <ComboBoxItem>Buitenshuis</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Zoeken" HorizontalAlignment="Left" Margin="25,622,0,0" VerticalAlignment="Top" Width="150"/>
         </Grid>
 
         <!--Middle Grid-->
@@ -50,25 +54,31 @@
 
 
         <!--Short Course Description-->
-        <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="20"  Margin="10">
-            <Grid>
+        <Grid Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="58*"/>
+                <ColumnDefinition Width="17*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4"  Background="White" Margin="10" Grid.ColumnSpan="2"/>
+            <Grid Grid.ColumnSpan="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <TextBlock TextWrapping="Wrap" Margin="10" Name="courseInfo" Background="#aaa"/>
+                <TextBlock TextWrapping="Wrap" x:Name="courseInfo" Margin="1,1,0,0"><InlineUIContainer>
+                        <Grid Height="58" Width="496"/>
+                    </InlineUIContainer></TextBlock>
+                <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" HorizontalAlignment="Left" Height="85" Margin="10,5,0,0" VerticalAlignment="Top" Width="505" Grid.Row="1"/>
 
-                <!--More info Button-->
-                <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="0, 1, 0, 0" >
-                    <Grid Margin="10"  x:Name="enroll">
-                        <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="ToCourseInfo"/>
-                        <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15"  VerticalAlignment="Bottom"/>
-                        <Label Content="Aantal lessen:" HorizontalAlignment="Center" Margin="0 0 80 0" FontSize="15" VerticalAlignment="Bottom"/>
-
-                    </Grid>
-                </Border>
             </Grid>
-        </Border>
+            <Grid>
+                <Grid Margin="20, 20, 20"  x:Name="enroll">
+                    <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="ToCourseInfo" Margin="0,0,-99,37"/>
+                    <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15"  VerticalAlignment="Bottom" Margin="28,0,0,37"/>
+                    <Label Content="Aantal lessen:" HorizontalAlignment="Center" Margin="153,0,153,37" FontSize="15" VerticalAlignment="Bottom"/>
+                </Grid>
+            </Grid>
+        </Grid>
         <Label Content="Label" HorizontalAlignment="Left" Height="0" Margin="-273,497,0,0" VerticalAlignment="Top" Width="3"/>
     </Grid>
 </view:BaseView>
