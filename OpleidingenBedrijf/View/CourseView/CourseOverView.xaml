@@ -10,9 +10,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="525*"/>
-            <ColumnDefinition Width="127*"/>
-            <ColumnDefinition Width="398*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <!--Filter grid-->
@@ -56,11 +56,11 @@
         <!--Short Course Description-->
         <Grid Grid.Column="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="58*"/>
-                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
             </Grid.ColumnDefinitions>
-            <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4"  Background="White" Margin="10" Grid.ColumnSpan="2"/>
-            <Grid Grid.ColumnSpan="2">
+            <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4"  Background="White" Margin="10"/>
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="100"/>
@@ -68,18 +68,15 @@
                 <TextBlock TextWrapping="Wrap" x:Name="courseInfo" Margin="1,1,0,0"><InlineUIContainer>
                         <Grid Height="58" Width="496"/>
                     </InlineUIContainer></TextBlock>
-                <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4" HorizontalAlignment="Left" Height="85" Margin="10,5,0,0" VerticalAlignment="Top" Width="505" Grid.Row="1"/>
+
 
             </Grid>
-            <Grid>
-                <Grid Margin="20, 20, 20"  x:Name="enroll">
-                    <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="ToCourseInfo" Margin="0,0,-99,37"/>
-                    <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15"  VerticalAlignment="Bottom" Margin="28,0,0,37"/>
-                    <Label Content="Aantal lessen:" HorizontalAlignment="Center" Margin="153,0,153,37" FontSize="15" VerticalAlignment="Bottom"/>
-                </Grid>
+            <Grid Margin="15, 0, 15, 20">
+            <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="ToCourseInfo" />
+            <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15"  VerticalAlignment="Bottom" Height="30" Width="45"/>
+            <Label Content="Aantal lessen:" HorizontalAlignment="Center"  FontSize="15" VerticalAlignment="Bottom" Height="30" Width="100"/>
             </Grid>
         </Grid>
-        <Label Content="Label" HorizontalAlignment="Left" Height="0" Margin="-273,497,0,0" VerticalAlignment="Top" Width="3"/>
     </Grid>
 </view:BaseView>
 
