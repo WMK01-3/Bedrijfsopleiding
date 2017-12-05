@@ -55,7 +55,7 @@ namespace BedrijfsOpleiding
         /// <param name="str"></param>
         /// <returns></returns>
         public static bool IsMoney(this string str) =>
-            Regex.IsMatch(str, @"^(\d+(,\d{1,2})?)$");
+            Regex.IsMatch(str, @"^(\d+([,.]\d{1,2})?)$");
 
     }
 }

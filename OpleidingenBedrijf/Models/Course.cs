@@ -37,6 +37,7 @@ namespace BedrijfsOpleiding.Models
 
         // Dit zijn de inschrijvingen
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<Enrollment> CourseDates { get; set; }
     }
 }
     

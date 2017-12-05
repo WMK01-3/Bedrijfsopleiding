@@ -1,9 +1,12 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System;
+using System.Data.Entity.Migrations;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using BedrijfsOpleiding.View.CourseView;
+using BedrijfsOpleiding.Models;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -111,7 +114,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             #region ErrorCount
 
-            string errorMsg = "All good";
+            string errorMsg = "Geen fouten gevonden";
 
             _errorCount += _view.CourseName.Text.Length == 0 ? 1 : 0;
             errorMsg = _view.CourseName.Text.Length == 0  ? "Cursusnaam mag niet leeg zijn" : errorMsg;
@@ -124,9 +127,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
             errorMsg = _view.Price.Text.Length == 0 ? "De prijs mag niet leeg zijn" : errorMsg;
 
             _errorCount += _view.Price.Text.IsMoney() ? 0 : 1;
-
-
-            _view.ErrorMessageMessage.Content = "wattttt... NO MUNEY????";
+            errorMsg = _view.Price.Text.IsMoney() ? errorMsg : "Ingevoerde prijs voldoet niet aan de voorwaarden";
 
             #endregion
 
@@ -134,23 +135,27 @@ namespace BedrijfsOpleiding.ViewModel.Course
             if (_errorCount != 0)
             {
                 _view.ErrorMessage.Visibility = Visibility.Visible;
+                _view.ErrorMessageMessage.Content = errorMsg;
                 return;
             }
 
             _view.ErrorMessage.Visibility = Visibility.Hidden;
 
-            Models.Course course = new Models.Course();
-            course.Title = _view.CourseName.Text;
-            course.Difficulty = (Models.Course.DifficultyEnum)_view.Difficulty.SelectedItem;
-            course.MaxParticipants = (int)_view.MaxParticipants.Value;
-            course.Duration = (Models.Course.DurationEnum)_view.Duration.SelectedItem;
 
-            course.Price = decimal.Parse(_view.Price.Text);
+            #region Sanitize
 
-            course.Description = new TextRange(_view.Description.Document.ContentStart, _view.Description.Document.ContentEnd).Text;
+            _view.Price.Text =  _view.Price.Text.Replace(".", ",");
+            decimal p = Decimal.Parse(_view.Price.Text);
+
+
+            #endregion
+
+
+
             //course.UserID = short.Parse(av.TeacherID.Text);
             //course.LocationID = int.Parse(av.LocationID.Text);
             //course.Dates.Add(av.StartDate.);
+
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -162,7 +167,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 oldCourse.Difficulty = (Models.Course.DifficultyEnum)_view.Difficulty.SelectedItem;
                 oldCourse.MaxParticipants = (int)_view.MaxParticipants.Value;
                 oldCourse.Duration = (Models.Course.DurationEnum)_view.Duration.SelectedItem;
-                oldCourse.Price = decimal.Parse(_view.Price.Text);
+                oldCourse.Price = p;
                 oldCourse.Description =
                     new TextRange(_view.Description.Document.ContentStart, _view.Description.Document.ContentEnd).Text;
 
