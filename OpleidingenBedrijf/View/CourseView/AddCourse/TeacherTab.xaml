@@ -10,7 +10,7 @@
     <Grid>
         <!--Filter-->
         <Grid Width="250" HorizontalAlignment="Left">
-            <Grid Margin="10 20 10 110" Background="White">
+            <Grid Margin="10 10 10 110" Background="White">
                 <Grid.Effect>
                     <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
                 </Grid.Effect>
@@ -33,7 +33,7 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <!--DataGrid-->
-            <DataGrid ItemsSource="{Binding TeacherInfo}" Grid.Row="0">
+            <DataGrid x:Name="teacherGrid" Grid.Row="0">
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="Background" Value="White"/>
@@ -54,7 +54,7 @@
                                 <Style TargetType="DataGridColumnHeader">
                                     <!--The header style-->
                                     <Setter Property="Background" Value="White"/>
-                                    <Setter Property="Height" Value="25"/>
+                                    <Setter Property="Height" Value="35"/>
                                     <Setter Property="FontSize" Value="16"/>
                                     <Setter Property="BorderThickness" Value="0 0 0 1"/>
                                     <Setter Property="BorderBrush" Value="#AFAFAF"/>
@@ -79,11 +79,19 @@
                     </Style>
                 </DataGrid.Style>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="2*" Header="  Naam" Binding="{Binding FullName}"/>
+                    <!--Full Name-->
+                    <DataGridTemplateColumn Width="2*" Header="  Naam">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=FullName}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Profession-->
                     <DataGridTemplateColumn Width="3*" Header="  Vakkundigheid">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox Loaded="ListBox_Loaded" Background="White" BorderThickness="0"/>
+                                <ListBox ItemsSource="{Binding Path=Professions}" Background="White" BorderThickness="0"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

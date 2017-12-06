@@ -13,7 +13,9 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
     public partial class TeacherTab
     {
         private AddCourseView _view;
-        private int _index;
+
+        private List<ListBox> _professionList;
+        private List<Label> _fullnameList;
 
         #region OwnViewModel : BaseViewModel
 
@@ -29,23 +31,50 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         public TeacherTab(AddCourseView view, MainWindowVM vm) : base(vm)
         {
             _view = view;
+            _professionList = new List<ListBox>();
+            _fullnameList = new List<Label>();
             InitializeComponent();
-        }
 
-        private void ListBox_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Debug.WriteLine("Index = " + _index);
-
-            if (_index >= _viewModel.TeacherInfo.ToArray().Length) return;
-
-            Teacher teachers = _viewModel.TeacherInfo.ToArray()[_index];
-            _index++;
-            ((ListBox)sender).ItemsSource = teachers.Professions;
+            UpdateDataGrid();
         }
 
         private void BtnPrevious_OnClick(object sender, RoutedEventArgs e)
         {
             _view.tabControl.SelectedIndex -= 1;
         }
+
+        private void UpdateDataGrid()
+        {
+            ICollection<User> teachers = _viewModel.TeacherInfo;
+
+            foreach (User teacher in teachers)
+            {
+                var data = new DataGridItem();
+                
+                data.FullName = teacher.FullName;
+
+                using (CustomDbContext context = new CustomDbContext())
+                {
+                    IQueryable<string> professions = from p in context.Professions
+                                                     where p.UserID == teacher.UserID
+                                                     select p.ProfessionName;
+
+                    data.Professions = professions.ToArray();
+                }
+
+                teacherGrid.Items.Add(data);
+            }
+        }
+
+        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine(((Label)sender).Content);
+        }
+    }
+
+    public class DataGridItem
+    {
+        public string FullName { get; set; }
+        public string[] Professions { get; set; }
     }
 }
