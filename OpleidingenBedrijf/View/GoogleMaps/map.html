@@ -20,26 +20,34 @@
             function initialize() {  
 
                 var mapOptions = {  
-                    center: new google.maps.LatLng(48.209331, 16.381302),  
-                    zoom: 12 
+                    center: new google.maps.LatLng(52.690379, 6.186676),  
+                    zoom: 8
                 };  
 
                 map = new google.maps.Map(document.getElementById("map-canvas"),  
-                    mapOptions);  
+                    mapOptions); 
                 
             }  
 
-            function addMarker(jsonArg) {
+            function addMarker(jsonArg, title, id) {
                 var args = JSON.parse(jsonArg);
                 for (var i = 0; i < args.Lat.length; i++) {
                     var latLng = new google.maps.LatLng(args.Lat[i], args.Long[i]);
                     var marker = new google.maps.Marker({
                         position: latLng,
-                        title: 'Hello World!',
-                        map: map
+                        title: title,
+                        map: map,
+                        id: id
                     });
                 }
+
+                google.maps.event.addListener(marker, "click", function (e) {
+                    //window.external.sayHello();
+                    window.external.LoadCoursesInListBox(id);
+
+                });
             }
+
 
         </script>  
 
