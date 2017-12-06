@@ -86,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\CourseDate.cs" />
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -94,6 +95,9 @@
     <Compile Include="ViewModel\DashBoardVM.cs" />
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CourseView\SelectDatesView.xaml.cs">
+      <DependentUpon>SelectDatesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
@@ -106,6 +110,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CourseView\CourseInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CourseView\SelectDatesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

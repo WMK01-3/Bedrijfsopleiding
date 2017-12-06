@@ -22,5 +22,7 @@ namespace BedrijfsOpleiding
 
         public DbSet<Enrollment> Enrollments { get; set; }
 
+        public DbSet<CourseDate> CourseDates { get; set; }
+
     }
 }
