@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
 
@@ -33,5 +34,14 @@ namespace BedrijfsOpleiding.View.LoginView
         {
             _viewModel.Login();
         }
+
+        public void OnKeyDownHandler(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                _viewModel.Login();
+            }
+        }
+
     }
 }

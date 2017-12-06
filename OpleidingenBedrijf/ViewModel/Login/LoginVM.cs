@@ -18,6 +18,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
             _view = v;
         }
 
+       
         public void Login()
         {
             _view.Password.BorderBrush = _blueBrush;
