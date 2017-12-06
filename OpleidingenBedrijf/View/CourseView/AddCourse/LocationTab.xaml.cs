@@ -20,6 +20,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
     /// </summary>
     public partial class LocationTab : UserControl
     {
+       
         public LocationTab()
         {
             InitializeComponent();
@@ -29,5 +30,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         {
             //MaxParticipantsLabel.Content = Math.Round(MaxParticipants.Value, 0);
         }
+
+        
     }
 }

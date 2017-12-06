@@ -6,6 +6,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
     {
         public DateVM(MainWindowVM vm) : base(vm)
         {
+
         }
     }
 }

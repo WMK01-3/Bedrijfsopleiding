@@ -10,7 +10,7 @@ using BedrijfsOpleiding.ViewModel.Course.AddCourse;
 
 namespace BedrijfsOpleiding.View.CourseView.AddCourse
 {
-    public partial class TeacherTab
+    public partial class TeacherTab 
     {
         private AddCourseView _view;
         private int _index;
@@ -46,6 +46,11 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private void BtnPrevious_OnClick(object sender, RoutedEventArgs e)
         {
             _view.tabControl.SelectedIndex -= 1;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _view.tabControl.SelectedIndex += 2;
         }
     }
 }
