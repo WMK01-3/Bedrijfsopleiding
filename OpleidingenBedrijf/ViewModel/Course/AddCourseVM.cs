@@ -4,11 +4,57 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using BedrijfsOpleiding.View.CourseView;
+using BedrijfsOpleiding.View.CourseView.AddCourse;
+using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
     public class AddCourseVM : BaseViewModel
     {
+        #region MainTab : UserControl
+
+        private MainTab _mainTab;
+        public MainTab MainTab
+        {
+            get => _mainTab = _mainTab ?? new MainTab(_view);
+            set => _mainTab = value;
+        }
+
+        #endregion
+
+        #region DateTab : UserControl
+
+        private DateTab _dateTab;
+        public DateTab DateTab
+        {
+            get => _dateTab = _dateTab ?? new DateTab();
+            set => _dateTab = value;
+        }
+
+        #endregion
+
+        #region TeacherTab : UserControl
+
+        private TeacherTab _teacherTab;
+        public TeacherTab TeacherTab
+        {
+            get => _teacherTab = _teacherTab ?? new TeacherTab(_view, MainVM);
+            set => _teacherTab = value;
+        }
+
+        #endregion
+
+        #region LocationTab : UserControl
+
+        private LocationTab _locationTab;
+        public LocationTab LocationTab
+        {
+            get => _locationTab = _locationTab ?? new LocationTab();
+            set => _locationTab = value;
+        }
+
+        #endregion
+
         private AddCourseView _view;
         private int _errorCount;
         private readonly SolidColorBrush _redBrush = new SolidColorBrush(Colors.Tomato);
@@ -26,56 +72,54 @@ namespace BedrijfsOpleiding.ViewModel.Course
             //Checking for empty values
             #region ErrorIcons
 
-            _view.ecCourseName.Visibility = (_view.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
-            _view.ecMaxParticipants.Visibility = (_view.MaxParticipants.Value == 0 ? Visibility.Visible : Visibility.Hidden);
+            _mainTab.ecCourseName.Visibility = (_mainTab.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
             //av.ecStartDate.Visibility = (av.StartDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden);
-            _view.ecPrice.Visibility = (_view.Price.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
+            _mainTab.ecPrice.Visibility = (_mainTab.Price.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
 
             #endregion
 
             #region ErrorBorders
 
-            _view.CourseName.BorderBrush = _view.CourseName.Text.Length == 0 ? _redBrush : _blueBrush;
-            _view.MaxParticipants.Background = _view.MaxParticipants.Value == 0 ? _redBrush : _blueBrush;
+            _mainTab.CourseName.BorderBrush = _mainTab.CourseName.Text.Length == 0 ? _redBrush : _blueBrush;
             //av.StartDate.BorderBrush = av.StartDate.ToString().Length == 0 ? _redBrush : _blueBrush;
-            _view.Price.BorderBrush = _view.Price.Text.Length == 0 ? _redBrush : _blueBrush;
+            _mainTab.Price.BorderBrush = _mainTab.Price.Text.Length == 0 ? _redBrush : _blueBrush;
 
             #endregion
 
             #region ErrorCount
 
-            _errorCount += _view.CourseName.Text.Length == 0 ? 1 : 0;
-            _errorCount += _view.MaxParticipants.Value == 0 ? 1 : 0;
+            _errorCount += _mainTab.CourseName.Text.Length == 0 ? 1 : 0;
             //_errorCount += av.StartDate.ToString().Length == 0 ? 1 : 0;
-            _errorCount += _view.Price.Text.Length == 0 ? 1 : 0;
-            _errorCount += _view.Price.Text.IsMoney() ? 0 : 1;
+            _errorCount += _mainTab.Price.Text.Length == 0 ? 1 : 0;
+            _errorCount += _mainTab.Price.Text.IsMoney() ? 0 : 1;
 
             #endregion
 
             //If everything has some sort of value, continu
             if (_errorCount != 0)
             {
-                _view.ErrorMessage.Visibility = Visibility.Visible;
+                _mainTab.errorMessage.Visibility = Visibility.Visible;
                 return;
             }
 
-            _view.ErrorMessage.Visibility = Visibility.Hidden;
+            _mainTab.errorMessage.Visibility = Visibility.Hidden;
 
-            Models.Course course = new Models.Course();
-            course.Title = _view.CourseName.Text;
-            course.Difficulty = (Models.Course.DifficultyEnum)_view.Difficulty.SelectedItem;
-            course.MaxParticipants = (int)_view.MaxParticipants.Value;
-            course.Duration = (Models.Course.DurationEnum)_view.Duration.SelectedItem;
+            Models.Course course = new Models.Course
+            {
+                Title = _mainTab.CourseName.Text,
+                Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem,
+                Duration = (int)_mainTab.Duration.SelectedItem,
+                Price = decimal.Parse(_mainTab.Price.Text),
+                Description = new TextRange(_mainTab.Description.Document.ContentStart,
+                    _mainTab.Description.Document.ContentEnd).Text,
+                LocationID = 1,
+                UserID = 1
+            };
 
-            course.Price = decimal.Parse(_view.Price.Text);
-
-            course.Description = new TextRange(_view.Description.Document.ContentStart, _view.Description.Document.ContentEnd).Text;
             //course.UserID = short.Parse(av.TeacherID.Text);
             //course.LocationID = int.Parse(av.LocationID.Text);
             //course.Dates.Add(av.StartDate.);
 
-            course.LocationID = 1;
-            course.UserID = 1;
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -94,13 +138,12 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                            where c.CourseID == _view.CourseId
                                            select c).First();
 
-                oldCourse.Title = _view.CourseName.Text;
-                oldCourse.Difficulty = (Models.Course.DifficultyEnum)_view.Difficulty.SelectedItem;
-                oldCourse.MaxParticipants = (int)_view.MaxParticipants.Value;
-                oldCourse.Duration = (Models.Course.DurationEnum)_view.Duration.SelectedItem;
-                oldCourse.Price = decimal.Parse(_view.Price.Text);
+                oldCourse.Title = _mainTab.CourseName.Text;
+                oldCourse.Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem;
+                oldCourse.Duration = (int)_mainTab.Duration.SelectedItem;
+                oldCourse.Price = decimal.Parse(_mainTab.Price.Text);
                 oldCourse.Description =
-                    new TextRange(_view.Description.Document.ContentStart, _view.Description.Document.ContentEnd).Text;
+                    new TextRange(_mainTab.Description.Document.ContentStart, _mainTab.Description.Document.ContentEnd).Text;
 
                 // oldCourse.UserID = short.Parse(av.TeacherID.Text);
                 //oldCourse.LocationID = int.Parse(av.TeacherID.Text);

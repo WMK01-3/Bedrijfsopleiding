@@ -35,9 +35,9 @@
 
             <Button x:Name="btnAddCourse" Click="BtnAddCourse_OnClick" Background="LimeGreen" Margin="10" Height="40" Visibility="Visible" Content="Cursus Toevoegen" Foreground="White" FontSize="20" FontWeight="Bold"/>
 
-            <DataGrid Grid.Row="1" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
+            <DataGrid ItemsSource="{Binding Source=CourseList}" DataContext="{Binding Source=CourseList}" Grid.Row="1" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseId}" Visibility="Hidden"/>
                     <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="200"/>
                     <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price}" Width="100"/>
                     <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding Location}" Width="100"/>

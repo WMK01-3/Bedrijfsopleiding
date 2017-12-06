@@ -1,0 +1,29 @@
+﻿<view:BaseView 
+    x:Class="BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+    mc:Ignorable="d" 
+    d:DesignHeight="640" d:DesignWidth="1250"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+
+    <Grid>
+        <TabControl x:Name="tabControl" Background="#EEE">
+            <TabItem Header="Nieuwe Cursus" IsEnabled="False">
+                <ContentControl Content="{Binding MainTab}" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Docent" IsEnabled="False">
+                <ContentControl Content="{Binding TeacherTab}" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Locatie" IsEnabled="False">
+                <ContentControl Content="{Binding LocationTab}" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Datum" IsEnabled="False">
+                <ContentControl Content="{Binding DateTab}" Margin="10"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</view:BaseView>
+

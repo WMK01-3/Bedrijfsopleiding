@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
+using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -51,7 +52,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
-                    Created_at = c.Created_at,
+                    CreatedAt = c.CreatedAt,
                     Dates = c.Dates,
                     Description = c.Description,
                     Difficulty = c.Difficulty,

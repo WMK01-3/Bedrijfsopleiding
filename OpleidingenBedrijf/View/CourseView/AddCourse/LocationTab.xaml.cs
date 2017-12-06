@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BedrijfsOpleiding.View.CourseView
+namespace BedrijfsOpleiding.View.CourseView.AddCourse
 {
     /// <summary>
-    /// Interaction logic for SelectDatesView.xaml
+    /// Interaction logic for LocationTab.xaml
     /// </summary>
-    public partial class SelectDatesView : UserControl
+    public partial class LocationTab : UserControl
     {
-        public SelectDatesView()
+        public LocationTab()
         {
             InitializeComponent();
+        }
+
+        private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            //MaxParticipantsLabel.Content = Math.Round(MaxParticipants.Value, 0);
         }
     }
 }

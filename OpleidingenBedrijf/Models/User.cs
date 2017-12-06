@@ -32,5 +32,7 @@ namespace BedrijfsOpleiding.Models
             LastName = lastname;
             Email = email;
         }
+
+        public string FullName => $"{FirstName} {LastName}";
     }
 }
