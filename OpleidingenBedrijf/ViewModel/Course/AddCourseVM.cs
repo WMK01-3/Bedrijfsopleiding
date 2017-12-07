@@ -108,7 +108,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
             {
                 Title = _mainTab.CourseName.Text,
                 Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem,
-                Duration = (int)_mainTab.Duration.SelectedItem,
+                Duration = int.Parse(_mainTab.Duration.Text),
                 Price = decimal.Parse(_mainTab.Price.Text),
                 Description = new TextRange(_mainTab.Description.Document.ContentStart,
                     _mainTab.Description.Document.ContentEnd).Text,
@@ -140,7 +140,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 oldCourse.Title = _mainTab.CourseName.Text;
                 oldCourse.Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem;
-                oldCourse.Duration = (int)_mainTab.Duration.SelectedItem;
+                oldCourse.Duration = int.Parse(_mainTab.Duration.Text);
                 oldCourse.Price = decimal.Parse(_mainTab.Price.Text);
                 oldCourse.Description =
                     new TextRange(_mainTab.Description.Document.ContentStart, _mainTab.Description.Document.ContentEnd).Text;

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.View.CourseView.AddCourse;
 
 namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
@@ -10,52 +10,76 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
     {
         #region Categories : ICollection<CheckBox>
 
-        private ICollection<Category> _categories;
-        public ICollection<Category> Categories
+        private List<Category> _categories;
+        public List<Category> Categories
         {
             get
             {
                 return _categories = _categories ?? new List<Category>
             {
-                new Category("wiskunde", true),
+                new Category("wiskunde", false),
                 new Category("Natuurkunde", false),
                 new Category("Scheikunde", false),
                 new Category("Computer", false)
             };
             }
+        }
+
+        #endregion
+
+        #region SelectedTeacher : DataGridItem
+
+        private DataGridItem _selectedTeacher;
+        public DataGridItem SelectedTeacher
+        {
+            get => _selectedTeacher;
             set
             {
-                _categories = value;
-                OnPropertyChanged(nameof(Categories));
+                if (_selectedTeacher != null)
+                    _selectedTeacher.IsSelected = false;
+
+                _selectedTeacher = value;
+                if (_selectedTeacher != null)
+                    _selectedTeacher.IsSelected = true;
+                OnPropertyChanged(nameof(SelectedTeacher));
             }
         }
 
         #endregion
 
-        public ICollection<User> TeacherInfo => GetTeachers();
-
         public TeacherTabVM(MainWindowVM vm) : base(vm)
         {
         }
 
-        private ICollection<User> GetTeachers()
+        public List<User> GetTeachers()
         {
-            ICollection<User> teachers = new List<User>();
+            var teachers = new List<User>();
 
             using (CustomDbContext context = new CustomDbContext())
             {
-                foreach (Category category in Categories)
+                int areCatsSelected = Categories.Count(category => category.IsChecked);
+
+                if (areCatsSelected == 0)
                 {
-                    if (category.IsChecked == false) break;
-
-                    IQueryable<User> teachArray = from c in context.Professions
-                                                  where c.ProfessionName == category.Name
-                                                  select c.User;
-
-                    foreach (User teach in teachArray)
+                    teachers = (from t in context.Users
+                                where t.Role == User.RoleEnum.Teacher
+                                select t).ToList();
+                }
+                else
+                {
+                    foreach (Category category in Categories)
                     {
-                        if (teachers.Contains(teach) == false)
-                            teachers.Add(teach);
+                        if (!category.IsChecked) continue;
+
+                        IQueryable<User> teachArray = from c in context.Professions
+                                                      where c.ProfessionName == category.Name
+                                                      select c.User;
+
+                        foreach (User teach in teachArray)
+                        {
+                            if (teachers.Contains(teach) == false)
+                                teachers.Add(teach);
+                        }
                     }
                 }
             }
