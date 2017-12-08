@@ -16,19 +16,27 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         private List<string> _suggestions;
         public List<string> Suggestions
         {
-            get { return _suggestions = _suggestions ?? API.GoogleMaps.AutoCompleteLocations.FetchLocations(TbCityValue); }
-            set => _suggestions = value;
+            get
+            {
+                return _suggestions ?? API.GoogleMaps.AutoCompleteLocations.FetchLocations(TbCityValue);
+                return null;
+            }
+            set
+            {
+                _suggestions = value;
+                OnPropertyChanged(nameof(Suggestions));
+
+            }
         }
 
-        //private string _tbCityValue;
+        private string _tbCityValue;
 
         public string TbCityValue
         {
-            get => TbCityValue;
+            get => _tbCityValue;
             set
             {
-                TbCityValue = value;
-                Suggestions = _suggestions ?? API.GoogleMaps.AutoCompleteLocations.FetchLocations(TbCityValue);
+                _tbCityValue = value;
                 OnPropertyChanged(nameof(Suggestions));
             }
         }

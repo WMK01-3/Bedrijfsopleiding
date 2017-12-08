@@ -32,7 +32,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.ColumnSpan="3" Grid.RowSpan="7" Background="White"/>
         <Label Grid.Row="1" Grid.Column="1" Content="Plaatsnaam" />
-        <TextBox Grid.Row="2" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding Path=TbCityValue , Mode=OneWay}"
+        <TextBox Grid.Row="2" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"
                  />
         
