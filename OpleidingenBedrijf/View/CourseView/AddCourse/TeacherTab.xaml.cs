@@ -70,6 +70,11 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         {
             Debug.WriteLine(((Label)sender).Content);
         }
+
+        private void btnChooseLocation_Click(object sender, RoutedEventArgs e)
+        {
+            _view.tabControl.SelectedIndex += 1;
+        }
     }
 
     public class DataGridItem

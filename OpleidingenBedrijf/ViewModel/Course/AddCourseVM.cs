@@ -13,6 +13,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
     {
         #region MainTab : UserControl
 
+
         private MainTab _mainTab;
         public MainTab MainTab
         {
@@ -49,7 +50,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         private LocationTab _locationTab;
         public LocationTab LocationTab
         {
-            get => _locationTab = _locationTab ?? new LocationTab();
+            get => _locationTab = _locationTab ?? new LocationTab(_view, MainVM);
             set => _locationTab = value;
         }
 
@@ -71,8 +72,11 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             //Checking for empty values
             #region ErrorIcons
-
             _mainTab.ecCourseName.Visibility = (_mainTab.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
+            _locationTab.ecCity.Visibility =
+                (_locationTab.tbCity.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
+            _locationTab.ecClassroom.Visibility =
+                (_locationTab.tbClassroom.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
             //av.ecStartDate.Visibility = (av.StartDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden);
             _mainTab.ecPrice.Visibility = (_mainTab.Price.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
 

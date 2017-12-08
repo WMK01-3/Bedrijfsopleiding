@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using BedrijfsOpleiding.Models;
@@ -18,7 +19,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
             _view = v;
         }
 
-        public void Login()
+        public async System.Threading.Tasks.Task LoginAsync()
         {
             _view.Password.BorderBrush = _blueBrush;
             _view.Username.BorderBrush = _blueBrush;
@@ -35,8 +36,8 @@ namespace BedrijfsOpleiding.ViewModel.Login
                 using (CustomDbContext context = new CustomDbContext())
                 {
                     IQueryable<User> result = from u in context.Users
-                                              where u.UserName == _view.Username.Text
-                                              select u;
+                        where u.UserName == _view.Username.Text
+                        select u;
 
                     if (!result.Any()) return;
 
@@ -54,5 +55,7 @@ namespace BedrijfsOpleiding.ViewModel.Login
                 }
             }
         }
+
     }
 }
+
