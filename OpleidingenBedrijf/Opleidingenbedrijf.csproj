@@ -86,17 +86,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Message.cs" />
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\Course\AddCourseVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
+    <Compile Include="ViewModel\Message\MessageVM.cs" />
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MessageView\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +170,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MenuBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessageView\MessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

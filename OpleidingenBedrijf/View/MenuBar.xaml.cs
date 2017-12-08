@@ -34,5 +34,10 @@ namespace BedrijfsOpleiding.View
             MainVM.CurUser = null;
             MainVM.MenuView = null;
         }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            MainVM.CurrentView = new MessageView.MessageView(MainVM);
+        }
     }
 }
