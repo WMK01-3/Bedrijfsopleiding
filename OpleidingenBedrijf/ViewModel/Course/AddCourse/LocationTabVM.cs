@@ -18,6 +18,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         {
             get
             {
+
                 return _suggestions ?? API.GoogleMaps.AutoCompleteLocations.FetchLocations(TbCityValue);
                 return null;
             }

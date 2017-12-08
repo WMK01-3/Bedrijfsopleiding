@@ -23,6 +23,14 @@ namespace BedrijfsOpleiding.API.GoogleMaps
             JObject json = JObject.Parse(dataString);
             IEnumerable<JToken> tokens = json.SelectTokens("$.predictions[*].description");
             List<string> list = new List<string>(tokens.Values<string>());
+
+            // Encode to UTF-8
+            for (int i = 0; i < list.Count; i++)
+            {
+                byte[] bytes = Encoding.Default.GetBytes(list[i]);
+                list[i] = Encoding.UTF8.GetString(bytes);
+            }
+
             return list;
         }
 
