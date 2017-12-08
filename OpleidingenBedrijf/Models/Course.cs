@@ -54,5 +54,7 @@ namespace BedrijfsOpleiding.Models
 
         // All the enrollments : the people who signed up for the course
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+        public virtual ICollection<CourseDate> CourseDates { get; set; }
     }
 }

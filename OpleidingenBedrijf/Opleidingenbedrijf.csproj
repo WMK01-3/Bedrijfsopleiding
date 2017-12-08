@@ -87,9 +87,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Profession.cs" />
+    <Compile Include="Models\CourseDate.cs" />
+    <Compile Include="Models\Teacher.cs" />
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\DateVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\TeacherVM.cs" />
     <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\Course\AddCourseVM.cs" />

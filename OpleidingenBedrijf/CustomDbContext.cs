@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using BedrijfsOpleiding.Models;
 
 namespace BedrijfsOpleiding
@@ -21,8 +16,9 @@ namespace BedrijfsOpleiding
         public DbSet<Course> Courses { get; set; }
 
         public DbSet<Enrollment> Enrollments { get; set; }
-
+        
         public DbSet<Profession> Professions { get; set; }
 
+        public DbSet<CourseDate> CourseDates { get; set; }
     }
 }

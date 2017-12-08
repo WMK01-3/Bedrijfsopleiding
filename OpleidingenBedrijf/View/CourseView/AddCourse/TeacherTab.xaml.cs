@@ -7,7 +7,7 @@ using BedrijfsOpleiding.ViewModel.Course.AddCourse;
 
 namespace BedrijfsOpleiding.View.CourseView.AddCourse
 {
-    public partial class TeacherTab
+    public partial class TeacherTab 
     {
         private AddCourseView _view;
 
@@ -65,6 +65,11 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private void ToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
         {
             UpdateDataGrid();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            _view.tabControl.SelectedIndex += 2;
         }
     }
 
