@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course.AddCourse;
@@ -13,9 +10,6 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
     public partial class TeacherTab
     {
         private AddCourseView _view;
-
-        private List<ListBox> _professionList;
-        private List<Label> _fullnameList;
 
         #region OwnViewModel : BaseViewModel
 
@@ -27,14 +21,11 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         }
 
         #endregion
-
+        
         public TeacherTab(AddCourseView view, MainWindowVM vm) : base(vm)
         {
             _view = view;
-            _professionList = new List<ListBox>();
-            _fullnameList = new List<Label>();
             InitializeComponent();
-
             UpdateDataGrid();
         }
 
@@ -43,15 +34,14 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
             _view.tabControl.SelectedIndex -= 1;
         }
 
-        private void UpdateDataGrid()
+        public void UpdateDataGrid()
         {
-            ICollection<User> teachers = _viewModel.TeacherInfo;
+            List<User> teachers = _viewModel.GetTeachers();
+            var items = new List<DataGridItem>();
 
             foreach (User teacher in teachers)
             {
-                var data = new DataGridItem();
-                
-                data.FullName = teacher.FullName;
+                DataGridItem data = new DataGridItem { FullName = teacher.FullName };
 
                 using (CustomDbContext context = new CustomDbContext())
                 {
@@ -61,19 +51,25 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
                     data.Professions = professions.ToArray();
                 }
-
-                teacherGrid.Items.Add(data);
+                items.Add(data);
             }
+
+            teacherGrid.ItemsSource = items;
         }
 
-        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(((Label)sender).Content);
+            UpdateDataGrid();
+        }
+
+        private void ToggleButton_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
         }
 
         private void btnChooseLocation_Click(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex += 1;
+            _view.tabControl.SelectedIndex += 2;
         }
     }
 
@@ -81,5 +77,6 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
     {
         public string FullName { get; set; }
         public string[] Professions { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

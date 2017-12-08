@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="1250"
+             d:DesignHeight="740" d:DesignWidth="1250"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <!--Filter-->
@@ -16,10 +16,10 @@
                 </Grid.Effect>
                 <Label Content="Filter" HorizontalAlignment="Center" FontSize="25"/>
                 <ScrollViewer Margin="10 50 10 10" VerticalScrollBarVisibility="Auto">
-                    <ListBox ItemsSource="{Binding Categories}" Background="#FAFAFA">
+                    <ListBox x:Name="categoryListBox" ItemsSource="{Binding Categories}" Background="#FAFAFA">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+                                <CheckBox Unchecked="ToggleButton_OnUnchecked" Checked="ToggleButton_OnChecked" Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
@@ -33,7 +33,7 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <!--DataGrid-->
-            <DataGrid x:Name="teacherGrid" Grid.Row="0">
+            <DataGrid x:Name="teacherGrid" Grid.Row="0" SelectedItem="{Binding Path=SelectedTeacher, Mode=TwoWay}">
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="Background" Value="White"/>
@@ -81,6 +81,17 @@
                 <DataGrid.Columns>
                     <!--Full Name-->
                     <DataGridTemplateColumn Width="2*" Header="  Naam">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Label Content="{Binding Path=FullName}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
@@ -89,9 +100,32 @@
                     </DataGridTemplateColumn>
                     <!--Profession-->
                     <DataGridTemplateColumn Width="3*" Header="  Vakkundigheid">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox ItemsSource="{Binding Path=Professions}" Background="White" BorderThickness="0"/>
+                                <ListView x:Name="listBoxTemplate"  ItemsSource="{Binding Path=Professions}" BorderThickness="0" Background="Transparent">
+                                    <ListView.ItemContainerStyle>
+                                        <Style TargetType="{x:Type ListViewItem}">
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                                        <Label Background="Transparent" Content="{TemplateBinding Content}"/>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </ListView.ItemContainerStyle>
+                                </ListView>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -110,4 +144,6 @@
     </Grid>
 
 </view:BaseView>
+
+
 

@@ -18,9 +18,6 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         #region OwnViewModel : BaseViewModel
 
 
-        public List<string> SuggestionList { get; set; }
-
-        
         
         private LocationTabVM _viewModel;
         public LocationTabVM ViewModel
@@ -35,12 +32,13 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         {
             _view = view;
             InitializeComponent();
+            
         }
-
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex -= 1;
+            _view.tabControl.SelectedIndex -= 2;
         }
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {

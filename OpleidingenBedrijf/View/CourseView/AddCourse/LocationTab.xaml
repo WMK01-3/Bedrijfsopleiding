@@ -32,8 +32,10 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.ColumnSpan="3" Grid.RowSpan="7" Background="White"/>
         <Label Grid.Row="1" Grid.Column="1" Content="Plaatsnaam" />
-        <TextBox Grid.Row="2" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue" BorderThickness="0 0 0 2" x:Name="tbCity" behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding SuggestionList}" />
-       
+        <TextBox Grid.Row="2" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding Path=TbCityValue , Mode=OneWay}"
+                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"
+                 />
+        
         <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecCity" Foreground="#FFCD0000"  VerticalAlignment="Top" Height="18" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
         <Label Grid.Row="4" Grid.Column="1" Content="Lokaal"/>
         <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue" BorderThickness="0 0 0 2" x:Name="tbClassroom"/>

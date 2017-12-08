@@ -6,7 +6,7 @@
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
              mc:Ignorable="d" 
-             d:DesignHeight="690" d:DesignWidth="1250"
+             d:DesignHeight="740" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
