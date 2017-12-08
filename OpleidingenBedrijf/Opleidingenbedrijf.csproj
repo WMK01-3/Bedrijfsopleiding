@@ -88,7 +88,6 @@
     </ApplicationDefinition>
     <Compile Include="Models\Profession.cs" />
     <Compile Include="Models\CourseDate.cs" />
-    <Compile Include="Models\Teacher.cs" />
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />

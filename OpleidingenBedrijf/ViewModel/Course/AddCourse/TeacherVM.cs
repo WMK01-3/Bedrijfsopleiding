@@ -8,6 +8,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
     public class TeacherTabVM : BaseViewModel
     {
+        private AddCourseView _view;
+
         #region Categories : ICollection<CheckBox>
 
         private List<Category> _categories;
@@ -47,8 +49,24 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         #endregion
 
-        public TeacherTabVM(MainWindowVM vm) : base(vm)
+        #region IsNoTeacherSelected : bool
+
+        private bool _isNoTeacherSelected;
+        public bool IsNoTeacherSelected
         {
+            get => _isNoTeacherSelected;
+            set
+            {
+                _isNoTeacherSelected = value;
+                OnPropertyChanged(nameof(IsNoTeacherSelected));
+            }
+        }
+
+        #endregion
+
+        public TeacherTabVM(MainWindowVM vm, AddCourseView view) : base(vm)
+        {
+            _view = view;
         }
 
         public List<User> GetTeachers()
@@ -84,6 +102,17 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 }
             }
             return teachers;
+        }
+
+        public void CheckData()
+        {
+            if (SelectedTeacher != null)
+            {
+                IsNoTeacherSelected = false;
+                _view.tabControl.SelectedIndex += 1;
+            }
+            else
+                IsNoTeacherSelected = true;
         }
     }
 

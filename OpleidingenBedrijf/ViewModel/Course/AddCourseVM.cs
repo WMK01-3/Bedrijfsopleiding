@@ -27,7 +27,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         private DateTab _dateTab;
         public DateTab DateTab
         {
-            get => _dateTab = _dateTab ?? new DateTab();
+            get => _dateTab = _dateTab ?? new DateTab(_view, MainVM);
             set => _dateTab = value;
         }
 

@@ -11,12 +11,12 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
     {
         private AddCourseView _view;
 
-        #region OwnViewModel : BaseViewModel
+        #region ViewModel : BaseViewModel
 
         private TeacherTabVM _viewModel;
         public TeacherTabVM ViewModel
         {
-            get => _viewModel = _viewModel ?? new TeacherTabVM(MainVM);
+            get => _viewModel = _viewModel ?? new TeacherTabVM(MainVM, _view);
             set => _viewModel = value;
         }
 
@@ -69,7 +69,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex += 2;
+            ViewModel.CheckData();
         }
     }
 

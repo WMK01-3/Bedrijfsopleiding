@@ -1,19 +1,21 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
 using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Course.AddCourse;
 
 namespace BedrijfsOpleiding.View.CourseView.AddCourse
 {
     public partial class DateTab
     {
-        
+        private AddCourseView _view;
 
-
-    
-        public DateTab()
+        public DateTab(AddCourseView view, MainWindowVM vm) : base(vm)
         {
+            _view = view;
             InitializeComponent();
         }
 
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            _view.tabControl.SelectedIndex += 1;
+        }
     }
 }
