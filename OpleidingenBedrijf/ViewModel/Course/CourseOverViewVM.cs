@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -7,21 +6,31 @@ namespace BedrijfsOpleiding.ViewModel.Course
 {
     public class CourseOverViewVM : BaseViewModel
     {
-        public ObservableCollection<Models.Course> CourseList => GetCourseList();
+        public List<Models.Course> CourseList => GetCourseList();
 
         public CourseOverViewVM(MainWindowVM vm, UserControl boundView) : base(vm)
         {
 
         }
 
-        public ObservableCollection<Models.Course> GetCourseList()
+        public List<Models.Course> GetCourseList()
         {
-            var courseList = new ObservableCollection<Models.Course>();
+            var courseList = new List<Models.Course>();
 
             using (CustomDbContext context = new CustomDbContext())
             {
-                IQueryable<Models.Course> result = from c in context.Courses
-                                                   select c;
+                IQueryable<Models.Course> result;
+                if (MainVM.CurUser.Role == Models.User.RoleEnum.Employee)
+                {
+                     result = (from c in context.Courses
+                               select c);
+                }
+                else
+                {
+                     result = (from c in context.Courses
+                               where c.Archieved == false
+                               select c);
+                }
 
                 foreach (Models.Course course in result)
                 {

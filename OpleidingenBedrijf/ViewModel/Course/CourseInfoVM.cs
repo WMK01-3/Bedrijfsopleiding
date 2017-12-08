@@ -12,7 +12,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
     public class CourseInfoVM : BaseViewModel
     {
         private User _user;
-        private Location _location;
+        private Location _location; 
+        public string courseStatus { get; set; }
 
         //THIS IS THE CURRENT LOADED COURSE
         public Models.Course Course { get; }
@@ -42,6 +43,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public CourseInfoVM(int courseId, MainWindowVM vm, UserControl boundView) : base(vm)
         {
             _user = vm.CurUser;
+            
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -49,6 +51,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                    where course.CourseID == courseId
                                    select course).First();
 
+                courseStatus = c.Archieved ? "Dearchiveer cursus" : "Archiveer cursus";
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
@@ -61,7 +64,9 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     LocationID = c.LocationID,
                     MaxParticipants = c.MaxParticipants,
                     Price = c.Price,
-                    Title = c.Title
+                    Title = c.Title,
+                    Archieved = c.Archieved
+                    
                 };
 
                 _location = (from location in context.Locations
@@ -89,11 +94,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Models.Course course = (from c in context.Courses
                                         where c.CourseID == Course.CourseID
                                         select c).First();
-
-                context.Courses.Remove(course);
+                if (course.Archieved)
+                {
+                    course.Archieved = false;
+                }
+                else
+                {
+                    course.Archieved = true;
+                }
+                
+                
                 context.SaveChanges();
-
                 MainVM.CurrentView = new CourseOverView(MainVM);
+                
             }
         }
 

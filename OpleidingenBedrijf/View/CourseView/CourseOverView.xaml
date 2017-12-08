@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
-             d:DesignHeight="740" d:DesignWidth="1250"
+             d:DesignHeight="690" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,13 +35,14 @@
 
             <Button x:Name="btnAddCourse" Click="BtnAddCourse_OnClick" Background="LimeGreen" Margin="10" Height="40" Visibility="Visible" Content="Cursus Toevoegen" Foreground="White" FontSize="20" FontWeight="Bold"/>
 
-            <DataGrid ItemsSource="{Binding Source=CourseList}" DataContext="{Binding Source=CourseList}" Grid.Row="1" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
+            <DataGrid Grid.Row="1" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseId}" Visibility="Hidden"/>
-                    <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="200"/>
-                    <DataGridTextColumn Header="Price" IsReadOnly="True" Binding="{Binding Price}" Width="100"/>
-                    <DataGridTextColumn Header="Location" IsReadOnly="True" Binding="{Binding Location}" Width="100"/>
-                    <DataGridTextColumn Header="Difficulty" IsReadOnly="True" Binding="{Binding Difficulty}" Width="100"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="2*"/>
+                    <DataGridTextColumn Header="Prijs" IsReadOnly="True" Binding="{Binding Price}" Width="1*"/>
+                    <DataGridTextColumn Header="Locatie" IsReadOnly="True" Binding="{Binding Location}" Width="1*"/>
+                    <DataGridTextColumn Header="Moeilijkheid" IsReadOnly="True" Binding="{Binding Difficulty}" Width="1*"/>
+                    <DataGridTextColumn Header="Gearchiveerd" IsReadOnly="True" Binding="{Binding Archieved}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

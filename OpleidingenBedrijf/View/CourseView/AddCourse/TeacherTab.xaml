@@ -44,7 +44,7 @@
                         <Setter Property="AutoGenerateColumns" Value="False"/>
                         <Setter Property="GridLinesVisibility" Value="None"/>
                         <!--Can User-->
-                        <Setter Property="CanUserReorderColumns" Value="False"/>
+                        <Setter Property="CanUserReorderColumns" Value="True"/>
                         <Setter Property="CanUserDeleteRows" Value="False"/>
                         <Setter Property="CanUserResizeRows" Value="False"/>
                         <Setter Property="CanUserResizeColumns" Value="False"/>
