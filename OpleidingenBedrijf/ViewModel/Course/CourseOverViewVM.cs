@@ -28,7 +28,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 else
                 {
                      result = (from c in context.Courses
-                               where c.Archieved == false
+                               where c.Archived == false
                                select c);
                 }
 

@@ -20,7 +20,7 @@ namespace BedrijfsOpleiding.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public List<DateTime> Dates { get; set; }        // all of the active course dates
-        public bool Archieved { get; set; }
+        public bool Archived { get; set; }
         public DateTime Created_at = DateTime.Now;
 
         public int UserID { get; set; }

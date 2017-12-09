@@ -42,8 +42,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
-
+            _view.ViewModel.AddCourse();
         }
     }
 }

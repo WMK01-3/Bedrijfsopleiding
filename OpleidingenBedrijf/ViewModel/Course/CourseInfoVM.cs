@@ -37,6 +37,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
         public string CourseCity => $"{_location.City} , {_location.Zipcode}";
+        public string CourseClassRoom => _location.Classroom;
+
 
         public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
 
@@ -51,7 +53,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                    where course.CourseID == courseId
                                    select course).First();
 
-                courseStatus = c.Archieved ? "Dearchiveer cursus" : "Archiveer cursus";
+                courseStatus = c.Archived ? "Dearchiveer cursus" : "Archiveer cursus";
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
@@ -64,7 +66,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     MaxParticipants = c.MaxParticipants,
                     Price = c.Price,
                     Title = c.Title,
-                    Archieved = c.Archieved
+                    Archived = c.Archived
                     
                 };
 
@@ -93,19 +95,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Models.Course course = (from c in context.Courses
                                         where c.CourseID == Course.CourseID
                                         select c).First();
-                if (course.Archieved)
-                {
-                    course.Archieved = false;
-                }
-                else
-                {
-                    course.Archieved = true;
-                }
-                
+                course.Archived = !course.Archived;
                 
                 context.SaveChanges();
                 MainVM.CurrentView = new CourseOverView(MainVM);
-                
             }
         }
 

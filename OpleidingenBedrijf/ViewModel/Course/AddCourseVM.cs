@@ -57,9 +57,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
         #endregion
 
         private AddCourseView _view;
-        private int _errorCount;
-        private readonly SolidColorBrush _redBrush = new SolidColorBrush(Colors.Tomato);
-        private readonly SolidColorBrush _blueBrush = new SolidColorBrush(Colors.CornflowerBlue);
 
         public AddCourseVM(MainWindowVM vm, AddCourseView v) : base(vm)
         {
@@ -68,91 +65,38 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public void AddCourse()
         {
-            _errorCount = 0;
-
-            //Checking for empty values
-            #region ErrorIcons
-            _mainTab.ecCourseName.Visibility = (_mainTab.CourseName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
-            _locationTab.ecCity.Visibility =
-                (_locationTab.tbCity.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
-            _locationTab.ecClassroom.Visibility =
-                (_locationTab.tbClassroom.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
-            //av.ecStartDate.Visibility = (av.StartDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden);
-            _mainTab.ecPrice.Visibility = (_mainTab.Price.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden);
-
-            #endregion
-
-            #region ErrorBorders
-
-            _mainTab.CourseName.BorderBrush = _mainTab.CourseName.Text.Length == 0 ? _redBrush : _blueBrush;
-            //av.StartDate.BorderBrush = av.StartDate.ToString().Length == 0 ? _redBrush : _blueBrush;
-            _mainTab.Price.BorderBrush = _mainTab.Price.Text.Length == 0 ? _redBrush : _blueBrush;
-
-            #endregion
-
-            #region ErrorCount
-
-            _errorCount += _mainTab.CourseName.Text.Length == 0 ? 1 : 0;
-            //_errorCount += av.StartDate.ToString().Length == 0 ? 1 : 0;
-            _errorCount += _mainTab.Price.Text.Length == 0 ? 1 : 0;
-            _errorCount += _mainTab.Price.Text.IsMoney() ? 0 : 1;
-
-            #endregion
-
-            //If everything has some sort of value, continu
-            if (_errorCount != 0)
-            {
-                _mainTab.errorMessage.Visibility = Visibility.Visible;
-                return;
-            }
-
-            _mainTab.errorMessage.Visibility = Visibility.Hidden;
-
-            Models.Course course = new Models.Course
-            {
-                Title = _mainTab.CourseName.Text,
-                Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem,
-                Duration = int.Parse(_mainTab.Duration.Text),
-                Price = decimal.Parse(_mainTab.Price.Text),
-                Description = new TextRange(_mainTab.Description.Document.ContentStart,
-                    _mainTab.Description.Document.ContentEnd).Text,
-                LocationID = 1,
-                UserID = 1
-            };
-
-            //course.UserID = short.Parse(av.TeacherID.Text);
-            //course.LocationID = int.Parse(av.LocationID.Text);
-            //course.Dates.Add(av.StartDate.);
-
-
             using (CustomDbContext context = new CustomDbContext())
             {
-                context.Courses.Add(course);
-                context.SaveChanges();
+                Models.Course course = new Models.Course();
 
-                MainVM.CurrentView = new CourseOverView(MainVM);
-            }
-        }
+                if (_view.CourseId > 0)
+                {
+                    IQueryable<Models.Course> co = from c in context.Courses
+                                                   where c.CourseID == _view.CourseId
+                                                   select c;
 
-        public void SaveCourse()
-        {
-            using (CustomDbContext context = new CustomDbContext())
-            {
-                Models.Course oldCourse = (from c in context.Courses
-                                           where c.CourseID == _view.CourseId
-                                           select c).First();
+                    if (co.Any())
+                        course = co.First();
+                }
 
-                oldCourse.Title = _mainTab.CourseName.Text;
-                oldCourse.Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem;
-                oldCourse.Duration = int.Parse(_mainTab.Duration.Text);
-                oldCourse.Price = decimal.Parse(_mainTab.Price.Text);
-                oldCourse.Description =
-                    new TextRange(_mainTab.Description.Document.ContentStart, _mainTab.Description.Document.ContentEnd).Text;
+                //Everything from the first tab
+                course.Title = _mainTab.CourseName.Text;
+                course.Description = new TextRange(_mainTab.Description.Document.ContentStart, _mainTab.Description.Document.ContentEnd).Text;
+                course.Difficulty = (Models.Course.DifficultyEnum) _mainTab.Difficulty.SelectedItem;
+                course.Duration = int.Parse(_mainTab.Duration.Text);
+                course.Price = decimal.Parse(_mainTab.Price.Text);
 
-                // oldCourse.UserID = short.Parse(av.TeacherID.Text);
-                //oldCourse.LocationID = int.Parse(av.TeacherID.Text);
+                //Teacher
+                course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
 
-                context.Courses.AddOrUpdate(oldCourse);
+
+                //Dates
+
+
+                //Location
+                course.LocationID = 1;
+
+                context.Courses.AddOrUpdate(course);
                 context.SaveChanges();
 
                 MainVM.CurrentView = new CourseOverView(MainVM);

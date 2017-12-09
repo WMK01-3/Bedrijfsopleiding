@@ -41,7 +41,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
             foreach (User teacher in teachers)
             {
-                DataGridItem data = new DataGridItem { FullName = teacher.FullName };
+                DataGridItem data = new DataGridItem(teacher.UserID) { FullName = teacher.FullName };
 
                 using (CustomDbContext context = new CustomDbContext())
                 {
@@ -75,8 +75,14 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
     public class DataGridItem
     {
+        public int UserID { get; set; }
         public string FullName { get; set; }
         public string[] Professions { get; set; }
         public bool IsSelected { get; set; }
+
+        public DataGridItem(int id)
+        {
+            UserID = id;
+        }
     }
 }
