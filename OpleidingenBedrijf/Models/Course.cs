@@ -15,7 +15,7 @@ namespace BedrijfsOpleiding.Models
         public int CourseID { get; set; }
         public DifficultyEnum Difficulty { get; set; }
         public int MaxParticipants { get; set; }
-        public DurationEnum Duration { get; set; }
+        public int Duration { get; set; }
         public decimal Price { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

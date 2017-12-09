@@ -1,36 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course;
+using BedrijfsOpleiding.ViewModel.Course.AddCourse;
+using BedrijfsOpleiding.API.GoogleMaps;
 
 namespace BedrijfsOpleiding.View.CourseView.AddCourse
 {
     /// <summary>
     /// Interaction logic for LocationTab.xaml
     /// </summary>
-    public partial class LocationTab : UserControl
+    public partial class LocationTab
     {
-       
-        public LocationTab()
-        {
-            InitializeComponent();
-        }
+        private AddCourseView _view;
+        #region OwnViewModel : BaseViewModel
 
-        private void MaxParticipants_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            //MaxParticipantsLabel.Content = Math.Round(MaxParticipants.Value, 0);
-        }
 
         
+        private LocationTabVM _viewModel;
+        public LocationTabVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new LocationTabVM(MainVM);
+            set => _viewModel = value;
+        }
+
+
+        #endregion
+        public LocationTab(AddCourseView view, MainWindowVM vm) : base(vm)
+        {
+            _view = view;
+            InitializeComponent();
+            
+        }
+        private void btnPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            _view.tabControl.SelectedIndex -= 2;
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
     }
 }

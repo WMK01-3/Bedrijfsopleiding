@@ -55,7 +55,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
-                    CreatedAt = c.CreatedAt,
                     Dates = c.Dates,
                     Description = c.Description,
                     Difficulty = c.Difficulty,

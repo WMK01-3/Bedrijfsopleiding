@@ -167,7 +167,7 @@
                 <!--Difficulty-->
                 <Label Grid.Row="6" Grid.Column="1" FontWeight="Bold" Content="Moeilijkheids niveau" HorizontalAlignment="Left" />
                 <fa:ImageAwesome Grid.Row="7" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDifficulty"/>
-                <ComboBox Grid.Row="7" Grid.Column="1" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
+                <ComboBox IsEditable="True" Grid.Row="7" Grid.Column="1" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
             </Grid>
 
             <!--Desscription-->
