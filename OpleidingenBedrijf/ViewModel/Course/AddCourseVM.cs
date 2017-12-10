@@ -17,7 +17,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         private MainTab _mainTab;
         public MainTab MainTab
         {
-            get => _mainTab = _mainTab ?? new MainTab(_view);
+            get => _mainTab = _mainTab ?? new MainTab(_view, MainVM);
             set => _mainTab = value;
         }
 

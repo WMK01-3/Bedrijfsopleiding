@@ -4,16 +4,29 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.ViewModel;
+using BedrijfsOpleiding.ViewModel.Course.AddCourse;
 
 namespace BedrijfsOpleiding.View.CourseView.AddCourse
 {
     public partial class MainTab
     {
-        private AddCourseView _view;
+        public AddCourseView View;
 
-        public MainTab(AddCourseView view)
+        #region ViewModel : BaseViewModel
+
+        private MainTabVM _viewModel;
+        public MainTabVM ViewModel
         {
-            _view = view;
+            get => _viewModel = _viewModel ?? new MainTabVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+        #endregion
+
+        public MainTab(AddCourseView view, MainWindowVM vm) : base(vm)
+        {
+            View = view;
             InitializeComponent();
         }
 
@@ -38,12 +51,12 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            _view.MainVM.CurrentView = new CourseOverView(_view.MainVM);
+            View.MainVM.CurrentView = new CourseOverView(View.MainVM);
         }
 
         private void btnChooseTeacher_Click(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex += 1;
+            ViewModel.CheckData();
         }
     }
 }

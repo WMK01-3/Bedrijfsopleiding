@@ -1,7 +1,6 @@
 ﻿using System.Windows;
-using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Course;
+using ProfileView = BedrijfsOpleiding.View.Profile.ProfileView;
 
 namespace BedrijfsOpleiding.View
 {
@@ -25,7 +24,7 @@ namespace BedrijfsOpleiding.View
 
         private void BtnCustomerOverview_Click(object sender, RoutedEventArgs e)
         {
-
+            MainVM.CurrentView = new CustomerView(MainVM);
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -33,6 +32,11 @@ namespace BedrijfsOpleiding.View
             MainVM.CurrentView = new LoginView.LoginView(MainVM);
             MainVM.CurUser = null;
             MainVM.MenuView = null;
+        }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            MainVM.CurrentView = new ProfileView(MainVM);
         }
     }
 }

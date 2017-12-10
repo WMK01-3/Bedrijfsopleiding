@@ -97,10 +97,14 @@
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\Course\AddCourse\DateVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\LocationTabVM.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\MainTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\TeacherVM.cs" />
     <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\Course\AddCourseVM.cs" />
+    <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileProfessionTabVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileVM.cs" />
     <Compile Include="View\CourseView\AddCourse\DateTab.xaml.cs">
       <DependentUpon>DateTab.xaml</DependentUpon>
     </Compile>
@@ -115,6 +119,15 @@
     </Compile>
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileProfessionTab.xaml.cs">
+      <DependentUpon>ProfileProfessionTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
@@ -146,6 +159,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DashBoardView.xaml" />
     <Page Include="View\CourseView\AddCourse\AddCourseView.xaml">
       <SubType>Designer</SubType>
@@ -169,6 +186,14 @@
     <Compile Include="ViewModel\Login\LoginVM.cs" />
     <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Page Include="View\Profile\ProfileProfessionTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Profile\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView\RegistrationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
