@@ -18,7 +18,7 @@ namespace BedrijfsOpleiding.Models
         // Address stuff
         public string Street { get; set; }
         public string City { get; set; }
-        public string Zipcode { get; set; }
+        public string Country { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; }
 
@@ -32,7 +32,7 @@ namespace BedrijfsOpleiding.Models
             this.Classroom = classroom;
             this.Street = street;
             this.City = city;
-            this.Zipcode = zipcode;
+            this.Country = zipcode;
         }
     }
 }

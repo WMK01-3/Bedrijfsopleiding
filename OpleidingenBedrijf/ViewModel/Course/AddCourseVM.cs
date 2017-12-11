@@ -1,8 +1,10 @@
-﻿using System.Data.Entity.Migrations;
+﻿using System;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.CourseView.AddCourse;
 using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
@@ -63,7 +65,13 @@ namespace BedrijfsOpleiding.ViewModel.Course
             _view = v;
         }
 
-        public void AddCourse()
+
+
+
+
+
+
+        public void AddCourse(int locID)
         {
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -94,7 +102,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
 
                 //Location
-                course.LocationID = 1;
+                course.LocationID = locID;
 
                 context.Courses.AddOrUpdate(course);
                 context.SaveChanges();
@@ -102,5 +110,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 MainVM.CurrentView = new CourseOverView(MainVM);
             }
         }
+
     }
 }

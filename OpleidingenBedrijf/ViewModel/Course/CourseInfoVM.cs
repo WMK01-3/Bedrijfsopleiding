@@ -36,7 +36,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
-        public string CourseCity => $"{_location.City} , {_location.Zipcode}";
+        public string CourseCity => $"{_location.City} , {_location.Country}";
         public string CourseClassRoom => _location.Classroom;
 
 
