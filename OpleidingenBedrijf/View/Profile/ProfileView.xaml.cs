@@ -1,4 +1,5 @@
-﻿using BedrijfsOpleiding.ViewModel;
+﻿using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Profile;
 
 namespace BedrijfsOpleiding.View.Profile
@@ -15,10 +16,13 @@ namespace BedrijfsOpleiding.View.Profile
         }
 
         #endregion
-        
+
         public ProfileView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
+
+           // if (vm.CurUser.Role != User.RoleEnum.Teacher)
+            //    profileTab.SelectedIndex += 1;
         }
     }
 }

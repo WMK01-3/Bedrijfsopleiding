@@ -8,7 +8,7 @@
              d:DesignHeight="740" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
-        <TabControl>
+        <TabControl Name="profileTab">
             <TabItem Header="Vakkundigheid">
                 <ContentControl Content="{Binding ProfessionTab}"/>
                 <TabItem.Style>

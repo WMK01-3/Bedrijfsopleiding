@@ -74,7 +74,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                         if (!category.IsChecked) continue;
 
                         IQueryable<User> teachArray = from c in context.Professions
-                                                      where c.ProfessionName == category.Name
+                                                      where c.ProfessionName == category.Name && c.User.Role == User.RoleEnum.Teacher
                                                       select c.User;
 
                         foreach (User teach in teachArray)

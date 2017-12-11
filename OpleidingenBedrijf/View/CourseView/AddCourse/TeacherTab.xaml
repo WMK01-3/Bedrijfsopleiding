@@ -34,7 +34,7 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <!--DataGrid-->
-            <DataGrid x:Name="teacherGrid" Grid.Row="0" SelectedItem="{Binding Path=SelectedTeacher, Mode=TwoWay}">
+            <DataGrid SelectionMode="Single" x:Name="teacherGrid" Grid.Row="0" SelectedItem="{Binding Path=SelectedTeacher, Mode=TwoWay}">
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="Background" Value="White"/>
@@ -71,7 +71,7 @@
                             <Setter.Value>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="Background" Value="White"/>
-                                    <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
                                     <Setter Property="BorderBrush" Value="#CFCFCF"/>
                                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                                 </Style>
@@ -85,7 +85,7 @@
                         <DataGridTemplateColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="Background" Value="White"/>
-                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="BorderThickness" Value="0"></Setter>
                                 <Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter Property="Background" Value="#7F61C1CB"/>
@@ -95,7 +95,9 @@
                         </DataGridTemplateColumn.CellStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label Content="{Binding Path=FullName}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                <Border BorderThickness="0 0 0 2"  BorderBrush="#CFCFCF">
+                                    <Label Content="{Binding Path=FullName}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </Border>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -114,7 +116,7 @@
                         </DataGridTemplateColumn.CellStyle>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ListView x:Name="listBoxTemplate"  ItemsSource="{Binding Path=Professions}" BorderThickness="0" Background="Transparent">
+                                <ListView x:Name="listBoxTemplate"  ItemsSource="{Binding Path=Professions}" Background="Transparent" BorderBrush="#CFCFCF" BorderThickness="0 0 0 2">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListViewItem}">
                                             <Setter Property="Template">
