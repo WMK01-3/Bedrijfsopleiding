@@ -52,8 +52,8 @@
     <Reference Include="MySql.Data.Entity.EF6, Version=7.0.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.Entity.7.0.7-m61\lib\net451\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.11.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <HintPath>packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
@@ -80,20 +80,54 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFTextBoxAutoComplete, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WPFTextBoxAutoComplete.1.0.5\lib\net40\WPFTextBoxAutoComplete.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API\GoogleMaps\AutoCompleteLocations.cs" />
+    <Compile Include="Models\Profession.cs" />
+    <Compile Include="Models\CourseDate.cs" />
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\DateVM.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\LocationTabVM.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\MainTabVM.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\TeacherVM.cs" />
     <Compile Include="ViewModel\Course\CourseInfoVM.cs" />
     <Compile Include="ViewModel\Course\AddCourseVM.cs" />
+    <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileProfessionTabVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileVM.cs" />
+    <Compile Include="View\CourseView\AddCourse\DateTab.xaml.cs">
+      <DependentUpon>DateTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CourseView\AddCourse\LocationTab.xaml.cs">
+      <DependentUpon>LocationTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CourseView\AddCourse\MainTab.xaml.cs">
+      <DependentUpon>MainTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CourseView\AddCourse\TeacherTab.xaml.cs">
+      <DependentUpon>TeacherTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileProfessionTab.xaml.cs">
+      <DependentUpon>ProfileProfessionTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
@@ -102,6 +136,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\CourseView\AddCourse\DateTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CourseView\AddCourse\LocationTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CourseView\AddCourse\MainTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CourseView\AddCourse\TeacherTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\CourseView\CourseOverView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -109,8 +159,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DashBoardView.xaml" />
-    <Page Include="View\CourseView\AddCourseView.xaml">
+    <Page Include="View\CourseView\AddCourse\AddCourseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +186,14 @@
     <Compile Include="ViewModel\Login\LoginVM.cs" />
     <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Page Include="View\Profile\ProfileProfessionTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Profile\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView\RegistrationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,7 +213,7 @@
     <Compile Include="View\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CourseView\AddCourseView.xaml.cs">
+    <Compile Include="View\CourseView\AddCourse\AddCourseView.xaml.cs">
       <DependentUpon>AddCourseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginView\LoginView.xaml.cs">

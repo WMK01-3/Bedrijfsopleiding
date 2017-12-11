@@ -19,8 +19,18 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
             using (CustomDbContext context = new CustomDbContext())
             {
-                IQueryable<Models.Course> result = (from c in context.Courses
-                                                    select c);
+                IQueryable<Models.Course> result;
+                if (MainVM.CurUser.Role == Models.User.RoleEnum.Employee)
+                {
+                     result = (from c in context.Courses
+                               select c);
+                }
+                else
+                {
+                     result = (from c in context.Courses
+                               where c.Archived == false
+                               select c);
+                }
 
                 foreach (Models.Course course in result)
                 {

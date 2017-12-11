@@ -5,13 +5,15 @@ using System.Linq;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
+using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
     public class CourseInfoVM : BaseViewModel
     {
         private User _user;
-        private Location _location;
+        private Location _location; 
+        public string courseStatus { get; set; }
 
         //THIS IS THE CURRENT LOADED COURSE
         public Models.Course Course { get; }
@@ -35,12 +37,15 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
         public string CourseCity => $"{_location.City} , {_location.Zipcode}";
+        public string CourseClassRoom => _location.Classroom;
+
 
         public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
 
         public CourseInfoVM(int courseId, MainWindowVM vm, UserControl boundView) : base(vm)
         {
             _user = vm.CurUser;
+            
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -48,10 +53,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                    where course.CourseID == courseId
                                    select course).First();
 
+                courseStatus = c.Archived ? "Dearchiveer cursus" : "Archiveer cursus";
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
-                    Created_at = c.Created_at,
                     Dates = c.Dates,
                     Description = c.Description,
                     Difficulty = c.Difficulty,
@@ -60,7 +65,9 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     LocationID = c.LocationID,
                     MaxParticipants = c.MaxParticipants,
                     Price = c.Price,
-                    Title = c.Title
+                    Title = c.Title,
+                    Archived = c.Archived
+                    
                 };
 
                 _location = (from location in context.Locations
@@ -88,10 +95,9 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Models.Course course = (from c in context.Courses
                                         where c.CourseID == Course.CourseID
                                         select c).First();
-
-                context.Courses.Remove(course);
+                course.Archived = !course.Archived;
+                
                 context.SaveChanges();
-
                 MainVM.CurrentView = new CourseOverView(MainVM);
             }
         }

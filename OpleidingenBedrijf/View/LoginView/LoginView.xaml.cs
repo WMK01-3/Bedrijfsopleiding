@@ -31,7 +31,7 @@ namespace BedrijfsOpleiding.View.LoginView
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.Login();
+            _viewModel.LoginAsync();
         }
     }
 }

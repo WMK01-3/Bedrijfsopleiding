@@ -1,0 +1,57 @@
+﻿<view:BaseView
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BedrijfsOpleiding.View.CourseView.AddCourse"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="BedrijfsOpleiding.View.CourseView.AddCourse.LocationTab"
+             mc:Ignorable="d" 
+             d:DesignHeight="640" d:DesignWidth="1250"
+             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}">
+    <Grid Width="500">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+        </Grid.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height ="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.ColumnSpan="3" Grid.RowSpan="7" Background="White"/>
+        <Label Grid.Row="1" Grid.Column="1" Content="Plaatsnaam" />
+        <TextBox Grid.Row="2" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"
+                 />
+        
+        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecCity" Foreground="#FFCD0000"  VerticalAlignment="Top" Height="18" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right"/>
+        <Label Grid.Row="4" Grid.Column="1" Content="Lokaal"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue" BorderThickness="0 0 0 2" x:Name="tbClassroom"/>
+        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecClassroom" Foreground="#FFCD0000"  VerticalAlignment="Top" Height="18" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right"/>
+
+
+        <Grid Grid.Row="7" Grid.ColumnSpan="3">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="btnPrevious_Click"/>
+                <Button Grid.Column="1" Height="30" Margin="10" Content="Cursus Aanmaken" Background="CornflowerBlue" Click="Button_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</view:BaseView>
+

@@ -1,0 +1,168 @@
+﻿<local:BaseView x:Class="BedrijfsOpleiding.View.CustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BedrijfsOpleiding.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="740" d:DesignWidth="1250"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+
+    <Grid>
+        <!--Filter-->
+        <Grid Width="250" HorizontalAlignment="Left">
+            <Grid Margin="10 60 10 110" Background="White">
+                <Grid.Effect>
+                    <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+                </Grid.Effect>
+                <Label Content="Filter" HorizontalAlignment="Center" FontSize="25"/>
+                <!--
+                For teachers
+                
+                <ScrollViewer Margin="10 50 10 10" VerticalScrollBarVisibility="Auto">
+                    <ListBox x:Name="categoryListBox" ItemsSource="{Binding Categories}" Background="#FAFAFA">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Unchecked="ToggleButton_OnUnchecked" Checked="ToggleButton_OnChecked" Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+                -->
+            </Grid>
+        </Grid>
+
+
+        <Grid Width="500">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Top-->
+            <Grid Grid.Row="0">
+                <TextBox BorderThickness="0" Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="Left" TextChanged="TextBox_TextChanged">
+                    <TextBox.Effect>
+                        <DropShadowEffect BlurRadius="10" Direction="-90" Color="LightGray"/>
+                    </TextBox.Effect>
+                </TextBox>
+                <Button Name="btnSaveEdits" Click="BtnSaveEdits_OnClick">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Content" Value="Sla Wijzigingen op"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Width" Value="0"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="Visibility" Value="Hidden"/>
+                            <Setter Property="Background" Value="#07A"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="10" Direction="-90" Color="LightGray"/>
+                                </Setter.Value>
+                            </Setter>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding InfoChanged}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Width" Value="180"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <!--DataGrid-->
+            <DataGrid ItemsSource="{Binding GridItems}" x:Name="customerGrid" Grid.Row="1">
+                <DataGrid.Style>
+                    <Style TargetType="{x:Type DataGrid}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Margin" Value="10"></Setter>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="RowHeaderWidth" Value="0"/>
+                        <Setter Property="AutoGenerateColumns" Value="False"/>
+                        <Setter Property="GridLinesVisibility" Value="None"/>
+                        <!--Can User-->
+                        <Setter Property="CanUserReorderColumns" Value="True"/>
+                        <Setter Property="CanUserDeleteRows" Value="False"/>
+                        <Setter Property="CanUserResizeRows" Value="False"/>
+                        <Setter Property="CanUserResizeColumns" Value="False"/>
+                        <Setter Property="CanUserAddRows" Value="False"/>
+
+                        <Setter Property="ColumnHeaderStyle">
+                            <Setter.Value>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <!--The header style-->
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Height" Value="35"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                    <Setter Property="BorderBrush" Value="#AFAFAF"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CellStyle">
+                            <Setter.Value>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0 0 0 2"/>
+                                    <Setter Property="BorderBrush" Value="#CFCFCF"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.Style>
+                <DataGrid.Columns>
+                    <!--Full Name-->
+                    <DataGridTemplateColumn Width="2*" Header="  Naam">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=FullName}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Profession-->
+                    <DataGridTemplateColumn Width="3*" Header="  Rol">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox SelectionChanged="RoleComboBox_OnSelectionChanged" x:Name="roleComboBox" ItemsSource="{Binding Path=Roles}" SelectedItem="{Binding Path=CurrentRole, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+
+    </Grid>
+</local:BaseView>

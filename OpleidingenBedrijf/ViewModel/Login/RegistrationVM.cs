@@ -131,6 +131,8 @@ namespace BedrijfsOpleiding.ViewModel.Login
                 _errorCount += _view.tbLastName.Text.IsName() ? 0 : 1;
 
 
+
+                
                 if (_errorCount != 0) return;
 
                 User addedUser = new User

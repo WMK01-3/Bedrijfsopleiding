@@ -1,0 +1,212 @@
+﻿<view:BaseView x:Class="BedrijfsOpleiding.View.CourseView.AddCourse.MainTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
+             xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+             xmlns:SystemColors="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="740" d:DesignWidth="1250"
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+
+    <UserControl.Resources>
+        <!--Toggle Button Template-->
+        <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Grid x:Name="gd">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="25" />
+                </Grid.ColumnDefinitions>
+                <Border x:Name="Border" SnapsToDevicePixels="True" Grid.ColumnSpan="2" Background="White" BorderBrush="#FF508CAA" BorderThickness="0 0 0 2"/>
+                <Border x:Name="Boredr1" SnapsToDevicePixels="True" Grid.Column="1"  Margin="1"/>
+                <Path x:Name="Arrow" SnapsToDevicePixels="True" Grid.Column="1" Fill="#FF508CAA" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 6 6 L 12 0 Z"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="ToggleButton.IsMouseOver" Value="True">
+                    <Setter TargetName="Border" Property="BorderBrush" Value="#FF508CAA"/>
+                    <Setter TargetName="Boredr1" Property="BorderBrush" Value="#FF508CAA"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter TargetName="Arrow" Property="Data" Value="M 0 0 L 5 5 L 10 0"/>
+                    <Setter TargetName="Arrow" Property="Fill" Value="White"/>
+                    <Setter TargetName="Arrow" Property="Stroke" Value="White"/>
+                    <Setter TargetName="Arrow" Property="StrokeThickness" Value="1.5"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!--TextBox Template-->
+        <ControlTemplate x:Key="ComboBoxTextBox" TargetType="TextBox">
+            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" />
+        </ControlTemplate>
+
+        <!--combobox-->
+        <Style x:Key="combobox_style" TargetType="ComboBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate  TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton" Foreground="#EEE" Template="{StaticResource ComboBoxToggleButton}" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3,3,23,3"  VerticalAlignment="Center" HorizontalAlignment="Left" />
+                            <TextBox OverridesDefaultStyle="True" SelectionBrush="Black" CaretBrush="Black" Margin="0,0,30,0" TextWrapping="NoWrap" x:Name="PART_EditableTextBox" FontFamily="Segoe UI Dark" Foreground="Black" Style="{x:Null}" Template="{StaticResource ComboBoxTextBox}" HorizontalAlignment="Left" Focusable="True" VerticalAlignment="Center" FontSize="15" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                            <Popup Name="Popup"  Grid.ColumnSpan="2" Placement="Bottom"  IsOpen="{TemplateBinding IsDropDownOpen}"  Focusable="False" PopupAnimation="Slide">
+                                <Grid Name="DropDown"  SnapsToDevicePixels="True" MaxWidth="{TemplateBinding ActualWidth}" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="DropDownBorder" SnapsToDevicePixels="True" Background="White" MaxWidth="{TemplateBinding ActualWidth}" BorderThickness="1" BorderBrush="#FF508CAA">
+                                        <ScrollViewer CanContentScroll="False" SnapsToDevicePixels="True">
+                                            <StackPanel IsItemsHost="True" Background="White">
+                                            </StackPanel>
+                                        </ScrollViewer>
+                                    </Border>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEditable" Value="true">
+                                <Setter Property="IsTabStop" Value="false"/>
+                                <Setter  TargetName="PART_EditableTextBox" Property="Background" Value="White"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Foreground" Value="Black"/>
+                                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter TargetName="DropDownBorder" Property="MinHeight" Value="95"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="IsTabStop" Value="false"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="PART_EditableTextBox" Property="Foreground" Value="#EEE"/>
+                                <Setter  TargetName="PART_EditableTextBox" Property="IsEnabled" Value="False"/>
+                                <Setter  TargetName="PART_EditableTextBox" Property="Background" Value="Black"/>
+                                <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                            <Trigger SourceName="Popup" Property="Popup.AllowsTransparency" Value="true">
+                                <Setter TargetName="DropDownBorder" Property="Margin" Value="0,0,0,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <!--Items grid-->
+    <Grid Width="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Row="0">
+            <!-- Top Error Message-->
+            <Grid Height="32" VerticalAlignment="Top" Margin="10" x:Name="errorMessage" Width="250">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="88*"/>
+                    <ColumnDefinition Width="37*"/>
+                </Grid.ColumnDefinitions>
+                <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="297" Grid.ColumnSpan="2" Margin="0,0,-47,0" />
+                <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
+                    <fa:ImageAwesome.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="-0.402"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.443"/>
+                        </TransformGroup>
+                    </fa:ImageAwesome.RenderTransform>
+                </fa:ImageAwesome>
+                <Label Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="30,4"/>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static SystemColors:String.Empty}">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+
+            </Grid>
+        </Grid>
+
+        <!--Splitting Grid-->
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height="*"/>
+                <RowDefinition  Height="100"/>
+            </Grid.RowDefinitions>
+
+            <!--Other items-->
+            <Grid Column="0" Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <!--Course Name-->
+                <Label Grid.Row="0" Grid.Column="1" FontWeight="Bold"  Content="Cursus Naam" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <fa:ImageAwesome Grid.Row="1" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecCourseName" Visibility="Hidden"/>
+                <TextBox Grid.Row="1" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="CourseName" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="20" Margin="0 0 0 5" Background="{x:Null}"/>
+
+                <!--Price-->
+                <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" Content="Prijs" HorizontalAlignment="Left"/>
+                <fa:ImageAwesome Grid.Row="3" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecPrice"  Visibility="Hidden"/>
+                <TextBox Grid.Row="3" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Price" TextWrapping="Wrap" Text="" Height="20" PreviewTextInput="Price_PreviewTextInput"/>
+
+                <!--Duration-->
+                <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur" HorizontalAlignment="Left"/>
+                <fa:ImageAwesome Grid.Row="5" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDuration" Visibility="Hidden"/>
+                <TextBox Grid.Row="5" Grid.Column="1" PreviewKeyDown="Duration_OnPreviewKeyDown" TextChanged="Duration_OnTextChanged"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
+
+                <!--Difficulty-->
+                <Label Grid.Row="6" Grid.Column="1" FontWeight="Bold" Content="Moeilijkheids niveau" HorizontalAlignment="Left" />
+                <fa:ImageAwesome Grid.Row="7" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDifficulty"  Visibility="Hidden"/>
+                <ComboBox IsEditable="True" Grid.Row="7" Grid.Column="1" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
+            </Grid>
+
+            <!--Desscription-->
+            <Grid Row="0" Column="1" Margin="10 0 10 10">
+                <!--Description-->
+                <Label Content="Beschrijving" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
+                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecDescription" Visibility="Hidden"/>
+                <RichTextBox Margin="0 50 0 0" Height="175" VerticalAlignment="Top" x:Name="Description" BorderThickness="0 2 0 2" BorderBrush="#FF508CAA" Background="#EFEFEF">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text=""/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Grid>
+            <!--Save Button-->
+            <Grid Column="1" Row="1" Margin="10">
+                <uiElements:FlatButton x:Name="btnChooseTeacher" Content="Docent Koppelen" Height="30" Click="btnChooseTeacher_Click"/>
+            </Grid>
+            <!--Cancel Button-->
+            <Grid Column="0" Row="1" Margin="10">
+                <Button Background="Transparent" BorderThickness="0" Foreground="DodgerBlue" FontSize="15" x:Name="btnCancel" Content="Annuleren" Height="30" Click="btnCancel_Click"/>
+            </Grid>
+        </Grid>
+
+    </Grid>
+</view:BaseView>
+
