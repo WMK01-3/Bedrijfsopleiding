@@ -149,18 +149,20 @@ namespace BedrijfsOpleiding.ViewModel
                 label2.Content = course.Count.ToString();
                 label3.Content = teachers.Count.ToString();
             }
+
         }
 
-        public void LoadCourseBox(Label label, IList course_name)
+        public void LoadCourseBox(Label labelTitle, TextBlock tbxDesc, int course_id)
         {
             using (var context = new CustomDbContext())
             {
-                //var course = (from c in context.Courses
-                //    where c.Title == course_name
+                var course = (from c in context.Courses
+                    where c.CourseID == course_id
+                    select c).First();
 
-                //    select c).ToList();
+                labelTitle.Content = course.Title;
+                tbxDesc.Text = course.Description;
 
-                Console.WriteLine(course_name);
 
             }
         }

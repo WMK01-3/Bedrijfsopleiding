@@ -71,7 +71,8 @@
             </Grid>
 
             <Grid Grid.Column="0" Margin="10,329,10,10" Background="White">
-                <Label x:Name="LabelCourseBox" Content="" HorizontalContentAlignment="Center" FontSize="26" Background="#e8e8e8" />
+                <Label x:Name="lblCourseTitle" Content="" HorizontalContentAlignment="Center" FontSize="26" Background="#e8e8e8" />
+                <TextBlock x:Name="tbxCourseDesc" HorizontalAlignment="Left" Margin="37,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
 
             </Grid>
 

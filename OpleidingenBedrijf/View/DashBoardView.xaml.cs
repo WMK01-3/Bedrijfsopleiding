@@ -1,8 +1,10 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -17,7 +19,6 @@ using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace BedrijfsOpleiding.View
 {
-    [ComVisible(true)]
     public partial class DashBoardView
     {
         #region OwnViewModel : BaseViewModel
@@ -56,9 +57,13 @@ namespace BedrijfsOpleiding.View
 
         private void lbCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ((DashBoardVM) ViewModel).LoadCourseBox(LabelCourseBox, e.AddedItems);
+            foreach (lbItem item in lbCourses.SelectedItems)
+            {
+
+                ((DashBoardVM)ViewModel).LoadCourseBox(lblCourseTitle, tbxCourseDesc, item.Value);
+            }
         }
-        
+
     }
 
     public class lbItem
