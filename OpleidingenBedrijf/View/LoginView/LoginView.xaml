@@ -44,13 +44,13 @@
                     </Grid.RowDefinitions>
                     <fa:ImageAwesome Icon="User" VerticalAlignment="Center" HorizontalAlignment="Left"  Height="28" Margin="0,6" Grid.RowSpan="2" />
                     <Label Grid.Row="0" Content="Gebruikersnaam" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96" Grid.RowSpan="2"/>
-                    <TextBox Grid.Row="1" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" Name="Username" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.RowSpan="2"/>
+                    <TextBox Grid.Row="1" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="241" Name="Username" BorderThickness="0 0 0 2" KeyDown="OnKeyDownHandler" BorderBrush="CornflowerBlue" Grid.RowSpan="2"/>
                 </Grid>
                 <!--Password Grid-->
                 <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0, 110, 0, 0">
                     <fa:ImageAwesome Icon="Lock" VerticalAlignment="Center" HorizontalAlignment="Left" Height="28"/>
                     <Label Content="Wachtwoord" Margin="28,-7,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="96"/>
-                    <PasswordBox HorizontalAlignment="Right" Height="23" VerticalAlignment="Bottom" Width="241" Name="Password" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+                    <PasswordBox HorizontalAlignment="Right" Height="23" VerticalAlignment="Bottom" Width="241" Name="Password" KeyDown="OnKeyDownHandler"  BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
                 </Grid>
                 <Grid VerticalAlignment="Bottom" Margin="0, 0, 0, 10">
                     <uiElements:FlatButton Content="Login" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="137" Click="btnLogin_Click"/>

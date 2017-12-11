@@ -32,6 +32,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                select c);
                 }
 
+
                 foreach (Models.Course course in result)
                 {
                     courseList.Add(course);

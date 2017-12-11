@@ -10,20 +10,26 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <!--Filter grid-->
-        <Grid Grid.Column="0" Visibility="Hidden">
+        <Grid Grid.Column="0">
             <Slider HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="160"/>
             <TextBox  HorizontalAlignment="Left" Height="23" Margin="5,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="160,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
-            <Label Content="Locatie" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 300"/>
-            <ComboBox HorizontalAlignment="Left" Margin="15,327,0,0" VerticalAlignment="Top" Width="170"/>
-            <Label Content="Niveau" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10, 410"/>
-            <ComboBox HorizontalAlignment="Left" Margin="15,437,0,0" VerticalAlignment="Top" Width="170"/>
+            <ComboBox HorizontalAlignment="Left" Margin="15,285,0,0" VerticalAlignment="Top" Width="170"/>
             <Label Content="Prijs" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top"/>
+            <Label Content="Niveau" HorizontalAlignment="Left" Margin="10,258,0,0" VerticalAlignment="Top"/>
+            <Label Content="Vakkunde" HorizontalAlignment="Left" Margin="10,363,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Right" Margin="0,390,15,0" VerticalAlignment="Top" Width="170">
+                <ComboBoxItem>Computers</ComboBoxItem>
+                <ComboBoxItem>Hobby</ComboBoxItem>
+                <ComboBoxItem>Buitenshuis</ComboBoxItem>
+            </ComboBox>
+            <Button Content="Zoeken" HorizontalAlignment="Left" Margin="25,622,0,0" VerticalAlignment="Top" Width="150"/>
         </Grid>
 
         <!--Middle Grid-->
@@ -49,25 +55,29 @@
 
 
         <!--Short Course Description-->
-        <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1" CornerRadius="20"  Margin="10">
+        <Grid Grid.Column="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#444" BorderThickness="1" CornerRadius="4"  Background="White" Margin="10"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <TextBlock TextWrapping="Wrap" Margin="10" Name="courseInfo" Background="White"/>
+                <TextBlock TextWrapping="Wrap" x:Name="courseInfo" Margin="1,1,0,0"><InlineUIContainer>
+                        <Grid Height="58" Width="496"/>
+                    </InlineUIContainer></TextBlock>
 
-                <!--More info Button-->
-                <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="0, 1, 0, 0" >
-                    <Grid Margin="10"  x:Name="enroll">
-                        <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="ToCourseInfo"/>
-                        <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15"  VerticalAlignment="Bottom"/>
-                        <Label Content="Aantal lessen:" HorizontalAlignment="Center" Margin="0 0 80 0" FontSize="15" VerticalAlignment="Bottom"/>
 
-                    </Grid>
-                </Border>
             </Grid>
-        </Border>
+            <Grid Margin="15, 0, 15, 20">
+            <Button Content="Meer informatie" FontSize="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="ToCourseInfo" />
+            <Label Content="Prijs: " HorizontalAlignment="Left" FontSize="15"  VerticalAlignment="Bottom" Height="30" Width="45"/>
+            <Label Content="Aantal lessen:" HorizontalAlignment="Center"  FontSize="15" VerticalAlignment="Bottom" Height="30" Width="100"/>
+            </Grid>
+        </Grid>
     </Grid>
 </view:BaseView>
 
