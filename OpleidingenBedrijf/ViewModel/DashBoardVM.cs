@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Windows.Controls;
 using System.Xml;
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
 using Newtonsoft.Json;
 
@@ -14,8 +17,10 @@ namespace BedrijfsOpleiding.ViewModel
     public class DashBoardVM : BaseViewModel
     {
         public bool IsCursist => MainVM.IsEmployee == false;
+
         public bool IsEmployee => MainVM.IsEmployee;
-       // private double[] _longlat = new double[2];
+
+        // private double[] _longlat = new double[2];
         private double[] _longlat = new double[2];
 
 
@@ -31,7 +36,9 @@ namespace BedrijfsOpleiding.ViewModel
 
             //The Google Maps API Either return JSON or XML. We are using XML Here
             //Saving the url of the Google API 
-            string url = String.Format($"http://maps.googleapis.com/maps/api/geocode/xml?address={street}+{city}+{zip}&sensor=false");
+            string url =
+                String.Format(
+                    $"http://maps.googleapis.com/maps/api/geocode/xml?address={street}+{city}+{zip}&sensor=false");
 
             //to Send the request to Web Client 
             WebClient wc = new WebClient();
@@ -79,14 +86,14 @@ namespace BedrijfsOpleiding.ViewModel
                             break;
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
                 throw new Exception("An Error Occured" + ex.Message);
             }
 
-            Console.WriteLine($"Return _longlat:{_longlat[0] }, {_longlat[1] }");
+            Console.WriteLine($"Return _longlat:{_longlat[0]}, {_longlat[1]}");
 
             return _longlat;
 
@@ -95,7 +102,7 @@ namespace BedrijfsOpleiding.ViewModel
 
         public void LoadMarkers(WebBrowser wbMaps)
         {
-        
+
             using (var context = new CustomDbContext())
             {
                 var allLocationIdFromCourses = (from cl in context.Courses
@@ -115,12 +122,48 @@ namespace BedrijfsOpleiding.ViewModel
 
                     wbMaps.InvokeScript("addMarker", JsonConvert.SerializeObject(new
                     {
-                        Lat = new double[] { Lat },
-                        Long = new double[] { Long }
+                        Lat = new double[] {Lat},
+                        Long = new double[] {Long}
                     }), title, location.LocationID);
                 }
             }
 
         }
+
+        public void LoadStandardDataBoxes(Label label1, Label label2, Label label3)
+        {
+            using (var context = new CustomDbContext())
+            {
+                var users = (from u in context.Users
+                    where u.Role == User.RoleEnum.Customer
+                    select u).ToList();
+
+                var course = (from c in context.Courses
+                    select c).ToList();
+
+                var teachers = (from u in context.Users
+                    where u.Role == User.RoleEnum.Teacher
+                    select u).ToList();
+
+                label1.Content = users.Count.ToString();
+                label2.Content = course.Count.ToString();
+                label3.Content = teachers.Count.ToString();
+            }
+        }
+
+        public void LoadCourseBox(Label label, IList course_name)
+        {
+            using (var context = new CustomDbContext())
+            {
+                //var course = (from c in context.Courses
+                //    where c.Title == course_name
+
+                //    select c).ToList();
+
+                Console.WriteLine(course_name);
+
+            }
+        }
     }
+
 }

@@ -24,21 +24,19 @@
             <!--Employee Data-->
             <Grid Grid.Row="0" Margin="0 0 0 10">
                 <!--Amount of Students-->
-                <Grid x:Name="DataLabel1" HorizontalAlignment="Left" Width="100">
+                <Grid HorizontalAlignment="Left" Width="100">
                     <Label Background="#FFB2E696" Content="Cursisten" HorizontalContentAlignment="Center" FontSize="20"/>
-                    <Label Content="32" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top" Height="58" Width="80" FontSize="40"/>
-
+                    <Label x:Name="DataLabel1" Content="" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Height="58" Width="100" FontSize="40"/>
                 </Grid >
                 <!--Amount of Courses-->
                 <Grid HorizontalAlignment="Center" Width="100">
                     <Label Content="Cursussen" HorizontalContentAlignment="Center" FontSize="20" Background="#FFF3D775"/>
-                    <Label x:Name="DataLabel2" Content="2" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top" Height="58" Width="80" FontSize="40"/>
-
+                    <Label x:Name="DataLabel2" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Height="58" Width="100" FontSize="40"/>
                 </Grid>
                 <!--Amount of Teachers-->
                 <Grid HorizontalAlignment="Right"  Width="100" >
                     <Label Content="Docenten" HorizontalContentAlignment="Center" FontSize="20" Background="#FFA0D6F0"/>
-                    <Label x:Name="DataLabel3" Content="2" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top" Height="58" Width="80" FontSize="40"/>
+                    <Label x:Name="DataLabel3" HorizontalContentAlignment="Center" Content="" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Height="58" Width="100" FontSize="40"/>
                 </Grid>
                 <Grid.Style>
                     <Style TargetType="{x:Type Grid}">
@@ -67,16 +65,25 @@
             </Grid.ColumnDefinitions>
 
             <!--Updates-->
-            <Grid Column="0" Margin="10" Background="White">
+            <Grid Column="0" Margin="10,10,10,328" Background="White">
+                <Label Content="Berichten" HorizontalContentAlignment="Center" FontSize="26" Background="#ffe6c9"/>
 
             </Grid>
 
-            <!--Upcoming-->
+            <Grid Grid.Column="0" Margin="10,329,10,10" Background="White">
+                <Label x:Name="LabelCourseBox" Content="" HorizontalContentAlignment="Center" FontSize="26" Background="#e8e8e8" />
+
+            </Grid>
+
+
+
+        <!--Upcoming-->
             <Grid Column="1" Margin="10" Background="White" Width="200">
                 <Calendar HorizontalAlignment="Left" VerticalAlignment="Top" Height="171" Width="200" Margin="0,27,0,0"/>
                 <ListBox DisplayMemberPath="Text" SelectedValuePath="Value" x:Name="lbCourses" HorizontalAlignment="Left" Height="345" Margin="10,242,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lbCourses_SelectionChanged"/>
 
             </Grid>
+            
         </Grid>
     </Grid>
 </view:BaseView>

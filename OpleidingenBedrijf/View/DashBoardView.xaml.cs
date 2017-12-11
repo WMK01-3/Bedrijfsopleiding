@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using BedrijfsOpleiding.ViewModel;
 using GoogleMaps.LocationServices;
 using Newtonsoft.Json;
+using Label = System.Windows.Controls.Label;
 using MessageBox = System.Windows.MessageBox;
 using WebBrowser = System.Windows.Controls.WebBrowser;
 
@@ -42,6 +43,8 @@ namespace BedrijfsOpleiding.View
             wbMaps.Navigate(url);
 
             wbMaps.ObjectForScripting = new MapsFunctions();
+
+            ((DashBoardVM) ViewModel).LoadStandardDataBoxes(DataLabel1, DataLabel2, DataLabel3);
         }
 
         private void wbMaps_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -53,8 +56,9 @@ namespace BedrijfsOpleiding.View
 
         private void lbCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-          
+            ((DashBoardVM) ViewModel).LoadCourseBox(LabelCourseBox, e.AddedItems);
         }
+        
     }
 
     public class lbItem
