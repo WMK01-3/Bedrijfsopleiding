@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Expressions;
 
 namespace BedrijfsOpleiding.Models
 {
@@ -34,5 +36,8 @@ namespace BedrijfsOpleiding.Models
         }
 
         public string FullName => $"{FirstName} {LastName}";
+
+        public static Expression<Func<User, bool>> ContainsName(string letters) =>
+            user => (user.FirstName + " " + user.LastName).Contains(letters);
     }
 }

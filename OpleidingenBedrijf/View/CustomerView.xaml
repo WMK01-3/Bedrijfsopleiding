@@ -7,11 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="740" d:DesignWidth="1250"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
-    
+
     <Grid>
         <!--Filter-->
         <Grid Width="250" HorizontalAlignment="Left">
-            <Grid Margin="10 10 10 110" Background="White">
+            <Grid Margin="10 60 10 110" Background="White">
                 <Grid.Effect>
                     <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
                 </Grid.Effect>
@@ -32,7 +32,7 @@
             </Grid>
         </Grid>
 
-        
+
         <Grid Width="500">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
@@ -40,6 +40,11 @@
             </Grid.RowDefinitions>
             <!--Top-->
             <Grid Grid.Row="0">
+                <TextBox BorderThickness="0" Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="Left" TextChanged="TextBox_TextChanged">
+                    <TextBox.Effect>
+                        <DropShadowEffect BlurRadius="10" Direction="-90" Color="LightGray"/>
+                    </TextBox.Effect>
+                </TextBox>
                 <Button Name="btnSaveEdits" Click="BtnSaveEdits_OnClick">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -50,7 +55,15 @@
                             <Setter Property="HorizontalAlignment" Value="Right"/>
                             <Setter Property="Margin" Value="10"/>
                             <Setter Property="Visibility" Value="Hidden"/>
-                            
+                            <Setter Property="Background" Value="#07A"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="10" Direction="-90" Color="LightGray"/>
+                                </Setter.Value>
+                            </Setter>
+
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding InfoChanged}" Value="True">
                                     <Setter Property="Visibility" Value="Visible"/>
