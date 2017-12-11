@@ -10,24 +10,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
     {
         private AddCourseView _view;
 
-        #region Categories : ICollection<CheckBox>
-
         private List<Category> _categories;
-        public List<Category> Categories
-        {
-            get
-            {
-                return _categories = _categories ?? new List<Category>
-            {
-                new Category("wiskunde", false),
-                new Category("Natuurkunde", false),
-                new Category("Scheikunde", false),
-                new Category("Computer", false)
-            };
-            }
-        }
-
-        #endregion
+        public List<Category> Categories => _categories = _categories ?? GetTeacherProfessions();
 
         #region SelectedTeacher : DataGridItem
 
@@ -102,6 +86,22 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 }
             }
             return teachers;
+        }
+
+        public List<Category> GetTeacherProfessions()
+        {
+            var professionList = new List<Category>();
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                IQueryable<string> profs = (from p in context.Professions
+                                            select p.ProfessionName).Distinct();
+
+                foreach (string prof in profs)
+                    professionList.Add(new Category(prof, false));
+            }
+
+            return professionList;
         }
 
         public void CheckData()

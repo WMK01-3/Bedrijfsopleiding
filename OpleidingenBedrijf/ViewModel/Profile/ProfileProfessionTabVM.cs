@@ -54,11 +54,11 @@ namespace BedrijfsOpleiding.ViewModel.Profile
 
             using (CustomDbContext context = new CustomDbContext())
             {
-                List<string> profs = (from p in context.Professions
+                List<Profession> profs = (from p in context.Professions
                                       where p.UserID == MainVM.CurUser.UserID
-                                      select p.ProfessionName).ToList();
+                                      select p).ToList();
 
-                professions.AddRange(profs.Select(profName => new ProfileProfessionsItem(profName)));
+                professions.AddRange(profs.Select(prof => new ProfileProfessionsItem(prof.ProfessionName, prof.ProfessionID)));
             }
 
             Professions = professions;
@@ -68,9 +68,11 @@ namespace BedrijfsOpleiding.ViewModel.Profile
     public class ProfileProfessionsItem
     {
         public string ProfessionName { get; set; }
+        public int ProfessionID { get; set; }
 
-        public ProfileProfessionsItem(string profession)
+        public ProfileProfessionsItem(string profession, int professionID)
         {
+            ProfessionID = professionID;
             ProfessionName = profession;
         }
     }
