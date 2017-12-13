@@ -55,16 +55,14 @@
                   Grid.Row="2"
                   Grid.Column="1"
                   IsReadOnly="true"/>
+        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecExistingLocation" Foreground="#FFCC00"  VerticalAlignment="Top" Height="18" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left"/>
         <Label Grid.Row="4" Grid.Column="1" Content="Locatie (Straat, Zwolle, Land)" />
         <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"
-                 />
-
-        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecCity" Foreground="#FFCD0000"  VerticalAlignment="Top" Height="18" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="0,1,80,0"/>
+                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"/>
+        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecNewLocation" Foreground="#FFCC00"  VerticalAlignment="Top" Height="18" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left"/>
         <Label Grid.Row="7" Grid.Column="1" Content="Lokaal"/>
         <TextBox Grid.Row="8" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue" BorderThickness="0 0 0 2" x:Name="tbClassroom"/>
-        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecClassroom" Foreground="#FFCD0000"  VerticalAlignment="Top" Height="18" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right" RenderTransformOrigin="1.833,0.556" Margin="0,0,76,0"/>
-
+        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecClassroom" Foreground="#FFCC00"  VerticalAlignment="Top" Height="18" Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left"/>
 
         <Grid Grid.Row="9" Grid.ColumnSpan="3">
             <Grid Grid.Row="1">
