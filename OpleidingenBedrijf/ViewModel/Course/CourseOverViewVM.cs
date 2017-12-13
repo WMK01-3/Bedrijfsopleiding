@@ -35,7 +35,13 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 foreach (Models.Course course in result)
                 {
+
+                    course.Location = (from l in context.Locations
+                        where l.LocationID == course.LocationID
+                        select l).First();
+                    
                     courseList.Add(course);
+
                 }
             }
             return courseList;

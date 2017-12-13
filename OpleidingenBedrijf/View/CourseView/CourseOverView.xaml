@@ -46,9 +46,9 @@
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>
                     <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="2*"/>
                     <DataGridTextColumn Header="Prijs" IsReadOnly="True" Binding="{Binding Price}" Width="1*"/>
-                    <DataGridTextColumn Header="Locatie" IsReadOnly="True" Binding="{Binding Location}" Width="1*"/>
+                    <DataGridTextColumn Header="Locatie" IsReadOnly="True" Binding="{Binding Location}" Width="2*"/>
                     <DataGridTextColumn Header="Moeilijkheid" IsReadOnly="True" Binding="{Binding Difficulty}" Width="1*"/>
-                    <DataGridTextColumn Header="Gearchiveerd" IsReadOnly="True" Binding="{Binding Archieved}" Width="1*"/>
+                    <DataGridTextColumn Header="Gearchiveerd" IsReadOnly="True" Binding="{Binding Archived}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

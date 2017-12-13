@@ -41,8 +41,8 @@ namespace BedrijfsOpleiding.View
 
             string curDir = Directory.GetCurrentDirectory();
 
-            //Uri url = new Uri(String.Format("file:///{0}/View/GoogleMaps/map.html", curDir));     // development versie
-            Uri url = new Uri(String.Format("file:///{0}/Data/map.html", curDir));                  // Productie versie
+            Uri url = new Uri(String.Format("file:///{0}/View/GoogleMaps/map.html", curDir));     // development versie
+            //Uri url = new Uri(String.Format("file:///{0}/Data/map.html", curDir));                  // Productie versie
 
             wbMaps.Navigate(url);
 

@@ -34,5 +34,10 @@ namespace BedrijfsOpleiding.Models
             this.City = city;
             this.Country = zipcode;
         }
+
+        public override string ToString()
+        {
+            return $"[{Classroom}] {Street}, {City}";
+        }
     }
 }
