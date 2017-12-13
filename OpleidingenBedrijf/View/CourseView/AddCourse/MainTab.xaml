@@ -165,22 +165,22 @@
 
                 <!--Course Name-->
                 <Label Grid.Row="0" Grid.Column="1" FontWeight="Bold"  Content="Cursus Naam" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <fa:ImageAwesome Grid.Row="1" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecCourseName"/>
+                <fa:ImageAwesome Grid.Row="1" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecCourseName" Visibility="Hidden"/>
                 <TextBox Grid.Row="1" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="CourseName" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="20" Margin="0 0 0 5" Background="{x:Null}"/>
 
                 <!--Price-->
                 <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" Content="Prijs" HorizontalAlignment="Left"/>
-                <fa:ImageAwesome Grid.Row="3" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecPrice" />
+                <fa:ImageAwesome Grid.Row="3" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecPrice"  Visibility="Hidden"/>
                 <TextBox Grid.Row="3" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Price" TextWrapping="Wrap" Text="" Height="20" PreviewTextInput="Price_PreviewTextInput"/>
 
                 <!--Duration-->
                 <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur" HorizontalAlignment="Left"/>
-                <fa:ImageAwesome Grid.Row="5" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDuration"/>
-                <TextBox Grid.Row="5" Grid.Column="1"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
+                <fa:ImageAwesome Grid.Row="5" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDuration" Visibility="Hidden"/>
+                <TextBox Grid.Row="5" Grid.Column="1" PreviewKeyDown="Duration_OnPreviewKeyDown" TextChanged="Duration_OnTextChanged"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
 
                 <!--Difficulty-->
                 <Label Grid.Row="6" Grid.Column="1" FontWeight="Bold" Content="Moeilijkheids niveau" HorizontalAlignment="Left" />
-                <fa:ImageAwesome Grid.Row="7" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDifficulty"/>
+                <fa:ImageAwesome Grid.Row="7" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDifficulty"  Visibility="Hidden"/>
                 <ComboBox IsEditable="True" Grid.Row="7" Grid.Column="1" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
             </Grid>
 
@@ -188,7 +188,7 @@
             <Grid Row="0" Column="1" Margin="10 0 10 10">
                 <!--Description-->
                 <Label Content="Beschrijving" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
-                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecDescription" />
+                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecDescription" Visibility="Hidden"/>
                 <RichTextBox Margin="0 50 0 0" Height="175" VerticalAlignment="Top" x:Name="Description" BorderThickness="0 2 0 2" BorderBrush="#FF508CAA" Background="#EFEFEF">
                     <FlowDocument>
                         <Paragraph>

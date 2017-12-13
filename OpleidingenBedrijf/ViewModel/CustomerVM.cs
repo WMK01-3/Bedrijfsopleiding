@@ -7,11 +7,13 @@ using System.Diagnostics;
 using System.Linq;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
+using Newtonsoft.Json.Linq;
 
 namespace BedrijfsOpleiding.ViewModel
 {
     public class CustomerVM : BaseViewModel
     {
+        private string _letterFilter = "";
 
         #region GridItems : List<CustomerDataGridItem>
 
@@ -67,6 +69,9 @@ namespace BedrijfsOpleiding.ViewModel
                 IQueryable<User> userList = from u in context.Users
                                             select u;
 
+                if (_letterFilter.IsEmpty() == false)
+                    userList = userList.Where(User.ContainsName(_letterFilter));
+
                 foreach (User user in userList)
                     users.Add(user);
             }
@@ -100,5 +105,11 @@ namespace BedrijfsOpleiding.ViewModel
 
         public bool IsInfoDifferent() =>
             GridItems.Any(gridItem => gridItem.CurrentRole != gridItem.OriginalRole);
+
+        public void FilterText(string text)
+        {
+            _letterFilter = text;
+            UpdateDataGrid();
+        }
     }
 }

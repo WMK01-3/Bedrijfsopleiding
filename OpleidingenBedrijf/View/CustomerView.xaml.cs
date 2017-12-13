@@ -42,6 +42,11 @@ namespace BedrijfsOpleiding.View
         {
             ViewModel.InfoChanged = ViewModel.IsInfoDifferent();
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.FilterText(((TextBox)sender).Text);
+        }
     }
 
     public class CustomerDataGridItem : INotifyPropertyChanged

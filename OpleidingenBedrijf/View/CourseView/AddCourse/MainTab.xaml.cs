@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
@@ -57,6 +58,22 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private void btnChooseTeacher_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.CheckData();
+        }
+
+        private void Duration_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key == Key.Delete || e.Key == Key.Back) == false)
+                e.Handled = true;
+        }
+
+        private void Duration_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            string text = ((TextBox)sender).Text;
+
+            if (text.IsEmpty()) return;
+
+            if (int.Parse(text) > 1440)
+                ((TextBox)sender).Text = "1440";
         }
     }
 }

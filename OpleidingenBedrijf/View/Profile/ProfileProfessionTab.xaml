@@ -19,8 +19,8 @@
                     <DataTemplate>
                         <Grid Height="25" Width="330">
                             <Label Content="{Binding ProfessionName}" HorizontalAlignment="Left"/>
-                            <Button Width="25" Height="25" Name="removeCategory" Click="RemoveCategory_OnClick" HorizontalAlignment="Right">
-                                <fa:FontAwesome Icon="Trash"  Width="20" Height="20"/>
+                            <Button Width="25" Height="25" Tag="{Binding Path=ProfessionID}" Background="Tomato" BorderThickness="0" Name="removeCategory" Click="RemoveCategory_OnClick" HorizontalAlignment="Right">
+                                <fa:FontAwesome Icon="Trash" Width="20" Height="20"/>
                             </Button>
                         </Grid>
                     </DataTemplate>
