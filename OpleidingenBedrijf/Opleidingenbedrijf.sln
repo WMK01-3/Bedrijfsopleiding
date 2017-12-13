@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Opleidingenbedrijf", "Oplei
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{1383A12A-0D7B-4392-A90D-84E8A278AEAE}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OpleidingenBedrijfInstaller", "..\OpleidingenBedrijfInstaller\OpleidingenBedrijfInstaller.vdproj", "{2539C31C-80DB-42BA-9D57-7520363B7719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{1383A12A-0D7B-4392-A90D-84E8A278AEAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1383A12A-0D7B-4392-A90D-84E8A278AEAE}.Release|x86.ActiveCfg = Release|Any CPU
 		{1383A12A-0D7B-4392-A90D-84E8A278AEAE}.Release|x86.Build.0 = Release|Any CPU
+		{2539C31C-80DB-42BA-9D57-7520363B7719}.Debug|Any CPU.ActiveCfg = Debug
+		{2539C31C-80DB-42BA-9D57-7520363B7719}.Debug|x86.ActiveCfg = Debug
+		{2539C31C-80DB-42BA-9D57-7520363B7719}.Release|Any CPU.ActiveCfg = Release
+		{2539C31C-80DB-42BA-9D57-7520363B7719}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

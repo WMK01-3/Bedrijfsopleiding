@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <!--Filter grid-->
-        <Grid Grid.Column="0">
+        <!--<Grid Grid.Column="0" Visibility="Hidden">
             <Slider HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="160"/>
             <TextBox  HorizontalAlignment="Left" Height="23" Margin="5,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="160,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30" BorderBrush="Black" BorderThickness="0 0 0 2"/>
@@ -30,10 +30,10 @@
                 <ComboBoxItem>Buitenshuis</ComboBoxItem>
             </ComboBox>
             <Button Content="Zoeken" HorizontalAlignment="Left" Margin="25,622,0,0" VerticalAlignment="Top" Width="150"/>
-        </Grid>
+        </Grid>-->
 
         <!--Middle Grid-->
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>

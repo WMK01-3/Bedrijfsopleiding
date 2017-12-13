@@ -63,6 +63,7 @@ namespace BedrijfsOpleiding.View.CourseView
                 btnSignUp.Visibility = Visibility.Hidden;
                 SignedUp.Visibility = Visibility.Visible;
             
+
         }
 
     }

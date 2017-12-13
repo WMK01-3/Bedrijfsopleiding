@@ -3,17 +3,22 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Windows;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace BedrijfsOpleiding.Tools
 {
     public static class GenerateInvoice
     {
+        static string curDir = Directory.GetCurrentDirectory();
+
         public static string NewPdf(Invoice invoice)
         {
             PdfDocument document = new PdfDocument();
-            document.Info.Title = "Created with PDFsharp";
+            document.Info.Title = "Your personal DOPE invoice";
 
             PdfPage page = document.AddPage();
             XGraphics gfx = XGraphics.FromPdfPage(page);
@@ -39,7 +44,7 @@ namespace BedrijfsOpleiding.Tools
             gfx.DrawString("NL03 INGB 0003 25 65", normalFont, XBrushes.Black, 460, 164);
 
             // Logo
-            const string imageLoc = @"..\..\images\Logo.png";
+            string imageLoc = curDir + @"\Data\Logo.png";
             DrawImage(gfx, imageLoc, 15, 20, 200, 113);
 
             // Factuur info
@@ -64,20 +69,20 @@ namespace BedrijfsOpleiding.Tools
             var i = 1;
             var total = new decimal[] { 0, 0, 0 };  // 0 = subtotal, 1 = btw total, 2 = full total
 
-            foreach (Enrollment enrollment in invoice.Enrollments)
+            foreach (Course course in invoice.Courses)
             {
-                using (CustomDbContext context = new CustomDbContext())
-                {
+                //using (CustomDbContext context = new CustomDbContext())
+                //{
 
-                    Course course = (from c in context.Courses
-                                     where c.CourseID == enrollment.CourseID
-                                     select c).First();
+                    //Course course = (from c in context.Courses
+                    //                 where c.CourseID == enrollment.CourseID
+                    //                 select c).First();
 
                     int heightBorder = 350 + i * 16;
                     int heightText = 345 + i * 16;
 
-                    string classes = $"{course.Dates.Count} x {course.Duration} min";
-                    decimal priceClass = Math.Round(course.Price / course.Dates.Count / 100 * 79,
+                    string classes = $"3 x {course.Duration} min";   // standaard 3 dagen
+                    decimal priceClass = Math.Round(course.Price / 1 /* aantal dagen */ / 100 * 79,
                         2, MidpointRounding.AwayFromZero);
                     decimal totalPrice = Math.Round(course.Price / 100 * 79, 2,
                         MidpointRounding.AwayFromZero);
@@ -99,7 +104,7 @@ namespace BedrijfsOpleiding.Tools
                     total[1] += btwPrice;
                     total[2] += course.Price;
                     i++;
-                }
+                //}
             }
 
             // Drawing subtotal && total
@@ -125,8 +130,17 @@ namespace BedrijfsOpleiding.Tools
 
             string filename = $"{DateTime.Now:yyyyMMdd}_{invoice.Customer.LastName},{invoice.Customer.FirstName}_Factuur.pdf";
 
-            const string filepath = @"..\..\Invoices\";
-            document.Save(filepath + filename);
+            try
+            {
+                string filepath = curDir + @"/../Output/";
+                document.Save(filepath + filename);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("You lack the required permission to receive a pdf file", "403 | That is not how this works");
+                filename = "noFile";
+            }
+
 
             return filename;
         }
@@ -137,7 +151,7 @@ namespace BedrijfsOpleiding.Tools
             gfx.DrawImage(image, x, y, width, height);
         }
 
-        public static void mailInvoice(string pdf, Invoice invoice)
+        public static void mailInvoice(string pdf, Invoice invoice, string toAddress)
         {
             try
             {
@@ -145,10 +159,11 @@ namespace BedrijfsOpleiding.Tools
                 SmtpClient sc = new SmtpClient("smtp.gmail.com");
 
                 m.From = new MailAddress("sales@dopecourses.com");
-                m.To.Add("");  // "to" email
+                m.To.Add(toAddress);  // "to" email
 
                 m.Subject = "Confimation on your order #null";
-                m.Attachments.Add(new Attachment(@"..\..\Invoices\" + pdf));
+
+                m.Attachments.Add(new Attachment(curDir + @"/../Output/" + pdf));
 
                 // what I must do for sending a pdf with this email 
                 m.Body = $"Heya, {invoice.Customer.FirstName}";

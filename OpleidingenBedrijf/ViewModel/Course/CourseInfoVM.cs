@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.Tools;
 using BedrijfsOpleiding.View.CourseView;
 using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
@@ -114,8 +115,27 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                     if (result.Any()) return true;
 
+
                     context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
+
                     context.SaveChanges();
+
+                    int crsID = Course.CourseID;
+
+                    IQueryable<Models.Course> crsList = from c in context.Courses where c.CourseID == crsID select c;
+
+                    Models.Course course = crsList.First();
+                    
+                    Invoice invoice = new Invoice(DateTime.Now, _user);
+                    invoice.Add(course);
+
+                    string pdf = GenerateInvoice.NewPdf(invoice);
+                    if (pdf != "noFile")
+                    {
+                        GenerateInvoice.mailInvoice(pdf, invoice, _user.Email);
+                    }
+                    
+
                     return false;
                 }
             }
