@@ -8,11 +8,9 @@ namespace BedrijfsOpleiding.Models
     {
         [Key]
         public virtual int ProfessionID { get; set; }
-
         public virtual int UserID { get; set; }
         [ForeignKey("UserID")]
         public virtual User User { get; set; }
-
         public virtual string ProfessionName { get; set; }
     }
 }

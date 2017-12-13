@@ -16,7 +16,6 @@
             <Label Content="Registreren" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="131,92,0,583" RenderTransformOrigin="0.482,0.169" >Gebruikersnaam</Label>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbUsername"/>
-            <fa:ImageAwesome Name="ecUsername" Icon="ExclamationCircle"  Margin="465,121,118,559" Foreground="#FFCD0000" Height="20"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="130,162,0,509" Content="Voornaam" />
             <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
             <TextBox HorizontalAlignment="Left" Height="23" Margin="318,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="147" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
@@ -29,17 +28,11 @@
             <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,488,0,0"  VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="316,160,0,511" Content="Achternaam" />
             <Label FontSize="12" HorizontalAlignment="Left" Margin="131,305,0,370" Content="E-mail adres" />
-            <fa:ImageAwesome Name="ecFirstName" Icon="ExclamationCircle"  Margin="290,183,292,497" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
-            <fa:ImageAwesome Name="ecBirthdate" Icon="ExclamationCircle" Height="20"  Margin="235,255,338,425" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Name="ecEmail" Icon="ExclamationCircle" Height="20" Margin="467,333,111,347" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Height="20" Name="ecPassword" Icon="ExclamationCircle"  Margin="464,416,109,264" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
-            <fa:ImageAwesome Height="20" Name="ecRepeatPassword" Icon="ExclamationCircle"  Margin="464,491,109,189" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375"/>
             <Label Name="elbUsername"  HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <Label Name="elbFirstName"  HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <Label Name ="elbLastName"  HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <Label Name="elbBirthDate"  HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <Label Name="elbEmail"  HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <fa:ImageAwesome Name="ecLastName" Icon="ExclamationCircle"  Margin="464,181,118,499" Foreground="#FFCD0000" RenderTransformOrigin="0.442,-0.375" Height="20"/>
             <Label Name="elbPassword"  HorizontalAlignment="Left" Margin="130,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <Label Name="elbPasswordRepeat"  HorizontalAlignment="Left" Margin="130,509,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
             <Button Name="btnRegister"  Content="Registreer" HorizontalAlignment="Left" Margin="108,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click" RenderTransformOrigin="0.472,2.48"/>

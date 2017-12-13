@@ -10,7 +10,6 @@ namespace BedrijfsOpleiding.Models
         public int CourseID { get; set; }
         public int UserID { get; set; }
         public DateTime Timestamp;      
-
         public Message() { }
     }
 }

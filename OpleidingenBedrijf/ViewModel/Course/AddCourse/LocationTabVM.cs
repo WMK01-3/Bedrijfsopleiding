@@ -15,8 +15,6 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
     public class LocationTabVM : BaseViewModel
     {
-
-
         private List<string> _suggestions;
         private string _errorMessage = "Testmesssage";
         private Visibility _errorVisible = Visibility.Hidden;
@@ -26,9 +24,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             get => _errorMessage;
             set
             {
-
                 _errorMessage = value;
-
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
@@ -51,12 +47,10 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             {
                 _suggestions = value;
                 OnPropertyChanged(nameof(Suggestions));
-
             }
         }
 
         private string _tbCityValue;
-
         public string TbCityValue
         {
             get => _tbCityValue;
@@ -66,8 +60,6 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 OnPropertyChanged(nameof(Suggestions));
             }
         }
-
-
 
 
         public int AddLocation(string mapsLoc, string room)
@@ -88,16 +80,13 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 return 0;
             }
 
-
             if (room == "")
             {
                 ErrorVisible = Visibility.Visible;
                 ErrorMessage = "Lokaal mag niet leeg zijn";
                 return 0;
             }
-
             int locID;
-
             using (CustomDbContext context = new CustomDbContext())
             {
                 Models.Location location = new Location()
@@ -107,13 +96,10 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                     Country = loc[2],
                     Classroom = room
                 };
-
                 context.Locations.AddOrUpdate(location);
                 context.SaveChanges();
-
                 locID = location.LocationID;
             }
-
             return locID;
         }
 
@@ -141,7 +127,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             }
         }
 
-        /* TERINGZOOI die allemaal nodig is voor één fucking combobox */
+        /*Provides values for combobox*/
         //private string _oneTeacher;
         public CollectionView locationList { get; }
         public LocationTabVM(MainWindowVM vm) : base(vm)
