@@ -192,13 +192,13 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             return canvas;
         }
 
-        private int _currentSelectedDay = 0;
+        private int _currentSelectedDay;
         public void SelectDay(int i)
         {
             IsDaySelected[_currentSelectedDay] = false;
             _currentSelectedDay = i;
             IsDaySelected[_currentSelectedDay] = true;
-            SelectedInfo.Date = $"Datum: {_calendarDateTime.AddDays(i).ToString("dd/mm/yyyy")}";
+            SelectedInfo.Date = $"Datum: {_calendarDateTime.AddDays(i):dd/mm/yyyy}";
             OnPropertyChanged(nameof(SelectedInfo));
             OnPropertyChanged(nameof(IsDaySelected));
         }

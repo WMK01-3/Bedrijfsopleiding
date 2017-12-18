@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.Tools;
 using BedrijfsOpleiding.View.CourseView;
 using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
@@ -36,7 +37,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
-        public string CourseCity => $"{_location.City} , {_location.Zipcode}";
+        public string CourseCity => $"{_location.City} , {_location.Country}";
         public string CourseClassRoom => _location.Classroom;
 
 
@@ -114,12 +115,30 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                     if (result.Any()) return true;
 
+
                     context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
+
                     context.SaveChanges();
+
+                    int crsID = Course.CourseID;
+
+                    IQueryable<Models.Course> crsList = from c in context.Courses where c.CourseID == crsID select c;
+
+                    Models.Course course = crsList.First();
+                    
+                    Invoice invoice = new Invoice(DateTime.Now, _user);
+                    invoice.Add(course);
+
+                    string pdf = GenerateInvoice.NewPdf(invoice);
+                    if (pdf != "noFile")
+                    {
+                        GenerateInvoice.mailInvoice(pdf, invoice, _user.Email);
+                    }
+                    
+
                     return false;
                 }
             }
-
             using (CustomDbContext context = new CustomDbContext())
             {
                 return (from e in context.Enrollments

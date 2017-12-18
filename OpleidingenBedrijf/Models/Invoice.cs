@@ -6,19 +6,19 @@ namespace BedrijfsOpleiding.Models
     public class Invoice
     {
         public DateTime Date { get; }
-        public List<Enrollment> Enrollments { get; }
+        public List<Course> Courses { get; }
         public User Customer { get; }
 
         public Invoice(DateTime date, User customer)
         {
             Date = date;
-            Enrollments = new List<Enrollment>();
+            Courses = new List<Course>();
             Customer = customer;
         }
 
-        public void Add(Enrollment enrollment)
+        public void Add(Course course)
         {
-            Enrollments.Add(enrollment);
+            Courses.Add(course);
         }
     }
 }

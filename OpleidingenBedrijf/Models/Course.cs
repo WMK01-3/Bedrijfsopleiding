@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace BedrijfsOpleiding.Models
 {
@@ -24,9 +25,13 @@ namespace BedrijfsOpleiding.Models
         public DateTime Created_at = DateTime.Now;
 
         public int UserID { get; set; }
+
         public int LocationID { get; set; }
+
         [ForeignKey("LocationID")]
         public virtual Location Location { get; set; }
+
+        
         [ForeignKey("UserID")]
         public virtual User User { get; set; }
 
@@ -38,6 +43,8 @@ namespace BedrijfsOpleiding.Models
 
         // Dit zijn de inschrijvingen
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+
+
     }
 }
     

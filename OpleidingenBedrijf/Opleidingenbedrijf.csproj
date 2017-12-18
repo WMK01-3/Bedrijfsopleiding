@@ -43,8 +43,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Geocoding, Version=3.6.0.0, Culture=neutral, PublicKeyToken=7c714700b88674c7, processorArchitecture=MSIL">
+      <HintPath>packages\Geocoding.net.3.6.0\lib\net40\Geocoding.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Protobuf, Version=3.3.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.3.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleMaps.LocationServices, Version=0.1.6329.16944, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\GoogleMaps.LocationServices.1.2.0.1\lib\net40\GoogleMaps.LocationServices.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=8.0.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>packages\MySql.Data.8.0.8-dmr\lib\net452\MySql.Data.dll</HintPath>
@@ -92,6 +98,7 @@
     <Compile Include="API\GoogleMaps\AutoCompleteLocations.cs" />
     <Compile Include="Models\Profession.cs" />
     <Compile Include="Models\CourseDate.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
@@ -117,6 +124,7 @@
     <Compile Include="View\CourseView\AddCourse\TeacherTab.xaml.cs">
       <DependentUpon>TeacherTab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Message\MessageVM.cs" />
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>
     </Compile>
@@ -131,6 +139,9 @@
     </Compile>
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MessageView\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -163,8 +174,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DashBoardView.xaml" />
+    <Page Include="View\DashBoardView.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Page>
     <Page Include="View\CourseView\AddCourse\AddCourseView.xaml">
+
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -212,6 +226,7 @@
     </Compile>
     <Compile Include="View\DashBoardView.xaml.cs">
       <DependentUpon>DashBoardView.xaml</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="View\CourseView\AddCourse\AddCourseView.xaml.cs">
       <DependentUpon>AddCourseView.xaml</DependentUpon>
@@ -227,6 +242,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\MenuBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MessageView\MessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -306,6 +325,10 @@
       <Project>{2dbf5938-6c20-448e-93f1-20d484fcb24a}</Project>
       <Name>WpfUIPickerLib</Name>
     </ProjectReference>
+    <Resource Include="GoogleMaps.LocationServices.readme.txt" />
+    <Content Include="View\GoogleMaps\map.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
