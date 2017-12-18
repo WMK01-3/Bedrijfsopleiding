@@ -50,5 +50,15 @@ namespace BedrijfsOpleiding.View.LoginView
                 _viewModel.RegisterUser();
             }
         }
+
+        private void btnChangeAcc_Click(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void btnCancel_Click()
+        {
+            
+        }
     }
 }
