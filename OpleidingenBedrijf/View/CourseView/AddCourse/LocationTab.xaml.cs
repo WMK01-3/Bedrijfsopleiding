@@ -16,8 +16,6 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
     {
         private AddCourseView _view;
         #region OwnViewModel : BaseViewModel
-
-
         
         private LocationTabVM _viewModel;
         public LocationTabVM ViewModel

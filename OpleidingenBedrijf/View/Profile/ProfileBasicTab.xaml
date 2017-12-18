@@ -6,34 +6,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d"
-               DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+               DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
-        <Grid Width="600" Height="700" Background="White">
+        <Grid Width="600" Background="White" Margin="0,0,0,-114" Height="697" VerticalAlignment="Top">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
             </Grid.Effect>
-            <Label Content="Profiel wijzigen" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center" Margin="214,54,230,0"/>
+            <Label Content="Profiel wijzigen" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center" Margin="214,37,230,0"/>
+
+
+            <Border Visibility="{Binding ErrorVisible}" HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#ff9933" VerticalAlignment="Top" Width="330" Margin="135,92,0,0" />
+            <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="147,-249,0,234" Width="15" Foreground="#FFF7F7F7">
+                <fa:ImageAwesome.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.402"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.443"/>
+                    </TransformGroup>
+                </fa:ImageAwesome.RenderTransform>
+            </fa:ImageAwesome>
+            <Label Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Foreground="#FFEEEEEE" VerticalAlignment="Center" Margin="166,94,147,573"  Height="30"/>
+
             <Label FontSize="12" HorizontalAlignment="Left" Margin="130,163,0,508" Content="Voornaam" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="263,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="130,230,0,445" Content="Geboortedatum" Width="105" />
-            <DatePicker HorizontalAlignment="Left" Margin="135,255,0,0" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpBirthDate"/>
-            <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="131,395,0,281" Content="Wachtwoord" />
-            <PasswordBox  HorizontalAlignment="Left" Height="23" Margin="135,413,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbPassword"  />
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="130,465,0,212" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,488,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding TxtFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
+
             <Label FontSize="12" HorizontalAlignment="Left" Margin="260,160,0,511" Content="Achternaam" />
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="131,305,0,370" Content="E-mail adres" />
-            <Label Name="elbUsername"  HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbFirstName"  HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name ="elbLastName"  HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbBirthDate"  HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbEmail"  HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbPassword"  HorizontalAlignment="Left" Margin="130,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbPasswordRepeat"  HorizontalAlignment="Left" Margin="130,509,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Button Name="btnUpdateAcc"  Content="Wijzigen" HorizontalAlignment="Left" Margin="135,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="BtnUpdateAcc_OnClick" RenderTransformOrigin="0.472,2.48"/>
+            <TextBox HorizontalAlignment="Left" Text="{Binding TxtLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="263,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
+
+            <Label FontSize="12" HorizontalAlignment="Left" Margin="131,240,0,370" Content="E-mail adres" />
+            <TextBox  HorizontalAlignment="Left" Text="{Binding TxtEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="23" Margin="135,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
+
+            <Label FontSize="12" HorizontalAlignment="Left" Margin="131,320,0,281" Content="Wachtwoord" />
+            <PasswordBox  HorizontalAlignment="Left"  Height="23" Margin="135,340,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbPassword"  />
+
+            <Label FontSize="12" HorizontalAlignment="Left" Margin="130,400,0,212" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
+            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,420,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
+
+            <Button Name="btnUpdateAcc"  Content="Wijzigen" HorizontalAlignment="Left" Margin="135,460,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="BtnUpdateAcc_OnClick" RenderTransformOrigin="0.472,2.48"/>
         </Grid>
     </Grid>
 </view:BaseView>

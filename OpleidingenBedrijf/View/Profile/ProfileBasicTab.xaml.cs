@@ -15,7 +15,20 @@ namespace BedrijfsOpleiding.View.Profile
     /// </summary>
     public partial class ProfileBasicTab : BaseView
     {
+        #region OwnViewModel : BaseViewModel
 
+
+        private ProfileBasicTab _view;
+
+        private ProfileBasicTabVM _viewModel;
+        public ProfileBasicTabVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new ProfileBasicTabVM(MainVM, this);
+            set => _viewModel = value;
+        }
+
+
+        #endregion
         public ProfileBasicTab(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
@@ -23,7 +36,7 @@ namespace BedrijfsOpleiding.View.Profile
 
         private void BtnUpdateAcc_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            ViewModel.UpdateAccount();
         }
     }
 
