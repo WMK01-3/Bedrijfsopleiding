@@ -25,6 +25,9 @@
             <TabItem Header="Berichten">
                 <ContentControl Content="{Binding MessageTab}"/>
             </TabItem>
+            <TabItem Header="Change account">
+                <ContentControl Content="{Binding ProfileBasicTab}"/>
+            </TabItem>
         </TabControl>
     </Grid>
 </view:BaseView>

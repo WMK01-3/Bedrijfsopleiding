@@ -21,9 +21,9 @@ namespace BedrijfsOpleiding.View.Profile
             InitializeComponent();
         }
 
-        private void btnCancel_Click()
+        private void BtnUpdateAcc_OnClick(object sender, RoutedEventArgs e)
         {
-            
+            throw new NotImplementedException();
         }
     }
 
