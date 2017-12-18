@@ -16,7 +16,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
     public class LocationTabVM : BaseViewModel
     {
         private List<string> _suggestions;
-        private string _errorMessage = "Testmesssage";
+        private string _errorMessage;
         private Visibility _errorVisible = Visibility.Hidden;
 
         public string ErrorMessage

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using BedrijfsOpleiding.Models;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -7,6 +8,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
     public class CourseOverViewVM : BaseViewModel
     {
         public List<Models.Course> CourseList => GetCourseList();
+        private User _user;
 
         public CourseOverViewVM(MainWindowVM vm, UserControl boundView) : base(vm)
         {

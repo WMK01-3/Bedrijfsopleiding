@@ -10,7 +10,7 @@ namespace BedrijfsOpleiding.Models
         [Key]
         public int EnrollmentID { get; set; }
         public DateTime Timestamp;
-        public bool Payed;
+        public bool Paid { get; set; }
         public int CourseID { get; set; }
         public int UserID { get; set; }
        // public virtual ICollection<User> Users { get; set; }
@@ -18,10 +18,27 @@ namespace BedrijfsOpleiding.Models
         //public virtual Course Course { get; set; }
         //[ForeignKey("UserID")]
         //public virtual User User { get; set; }
-        public Enrollment(int userid, int courseid)
+        public Enrollment(int userid, int courseid, bool paid)
         {
             UserID = userid;
+            Paid = paid;
             CourseID = courseid;
+        }
+
+        public Enrollment()
+        {
+        }
+
+        public override string ToString()
+        {
+            if (Paid)
+            {
+                return "Betaald";
+            }
+            else
+            {
+                return "Onbetaald";
+            }
         }
     }
 }
