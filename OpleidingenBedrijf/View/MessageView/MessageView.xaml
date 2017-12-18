@@ -6,13 +6,18 @@
              xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              mc:Ignorable="d" 
-             d:DesignHeight="690" d:DesignWidth="1250">
+             d:DesignHeight="690" d:DesignWidth="1250"
+               DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid HorizontalAlignment="Left" Height="580" VerticalAlignment="Top" Margin="10,100,0,0" Width="605"/>
+        <DataGrid ItemsSource="{Binding MessageList}"  HorizontalAlignment="Left" Height="580" VerticalAlignment="Top" Margin="10,100,0,0" Width="605">
+        <DataGrid.Columns>
+                <DataGridTextColumn Header="Bericht" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+            </DataGrid>
         <uiElements:FlatButton Content="Terug" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="137" Click="BtnReturn_Click"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Width="605" VerticalAlignment="Top" Height="670"><InlineUIContainer>
                 <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Background="White" Height="670" Width="605"/>

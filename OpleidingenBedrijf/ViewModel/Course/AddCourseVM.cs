@@ -98,16 +98,21 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
 
 
+
                 //Dates
 
 
                 //Location
                 course.LocationID = locID;
 
+                context.Messages.Add(new Models.Message { CourseID = _view.CourseId, UserID = course.UserID, MessageText = $"U bent toegevoegd als leraar aan {course.CourseID}", Read = false, Timestamp = DateTime.Now, Title = "Toegevoegd aan cursus"});
+                
                 context.Courses.AddOrUpdate(course);
                 context.SaveChanges();
 
                 MainVM.CurrentView = new CourseOverView(MainVM);
+
+
             }
         }
 

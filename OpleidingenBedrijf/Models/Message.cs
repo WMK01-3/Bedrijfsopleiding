@@ -9,8 +9,9 @@ namespace BedrijfsOpleiding.Models
         public int MessageID { get; set; }
         public int CourseID { get; set; }
         public int UserID { get; set; }
-        public DateTime Timestamp;      
-
-        public Message() { }
+        public bool Read { get; set; }
+        public DateTime Timestamp;
+        public string MessageText { get; set; }
+        public string Title { get; set; }
     }
 }

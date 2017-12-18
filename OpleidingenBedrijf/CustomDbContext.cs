@@ -19,6 +19,8 @@ namespace BedrijfsOpleiding
         
         public DbSet<Profession> Professions { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
         public DbSet<CourseDate> CourseDates { get; set; }
 
     }

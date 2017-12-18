@@ -9,7 +9,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public List<Models.Course> CourseList => GetCourseList();
 
         public CourseOverViewVM(MainWindowVM vm, UserControl boundView) : base(vm)
-        {
+        {   
 
         }
 
@@ -32,14 +32,12 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                select c);
                 }
 
-
+                    
                 foreach (Models.Course course in result)
                 {
-
                     course.Location = (from l in context.Locations
                         where l.LocationID == course.LocationID
                         select l).First();
-                    
                     courseList.Add(course);
 
                 }

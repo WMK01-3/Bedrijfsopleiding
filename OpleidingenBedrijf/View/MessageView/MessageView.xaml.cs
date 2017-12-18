@@ -8,6 +8,12 @@ namespace BedrijfsOpleiding.View.MessageView
 {
     public partial class MessageView 
     {
+        private MessageVM _viewModel;
+        public MessageVM ViewModel
+        {
+            get => _viewModel = _viewModel ?? new MessageVM(MainVM, this);
+            set => _viewModel = value;
+        }
         public MessageView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();

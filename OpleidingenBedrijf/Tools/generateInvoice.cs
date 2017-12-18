@@ -135,7 +135,7 @@ namespace BedrijfsOpleiding.Tools
                 string filepath = curDir + @"/../Output/";
                 document.Save(filepath + filename);
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show("You lack the required permission to receive a pdf file", "403 | That is not how this works");
                 filename = "noFile";
@@ -184,7 +184,7 @@ namespace BedrijfsOpleiding.Tools
 
                 sc.Send(m);
             }
-            catch (Exception ex)
+            catch
             {
                 // ignored
             }

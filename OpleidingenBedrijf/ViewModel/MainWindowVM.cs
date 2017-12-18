@@ -67,6 +67,7 @@ namespace BedrijfsOpleiding.ViewModel
 
         public string FullUserName => $"{CurUser?.FirstName} {CurUser?.LastName}";
         public bool IsEmployee => CurUser?.Role == User.RoleEnum.Employee;
+        public bool IsTeacher => CurUser?.Role == User.RoleEnum.Teacher;
 
         public void SetUser(User user) => CurUser = user;
 

@@ -25,6 +25,9 @@
             <TabItem Header="Berichten">
                 <ContentControl Content="{Binding MessageTab}"/>
             </TabItem>
+            <TabItem Header="Vakkundigheden" Name="TabProfession" Visibility="Hidden">
+                <ContentControl Content="{Binding ProfessionTab}"/>
+            </TabItem>
         </TabControl>
     </Grid>
 </view:BaseView>
