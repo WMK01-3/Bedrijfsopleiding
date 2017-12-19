@@ -34,7 +34,7 @@
                             </TransformGroup>
                         </fa:ImageAwesome.RenderTransform>
                     </fa:ImageAwesome>
-                    <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="30,4"/>
+                    <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="30,4,0,4" HorizontalAlignment="Left"/>
                 </Grid>
                 <!--Username Grid-->
                 <Grid Height="40" Width="270" VerticalAlignment="Top" Margin="0 50, 0, 0">

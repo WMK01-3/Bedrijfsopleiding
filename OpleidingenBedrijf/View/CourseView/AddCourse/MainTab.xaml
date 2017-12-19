@@ -174,7 +174,7 @@
                 <TextBox Grid.Row="3" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Price" TextWrapping="Wrap" Text="" Height="20" PreviewTextInput="Price_PreviewTextInput"/>
 
                 <!--Duration-->
-                <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur" HorizontalAlignment="Left"/>
+                <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur (in minuten)" HorizontalAlignment="Left"/>
                 <fa:ImageAwesome Grid.Row="5" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDuration" Visibility="Hidden"/>
                 <TextBox Grid.Row="5" Grid.Column="1" PreviewKeyDown="Duration_OnPreviewKeyDown" TextChanged="Duration_OnTextChanged"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
 
