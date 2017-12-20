@@ -105,7 +105,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 //Location
                 course.LocationID = locID;
 
-                context.Messages.Add(new Models.Message { CourseID = _view.CourseId, UserID = course.UserID, MessageText = $"U bent toegevoegd als leraar aan {course.CourseID}", Read = false, Timestamp = DateTime.Now, Title = "Toegevoegd aan cursus"});
+                context.Messages.Add(new Models.Message { UserID = course.UserID, MessageText = $"U bent toegevoegd als leraar aan {course.Title}", Read = false, Timestamp = DateTime.Now, Title = "Toegevoegd aan cursus"});
                 
                 context.Courses.AddOrUpdate(course);
                 context.SaveChanges();

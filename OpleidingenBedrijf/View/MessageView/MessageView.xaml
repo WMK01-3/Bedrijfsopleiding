@@ -13,14 +13,16 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid ItemsSource="{Binding MessageList}"  HorizontalAlignment="Left" Height="580" VerticalAlignment="Top" Margin="10,100,0,0" Width="605">
-        <DataGrid.Columns>
+        <DataGrid ItemsSource="{Binding MessageList}" Name="Messages" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="580" IsReadOnly="True" VerticalAlignment="Top" Margin="10,100,0,0" Width="605">
+            <DataGrid.Columns>
                 <DataGridTextColumn Header="Bericht" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>
-            </DataGrid>
-        <uiElements:FlatButton Content="Terug" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="137" Click="BtnReturn_Click"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Width="605" VerticalAlignment="Top" Height="670"><InlineUIContainer>
-                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="4" Background="White" Height="670" Width="605"/>
+        </DataGrid>
+        <uiElements:FlatButton Content="Terug" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="137" Click="BtnReturn_Click"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Width="605" Name="MessageText" VerticalAlignment="Top" Height="633"><InlineUIContainer>
             </InlineUIContainer></TextBlock>
+        <uiElements:FlatButton Content="Openen" HorizontalAlignment="Left" Margin="478,30,0,0" Click="BtnOpen_Click" VerticalAlignment="Top" Width="137"/>
+        <Label Content="" Grid.Column="1" Name="Title" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" FontSize="20" Width="605"/>
+        <uiElements:FlatButton Content="Verwijder" HorizontalAlignment="Left" Margin="233,30,0,0" VerticalAlignment="Top" Click="BtnDelete_Click" Width="137"/>
     </Grid>
 </view:BaseView>
