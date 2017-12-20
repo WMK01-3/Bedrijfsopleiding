@@ -10,7 +10,6 @@ namespace BedrijfsOpleiding.Models
     public class User
     {
         public enum RoleEnum { Employee, Teacher, Customer }
-
         [Key]
         public int UserID { get; set; }
         public string UserName { get; set; }
@@ -19,9 +18,7 @@ namespace BedrijfsOpleiding.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public RoleEnum Role { get; set; }
-
         public virtual ICollection<int> EnrollMentID { get; set; }
-
 
         public User()
         {

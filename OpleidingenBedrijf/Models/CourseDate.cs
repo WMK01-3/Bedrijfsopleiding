@@ -10,18 +10,9 @@ namespace BedrijfsOpleiding.Models
     {
         [Key]
         public virtual int DateID { get; set; }
-
-
         public virtual int CourseID { get; set;  }
         [ForeignKey("CourseID")]
         public virtual Course Course { get; set; }
-        
         public virtual DateTime Date { get; set; }
-
-
     }
-
-
-
-
 }

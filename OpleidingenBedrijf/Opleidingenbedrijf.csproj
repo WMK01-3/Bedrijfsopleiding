@@ -111,6 +111,7 @@
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileProfessionTabVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileSubscriptionsVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileVM.cs" />
     <Compile Include="View\CourseView\AddCourse\DateTab.xaml.cs">
       <DependentUpon>DateTab.xaml</DependentUpon>
@@ -133,6 +134,9 @@
     </Compile>
     <Compile Include="View\Profile\ProfileProfessionTab.xaml.cs">
       <DependentUpon>ProfileProfessionTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileSubscriptions.xaml.cs">
+      <DependentUpon>ProfileSubscriptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Profile\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
@@ -178,7 +182,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
     <Page Include="View\CourseView\AddCourse\AddCourseView.xaml">
-
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +204,10 @@
     <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Page Include="View\Profile\ProfileProfessionTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Profile\ProfileSubscriptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

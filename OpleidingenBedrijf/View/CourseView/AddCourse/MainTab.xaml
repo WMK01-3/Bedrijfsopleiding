@@ -109,7 +109,7 @@
                     <ColumnDefinition Width="88*"/>
                     <ColumnDefinition Width="37*"/>
                 </Grid.ColumnDefinitions>
-                <Border HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#c00" VerticalAlignment="Top" Width="297" Grid.ColumnSpan="2" Margin="0,0,-47,0" />
+                <Border HorizontalAlignment="Left" Height="32" CornerRadius="10"  Background="#FFCC00" VerticalAlignment="Top" Width="297" Grid.ColumnSpan="2" Margin="0,0,-47,0" />
                 <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
                     <fa:ImageAwesome.RenderTransform>
                         <TransformGroup>
@@ -174,7 +174,7 @@
                 <TextBox Grid.Row="3" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Price" TextWrapping="Wrap" Text="" Height="20" PreviewTextInput="Price_PreviewTextInput"/>
 
                 <!--Duration-->
-                <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur" HorizontalAlignment="Left"/>
+                <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur (in minuten)" HorizontalAlignment="Left"/>
                 <fa:ImageAwesome Grid.Row="5" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDuration" Visibility="Hidden"/>
                 <TextBox Grid.Row="5" Grid.Column="1" PreviewKeyDown="Duration_OnPreviewKeyDown" TextChanged="Duration_OnTextChanged"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
 
