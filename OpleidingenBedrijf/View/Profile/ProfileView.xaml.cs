@@ -23,9 +23,9 @@ namespace BedrijfsOpleiding.View.Profile
         {
             InitializeComponent();
 
-            if (MainVM.IsTeacher || MainVM.IsEmployee)
+            if (!MainVM.IsTeacher || !MainVM.IsEmployee)
             {
-                TabProfession.Visibility = Visibility.Visible;
+                TabProfession.Visibility = Visibility.Hidden;
             }
             // if (vm.CurUser.Role != User.RoleEnum.Teacher)
             //    profileTab.SelectedIndex += 1;

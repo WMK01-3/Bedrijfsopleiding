@@ -9,20 +9,29 @@
              d:DesignHeight="690" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <DataGrid ItemsSource="{Binding MessageList}" Name="Messages" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="580" IsReadOnly="True" VerticalAlignment="Top" Margin="10,100,0,0" Width="605">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Bericht" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <uiElements:FlatButton Content="Terug" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="137" Click="BtnReturn_Click"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Width="605" Name="MessageText" VerticalAlignment="Top" Height="633"><InlineUIContainer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="97*"/>
+                <RowDefinition Height="593*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid ItemsSource="{Binding MessageList}" Name="Messages" AutoGenerateColumns="False" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="580" IsReadOnly="True" VerticalAlignment="Top" Margin="10,3.333,0,0" Grid.Column="0" Grid.Row="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Bericht" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Width="605" Name="MessageText" VerticalAlignment="Top" Height="633" Grid.RowSpan="2"><InlineUIContainer>
             </InlineUIContainer></TextBlock>
-        <uiElements:FlatButton Content="Openen" HorizontalAlignment="Left" Margin="478,30,0,0" Click="BtnOpen_Click" VerticalAlignment="Top" Width="137"/>
-        <Label Content="" Grid.Column="1" Name="Title" HorizontalAlignment="Center" Margin="10,10,10,0" VerticalAlignment="Top" FontSize="20" Width="605"/>
-        <uiElements:FlatButton Content="Verwijder" HorizontalAlignment="Left" Margin="233,30,0,0" VerticalAlignment="Top" Click="BtnDelete_Click" Width="137"/>
+            <Label Content="" Grid.Column="3" Name="Title" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="605" Margin="10,0"/>
+            <uiElements:FlatButton Content="Terug" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Grid.Column="0" Click="BtnReturn_Click"/>
+            <uiElements:FlatButton Content="Verwijder" HorizontalAlignment="Center"  Grid.Column="2" VerticalAlignment="Center" Click="BtnDelete_Click" Width="138"/>
+            <uiElements:FlatButton Content="Openen" HorizontalAlignment="Center"  Grid.Column="1" Click="BtnOpen_Click" VerticalAlignment="Center" Width="137"/>
+        </Grid>
     </Grid>
 </view:BaseView>
