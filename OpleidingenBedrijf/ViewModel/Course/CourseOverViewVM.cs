@@ -12,7 +12,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public CourseOverViewVM(MainWindowVM vm, UserControl boundView) : base(vm)
         {
-
+            _user = vm.CurUser;
         }
 
         public List<Models.Course> GetCourseList()
@@ -29,9 +29,24 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 }
                 else
                 {
-                     result = (from c in context.Courses
-                               where c.Archived == false
-                               select c);
+                            result = (from c in context.Courses
+                                join e in context.Enrollments on c.CourseID equals e.CourseID into y
+                                from e in y.DefaultIfEmpty()
+                                where (c.Archived == false) && (e.UserID != _user.UserID)            
+                                
+                                select c
+                                );
+
+                    //  result = (from c in context.Courses
+                    //             join e in context.Enrollments on c.CourseID equals e.CourseID
+                    //             where (c.Archived == false) && (e.UserID != _user.UserID)                             
+                    ///             select new
+                    //            {
+                    //                 Course = c,
+                    //                 Enrollment = e
+                    //             }
+                    // );
+
                 }
 
 
