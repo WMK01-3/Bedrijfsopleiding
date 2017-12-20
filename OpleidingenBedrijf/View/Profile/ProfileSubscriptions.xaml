@@ -29,7 +29,7 @@
             </Grid.RowDefinitions>
             <Grid Background="White" Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="5"/>
             <Label Content="Uw inschrijvingen" Grid.ColumnSpan="4" Grid.Row="1" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
-            <DataGrid x:Name="dgdCourse" AutoGenerateColumns="False" ItemsSource="{Binding EnrolledCourseList}" Grid.Column="1"  Grid.Row="3" Background="White" Grid.RowSpan="2" BorderBrush="White" RowBackground="White" AlternatingRowBackground="CornflowerBlue">
+            <DataGrid x:Name="dgdCourse" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding EnrolledCourseList}" Grid.Column="1"  Grid.Row="3" Background="White" Grid.RowSpan="2" BorderBrush="White" RowBackground="White" AlternatingRowBackground="CornflowerBlue">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Title" Binding="{Binding Course.Title}" Width="4*"  />
                     <DataGridTextColumn Header="Betaald" Binding="{Binding Enrollments}" Width="3*" />
