@@ -67,12 +67,12 @@ namespace BedrijfsOpleiding.ViewModel.Profile
             return returnList;
         }
 
-        public void WriteOut(int CourseID, int UserID)
+        public void WriteOut(int courseID, int userID)
         {
             using (CustomDbContext context = new CustomDbContext())
             {
                 IQueryable<Enrollment> writeOut = (from enrollment in context.Enrollments
-                                                   where CourseID == enrollment.CourseID && UserID == enrollment.UserID
+                                                   where courseID == enrollment.CourseID && userID == enrollment.UserID
                                                    select enrollment);
                     context.Enrollments.Remove(writeOut.First());
                     context.SaveChanges();

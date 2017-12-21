@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
@@ -24,7 +25,8 @@ namespace BedrijfsOpleiding.View.CourseView
             InitializeComponent();
 
             //courses.ItemsSource = _viewModel.CourseList;
-
+            cbxDifficulty.ItemsSource = Enum.GetValues(typeof(Course.DifficultyEnum));
+            
             if (MainVM.IsEmployee) return;
 
             btnAddCourse.Height = 0;
@@ -49,6 +51,12 @@ namespace BedrijfsOpleiding.View.CourseView
         {
             MainVM.CurrentView = new AddCourse.AddCourseView(MainVM);
             MainVM.CurrentView = new AddCourse.AddCourseView(MainVM);
+        }
+
+        private void SearchCourses(object sender, RoutedEventArgs e)
+        {
+            _viewModel.FilterText(TxtCourseName.Text, cbxDifficulty.Text, TxtLocation.Text);
+            cbxDifficulty.SelectedIndex = -1;
         }
     }
 }
