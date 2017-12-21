@@ -1,10 +1,7 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Forms;
+using System.Windows.Media;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Message;
 using Message = BedrijfsOpleiding.Models.Message;
@@ -17,6 +14,19 @@ namespace BedrijfsOpleiding.View.MessageView
         private MessageVM _viewModel;
         private string _title;
         private bool _read;
+        private object _colour;
+        public object Colour
+        {
+            get => _colour;
+            set
+            {
+                _colour = value;
+                //OnPropertyChanged(nameof(Colour));
+            }
+        }
+
+
+
         public MessageVM ViewModel
         {
             get => _viewModel = _viewModel ?? new MessageVM(MainVM, this);
@@ -75,6 +85,16 @@ namespace BedrijfsOpleiding.View.MessageView
                 }
             }
             catch { }
+        }
+
+        private void Messages_OnLoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            var test = (Message) e.Row.DataContext;
+            if (test.Read)
+            {
+                e.Row.Foreground = new SolidColorBrush(Colors.LightGray);
+            }
+            
         }
     }
 }

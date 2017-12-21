@@ -23,6 +23,10 @@ namespace BedrijfsOpleiding.View.LoginView
         {
             InitializeComponent();
             ErrorMessage.Visibility = Visibility.Hidden;
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                context.AddDummyData(true);
+            }
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

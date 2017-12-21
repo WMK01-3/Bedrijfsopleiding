@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid ItemsSource="{Binding MessageList}" Name="Messages" AutoGenerateColumns="False" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="580" IsReadOnly="True" VerticalAlignment="Top" Margin="10,3.333,0,0" Grid.Column="0" Grid.Row="1">
+            <DataGrid ItemsSource="{Binding MessageList}" Name="Messages" LoadingRow="Messages_OnLoadingRow" AutoGenerateColumns="False" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="580" IsReadOnly="True" VerticalAlignment="Top" Margin="10,3.333,0,0" Grid.Column="0" Grid.Row="1">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Bericht" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
                 </DataGrid.Columns>
@@ -31,8 +31,8 @@
             <Label Content="" Grid.Column="3" Name="Title" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Width="605" Margin="10,0"/>
             
             <uiElements:FlatButton Content="Terug" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Grid.Column="0" Click="BtnReturn_Click"/>
-            <uiElements:FlatButton Content="Verwijder" HorizontalAlignment="Center"  Grid.Column="2" VerticalAlignment="Center" Click="BtnDelete_Click" Width="138"/>
-            <uiElements:FlatButton Content="Openen" HorizontalAlignment="Center"  Grid.Column="1" Click="BtnOpen_Click" VerticalAlignment="Center" Width="137"/>
+            <uiElements:FlatButton Content="Verwijder" HorizontalAlignment="Center"  Grid.Column="1" VerticalAlignment="Center" Click="BtnDelete_Click" Width="138"/>
+            <uiElements:FlatButton Content="Openen" HorizontalAlignment="Center"  Grid.Column="2" Click="BtnOpen_Click" VerticalAlignment="Center" Width="137"/>
         </Grid>
     </Grid>
 </view:BaseView>
