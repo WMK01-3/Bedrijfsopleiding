@@ -1,61 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.Collections;
+using System.Diagnostics;
 
 namespace WpfUIPickerLib
 {
     public class TumblerData : INotifyPropertyChanged
     {
+        public delegate void OnSelectionChanged();
+
+        //Added
+        private readonly OnSelectionChanged _onSelectionChanged;
+
         public TumblerData()
         {
-            this.seperator = "";
-            this.Values = new List<object>();
-            this.TumblerWidth = Double.NaN;
+            Seperator = "";
+            Values = new List<object>();
+            TumblerWidth = double.NaN;
         }
 
-        public TumblerData(IList values, int selectedValueIndex, string seperator)
+        public TumblerData(IList values, int selectedValueIndex, string seperator, OnSelectionChanged selectionChanged)
         {
-            this.values = values;
-            this.seperator = seperator;
-            this.TumblerWidth = Double.NaN;
-            this.SelectedValueIndex = selectedValueIndex;
+            _onSelectionChanged = selectionChanged;
+            Values = values;
+            Seperator = seperator;
+            TumblerWidth = double.NaN;
+            SelectedValueIndex = selectedValueIndex;
         }
 
-        private IList values;
-        public IList Values
+        public IList Values { get; set; }
+
+        public string Seperator { get; set; }
+
+        public object SelectedValue =>
+            Values == null || _selVal < 0 || _selVal >= Values.Count ? null : Values[_selVal];
+
+        private int _selVal;
+        public int SelectedValueIndex
         {
-            get { return this.values; }
-            set { this.values = value; }
-        }
-
-        private string seperator;
-        public string Seperator
-        {
-            get { return this.seperator; }
-            set { this.seperator = value; }
-        }
-
-        public object SelectedValue
-        {
-            get
-            {
-                return this.values == null || this.selVal < 0 || this.selVal >= this.values.Count ? null : this.values[this.selVal];
-            }
-        }
-
-        private int selVal;
-        public int SelectedValueIndex 
-        { 
-            get
-            {
-                return this.selVal;
-            }
+            get => _selVal;
             set
             {
-                this.selVal = value;
+                _selVal = value;
+                //Added
+                _onSelectionChanged();
                 TriggerUpdate();
             }
         }
@@ -64,15 +53,13 @@ namespace WpfUIPickerLib
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        internal void TriggerUpdate()
+        public void TriggerUpdate()
         {
             // cause binding to refire
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs("SelectedValueIndex"));
-                this.PropertyChanged(this, new PropertyChangedEventArgs("SelectedValue"));
-            }
-           
+            if (PropertyChanged == null) return;
+
+            PropertyChanged(this, new PropertyChangedEventArgs("SelectedValueIndex"));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SelectedValue"));
         }
     }
 }

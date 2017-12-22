@@ -16,7 +16,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private DateTabVM _viewModel;
         public DateTabVM ViewModel
         {
-            get => _viewModel = _viewModel ?? new DateTabVM(MainVM, this);
+            get => _viewModel = _viewModel ?? new DateTabVM(MainVM, this, _view);
             set => _viewModel = value;
         }
 
@@ -40,19 +40,13 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void PreviousWeek_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
-            ViewModel.SetCalendar(1);
+            ViewModel.SetCalendar(-1);
         }
 
         private void NextWeek_OnMouseUp(object sender, MouseButtonEventArgs e)
         {
-            ViewModel.SetCalendar(-1);
+            ViewModel.SetCalendar(1);
         }
-
-        private void FrameworkElement_OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Debug.WriteLine(((ListView)sender).ActualHeight);
-        }
-
         private void ClassRoom_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             ViewModel.CurrentClassRoom = ((TextBox)sender).Text;

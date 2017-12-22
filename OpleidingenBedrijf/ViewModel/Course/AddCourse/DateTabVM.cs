@@ -12,45 +12,46 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
     public class DateTabVM : BaseViewModel
     {
-        private DateTime _calendarDateTime;
+        private AddCourseView _addCourseView;
         private DateTab _view;
 
-        public bool[] IsDaySelected { get; set; }
-
-        public List<TumblerData> TimeTumblers
+        private DateTime _nearestFirstDayOfWeek;
+        private int _weekMultiplier;
+        public int WeekMultiplier
         {
-            get
+            get => _weekMultiplier * 7;
+            set => _weekMultiplier = value;
+        }
+
+        public SelectedInfoClass SelectedInfo { get; set; }
+        public bool[] IsDaySelected { get; set; }
+        public string CalendarCurrentWeekLabel =>
+                    $"{_nearestFirstDayOfWeek.AddDays(WeekMultiplier).ToString("MMMM", CultureInfo.InvariantCulture)} {_nearestFirstDayOfWeek.AddDays(WeekMultiplier).Year}";
+
+        private string[] _dayDateStrings = new string[7];
+        public string[] DayDateStrings
+        {
+            get => _dayDateStrings;
+            set
             {
-                var tumblerDatas = new List<TumblerData>();
-
-                var hours = new string[13];
-                var minutes = new string[60];
-                var timePeriod = new[] { "AM", "PM" };
-
-                for (var h = 0; h < hours.Length; h++)
-                    hours[h] = $"{h}";
-
-                for (var m = 0; m < minutes.Length; m++)
-                    minutes[m] = $"{m}";
-
-                tumblerDatas.Add(new TumblerData(hours, 0, ""));
-                tumblerDatas.Add(new TumblerData(minutes, 0, ""));
-                tumblerDatas.Add(new TumblerData(timePeriod, 0, ""));
-
-                return tumblerDatas;
+                _dayDateStrings = value;
+                OnPropertyChanged(nameof(DayDateStrings));
             }
         }
 
-        #region CalendarCurrentWeek : string
+        public DummyDataGridCalendarItem DummyCalendarItem =>
+                   new DummyDataGridCalendarItem();
 
-        private string _calendarCurrentWeekLabel;
-        public string CalendarCurrentWeekLabel
+        #region TimeTumblers : List<TumblerData>
+
+        private List<TumblerData> _timeTumblers;
+        public List<TumblerData> TimeTumblers
         {
-            get => _calendarCurrentWeekLabel ?? "10-16 December 2017";
+            get => _timeTumblers;
             set
             {
-                _calendarCurrentWeekLabel = value;
-                OnPropertyChanged(nameof(CalendarCurrentWeekLabel));
+                _timeTumblers = value;
+                OnPropertyChanged(nameof(TimeTumblers));
             }
         }
 
@@ -84,9 +85,6 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         #endregion
 
-        public DummyDataGridCalendarItem DummyCalendarItem =>
-            new DummyDataGridCalendarItem();
-
         #region CurrentClassRoom : string
 
         private string _currentClassRoom;
@@ -105,64 +103,86 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         #endregion
 
-        public SelectedInfoClass SelectedInfo { get; set; }
-
-        public DateTabVM(MainWindowVM vm, DateTab view) : base(vm)
+        public DateTabVM(MainWindowVM vm, DateTab view, AddCourseView addCourseView) : base(vm)
         {
+            _addCourseView = addCourseView;
             _view = view;
             SelectedInfo = new SelectedInfoClass();
             IsDaySelected = new bool[7];
 
+            //Set the tumblerDatas
+            var tumblerDatas = new List<TumblerData>();
+
+            var hours = new string[24];
+            var minutes = new string[12];
+
+            for (var h = 0; h < hours.Length; h++)
+                hours[h] = $"{h}";
+
+            for (var m = 0; m < minutes.Length; m++)
+                minutes[m] = m < 2 ? $"0{m * 5}" : $"{m * 5}";
+
+            tumblerDatas.Add(new TumblerData(hours, 0, "", OnSelectionChanged));
+            tumblerDatas.Add(new TumblerData(minutes, 0, "", OnSelectionChanged));
+
+            TimeTumblers = tumblerDatas;
+
+            //Set the selection
             for (var i = 0; i < 7; i++)
                 IsDaySelected[i] = false;
 
+
+            //Initialize the Calendar
             DateTime dateNow = DateTime.Now;
-            _calendarDateTime = dateNow;
+            _nearestFirstDayOfWeek = dateNow;
             if (DateTime.Now.DayOfWeek > DayOfWeek.Monday)
-            {
-                _calendarDateTime = dateNow.AddDays((int)DateTime.Now.DayOfWeek -
-                                          ((int)DateTime.Now.DayOfWeek - (int)DayOfWeek.Monday));
-            }
+                _nearestFirstDayOfWeek = dateNow.AddDays((int)DayOfWeek.Monday - (int)DateTime.Now.DayOfWeek);
+            _weekMultiplier = 0;
 
             SetCalendar();
         }
 
+        /// <summary>
+        /// Called when one of the Carets is clicked. Moves the calendar by 'i' week
+        /// </summary>
+        /// <param name="i"></param>
         public void SetCalendar(int i)
         {
-            DateTimeFormatInfo dfi = DateTimeFormatInfo.CurrentInfo;
-            if (dfi == null) return;
-
-            DateTime dateNow = DateTime.Now;
-            if (DateTime.Now.DayOfWeek > DayOfWeek.Monday)
-            {
-                dateNow = dateNow.AddDays((int)DateTime.Now.DayOfWeek -
-                                          ((int)DateTime.Now.DayOfWeek - (int)DayOfWeek.Monday));
-            }
-
-            if (dateNow >= _calendarDateTime.AddDays(i * 7)) return;
-
-            _calendarDateTime = _calendarDateTime.AddDays(i * 7);
-
+            _weekMultiplier += i;
             SetCalendar();
+            OnPropertyChanged(nameof(CalendarCurrentWeekLabel));
         }
 
         private void SetCalendar()
         {
+            var strings = new string[7];
+            for (var j = 0; j < 7; j++)
+                strings[j] = _nearestFirstDayOfWeek.AddDays(WeekMultiplier + j).Day.ToString();
+            DayDateStrings = strings;
+
             CalendarItem = new DataGridCalendarItem
             {
-                Monday = GetDaySchedule(_calendarDateTime),
-                Tuesday = GetDaySchedule(_calendarDateTime.AddDays(1)),
-                Wednesday = GetDaySchedule(_calendarDateTime.AddDays(2)),
-                Thursday = GetDaySchedule(_calendarDateTime.AddDays(3)),
-                Friday = GetDaySchedule(_calendarDateTime.AddDays(4)),
-                Saturday = GetDaySchedule(_calendarDateTime.AddDays(5)),
-                Sunday = GetDaySchedule(_calendarDateTime.AddDays(6))
+                Monday = GetDaySchedule(0),
+                Tuesday = GetDaySchedule(1),
+                Wednesday = GetDaySchedule(2),
+                Thursday = GetDaySchedule(3),
+                Friday = GetDaySchedule(4),
+                Saturday = GetDaySchedule(5),
+                Sunday = GetDaySchedule(6)
             };
         }
 
-        private static Canvas GetDaySchedule(DateTime date)
+        /// <summary>
+        /// Gets all courses planned for that day
+        /// </summary>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        private Canvas GetDaySchedule(int day)
         {
+            const int barSize = 24;
+
             Canvas canvas = new Canvas();
+            DateTime date = _nearestFirstDayOfWeek.AddDays(WeekMultiplier + day);
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -171,22 +191,47 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                             where i.Date == date
                             select new { i.Date, j.Duration };
 
-                if (items.Any() == false) return canvas;
-
-                foreach (var item in items)
+                if (items.Any())
                 {
-                    //420 pixels is the total day: 24 hours
-                    Rectangle rect = new Rectangle
+                    foreach (var item in items)
                     {
-                        Width = 10,
-                        Height = item.Duration / 60 * 10
-                    };
+                        //1 pixel = 5 minutes
+                        //24 hours = 288 pixels
+                        Rectangle rect = new Rectangle
+                        {
+                            Width = 10,
+                            Height = item.Duration / (60 / barSize)
+                        };
 
-                    int dist = item.Date.Hour * 10 + item.Date.Minute / 6;
-                    Canvas.SetTop(rect, dist);
+                        int dist = item.Date.Hour * 24 + item.Date.Minute / 5 * 2;
+                        Canvas.SetTop(rect, dist);
 
-                    canvas.Children.Add(rect);
+                        canvas.Children.Add(rect);
+                    }
                 }
+            }
+
+            //If it is the day that is currently selected
+            if (_currentSelectedDay == day)
+            {
+                Rectangle rect = new Rectangle
+                {
+                    Width = 10,
+                    Height = 0,
+                    Fill = new SolidColorBrush(Colors.YellowGreen)
+                };
+
+                string text = _addCourseView.ViewModel.MainTab.Duration.Text;
+
+                if (text.IsEmpty() == false)
+                    rect.Height = int.Parse(text) / (60 / barSize);
+
+                if (_timeTumblers != null)
+                    Canvas.SetTop(rect, _timeTumblers[0].SelectedValueIndex * barSize + _timeTumblers[1].SelectedValueIndex / (60 / barSize));
+                else
+                    Canvas.SetTop(rect, 0);
+
+                canvas.Children.Add(rect);
             }
 
             return canvas;
@@ -198,9 +243,30 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             IsDaySelected[_currentSelectedDay] = false;
             _currentSelectedDay = i;
             IsDaySelected[_currentSelectedDay] = true;
-            SelectedInfo.Date = $"Datum: {_calendarDateTime.AddDays(i):dd/mm/yyyy}";
+
+            SelectedInfo.Date = $"Datum: {_nearestFirstDayOfWeek.AddDays(WeekMultiplier + i)}";
+
+            SetCalendar();
             OnPropertyChanged(nameof(SelectedInfo));
             OnPropertyChanged(nameof(IsDaySelected));
+        }
+
+        public void DeSelectDay()
+        {
+
+        }
+
+        /// <summary>
+        /// Gets called when a value in the timepicker changed
+        /// </summary>
+        public void OnSelectionChanged()
+        {
+            if (_timeTumblers != null)
+            {
+                SelectedInfo.Time = $"Tijd: {_timeTumblers[0].SelectedValue}:{_timeTumblers[1].SelectedValue}";
+                OnPropertyChanged(nameof(SelectedInfo));
+            }
+            SetCalendar();
         }
     }
 
@@ -276,7 +342,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             get
             {
                 Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(50, 40));
+                canvas.Children.Add(GetRect(0, 288));
                 return canvas;
             }
         }
