@@ -135,7 +135,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                     return location.LocationID;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return 0;
             }

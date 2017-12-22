@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Windows;
+﻿using System.Windows;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
@@ -22,11 +21,8 @@ namespace BedrijfsOpleiding.View.CourseView
         public CourseOverView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-
             //courses.ItemsSource = _viewModel.CourseList;
-
             if (MainVM.IsEmployee) return;
-
             btnAddCourse.Height = 0;
             btnAddCourse.Visibility = Visibility.Hidden;
             Thickness thickness = btnAddCourse.Margin;

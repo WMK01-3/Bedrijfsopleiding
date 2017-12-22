@@ -1,4 +1,5 @@
 ﻿using BedrijfsOpleiding.Models;
+using BedrijfsOpleiding.View.MessageView;
 using BedrijfsOpleiding.View.Profile;
 
 namespace BedrijfsOpleiding.ViewModel.Profile
@@ -11,12 +12,20 @@ namespace BedrijfsOpleiding.ViewModel.Profile
 
         #region ProfessionTab : ProfileProfessionTab
 
-        private ProfileProfessionTab _profileTab;
+        private ProfileProfessionTab _profileProfessionTab;
         public ProfileProfessionTab ProfessionTab =>
-            _profileTab = _profileTab ?? new ProfileProfessionTab(MainVM);
+            _profileProfessionTab = _profileProfessionTab?? new ProfileProfessionTab(MainVM);
 
         #endregion
 
+
+        #region MessageT : MessageView
+
+        private MessageView _profileMessageTab;
+        public MessageView MessageTab =>
+            _profileMessageTab = _profileMessageTab ?? new MessageView(MainVM);
+
+        #endregion
 
 
 
