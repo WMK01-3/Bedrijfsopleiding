@@ -86,5 +86,10 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         {
             ViewModel.SelectDay(6);
         }
+
+        private void AddDate_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.AddDate();
+        }
     }
 }

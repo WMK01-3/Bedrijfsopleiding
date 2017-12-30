@@ -255,14 +255,29 @@
                     <wpfUiPickerLib:WpfUIPickerControl x:Name="wpfUiPickerControl" AlwaysOpen="True" Tumblers="{Binding TimeTumblers}" Margin="0 50 0 0"  HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
                     <Grid Height="200" VerticalAlignment="Bottom">
-                        <Label Height="30" VerticalAlignment="Top" Content="Geselecteerde informatie"/>
-                        <Label Height="30" VerticalAlignment="Top" Margin="0 30 0 0" Content="{Binding SelectedInfo.Day}"/>
-                        <Label Height="30" VerticalAlignment="Top" Margin="0 60 0 0" Content="{Binding SelectedInfo.Date}"/>
-                        <Label Height="30" VerticalAlignment="Top" Margin="0 90 0 0" Content="{Binding SelectedInfo.Time}"/>
-                        <Label Height="30" VerticalAlignment="Top" Margin="0 120 0 0" Content="{Binding SelectedInfo.ClassRoom}"/>
-                        <Button Height="30" VerticalAlignment="Bottom" Background="DarkSeaGreen" Content="Toevoegen"/>
+                        <TextBlock Height="30" VerticalAlignment="Top" Text="Geselecteerde informatie"/>
+                        <TextBlock Height="30" VerticalAlignment="Top" Margin="0 30 0 0" Text="{Binding SelectedInfo.NLDate, StringFormat='Dag: {0}'}"/>
+                        <TextBlock Height="30" VerticalAlignment="Top" Margin="0 60 0 0" Text="{Binding SelectedInfo.Date, StringFormat='Datum: {0:dd/MM/yy}'}"/>
+                        <TextBlock Height="30" VerticalAlignment="Top" Margin="0 90 0 0" Text="{Binding SelectedInfo.Date.TimeOfDay, StringFormat='Tijd: {0:hh\\:mm}'}"/>
+                        <TextBlock Height="30" VerticalAlignment="Top" Margin="0 120 0 0" Text="{Binding SelectedInfo.ClassRoom, StringFormat='Lokaal: {0}'}"/>
+                        <Button Height="30" VerticalAlignment="Bottom" Background="DarkSeaGreen" Content="Toevoegen" Click="AddDate_OnClick"/>
                     </Grid>
                 </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="10">
+                <ListView Focusable="False" x:Name="dateListView" ItemsSource="{Binding DateItemList}" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
+                                <Grid Height="100">
+                                    <Label Content="{Binding Date}" VerticalAlignment="Top" Margin="0"/>
+                                    <Label Content="{Binding Date.TimeOfDay}" VerticalAlignment="Top" Margin="0 20 0 0"/>
+                                    <Label Content="{Binding ClassRoom}" VerticalAlignment="Top" Margin="0 40 0 0"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </Grid>
 

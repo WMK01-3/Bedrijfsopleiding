@@ -317,9 +317,6 @@
     <Resource Include="docs\MySqlCommand.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\Beautiful-Gradient-Wallpaper.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\WpfUIPickerControl\WpfUIPickerLib.csproj">
       <Project>{2dbf5938-6c20-448e-93f1-20d484fcb24a}</Project>
       <Name>WpfUIPickerLib</Name>

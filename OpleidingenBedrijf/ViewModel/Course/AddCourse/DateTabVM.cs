@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using BedrijfsOpleiding.Annotations;
 using BedrijfsOpleiding.View.CourseView.AddCourse;
 using WpfUIPickerLib;
 
@@ -12,10 +17,30 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
     public class DateTabVM : BaseViewModel
     {
-        private AddCourseView _addCourseView;
+        private readonly AddCourseView _addCourseView;
         private DateTab _view;
-
         private DateTime _nearestFirstDayOfWeek;
+
+        public SelectedInfoClass SelectedInfo { get; set; }
+        public bool[] IsDaySelected { get; set; }
+        public string CalendarCurrentWeekLabel =>
+                    $"{_nearestFirstDayOfWeek.AddDays(WeekMultiplier).ToString("MMMM", CultureInfo.InvariantCulture)} {_nearestFirstDayOfWeek.AddDays(WeekMultiplier).Year}";
+
+        public List<string> TimeLabels
+        {
+            get
+            {
+                var timeList = new List<string>();
+
+                for (var i = 0; i < 24; i++)
+                    timeList.Add($"{i}:00");
+
+                return timeList;
+            }
+        }
+
+        #region WeekMultiplier : int
+
         private int _weekMultiplier;
         public int WeekMultiplier
         {
@@ -23,10 +48,9 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             set => _weekMultiplier = value;
         }
 
-        public SelectedInfoClass SelectedInfo { get; set; }
-        public bool[] IsDaySelected { get; set; }
-        public string CalendarCurrentWeekLabel =>
-                    $"{_nearestFirstDayOfWeek.AddDays(WeekMultiplier).ToString("MMMM", CultureInfo.InvariantCulture)} {_nearestFirstDayOfWeek.AddDays(WeekMultiplier).Year}";
+        #endregion
+
+        #region DayDateStrings : string[]
 
         private string[] _dayDateStrings = new string[7];
         public string[] DayDateStrings
@@ -39,8 +63,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             }
         }
 
-        public DummyDataGridCalendarItem DummyCalendarItem =>
-                   new DummyDataGridCalendarItem();
+        #endregion
 
         #region TimeTumblers : List<TumblerData>
 
@@ -56,19 +79,6 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         }
 
         #endregion
-
-        public List<string> TimeLabels
-        {
-            get
-            {
-                var timeList = new List<string>();
-
-                for (var i = 0; i < 24; i++)
-                    timeList.Add($"{i}:00");
-
-                return timeList;
-            }
-        }
 
         #region CalendarItem : DataGridCalendarItem
 
@@ -94,10 +104,24 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             set
             {
                 _currentClassRoom = value;
-                SelectedInfo.ClassRoom = $"Lokaal: {value}";
-                OnPropertyChanged(nameof(SelectedInfo));
+                SelectedInfo.ClassRoom = value;
                 OnPropertyChanged(nameof(CurrentClassRoom));
                 SetCalendar();
+            }
+        }
+
+        #endregion
+
+        #region DateItemList : ObservableCollection<SelectedInfoClass>
+
+        private ObservableCollection<SelectedInfoClass> _dateItemList;
+        public ObservableCollection<SelectedInfoClass> DateItemList
+        {
+            get => _dateItemList;
+            set
+            {
+                _dateItemList = value;
+                OnPropertyChanged(nameof(DateItemList));
             }
         }
 
@@ -109,6 +133,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             _view = view;
             SelectedInfo = new SelectedInfoClass();
             IsDaySelected = new bool[7];
+            DateItemList = new ObservableCollection<SelectedInfoClass>();
 
             //Set the tumblerDatas
             var tumblerDatas = new List<TumblerData>();
@@ -244,10 +269,10 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             _currentSelectedDay = i;
             IsDaySelected[_currentSelectedDay] = true;
 
-            SelectedInfo.Date = $"Datum: {_nearestFirstDayOfWeek.AddDays(WeekMultiplier + i)}";
+            SelectedInfo.Date = _nearestFirstDayOfWeek.AddDays(WeekMultiplier + i).Date;
 
             SetCalendar();
-            OnPropertyChanged(nameof(SelectedInfo));
+            //OnPropertyChanged(nameof(SelectedInfo));
             OnPropertyChanged(nameof(IsDaySelected));
         }
 
@@ -263,11 +288,43 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         {
             if (_timeTumblers != null)
             {
-                SelectedInfo.Time = $"Tijd: {_timeTumblers[0].SelectedValue}:{_timeTumblers[1].SelectedValue}";
-                OnPropertyChanged(nameof(SelectedInfo));
+                int hours = int.Parse((string)_timeTumblers[0].SelectedValue);
+                int minutes = int.Parse((string)_timeTumblers[1].SelectedValue);
+                SelectedInfo.Date = ChangeTime(SelectedInfo.Date, hours, minutes);
             }
             SetCalendar();
         }
+
+        /// <summary>
+        /// Add a date to the list of dates if possible
+        /// </summary>
+        public void AddDate()
+        {
+            if (SelectedInfo.ClassRoom.IsEmpty() || SelectedInfo.Date.Day == 0)
+            {
+                //TODO Show Error
+                return;
+            }
+            else
+            {
+                ObservableCollection<SelectedInfoClass> tempDateList = DateItemList;
+                tempDateList.Add(SelectedInfo);
+                DateItemList = tempDateList;
+            }
+
+
+            SelectedInfo = new SelectedInfoClass();
+        }
+
+        /// <summary>
+        /// Changes the time of a date because DateTime is stupid
+        /// </summary>
+        /// <param name="orgDateTime"></param>
+        /// <param name="hour"></param>
+        /// <param name="minute"></param>
+        /// <returns></returns>
+        private DateTime ChangeTime(DateTime orgDateTime, int hour, int minute) =>
+            new DateTime(orgDateTime.Year, orgDateTime.Month, orgDateTime.Day, hour, minute, 0);
     }
 
     public class DataGridCalendarItem
@@ -281,90 +338,57 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         public Canvas Sunday { get; set; }
     }
 
-    public class DummyDataGridCalendarItem
+    public class SelectedInfoClass : INotifyPropertyChanged
     {
-        public Canvas Monday
+        #region Properties
+
+        #region Date : string
+
+        private DateTime _date;
+        public DateTime Date
         {
-            get
+            get => _date;
+            set
             {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(50, 40));
-                return canvas;
+                _date = value;
+                OnPropertyChanged(nameof(Date));
             }
+
         }
-        public Canvas Tuesday
+
+        #endregion
+
+        #region ClassRoom : string
+
+        private string _classRoom;
+        public string ClassRoom
         {
-            get
+            get => _classRoom;
+            set
             {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(80, 0));
-                return canvas;
-            }
-        }
-        public Canvas Wednesday
-        {
-            get
-            {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(10, 70));
-                return canvas;
-            }
-        }
-        public Canvas Thursday
-        {
-            get
-            {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(30, 90));
-                return canvas;
-            }
-        }
-        public Canvas Friday
-        {
-            get
-            {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(50, 40));
-                return canvas;
-            }
-        }
-        public Canvas Saturday
-        {
-            get
-            {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(120, 30));
-                return canvas;
-            }
-        }
-        public Canvas Sunday
-        {
-            get
-            {
-                Canvas canvas = new Canvas();
-                canvas.Children.Add(GetRect(0, 288));
-                return canvas;
+                _classRoom = value;
+                OnPropertyChanged(nameof(ClassRoom));
             }
         }
 
-        private static Rectangle GetRect(int height, int top)
-        {
-            Rectangle rect = new Rectangle
-            {
-                Width = 20,
-                Height = height,
-                Fill = new SolidColorBrush(Colors.LightSalmon)
-            };
-            Canvas.SetTop(rect, top);
-            return rect;
-        }
-    }
+        #endregion
 
-    public class SelectedInfoClass
-    {
-        public string Day { get; set; }
-        public string Date { get; set; }
-        public string Time { get; set; }
-        public string ClassRoom { get; set; }
+        public string NLDate => 
+            Date.ToString("D", new CultureInfo("nl-NL"));
+
+        #endregion
+
+        public SelectedInfoClass()
+        {
+            Date = new DateTime(1, 1, 1, 0, 0, 0);
+            ClassRoom = "";
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
