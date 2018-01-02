@@ -30,7 +30,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex += 1;
+            ViewModel.CheckData();
         }
 
         private void BtnPrevious_OnClick(object sender, RoutedEventArgs e)
@@ -50,6 +50,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private void ClassRoom_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             ViewModel.CurrentClassRoom = ((TextBox)sender).Text;
+            ViewModel.UpdateCalendar();
         }
 
         private void MondayGrid_OnMouseDown(object sender, MouseButtonEventArgs e)

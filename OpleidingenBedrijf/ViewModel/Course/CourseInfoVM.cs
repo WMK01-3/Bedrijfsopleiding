@@ -13,7 +13,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
     public class CourseInfoVM : BaseViewModel
     {
         private User _user;
-        private Location _location; 
+        private Location _location;
         public string courseStatus { get; set; }
 
         //THIS IS THE CURRENT LOADED COURSE
@@ -21,7 +21,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string CourseDesc => Course.Description;
         public string CourseTitle => Course.Title;
         public string CoursePrice => $"Prijs: €{Course.Price.ToString(CultureInfo.CurrentCulture)} / les";
-        public string CourseLessonCount => $"{Course.Dates} lessen";
+        public string CourseLessonCount => $"{GetCourseDates().Count()} lessen";
         public string CourseMinutesPerLesson => $"Minuten per les: {Course.Duration}";
 
         public string CourseParticipants =>
@@ -38,15 +38,14 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string UserEmail => _user.Email;
         public string CourseStreet => _location.Street;
         public string CourseCity => $"{_location.City} , {_location.Country}";
-        public string CourseClassRoom => _location.Classroom;
+        public string CourseClassRoom => GetClassRoom();
 
-
-        public IEnumerable<DateTime> CourseDates => Course.Dates?.ToList();
+        public IEnumerable<DateTime> CourseDates => GetCourseDates();
 
         public CourseInfoVM(int courseId, MainWindowVM vm, UserControl boundView) : base(vm)
         {
             _user = vm.CurUser;
-            
+
 
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -58,7 +57,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
-                    Dates = c.Dates,
                     Description = c.Description,
                     Difficulty = c.Difficulty,
                     Duration = c.Duration,
@@ -68,12 +66,34 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     Price = c.Price,
                     Title = c.Title,
                     Archived = c.Archived
-                    
+
                 };
 
                 _location = (from location in context.Locations
                              where location.LocationID == Course.LocationID
                              select location).First();
+            }
+        }
+
+        private IEnumerable<DateTime> GetCourseDates()
+        {
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                IQueryable<DateTime> dateList = from d in context.CourseDates
+                                                where d.CourseID == Course.CourseID
+                                                select d.Date;
+                return dateList.Any() ? dateList.ToList() : null;
+            }
+        }
+        private string GetClassRoom()
+        {
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                IQueryable<string> classroom = from d in context.CourseDates
+                               where d.CourseID == Course.CourseID
+                               select d.ClassRoom;
+
+                return classroom.Any() ? classroom.ToString() : "";
             }
         }
 
@@ -97,7 +117,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                         where c.CourseID == Course.CourseID
                                         select c).First();
                 course.Archived = !course.Archived;
-                
+
                 context.SaveChanges();
                 MainVM.CurrentView = new CourseOverView(MainVM);
             }
@@ -125,7 +145,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     IQueryable<Models.Course> crsList = from c in context.Courses where c.CourseID == crsID select c;
 
                     Models.Course course = crsList.First();
-                    
+
                     Invoice invoice = new Invoice(DateTime.Now, _user);
                     invoice.Add(course);
 
@@ -134,7 +154,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     {
                         GenerateInvoice.mailInvoice(pdf, invoice, _user.Email);
                     }
-                    
+
 
                     return false;
                 }

@@ -20,7 +20,6 @@ namespace BedrijfsOpleiding.Models
         public decimal Price { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<DateTime> Dates { get; set; }        // all of the active course dates
         public bool Archived { get; set; }
         public DateTime Created_at = DateTime.Now;
 

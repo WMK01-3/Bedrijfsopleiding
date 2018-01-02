@@ -39,35 +39,30 @@ namespace BedrijfsOpleiding
                 {
                     new Location
                     {
-                        Classroom = "dummylokaal1",
                         Country = "Nederland",
                         City = "Zwolle",
                         Street = "Assendorperstraat"
                     },
                     new Location
                     {
-                        Classroom = "dummylokaal2",
                         Country = "Nederland",
                         City = "Amersfoort",
                         Street = "Trompetstraat"
                     },
                     new Location
                     {
-                        Classroom = "dummylokaal3",
                         Country = "Nederland",
                         City = "Heemskerk",
                         Street = "De Trompet"
                     },
                     new Location
                     {
-                        Classroom = "dummylokaal4",
                         Country = "Nederland",
                         City = "Den Haag",
                         Street = "Klimopstraat"
                     },
                     new Location
                     {
-                        Classroom = "dummylokaal5",
                         Country = "Nederland",
                         City = "Maastricht",
                         Street = "Aamruwe"

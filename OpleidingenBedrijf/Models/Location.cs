@@ -13,7 +13,6 @@ namespace BedrijfsOpleiding.Models
     {
         [Key]
         public int LocationID { get; set; }
-        public string Classroom { get; set; }
 
         // Address stuff
         public string Street { get; set; }
@@ -29,7 +28,6 @@ namespace BedrijfsOpleiding.Models
 
         public Location(string classroom, string street, string city, string zipcode)
         {
-            this.Classroom = classroom;
             this.Street = street;
             this.City = city;
             this.Country = zipcode;
@@ -37,7 +35,7 @@ namespace BedrijfsOpleiding.Models
 
         public override string ToString()
         {
-            return $"[{Classroom}] {Street}, {City}";
+            return $"{Street}, {City}";
         }
     }
 }

@@ -17,8 +17,8 @@ namespace BedrijfsOpleiding.Models
         public virtual Course Course { get; set; }
         
         public virtual DateTime Date { get; set; }
-
-
+        public virtual string ClassRoom { get; set; }
+        
     }
 
 

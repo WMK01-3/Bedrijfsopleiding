@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using BedrijfsOpleiding.Annotations;
@@ -26,14 +28,14 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         public string CalendarCurrentWeekLabel =>
                     $"{_nearestFirstDayOfWeek.AddDays(WeekMultiplier).ToString("MMMM", CultureInfo.InvariantCulture)} {_nearestFirstDayOfWeek.AddDays(WeekMultiplier).Year}";
 
-        public List<string> TimeLabels
+        public List<TimeLines> TimeLines
         {
             get
             {
-                var timeList = new List<string>();
+                var timeList = new List<TimeLines>();
 
                 for (var i = 0; i < 24; i++)
-                    timeList.Add($"{i}:00");
+                    timeList.Add(new TimeLines { X2 = 60, Y1 = 24 * i + 1, Y2 = 24 * i + 1, Text = $"{i}:00", Margin = $"0 {24 * i - 12} 0 0" });
 
                 return timeList;
             }
@@ -106,14 +108,14 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 _currentClassRoom = value;
                 SelectedInfo.ClassRoom = value;
                 OnPropertyChanged(nameof(CurrentClassRoom));
-                SetCalendar();
+                UpdateCalendar();
             }
         }
 
         #endregion
 
         #region DateItemList : ObservableCollection<SelectedInfoClass>
-
+        //List of the final date items
         private ObservableCollection<SelectedInfoClass> _dateItemList;
         public ObservableCollection<SelectedInfoClass> DateItemList
         {
@@ -164,7 +166,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 _nearestFirstDayOfWeek = dateNow.AddDays((int)DayOfWeek.Monday - (int)DateTime.Now.DayOfWeek);
             _weekMultiplier = 0;
 
-            SetCalendar();
+            UpdateCalendar();
         }
 
         /// <summary>
@@ -173,16 +175,20 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         /// <param name="i"></param>
         public void SetCalendar(int i)
         {
-            _weekMultiplier += i;
-            SetCalendar();
-            OnPropertyChanged(nameof(CalendarCurrentWeekLabel));
+            if (_weekMultiplier + i > 0)
+            {
+                _weekMultiplier += i;
+                UpdateCalendar();
+                OnPropertyChanged(nameof(CalendarCurrentWeekLabel));
+            }
         }
 
-        private void SetCalendar()
+        public void UpdateCalendar()
         {
             var strings = new string[7];
             for (var j = 0; j < 7; j++)
                 strings[j] = _nearestFirstDayOfWeek.AddDays(WeekMultiplier + j).Day.ToString();
+
             DayDateStrings = strings;
 
             CalendarItem = new DataGridCalendarItem
@@ -204,34 +210,39 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         /// <returns></returns>
         private Canvas GetDaySchedule(int day)
         {
-            const int barSize = 24;
-
             Canvas canvas = new Canvas();
             DateTime date = _nearestFirstDayOfWeek.AddDays(WeekMultiplier + day);
+            var filledTimeSpans = new List<TimeSpan>();
 
+            //See if the classroom has any other courses, so it cannot be overbooked
             using (CustomDbContext context = new CustomDbContext())
             {
-                var items = from i in context.CourseDates
-                            join j in context.Courses on i.CourseID equals j.CourseID
-                            where i.Date == date
-                            select new { i.Date, j.Duration };
-
-                if (items.Any())
+                if (_view.classRoom != null)
                 {
-                    foreach (var item in items)
+                    string classroomText = _view.classRoom.Text;
+
+                    var items = from i in context.CourseDates
+                                join j in context.Courses on i.CourseID equals j.CourseID
+                                where i.Date.Year == date.Year && i.Date.Month == date.Month && i.Date.Day == date.Day && i.ClassRoom == classroomText
+                                select new { i.Date, j.Duration };
+
+                    if (items.Any())
                     {
-                        //1 pixel = 5 minutes
-                        //24 hours = 288 pixels
-                        Rectangle rect = new Rectangle
+                        foreach (var item in items)
                         {
-                            Width = 10,
-                            Height = item.Duration / (60 / barSize)
-                        };
+                            Rectangle rect = new Rectangle
+                            {
+                                Width = 10,
+                                Height = item.Duration * 0.4,
+                                Fill = new SolidColorBrush(Colors.Orange)
+                            };
 
-                        int dist = item.Date.Hour * 24 + item.Date.Minute / 5 * 2;
-                        Canvas.SetTop(rect, dist);
+                            int dist = (item.Date.Hour - 2) * 24 + item.Date.Minute * 2;
+                            Canvas.SetTop(rect, dist);
 
-                        canvas.Children.Add(rect);
+                            filledTimeSpans = GetTimeSpanList(item.Date, item.Duration);
+                            canvas.Children.Add(rect);
+                        }
                     }
                 }
             }
@@ -239,27 +250,65 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             //If it is the day that is currently selected
             if (_currentSelectedDay == day)
             {
+                string duration = _addCourseView.ViewModel.MainTab.Duration.Text;
+                Color color = Colors.YellowGreen;
+
+                if (_timeTumblers != null && duration.IsEmpty() == false)
+                {
+                    List<TimeSpan> newTimeSpans = GetTimeSpanList(new DateTime(1, 1, 1, TimeTumblers[0].SelectedValueIndex, TimeTumblers[1].SelectedValueIndex * 5, 0), int.Parse(duration));
+
+                    foreach (TimeSpan timeSpan in newTimeSpans)
+                    {
+                        //Cannot add date because classroom is already booked
+                        if (filledTimeSpans.Contains(timeSpan))
+                            color = Colors.Firebrick;
+                    }
+                }
+
                 Rectangle rect = new Rectangle
                 {
                     Width = 10,
                     Height = 0,
-                    Fill = new SolidColorBrush(Colors.YellowGreen)
+                    Fill = new SolidColorBrush(color)
                 };
 
-                string text = _addCourseView.ViewModel.MainTab.Duration.Text;
-
-                if (text.IsEmpty() == false)
-                    rect.Height = int.Parse(text) / (60 / barSize);
+                if (duration.IsEmpty() == false)
+                    rect.Height = int.Parse(duration) * 0.4;
 
                 if (_timeTumblers != null)
-                    Canvas.SetTop(rect, _timeTumblers[0].SelectedValueIndex * barSize + _timeTumblers[1].SelectedValueIndex / (60 / barSize));
+                    Canvas.SetTop(rect, 1 + _timeTumblers[0].SelectedValueIndex * 24 + _timeTumblers[1].SelectedValueIndex * 2);
                 else
-                    Canvas.SetTop(rect, 0);
+                    Canvas.SetTop(rect, 1);
+
+                Canvas.SetLeft(rect, 30);
 
                 canvas.Children.Add(rect);
             }
 
             return canvas;
+        }
+
+        private static List<TimeSpan> GetTimeSpanList(DateTime date, int duration)
+        {
+            var timeSpans = new List<TimeSpan>();
+            var hourOffset = 0;
+            var minute = 0;
+
+            for (var i = 0; i < duration; i++)
+            {
+                if (i == 60)
+                {
+                    minute = 0;
+                    hourOffset++;
+                }
+
+                TimeSpan timeSpan = new TimeSpan(date.Hour + hourOffset, date.Minute + minute, 0);
+                if (timeSpans.Contains(timeSpan) == false)
+                    timeSpans.Add(timeSpan);
+
+                minute++;
+            }
+            return timeSpans;
         }
 
         private int _currentSelectedDay;
@@ -269,10 +318,9 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             _currentSelectedDay = i;
             IsDaySelected[_currentSelectedDay] = true;
 
-            SelectedInfo.Date = _nearestFirstDayOfWeek.AddDays(WeekMultiplier + i).Date;
+            SelectedInfo.Date = ChangeDate(SelectedInfo.Date, _nearestFirstDayOfWeek.AddDays(WeekMultiplier + i).Date);
 
-            SetCalendar();
-            //OnPropertyChanged(nameof(SelectedInfo));
+            UpdateCalendar();
             OnPropertyChanged(nameof(IsDaySelected));
         }
 
@@ -292,7 +340,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 int minutes = int.Parse((string)_timeTumblers[1].SelectedValue);
                 SelectedInfo.Date = ChangeTime(SelectedInfo.Date, hours, minutes);
             }
-            SetCalendar();
+            UpdateCalendar();
         }
 
         /// <summary>
@@ -303,28 +351,40 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             if (SelectedInfo.ClassRoom.IsEmpty() || SelectedInfo.Date.Day == 0)
             {
                 //TODO Show Error
-                return;
             }
             else
             {
                 ObservableCollection<SelectedInfoClass> tempDateList = DateItemList;
-                tempDateList.Add(SelectedInfo);
+                tempDateList.Add(new SelectedInfoClass { Date = SelectedInfo.Date, ClassRoom = SelectedInfo.ClassRoom });
                 DateItemList = tempDateList;
+
+                SelectedInfo.Date = new DateTime(1, 1, 1, 0, 0, 0);
+                SelectedInfo.ClassRoom = "";
+                _view.classRoom.Text = "";
             }
-
-
-            SelectedInfo = new SelectedInfoClass();
         }
 
         /// <summary>
         /// Changes the time of a date because DateTime is stupid
         /// </summary>
-        /// <param name="orgDateTime"></param>
+        /// <param name="oldDateTime"></param>
         /// <param name="hour"></param>
         /// <param name="minute"></param>
         /// <returns></returns>
-        private DateTime ChangeTime(DateTime orgDateTime, int hour, int minute) =>
-            new DateTime(orgDateTime.Year, orgDateTime.Month, orgDateTime.Day, hour, minute, 0);
+        private static DateTime ChangeTime(DateTime oldDateTime, int hour, int minute) =>
+            new DateTime(oldDateTime.Year, oldDateTime.Month, oldDateTime.Day, hour, minute, 0);
+
+        private static DateTime ChangeDate(DateTime oldDateTime, DateTime newDateTime) =>
+            new DateTime(newDateTime.Year, newDateTime.Month, newDateTime.Day, oldDateTime.Hour, oldDateTime.Minute, 0);
+
+        /// <summary>
+        /// Checks if dates are selected, if so go to the next tab
+        /// </summary>
+        public void CheckData()
+        {
+            if (DateItemList.Count > 0)
+                _addCourseView.ViewModel.AddCourse();
+        }
     }
 
     public class DataGridCalendarItem
@@ -336,6 +396,15 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         public Canvas Friday { get; set; }
         public Canvas Saturday { get; set; }
         public Canvas Sunday { get; set; }
+    }
+
+    public class TimeLines
+    {
+        public double X2 { get; set; }
+        public double Y1 { get; set; }
+        public double Y2 { get; set; }
+        public string Text { get; set; }
+        public string Margin { get; set; }
     }
 
     public class SelectedInfoClass : INotifyPropertyChanged
@@ -373,8 +442,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         #endregion
 
-        public string NLDate => 
-            Date.ToString("D", new CultureInfo("nl-NL"));
+        public string NLDate =>
+            Date.ToString("dddd", new CultureInfo("nl-NL"));
 
         #endregion
 

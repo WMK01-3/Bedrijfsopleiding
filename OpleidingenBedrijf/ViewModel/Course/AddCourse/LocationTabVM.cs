@@ -15,12 +15,13 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
     public class LocationTabVM : BaseViewModel
     {
-
+        private LocationTab _view;
+        private AddCourseView _addCourseView;
 
         private List<string> _suggestions;
         private string _errorMessage = "Testmesssage";
         private Visibility _errorVisible = Visibility.Hidden;
-
+        
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -67,10 +68,10 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             }
         }
 
+        public int SelectedLocationID { get; set; }
 
 
-
-        public int AddLocation(string mapsLoc, string room)
+        public int AddLocation(string mapsLoc)
         {
             string[] loc = new string[5];
             int i = 0;
@@ -79,20 +80,12 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 loc[i] = l;
                 i++;
             }
-            
 
-            if (String.IsNullOrWhiteSpace(loc[0]) || String.IsNullOrWhiteSpace(loc[1]) || String.IsNullOrWhiteSpace(loc[2]) )
+
+            if (String.IsNullOrWhiteSpace(loc[0]) || String.IsNullOrWhiteSpace(loc[1]) || String.IsNullOrWhiteSpace(loc[2]))
             {
                 ErrorVisible = Visibility.Visible;
                 ErrorMessage = "De opgegeven locatie is niet correct";
-                return 0;
-            }
-
-
-            if (room == "")
-            {
-                ErrorVisible = Visibility.Visible;
-                ErrorMessage = "Lokaal mag niet leeg zijn";
                 return 0;
             }
 
@@ -104,8 +97,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 {
                     Street = loc[0],
                     City = loc[1],
-                    Country = loc[2],
-                    Classroom = room
+                    Country = loc[2]
                 };
 
                 context.Locations.AddOrUpdate(location);
@@ -122,15 +114,14 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             string[] loc = mapsLoc.Split(',');   // classroom, street, city, Country
             try
             {
-                string classroom = loc[0];
-                string street = loc[1];
-                string city = loc[2];
-                string country = loc[3];
+                string street = loc[0];
+                string city = loc[1];
+                string country = loc[2];
                 using (CustomDbContext context = new CustomDbContext())
                 {
                     IQueryable<Location> loclist = from l in context.Locations
-                        where (l.Classroom == classroom) && (l.Street == street) && (l.City == city) && (l.Country == country)
-                        select l;
+                                                   where ((l.Street == street) && (l.City == city) && (l.Country == country))
+                                                   select l;
                     Location location = loclist.First();
                     return location.LocationID;
                 }
@@ -144,16 +135,24 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         /* TERINGZOOI die allemaal nodig is voor één fucking combobox */
         //private string _oneTeacher;
         public CollectionView locationList { get; }
-        public LocationTabVM(MainWindowVM vm) : base(vm)
+        public LocationTabVM(LocationTab view, MainWindowVM vm, AddCourseView addCourseView) : base(vm)
         {
-            var locations = new List<Location>();
+            _addCourseView = addCourseView;
+            _view = view;
+            List<Location> locations;
             using (CustomDbContext context = new CustomDbContext())
             {
                 locations = (from l in context.Locations select l).ToList();
             }
-            List<string> loclist = locations.Select(loc => $"{loc.Classroom},{loc.Street},{loc.City},{loc.Country}").ToList();
+            List<string> loclist = locations.Select(loc => $"{loc.Street},{loc.City},{loc.Country}").ToList();
             loclist.Insert(0, "Nieuwe locatie toevoegen");
             locationList = new CollectionView(loclist);
+        }
+
+        public void CheckData()
+        {
+            if (_view.tbCity.Text.IsEmpty() == false)
+                _addCourseView.tabControl.SelectedIndex += 1;
         }
     }
 }
