@@ -7,6 +7,7 @@ using System.Windows.Media;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.CourseView.AddCourse;
+using BedrijfsOpleiding.ViewModel.Course.AddCourse;
 using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
@@ -71,7 +72,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
 
 
-        public void AddCourse(int locID)
+        public void AddCourse()
         {
             using (CustomDbContext context = new CustomDbContext())
             {
@@ -90,7 +91,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 //Everything from the first tab
                 course.Title = _mainTab.CourseName.Text;
                 course.Description = new TextRange(_mainTab.Description.Document.ContentStart, _mainTab.Description.Document.ContentEnd).Text;
-                course.Difficulty = (Models.Course.DifficultyEnum) _mainTab.Difficulty.SelectedItem;
+                course.Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem;
                 course.Duration = int.Parse(_mainTab.Duration.Text);
                 course.Price = decimal.Parse(_mainTab.Price.Text);
 
@@ -98,16 +99,24 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
 
 
-                //Dates
 
+                //Dates
+                foreach (SelectedInfoClass dateItem in _dateTab.ViewModel.DateItemList)
+                    context.CourseDates.Add(new CourseDate { CourseID = course.CourseID, Date = dateItem.Date, ClassRoom = dateItem.ClassRoom });
 
                 //Location
+                int locID = _locationTab.cboChooseLocation.SelectedValue.ToString() == "Nieuwe locatie toevoegen" ? _locationTab.ViewModel.AddLocation(_locationTab.tbCity.Text) : _locationTab.ViewModel.GetLocation(_locationTab.cboChooseLocation.SelectedValue.ToString());
                 course.LocationID = locID;
+
+                //Send message to the teacher
+                context.Messages.Add(new Models.Message { UserID = course.UserID, MessageText = $"U bent toegevoegd als leraar aan {course.Title}", Read = false, Timestamp = DateTime.Now, Title = "Toegevoegd aan cursus" });
 
                 context.Courses.AddOrUpdate(course);
                 context.SaveChanges();
 
                 MainVM.CurrentView = new CourseOverView(MainVM);
+
+
             }
         }
 

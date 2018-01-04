@@ -102,7 +102,7 @@
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Course\AddCourse\DateVM.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\DateTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\LocationTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\MainTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\TeacherVM.cs" />
@@ -289,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Invoices\" />
+    <Folder Include="Themes\Calendar\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="docs\MySqlTransaction.xml" />
@@ -324,6 +325,10 @@
     <Resource Include="docs\MySqlCommand.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WpfUIPickerControl\WpfUIPickerLib.csproj">
+      <Project>{2dbf5938-6c20-448e-93f1-20d484fcb24a}</Project>
+      <Name>WpfUIPickerLib</Name>
+    </ProjectReference>
     <Resource Include="GoogleMaps.LocationServices.readme.txt" />
     <Content Include="View\GoogleMaps\map.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

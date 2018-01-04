@@ -26,7 +26,6 @@ namespace BedrijfsOpleiding.View.LoginView
             using (CustomDbContext context = new CustomDbContext())
             {
                 context.AddDummyData(true);
-
             }
         }
 

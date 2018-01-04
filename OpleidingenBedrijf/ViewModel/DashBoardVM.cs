@@ -107,25 +107,24 @@ namespace BedrijfsOpleiding.ViewModel
             using (var context = new CustomDbContext())
             {
                 var allLocationIdFromCourses = (from cl in context.Courses
-                    select cl.LocationID).Distinct().ToList();
+                                                select cl.LocationID).Distinct().ToList();
 
                 foreach (var location_id in allLocationIdFromCourses)
                 {
                     var location = (from l in context.Locations
-                        where l.LocationID == location_id
-                        select l).FirstOrDefault();
+                                    where l.LocationID == location_id
+                                    select l).FirstOrDefault();
 
                     double Long = _getLongLat(location.Street, location.City)[0];
                     double Lat = _getLongLat(location.Street, location.City)[1];
-                    string title = location.Classroom.ToString();
 
                     Console.WriteLine($"{location.City}: {Long}, {Lat}");
 
                     wbMaps.InvokeScript("addMarker", JsonConvert.SerializeObject(new
                     {
-                        Lat = new double[] {Lat},
-                        Long = new double[] {Long}
-                    }), title, location.LocationID);
+                        Lat = new double[] { Lat },
+                        Long = new double[] { Long }
+                    }), "Lokatie", location.LocationID);
                 }
             }
 
@@ -136,15 +135,15 @@ namespace BedrijfsOpleiding.ViewModel
             using (var context = new CustomDbContext())
             {
                 var users = (from u in context.Users
-                    where u.Role == User.RoleEnum.Customer
-                    select u).ToList();
+                             where u.Role == User.RoleEnum.Customer
+                             select u).ToList();
 
                 var course = (from c in context.Courses
-                    select c).ToList();
+                              select c).ToList();
 
                 var teachers = (from u in context.Users
-                    where u.Role == User.RoleEnum.Teacher
-                    select u).ToList();
+                                where u.Role == User.RoleEnum.Teacher
+                                select u).ToList();
 
                 label1.Content = users.Count.ToString();
                 label2.Content = course.Count.ToString();
@@ -158,8 +157,8 @@ namespace BedrijfsOpleiding.ViewModel
             using (var context = new CustomDbContext())
             {
                 var course = (from c in context.Courses
-                    where c.CourseID == course_id
-                    select c).First();
+                              where c.CourseID == course_id
+                              select c).First();
 
                 labelTitle.Content = course.Title;
                 tbxDesc.Text = course.Description;

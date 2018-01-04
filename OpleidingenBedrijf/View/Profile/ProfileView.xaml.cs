@@ -1,4 +1,5 @@
-﻿using BedrijfsOpleiding.Models;
+﻿using System.Windows;
+using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Profile;
 
@@ -17,12 +18,20 @@ namespace BedrijfsOpleiding.View.Profile
 
         #endregion
 
+
         public ProfileView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
 
-           // if (vm.CurUser.Role != User.RoleEnum.Teacher)
+            if (!MainVM.IsTeacher || !MainVM.IsEmployee)
+            {
+                TabProfession.Visibility = Visibility.Hidden;
+            }
+            // if (vm.CurUser.Role != User.RoleEnum.Teacher)
             //    profileTab.SelectedIndex += 1;
         }
+
+
+
     }
 }

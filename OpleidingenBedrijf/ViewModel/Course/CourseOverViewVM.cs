@@ -37,8 +37,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
         private string _difficultyFilter="";
         private string _locationFilter = "";
 
-
-
         public List<Models.Course.DifficultyEnum> GetDifficultyList()
         {
             var list = new List<Models.Course.DifficultyEnum>
@@ -81,7 +79,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                         );
                 }
 
-
+                    
                 foreach (Models.Course course in result)
                 {
                     course.Location = (from l in context.Locations

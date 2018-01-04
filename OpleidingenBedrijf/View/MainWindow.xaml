@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1250">
     <Grid Background="#EEE">
-        <Grid.RowDefinitions>
+        <Image Source="../images/Beautiful-Gradient-Wallpaper.jpg" Stretch="Fill"/>
+        <Grid>
+            <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -17,6 +19,7 @@
 
         <!--Main Content-->
         <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="1"/>
+        </Grid>
     </Grid>
 </Window>
 
