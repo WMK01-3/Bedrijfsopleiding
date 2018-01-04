@@ -53,7 +53,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                    where course.CourseID == courseId
                                    select course).First();
 
-                courseStatus = c.Archived ? "Dearchiveer cursus" : "Archiveer cursus";
+                CourseStatus = c.Archived ? "Dearchiveer cursus" : "Archiveer cursus";
                 Course = new Models.Course
                 {
                     CourseID = c.CourseID,
@@ -132,18 +132,11 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     IQueryable<Enrollment> result = from e in context.Enrollments
                                                     where e.UserID == _user.UserID && e.CourseID == Course.CourseID
                                                     select e;
-
                     if (result.Any()) return true;
-
-
-                    context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID));
-
+                    context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID, false));
                     context.SaveChanges();
-
                     int crsID = Course.CourseID;
-
                     IQueryable<Models.Course> crsList = from c in context.Courses where c.CourseID == crsID select c;
-
                     Models.Course course = crsList.First();
 
                     Invoice invoice = new Invoice(DateTime.Now, _user);
@@ -154,8 +147,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     {
                         GenerateInvoice.mailInvoice(pdf, invoice, _user.Email);
                     }
-
-
                     return false;
                 }
             }

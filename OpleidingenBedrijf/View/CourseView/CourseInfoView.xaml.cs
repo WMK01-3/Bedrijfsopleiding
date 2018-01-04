@@ -58,13 +58,9 @@ namespace BedrijfsOpleiding.View.CourseView
         /// <param name="e"></param>
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
-
             bool isSignedUp = _viewModel.IsUserSignedUp(false);
-                btnSignUp.Visibility = Visibility.Hidden;
-                SignedUp.Visibility = Visibility.Visible;
-            
-
+            btnSignUp.Visibility = Visibility.Hidden;
+            SignedUp.Visibility = Visibility.Visible;
         }
-
     }
 }

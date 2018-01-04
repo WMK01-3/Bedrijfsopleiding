@@ -13,7 +13,6 @@
         <Border BorderThickness="1" BorderBrush="Gray" Width="350" Height="320" VerticalAlignment="Top">
             <Grid Background="White">
                 <Label Content="Inloggen" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
-
                 <Grid Height="200" Margin="0, 70, 0, 0">
                     <!--Error Message Grid-->
                     <Grid  Height="32" x:Name="ErrorMessage" VerticalAlignment="Top" Width="250">

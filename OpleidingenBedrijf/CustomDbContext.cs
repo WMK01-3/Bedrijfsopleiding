@@ -177,9 +177,6 @@ namespace BedrijfsOpleiding
                 }
                 this.SaveChanges();
             }
-
         }
     }
-
-
 }

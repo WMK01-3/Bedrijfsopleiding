@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using BedrijfsOpleiding.View.Profile;
 using BedrijfsOpleiding.ViewModel;
 using ProfileView = BedrijfsOpleiding.View.Profile.ProfileView;
 
@@ -36,7 +37,7 @@ namespace BedrijfsOpleiding.View
 
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
-            MainVM.CurrentView = new ProfileView(MainVM);
+            MainVM.CurrentView = new ProfileSubscriptions(MainVM);
             //MainVM.CurrentView = new MessageView.MessageView(MainVM);
         }
     }

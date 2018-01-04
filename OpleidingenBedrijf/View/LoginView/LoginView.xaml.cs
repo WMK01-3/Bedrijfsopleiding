@@ -1,8 +1,8 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
-
 namespace BedrijfsOpleiding.View.LoginView
 {
     public partial class LoginView

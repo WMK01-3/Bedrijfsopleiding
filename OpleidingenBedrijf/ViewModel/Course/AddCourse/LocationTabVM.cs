@@ -17,9 +17,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
     {
         private LocationTab _view;
         private AddCourseView _addCourseView;
-
         private List<string> _suggestions;
-        private string _errorMessage = "Testmesssage";
+        private string _errorMessage;
         private Visibility _errorVisible = Visibility.Hidden;
         
         public string ErrorMessage
@@ -27,9 +26,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             get => _errorMessage;
             set
             {
-
                 _errorMessage = value;
-
                 OnPropertyChanged(nameof(ErrorMessage));
             }
         }
@@ -52,12 +49,10 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             {
                 _suggestions = value;
                 OnPropertyChanged(nameof(Suggestions));
-
             }
         }
 
         private string _tbCityValue;
-
         public string TbCityValue
         {
             get => _tbCityValue;
@@ -70,7 +65,6 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         public int SelectedLocationID { get; set; }
 
-
         public int AddLocation(string mapsLoc)
         {
             string[] loc = new string[3];
@@ -81,16 +75,13 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 i++;
             }
 
-
             if (String.IsNullOrWhiteSpace(loc[0]) || String.IsNullOrWhiteSpace(loc[1]) || String.IsNullOrWhiteSpace(loc[2]))
             {
                 ErrorVisible = Visibility.Visible;
                 ErrorMessage = "De opgegeven locatie is niet correct";
                 return 0;
             }
-
             int locID;
-
             using (CustomDbContext context = new CustomDbContext())
             {
                 Models.Location location = new Location()
@@ -99,13 +90,10 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                     City = loc[1],
                     Country = loc[2]
                 };
-
                 context.Locations.AddOrUpdate(location);
                 context.SaveChanges();
-
                 locID = location.LocationID;
             }
-
             return locID;
         }
 
@@ -132,7 +120,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             }
         }
 
-        /* TERINGZOOI die allemaal nodig is voor één fucking combobox */
+        /*Provides values for combobox*/
         //private string _oneTeacher;
         public CollectionView locationList { get; }
         public LocationTabVM(LocationTab view, MainWindowVM vm, AddCourseView addCourseView) : base(vm)
