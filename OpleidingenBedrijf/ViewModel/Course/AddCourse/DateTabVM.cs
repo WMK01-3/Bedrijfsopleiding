@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using BedrijfsOpleiding.Annotations;
@@ -19,6 +16,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 {
     public class DateTabVM : BaseViewModel
     {
+        private int _currentDateElementIndex = 0;
         private readonly AddCourseView _addCourseView;
         private DateTab _view;
         private DateTime _nearestFirstDayOfWeek;
@@ -127,13 +125,24 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             }
         }
 
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+            }
+        }
+
         #endregion
 
         public DateTabVM(MainWindowVM vm, DateTab view, AddCourseView addCourseView) : base(vm)
         {
             _addCourseView = addCourseView;
             _view = view;
-            SelectedInfo = new SelectedInfoClass();
+            SelectedInfo = new SelectedInfoClass(_currentDateElementIndex);
             IsDaySelected = new bool[7];
             DateItemList = new ObservableCollection<SelectedInfoClass>();
 
@@ -221,9 +230,15 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 {
                     string classroomText = _view.classRoom.Text;
 
+                    LocationTabVM locTab = _addCourseView.ViewModel.LocationTab.ViewModel;
+                    string[] locStr = locTab.GetLocationArray();
+                    string street = locStr[0];
+                    string city = locStr[1];
+                    string country = locStr[2];
+
                     var items = from i in context.CourseDates
                                 join j in context.Courses on i.CourseID equals j.CourseID
-                                where i.Date.Year == date.Year && i.Date.Month == date.Month && i.Date.Day == date.Day && i.ClassRoom == classroomText
+                                where i.Date.Year == date.Year && i.Date.Month == date.Month && i.Date.Day == date.Day && i.ClassRoom == classroomText && j.Location.Street == street && j.Location.City == city && j.Location.Country == country
                                 select new { i.Date, j.Duration };
 
                     if (items.Any())
@@ -240,7 +255,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                             int dist = (item.Date.Hour - 2) * 24 + item.Date.Minute * 2;
                             Canvas.SetTop(rect, dist);
 
-                            filledTimeSpans = GetTimeSpanList(item.Date, item.Duration);
+                            filledTimeSpans.AddRange(GetTimeSpanList(item.Date, item.Duration));
+
                             canvas.Children.Add(rect);
                         }
                     }
@@ -314,6 +330,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         private int _currentSelectedDay;
         public void SelectDay(int i)
         {
+            if (_nearestFirstDayOfWeek.AddDays(WeekMultiplier + i) < DateTime.Now) return;
+
             IsDaySelected[_currentSelectedDay] = false;
             _currentSelectedDay = i;
             IsDaySelected[_currentSelectedDay] = true;
@@ -322,11 +340,6 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
             UpdateCalendar();
             OnPropertyChanged(nameof(IsDaySelected));
-        }
-
-        public void DeSelectDay()
-        {
-
         }
 
         /// <summary>
@@ -348,14 +361,16 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         /// </summary>
         public void AddDate()
         {
+            ErrorMessage = "";
+
             if (SelectedInfo.ClassRoom.IsEmpty() || SelectedInfo.Date.Day == 0)
             {
-                //TODO Show Error
+                ErrorMessage = "Selecteer een datum en klas";
             }
             else
             {
                 ObservableCollection<SelectedInfoClass> tempDateList = DateItemList;
-                tempDateList.Add(new SelectedInfoClass { Date = SelectedInfo.Date, ClassRoom = SelectedInfo.ClassRoom });
+                tempDateList.Add(new SelectedInfoClass(_currentDateElementIndex += 1) { Date = SelectedInfo.Date, ClassRoom = SelectedInfo.ClassRoom });
                 DateItemList = tempDateList;
 
                 SelectedInfo.Date = new DateTime(1, 1, 1, 0, 0, 0);
@@ -378,7 +393,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             new DateTime(newDateTime.Year, newDateTime.Month, newDateTime.Day, oldDateTime.Hour, oldDateTime.Minute, 0);
 
         /// <summary>
-        /// Checks if dates are selected, if so go to the next tab
+        /// Checks if dates are selected, if so create the course
         /// </summary>
         public void CheckData()
         {
@@ -445,12 +460,15 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         public string NLDate =>
             Date.ToString("dddd", new CultureInfo("nl-NL"));
 
+        public int ElementIndex { get; set; }
+
         #endregion
 
-        public SelectedInfoClass()
+        public SelectedInfoClass(int index)
         {
             Date = new DateTime(1, 1, 1, 0, 0, 0);
             ClassRoom = "";
+            ElementIndex = index;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

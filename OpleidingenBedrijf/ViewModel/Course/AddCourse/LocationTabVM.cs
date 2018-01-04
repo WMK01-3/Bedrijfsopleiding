@@ -73,7 +73,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         public int AddLocation(string mapsLoc)
         {
-            string[] loc = new string[5];
+            string[] loc = new string[3];
             int i = 0;
             foreach (string l in mapsLoc.Split(','))
             {
@@ -151,8 +151,11 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         public void CheckData()
         {
-            if (_view.tbCity.Text.IsEmpty() == false)
+            if (_view.tbCity.Text.IsEmpty() == false || (string)_view.cboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen")
                 _addCourseView.tabControl.SelectedIndex += 1;
         }
+
+        public string[] GetLocationArray() => 
+            (string)_view.cboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen" ? _view.cboChooseLocation.SelectedValue.ToString().Split(',') : _view.tbCity.Text.Split(',');
     }
 }

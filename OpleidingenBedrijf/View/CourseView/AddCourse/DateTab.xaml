@@ -6,6 +6,7 @@
                xmlns:view="clr-namespace:BedrijfsOpleiding.View"
                xmlns:wpfUiPickerLib="clr-namespace:WpfUIPickerLib;assembly=WpfUIPickerLib"
                xmlns:fa="http://schemas.fontawesome.io/icons/"
+               xmlns:system="clr-namespace:System;assembly=mscorlib"
                mc:Ignorable="d" 
                d:DesignHeight="740" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
@@ -34,7 +35,7 @@
                     <Grid Background="White" Margin="10" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
-                            <RowDefinition Height="472"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
                         <Border BorderThickness="1" BorderBrush="Black">
@@ -282,13 +283,28 @@
                                 </Grid>
                             </Grid>
                         </Border>
-
                     </Grid>
                 </Grid>
 
                 <!--TimePicker-->
-                <Grid Grid.Column="1" Margin="10" Height="512" VerticalAlignment="Top">
-                    <Grid Background="White" Height="200" VerticalAlignment="Top">
+                <Grid Grid.Column="1" Margin="10">
+                    <Grid Height="40" VerticalAlignment="Top">
+                        <fa:FontAwesome x:Name="triangle" Icon="ExclamationTriangle" Foreground="Orange" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <fa:FontAwesome.Style>
+                                <Style TargetType="fa:FontAwesome">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static system:String.Empty}">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </fa:FontAwesome.Style>
+                        </fa:FontAwesome>
+                        <Label Content="{Binding ErrorMessage}" FontWeight="Bold" Foreground="Orange" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                    </Grid>
+                    
+                    <Grid Background="White" Height="200" VerticalAlignment="Top" Margin="0 45 0 0">
                         <Label Content="Klas lokaal"/>
                         <TextBox Name="classRoom" VerticalAlignment="Top" Margin="0 20 0 0" TextChanged="ClassRoom_OnTextChanged"/>
                         <wpfUiPickerLib:WpfUIPickerControl x:Name="wpfUiPickerControl" AlwaysOpen="True" Tumblers="{Binding TimeTumblers}" Margin="0 50 0 0"  HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -307,14 +323,21 @@
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" Margin="10" VerticalAlignment="Top" Height="512">
-                <ListView Focusable="False" x:Name="dateListView" ItemsSource="{Binding DateItemList}" HorizontalContentAlignment="Stretch">
+                <ListView x:Name="dateListView" ItemsSource="{Binding DateItemList}" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
                                 <Grid Height="100">
-                                    <Label Content="{Binding Date}" VerticalAlignment="Top" Margin="0"/>
-                                    <Label Content="{Binding Date.TimeOfDay}" VerticalAlignment="Top" Margin="0 20 0 0"/>
-                                    <Label Content="{Binding ClassRoom}" VerticalAlignment="Top" Margin="0 40 0 0"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 0 0 0" Text="{Binding NLDate, StringFormat='Dag: {0}'}"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 25 0 0" Text="{Binding Date, StringFormat='Datum: {0:dd/MM/yy}'}"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 50 0 0" Text="{Binding Date.TimeOfDay, StringFormat='Tijd: {0:hh\\:mm}'}"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 75 0 0" Text="{Binding ClassRoom, StringFormat='Lokaal: {0}'}"/>
+                                    <fa:FontAwesome Icon="Trash" Tag="{Binding ElementIndex}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="40" Height="40" MouseUp="UIElement_OnMouseUp"/>
                                 </Grid>
                             </Border>
                         </DataTemplate>

@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -26,6 +28,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         {
             _view = view;
             InitializeComponent();
+            triangle.Visibility = Visibility.Hidden;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -91,6 +94,21 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private void AddDate_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.AddDate();
+        }
+
+        //For deleting an item
+        private void UIElement_OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            string tag = ((FontAwesome.WPF.FontAwesome)sender).Tag.ToString();
+
+            IEnumerable<SelectedInfoClass> item = from i in ViewModel.DateItemList
+                                                  where i.ElementIndex == int.Parse(tag)
+                                                  select i;
+
+            IEnumerable<SelectedInfoClass> selectedInfoClasses = item as IList<SelectedInfoClass> ?? item.ToList();
+
+            if (selectedInfoClasses.Any())
+                ViewModel.DateItemList.Remove(selectedInfoClasses.First());
         }
     }
 }
