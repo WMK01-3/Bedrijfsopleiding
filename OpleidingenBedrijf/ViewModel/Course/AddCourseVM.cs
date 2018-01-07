@@ -3,12 +3,10 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
-using System.Windows.Media;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.CourseView.AddCourse;
 using BedrijfsOpleiding.ViewModel.Course.AddCourse;
-using AddCourseView = BedrijfsOpleiding.View.CourseView.AddCourse.AddCourseView;
 
 namespace BedrijfsOpleiding.ViewModel.Course
 {
@@ -60,6 +58,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         #endregion
 
         private AddCourseView _view;
+        private int _errorCount;
 
         public AddCourseVM(MainWindowVM vm, AddCourseView v) : base(vm)
         {
@@ -97,9 +96,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 //Teacher
                 course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
-
-
-
+                
                 //Dates
                 foreach (SelectedInfoClass dateItem in _dateTab.ViewModel.DateItemList)
                     context.CourseDates.Add(new CourseDate { CourseID = course.CourseID, Date = dateItem.Date, ClassRoom = dateItem.ClassRoom });
@@ -115,8 +112,6 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 context.SaveChanges();
 
                 MainVM.CurrentView = new CourseOverView(MainVM);
-
-
             }
         }
 

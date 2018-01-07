@@ -1,0 +1,135 @@
+﻿<view:BaseView 
+    x:Class="BedrijfsOpleiding.View.CourseView.AddCourseView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+    xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
+    mc:Ignorable="d" 
+    d:DesignHeight="640" d:DesignWidth="1250"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+
+    <Grid >
+        <!--Items grid-->
+        <Grid Width="560" Background="White" Margin="345,45,345,0">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+            </Grid.Effect>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top Error Message-->
+            <Label HorizontalAlignment="Center" Margin="0 20 0 0" FontFamily="Roboto" FontWeight="Bold" FontSize="32">Cursus wijzigen</Label>
+            <Grid Row="0" Height="32" x:Name="ErrorMessage" Width="550" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="88*"/>
+                    <ColumnDefinition Width="37*"/>
+                </Grid.ColumnDefinitions>
+                <Border HorizontalAlignment="Left" Height="32" CornerRadius="2" Background="#c00" VerticalAlignment="Top" Width="550" Grid.ColumnSpan="2" Margin="0,0,-47,0" />
+                <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
+                    <fa:ImageAwesome.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleY="-0.402"/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="0.443"/>
+                        </TransformGroup>
+                    </fa:ImageAwesome.RenderTransform>
+                </fa:ImageAwesome>
+                <Label Content="Errormessage" Name="ErrorMessageMessage"  FontSize="11" Width="480" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="10,4"/>
+            </Grid>
+
+            <!--Course Name-->
+            <Grid Row="1">
+                <Label Content="Cursus Naam" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50 0 0 0" FontWeight="Bold"/>
+                <TextBox x:Name="CourseName" TextWrapping="Wrap" Text="" Height="25" Margin="140 0 0 0"  VerticalAlignment="Center" Width="300" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue"/>
+                <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Right" Height="20" Foreground="#FFCD0000" Name="ecCourseName" Margin="0 0 5 0"/>
+            </Grid>
+            <!--Teacher-->
+            <Grid Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="72*"/>
+                    <ColumnDefinition Width="53*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Docent" VerticalAlignment="Center"  FontWeight="Bold" Grid.ColumnSpan="2" Margin="50 0 0 0"/>
+                <ComboBox IsEnabled="False" x:Name="Teacher" Loaded="Teacher_Loaded" Width="300" Height="25" DropDownClosed="Teacher_DropDownClosed" Margin="140,5,0,0" VerticalAlignment="Center" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Background="White" Grid.ColumnSpan="2" />
+            </Grid>
+            <!--Difficulty-->
+            <Grid Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="221*"/>
+                    <ColumnDefinition Width="279*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Moeilijkheids niveau" FontWeight="Bold" HorizontalAlignment="Left" Margin="50 0 0 0" VerticalAlignment="Center" />
+                <ComboBox x:Name="Difficulty" Width="300" Height="25" Loaded="Difficulty_Loaded" Margin="140,0,0,0" VerticalAlignment="Center" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.ColumnSpan="2"/>
+            </Grid>
+            <!--Max Participants-->
+            <Grid Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="147*"/>
+                    <ColumnDefinition Width="353*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Aantal plekken" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="50 0 0 0"/>
+                <Label x:Name="MaxParticipantsLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Content="0" Margin="307,8,62,7" HorizontalContentAlignment="Center" Width="26" Background="White" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.Column="1"/>
+                <Slider x:Name="MaxParticipants" VerticalAlignment="Center" Height="20" Maximum="50" ValueChanged="MaxParticipants_ValueChanged" Margin="35,10,92,11"  Grid.Column="1"/>
+                <fa:ImageAwesome HorizontalAlignment="Right" Icon="ExclamationCircle" Height="20"  Foreground="#FFCD0000" Name="ecMaxParticipants" Grid.Column="1" Margin="0,6,5,5" />
+            </Grid>
+            <!--Start Date-->
+            <Grid Row="5">
+                <fa:ImageAwesome HorizontalAlignment="Right" Icon="ExclamationCircle" Height="20"  Foreground="#FFCD0000" Name="ecStartDate"  Margin="0 0 5 0"/>
+                <Label Content="Start datum" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="50 0 0 0"/>
+                <DatePicker  IsEnabled="False" x:Name="StartDate"  Width="300"  VerticalAlignment="Center" Background="White" Margin="140,0,0,0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.ColumnSpan="2"/>
+            </Grid>
+            <!--Duration-->
+            <Grid Row="6">
+                <Label Content="Tijdsduur" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="50 0 0 0"/>
+                <ComboBox x:Name="Duration" Width="300" Height="25" Loaded="Duration_Loaded" VerticalAlignment="Center" Background="White" Margin="140,0,0,0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.ColumnSpan="2"/>
+            </Grid>
+            <!--Location-->
+            <Grid Row="7">
+                <Label Content="Locatie" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="50 0 0 0"/>
+                <ComboBox IsEnabled="False" x:Name="Location" Width="300" Height="25" Loaded="Location_Loaded" VerticalAlignment="Center" DropDownClosed="Location_DropDownClosed_1" Margin="140,0,0,0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.ColumnSpan="2"/>
+            </Grid>
+            <!--Price-->
+            <Grid Row="8">
+                <fa:ImageAwesome HorizontalAlignment="Right" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecPrice" Margin="0 0 5 0" />
+                <Label Content="Prijs" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Margin="50 0 5 0"/>
+                <TextBox x:Name="Price" TextWrapping="Wrap" Text="" Height="25" Width="300" VerticalAlignment="Center" PreviewTextInput="Price_PreviewTextInput" Margin="140,0,0,0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Grid.ColumnSpan="2"/>
+            </Grid>
+            <!--Description-->
+            <Grid Row="9">
+                <fa:ImageAwesome HorizontalAlignment="Right" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecDescription" Margin="0 0 5 0" />
+                <Label Content="Beschrijving" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold" Margin="50 0 5 0"/>
+                <RichTextBox x:Name="Description" Height="80" Width="300" Margin="140,0,0,0" BorderThickness="0 2 0 2" Background="#eee" BorderBrush="CornflowerBlue" Grid.ColumnSpan="2">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text=""/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Grid>
+            <!--Save Button-->
+            <Grid Row="10">
+                <uiElements:FlatButton x:Name="SaveCourse" Content="Opslaan" Height="30" Width="300" Margin="140 10 0 0" Click="SaveCourse_Click"/>
+            </Grid>
+        </Grid>
+
+        <TextBox x:Name="TeacherID" HorizontalAlignment="Left" Height="23" Margin="339,94,-9,0" Visibility="Hidden" IsEnabled="False" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="LocationID" HorizontalAlignment="Left" Height="23" Margin="339,221,-9,0" Visibility="Hidden" IsEnabled="True"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</view:BaseView>
+

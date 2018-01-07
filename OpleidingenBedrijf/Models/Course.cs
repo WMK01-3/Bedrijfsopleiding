@@ -33,6 +33,7 @@ namespace BedrijfsOpleiding.Models
         //[ForeignKey("UserID")]
         //public virtual User User { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<Enrollment> CourseDates { get; set; }
     }
 }
     
