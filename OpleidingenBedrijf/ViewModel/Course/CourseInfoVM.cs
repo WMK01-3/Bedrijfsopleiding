@@ -15,6 +15,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         private User _user;
         private Location _location;
         public string courseStatus { get; set; }
+        public string CourseStatus { get; }
 
         //THIS IS THE CURRENT LOADED COURSE
         public Models.Course Course { get; }
