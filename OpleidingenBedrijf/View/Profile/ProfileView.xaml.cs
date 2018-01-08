@@ -26,5 +26,10 @@ namespace BedrijfsOpleiding.View.Profile
             if (MainVM.IsTeacher == false || MainVM.IsEmployee == false)
                 TabProfession.Visibility = Visibility.Hidden;
         }
+
+        public ProfileView(MainWindowVM mainVM, int tabIndex) : this(mainVM)
+        {
+            profileTab.SelectedIndex = tabIndex;
+        }
     }
 }

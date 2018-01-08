@@ -14,9 +14,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
 {
     public class AddCourseVM : BaseViewModel
     {
+        private bool _isUpdatingCourse;
+
         #region MainTab : UserControl
-
-
+        
         private MainTab _mainTab;
         public MainTab MainTab
         {
@@ -101,6 +102,16 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
 
                 //Dates
+                if (_isUpdatingCourse)
+                {
+                    foreach (CourseDate item in context.CourseDates)
+                    {
+                        if (item.CourseID == course.CourseID)
+                            context.CourseDates.Remove(item);
+                    }
+                    context.SaveChanges();
+                }
+
                 foreach (SelectedInfoClass dateItem in _dateTab.ViewModel.DateItemList)
                     context.CourseDates.Add(new CourseDate { CourseID = course.CourseID, Date = dateItem.Date, ClassRoom = dateItem.ClassRoom });
 
@@ -109,7 +120,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 course.LocationID = locID;
 
                 //Send message to the teacher
-                context.Messages.Add(new Models.Message { UserID = course.UserID, MessageText = $"U bent toegevoegd als leraar aan {course.Title}", Read = false, Timestamp = DateTime.Now, Title = "Toegevoegd aan cursus" });
+                context.Messages.Add(new Models.Message { UserID = course.UserID, MessageText =  $"U bent toegevoegd als leraar aan {course.Title}", Read = false, Timestamp = DateTime.Now, Title = "Toegevoegd aan cursus" });
 
                 context.Courses.AddOrUpdate(course);
                 context.SaveChanges();
@@ -123,6 +134,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
         /// </summary>
         public void FillTabsIn()
         {
+            _isUpdatingCourse = true;
+
             using (CustomDbContext context = new CustomDbContext())
             {
 
@@ -164,6 +177,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     _dateTab.ViewModel.DateItemList.Add(new SelectedInfoClass(index) { ClassRoom = date.ClassRoom, Date = date.Date });
                     index++;
                 }
+
+                _dateTab.btnAddCourse.Content = "Update cursus";
 
                 //Location
                 var stringArray = new string[_locationTab.cboChooseLocation.Items.Count];

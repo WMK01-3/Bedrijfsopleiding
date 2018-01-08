@@ -365,9 +365,9 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             ErrorMessage = "";
 
             if (SelectedInfo.ClassRoom.IsEmpty() || SelectedInfo.Date.Day == 0)
-            {
                 ErrorMessage = "Selecteer een datum en klas";
-            }
+            if (SelectedInfo.Date.Year < DateTime.Now.Year)
+                ErrorMessage = "Datum niet correct ingevoerd";
             else
             {
                 ObservableCollection<SelectedInfoClass> tempDateList = DateItemList;
@@ -437,6 +437,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             {
                 _date = value;
                 OnPropertyChanged(nameof(Date));
+                OnPropertyChanged(nameof(NLDate));
             }
 
         }

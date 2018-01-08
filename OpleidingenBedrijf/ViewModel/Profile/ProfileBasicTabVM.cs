@@ -76,7 +76,7 @@ namespace BedrijfsOpleiding.ViewModel.Profile
                 inputCheck = string.IsNullOrWhiteSpace(TxtFirstName) ? "First name cannot be empty" : inputCheck;
                 inputCheck = string.IsNullOrWhiteSpace(TxtLastName) ? "Last name cannot be empty" : inputCheck;
                 inputCheck = string.IsNullOrWhiteSpace(TxtEmail) ? "Email cannot be empty" : inputCheck;
-   
+
                 inputCheck = !(TxtEmail.IsEmail()) ? "Email is not valid" : inputCheck;
 
                 // update default values
@@ -97,7 +97,7 @@ namespace BedrijfsOpleiding.ViewModel.Profile
                             ? pwCheck
                             : "Wachtwoorden matchen niet";
 
-                        account.PassWord = (pwCheck == "") ?  _view.pbPassword.Password : account.PassWord;
+                        account.PassWord = (pwCheck == "") ? _view.pbPassword.Password : account.PassWord;
                     }
                 }
 
@@ -106,13 +106,15 @@ namespace BedrijfsOpleiding.ViewModel.Profile
                     ErrorMessage += inputCheck;
                     ErrorMessage += pwCheck;
                     ErrorVisible = Visibility.Visible;
-                }else{
-                    ErrorVisible = Visibility.Hidden;
                 }
-
-                context.SaveChanges();
+                else
+                {
+                    ErrorVisible = Visibility.Hidden;
+                    context.SaveChanges();
+                    ProfileView view = new ProfileView(MainVM, 2);
+                    MainVM.CurrentView = view;
+                }
             }
-
         }
 
     }

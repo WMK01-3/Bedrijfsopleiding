@@ -61,8 +61,6 @@
                         <Grid>
                             <!--Location-->
                             <Label Content="Adres" Height="30" VerticalAlignment="Top" FontSize="16" FontFamily="Arial" FontWeight="Bold"/>
-                            <!--Room-->
-                            <Label Content="{Binding CourseClassRoom}" Height="30" VerticalAlignment="Top" Margin="0 60 0 0" FontSize="16" FontFamily="Arial"/>
                             <!--Street-->
                             <Label Content="{Binding CourseStreet}" Height="30" VerticalAlignment="Top" Margin="0 90 0 0" FontSize="16" FontFamily="Arial"/>
                             <!--City And PostalCode-->

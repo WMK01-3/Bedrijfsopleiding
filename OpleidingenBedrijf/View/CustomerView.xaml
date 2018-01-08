@@ -192,7 +192,7 @@
             </DataGrid>
         </Grid>
         <Grid Width="300" HorizontalAlignment="Right" Margin="20">
-            <Button Content="Blokeren" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="Button_Click_1" />
+            <Button Content="Blokkeren" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="Button_Click_1" />
         </Grid>
 
 

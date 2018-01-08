@@ -353,7 +353,7 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Button Name="btnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="BtnPrevious_OnClick"/>
-            <Button Grid.Column="1" Height="30" Margin="10" Content="Cursus Toevoegen" Background="CornflowerBlue" Click="ButtonBase_OnClick"/>
+            <Button x:Name="btnAddCourse" Grid.Column="1" Height="30" Margin="10" Content="Cursus Toevoegen" Background="CornflowerBlue" Click="ButtonBase_OnClick"/>
         </Grid>
     </Grid>
 </view:BaseView>
