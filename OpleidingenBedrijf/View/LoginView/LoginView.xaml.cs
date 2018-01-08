@@ -25,7 +25,7 @@ namespace BedrijfsOpleiding.View.LoginView
             ErrorMessage.Visibility = Visibility.Hidden;
             using (CustomDbContext context = new CustomDbContext())
             {
-                context.AddDummyData(true);
+                context.AddDummyData();
             }
         }
 

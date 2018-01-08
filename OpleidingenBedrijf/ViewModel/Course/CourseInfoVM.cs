@@ -12,9 +12,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
 {
     public class CourseInfoVM : BaseViewModel
     {
-        private User _user;
-        private Location _location;
-        public string courseStatus { get; set; }
+        private readonly User _user;
+        private readonly Location _location;
         public string CourseStatus { get; }
 
         //THIS IS THE CURRENT LOADED COURSE
@@ -83,6 +82,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 IQueryable<DateTime> dateList = from d in context.CourseDates
                                                 where d.CourseID == Course.CourseID
                                                 select d.Date;
+
                 return dateList.Any() ? dateList.ToList() : null;
             }
         }
@@ -91,8 +91,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
             using (CustomDbContext context = new CustomDbContext())
             {
                 IQueryable<string> classroom = from d in context.CourseDates
-                               where d.CourseID == Course.CourseID
-                               select d.ClassRoom;
+                                               where d.CourseID == Course.CourseID
+                                               select d.ClassRoom;
 
                 return classroom.Any() ? classroom.ToString() : "";
             }
@@ -137,7 +137,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     context.Enrollments.Add(new Enrollment(_user.UserID, Course.CourseID, false));
                     context.SaveChanges();
                     int crsID = Course.CourseID;
-                    IQueryable<Models.Course> crsList = from c in context.Courses where c.CourseID == crsID select c;
+                    IQueryable<Models.Course> crsList = from c in context.Courses
+                                                        where c.CourseID == crsID
+                                                        select c;
+
                     Models.Course course = crsList.First();
 
                     Invoice invoice = new Invoice(DateTime.Now, _user);
@@ -148,6 +151,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     {
                         GenerateInvoice.mailInvoice(pdf, invoice, _user.Email);
                     }
+
                     return false;
                 }
             }

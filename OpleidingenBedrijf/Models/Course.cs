@@ -10,7 +10,6 @@ namespace BedrijfsOpleiding.Models
     public class Course
     {
         public enum DifficultyEnum { Beginner, Moderate, Expert }
-        public enum DurationEnum { Eendaagse, Tweedaagse, Driedaagse, Vierdaagse, Wekelijkse }
 
         [Key]
         public int CourseID { get; set; }
@@ -21,19 +20,20 @@ namespace BedrijfsOpleiding.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public bool Archived { get; set; }
-        public DateTime Created_at = DateTime.Now;
-        public int UserID { get; set; }
+        
+        public DateTime CreatedAt = DateTime.Now;
+        
+        //The location of the course
         public int LocationID { get; set; }
         [ForeignKey("LocationID")]
         public virtual Location Location { get; set; }
+
+        //The Teacher
         [ForeignKey("UserID")]
         public virtual User User { get; set; }
-        //[ForeignKey("LocationID")]
-        //public virtual Location Location { get; set; }
-        //[ForeignKey("UserID")]
-        //public virtual User User { get; set; }
+        public int UserID { get; set; }
+
+        //A list of the people who entered the Course
         public virtual ICollection<Enrollment> Enrollments { get; set; }
-        public virtual ICollection<Enrollment> CourseDates { get; set; }
     }
 }
-    

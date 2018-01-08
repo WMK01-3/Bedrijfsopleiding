@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Globalization;
 using System.Linq;
-using System.Windows;
 using System.Windows.Documents;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
@@ -57,8 +58,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         #endregion
 
-        private AddCourseView _view;
-        private int _errorCount;
+        private readonly AddCourseView _view;
 
         public AddCourseVM(MainWindowVM vm, AddCourseView v) : base(vm)
         {
@@ -77,6 +77,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
             {
                 Models.Course course = new Models.Course();
 
+                //For editing a course
                 if (_view.CourseId > 0)
                 {
                     IQueryable<Models.Course> co = from c in context.Courses
@@ -96,7 +97,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
                 //Teacher
                 course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
-                
+
                 //Dates
                 foreach (SelectedInfoClass dateItem in _dateTab.ViewModel.DateItemList)
                     context.CourseDates.Add(new CourseDate { CourseID = course.CourseID, Date = dateItem.Date, ClassRoom = dateItem.ClassRoom });
@@ -115,5 +116,60 @@ namespace BedrijfsOpleiding.ViewModel.Course
             }
         }
 
+        /// <summary>
+        /// Fills the tabs in when a course needs to be edited
+        /// </summary>
+        public void FillTabsIn()
+        {
+            using (CustomDbContext context = new CustomDbContext())
+            {
+
+                IQueryable<Models.Course> co = from c in context.Courses
+                                               where c.CourseID == _view.CourseId
+                                               select c;
+
+                Models.Course course = co.First();
+
+                //First Tab
+                _mainTab.CourseName.Text = course.Title;
+
+                _mainTab.Description.Document.Blocks.Clear();
+                _mainTab.Description.Document.Blocks.Add(new Paragraph(new Run(course.Description)));
+                _mainTab.Difficulty.SelectedItem = course.Difficulty;
+                _mainTab.Duration.Text = course.Duration.ToString();
+                _mainTab.Price.Text = course.Price.ToString(CultureInfo.CurrentCulture);
+
+                //Teacher
+                var dataGridItems = (List<DataGridItem>)_teacherTab.teacherGrid.ItemsSource;
+
+                IEnumerable<DataGridItem> teacherItem = from t in dataGridItems
+                                                        where t.UserID == course.UserID
+                                                        select t;
+
+                IEnumerable<DataGridItem> gridItems = teacherItem as DataGridItem[] ?? teacherItem.ToArray();
+                if (gridItems.Any())
+                    _teacherTab.ViewModel.SelectedTeacher = gridItems.First();
+
+                //Dates
+                IQueryable<CourseDate> dates = from d in context.CourseDates
+                                               where d.CourseID == course.CourseID
+                                               select d;
+
+                var index = 0;
+                foreach (CourseDate date in dates)
+                {
+                    _dateTab.ViewModel.DateItemList.Add(new SelectedInfoClass(index) { ClassRoom = date.ClassRoom, Date = date.Date });
+                    index++;
+                }
+
+
+                //Location
+                _locationTab.cboChooseLocation.SelectedValue = course.Location;
+
+                //Send message to the teacher and enrolled students that the course has been edited
+
+                MainVM.CurrentView = new CourseOverView(MainVM);
+            }
+        }
     }
 }

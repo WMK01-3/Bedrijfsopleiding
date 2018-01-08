@@ -27,13 +27,13 @@ namespace BedrijfsOpleiding
 
         public DbSet<CourseDate> CourseDates { get; set; }
 
-        public void AddDummyData(bool generateDummydata)
+        public void AddDummyData()
         {
             IQueryable<Models.Location> resultsLocation = from location in this.Locations
                                                           select location;
             IQueryable<Models.User> resultsUser = from user in this.Users
                                                   select user;
-            if (!resultsLocation.Any() && !resultsUser.Any() && generateDummydata)
+            if (!resultsLocation.Any() && !resultsUser.Any())
             {
                 List<Location> locationList = new List<Location>
                 {
