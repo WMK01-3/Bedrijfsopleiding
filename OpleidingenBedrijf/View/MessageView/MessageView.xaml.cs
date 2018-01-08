@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Message;
 using Message = BedrijfsOpleiding.Models.Message;

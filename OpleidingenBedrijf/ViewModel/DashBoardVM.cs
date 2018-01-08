@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Mime;
 using System.Windows.Controls;
 using System.Xml;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View;
 using Newtonsoft.Json;

@@ -42,7 +42,7 @@
                             <!--Calendar Control buttons-->
                             <Grid>
                                 <!-- Previous Week-->
-                                <fa:FontAwesome Width="40" Name="previousWeek" MouseUp="PreviousWeek_OnMouseUp">
+                                <fa:FontAwesome FontSize="30" Name="previousWeek" MouseUp="PreviousWeek_OnMouseUp">
                                     <fa:FontAwesome.Style>
                                         <Style TargetType="fa:FontAwesome">
                                             <Setter Property="Width" Value="40"/>
@@ -53,7 +53,7 @@
                                     </fa:FontAwesome.Style>
                                 </fa:FontAwesome>
                                 <!-- Next Week-->
-                                <fa:FontAwesome Name="nextWeek" MouseUp="NextWeek_OnMouseUp">
+                                <fa:FontAwesome FontSize="30" Name="nextWeek" MouseUp="NextWeek_OnMouseUp">
                                     <fa:FontAwesome.Style>
                                         <Style TargetType="fa:FontAwesome">
                                             <Setter Property="Width" Value="40"/>

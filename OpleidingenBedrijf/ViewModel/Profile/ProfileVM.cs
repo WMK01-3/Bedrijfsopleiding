@@ -6,19 +6,26 @@ namespace BedrijfsOpleiding.ViewModel.Profile
 {
     public class ProfileVM : BaseViewModel
     {
-        private User _user;
-
+        private readonly User _user;
 
         public bool IsTeacher => _user.Role == User.RoleEnum.Teacher;
 
+        #region ProfileSubscriptions : ProfileSubscriptions
+
+        private ProfileSubscriptions _profileSubscriptions;
+        public ProfileSubscriptions ProfileSubscriptions =>
+            _profileSubscriptions = _profileSubscriptions ?? new ProfileSubscriptions(MainVM);
+
+        #endregion
 
         #region ProfessionTab : ProfileProfessionTab
 
         private ProfileProfessionTab _profileProfessionTab;
         public ProfileProfessionTab ProfessionTab =>
-            _profileProfessionTab = _profileProfessionTab?? new ProfileProfessionTab(MainVM);
+            _profileProfessionTab = _profileProfessionTab ?? new ProfileProfessionTab(MainVM);
 
         #endregion
+
         #region BasicTab : ProfileBasicTab
 
         private ProfileBasicTab _profileBasicTab;
@@ -26,7 +33,7 @@ namespace BedrijfsOpleiding.ViewModel.Profile
             _profileBasicTab = _profileBasicTab ?? new ProfileBasicTab(MainVM);
 
         #endregion
-        
+
         #region MessageT : MessageView
 
         private MessageView _profileMessageTab;

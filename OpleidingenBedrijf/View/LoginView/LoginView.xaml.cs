@@ -1,6 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Login;
 namespace BedrijfsOpleiding.View.LoginView
@@ -23,10 +24,6 @@ namespace BedrijfsOpleiding.View.LoginView
         {
             InitializeComponent();
             ErrorMessage.Visibility = Visibility.Hidden;
-            using (CustomDbContext context = new CustomDbContext())
-            {
-                context.AddDummyData();
-            }
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)

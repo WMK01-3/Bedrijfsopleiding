@@ -2,6 +2,7 @@
 using BedrijfsOpleiding.View.LoginView;
 using System.Windows;
 using System.Windows.Media;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 
 

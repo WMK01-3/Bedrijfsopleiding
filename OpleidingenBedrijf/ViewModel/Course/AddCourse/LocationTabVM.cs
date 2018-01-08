@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using BedrijfsOpleiding.API.GoogleMaps;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView.AddCourse;
 
@@ -20,7 +21,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
         private List<string> _suggestions;
         private string _errorMessage;
         private Visibility _errorVisible = Visibility.Hidden;
-        
+
         public string ErrorMessage
         {
             get => _errorMessage;
@@ -122,7 +123,8 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         /*Provides values for combobox*/
         //private string _oneTeacher;
-        public CollectionView locationList { get; }
+        public CollectionView LocationList { get; }
+
         public LocationTabVM(LocationTab view, MainWindowVM vm, AddCourseView addCourseView) : base(vm)
         {
             _addCourseView = addCourseView;
@@ -134,7 +136,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             }
             List<string> loclist = locations.Select(loc => $"{loc.Street},{loc.City},{loc.Country}").ToList();
             loclist.Insert(0, "Nieuwe locatie toevoegen");
-            locationList = new CollectionView(loclist);
+            LocationList = new CollectionView(loclist);
         }
 
         public void CheckData()
@@ -143,7 +145,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
                 _addCourseView.tabControl.SelectedIndex += 1;
         }
 
-        public string[] GetLocationArray() => 
+        public string[] GetLocationArray() =>
             (string)_view.cboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen" ? _view.cboChooseLocation.SelectedValue.ToString().Split(',') : _view.tbCity.Text.Split(',');
     }
 }

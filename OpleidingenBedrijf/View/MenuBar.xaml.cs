@@ -37,8 +37,7 @@ namespace BedrijfsOpleiding.View
 
         private void BtnProfile_Click(object sender, RoutedEventArgs e)
         {
-            MainVM.CurrentView = new ProfileSubscriptions(MainVM);
-            //MainVM.CurrentView = new MessageView.MessageView(MainVM);
+            MainVM.CurrentView = new ProfileView(MainVM);
         }
     }
 }

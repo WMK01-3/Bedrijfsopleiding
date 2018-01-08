@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Profile;

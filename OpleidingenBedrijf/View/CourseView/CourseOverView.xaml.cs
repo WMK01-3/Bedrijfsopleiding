@@ -25,12 +25,6 @@ namespace BedrijfsOpleiding.View.CourseView
             InitializeComponent();
             //courses.ItemsSource = _viewModel.CourseList;
             cbxDifficulty.ItemsSource = Enum.GetValues(typeof(Course.DifficultyEnum));
-            if (MainVM.IsEmployee) return;
-            btnAddCourse.Height = 0;
-            btnAddCourse.Visibility = Visibility.Hidden;
-            Thickness thickness = btnAddCourse.Margin;
-            thickness.Top = 0;
-            thickness.Bottom = 0;
         }
 
         private void ToCourseInfo(object sender, RoutedEventArgs e)
@@ -38,7 +32,7 @@ namespace BedrijfsOpleiding.View.CourseView
             if (courses.SelectedItem == null) return;
 
             if (courses.SelectedItem is Course == false) return;
-            
+
 
             MainVM.CurrentView =
                 new CourseInfoView(((Course)courses.SelectedItem).CourseID, MainVM);

@@ -104,35 +104,27 @@
 
         <Grid Row="0">
             <!-- Top Error Message-->
-            <Grid Height="32" VerticalAlignment="Top" Margin="10" x:Name="errorMessage" Width="250">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="88*"/>
-                    <ColumnDefinition Width="37*"/>
-                </Grid.ColumnDefinitions>
-                <Border HorizontalAlignment="Left" Height="32" CornerRadius="10"  Background="#FFCC00" VerticalAlignment="Top" Width="297" Grid.ColumnSpan="2" Margin="0,0,-47,0" />
-                <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7" >
-                    <fa:ImageAwesome.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="-0.402"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="0.443"/>
-                        </TransformGroup>
-                    </fa:ImageAwesome.RenderTransform>
-                </fa:ImageAwesome>
-                <Label Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="30,4"/>
-                <Grid.Style>
-                    <Style TargetType="Grid">
-                        <Setter Property="Visibility" Value="Visible"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static SystemColors:String.Empty}">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Style>
+            <Border Height="40" CornerRadius="13"  Background="#FFFFB700" VerticalAlignment="Top" Width="300">
+                <Grid x:Name="errorMessage">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static SystemColors:String.Empty}">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
 
-            </Grid>
+                    <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7"/>
+                    <Label Grid.Column="1" Content="{Binding ErrorMessage}" Name="ErrorMessageMessage" FontSize="12" FontWeight="Bold" Foreground="#FFEEEEEE"/>
+                </Grid>
+            </Border>
         </Grid>
 
         <!--Splitting Grid-->
@@ -148,11 +140,9 @@
 
             <!--Other items-->
             <Grid Column="0" Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="30"/>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="25"/>
@@ -164,31 +154,31 @@
                 </Grid.RowDefinitions>
 
                 <!--Course Name-->
-                <Label Grid.Row="0" Grid.Column="1" FontWeight="Bold"  Content="Cursus Naam" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <fa:ImageAwesome Grid.Row="1" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecCourseName" Visibility="Hidden"/>
-                <TextBox Grid.Row="1" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="CourseName" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="20" Margin="0 0 0 5" Background="{x:Null}"/>
+                <Label Grid.Row="0" FontWeight="Bold"  Content="Cursus Naam" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Grid.Row="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="CourseName" TextWrapping="Wrap" VerticalAlignment="Bottom" Height="20" Margin="0 0 0 5" Background="{x:Null}"/>
 
                 <!--Price-->
-                <Label Grid.Row="2" Grid.Column="1" FontWeight="Bold" Content="Prijs" HorizontalAlignment="Left"/>
-                <fa:ImageAwesome Grid.Row="3" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecPrice"  Visibility="Hidden"/>
-                <TextBox Grid.Row="3" Grid.Column="1" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Price" TextWrapping="Wrap" Text="" Height="20" PreviewTextInput="Price_PreviewTextInput"/>
+                <Label Grid.Row="2" FontWeight="Bold" Content="Prijs" HorizontalAlignment="Left"/>
+                <TextBox Grid.Row="3" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Price" TextWrapping="Wrap" Text="" Height="20" PreviewTextInput="Price_PreviewTextInput"/>
 
                 <!--Duration-->
-                <Label Grid.Row="4" Grid.Column="1" FontWeight="Bold" Content="Tijdsduur (in minuten)" HorizontalAlignment="Left"/>
-                <fa:ImageAwesome Grid.Row="5" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDuration" Visibility="Hidden"/>
-                <TextBox Grid.Row="5" Grid.Column="1" PreviewKeyDown="Duration_OnPreviewKeyDown" TextChanged="Duration_OnTextChanged"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
+                <Label Grid.Row="4" FontWeight="Bold" Content="Tijdsduur (in minuten)" HorizontalAlignment="Left"/>
+                <TextBox Grid.Row="5" PreviewKeyDown="Duration_OnPreviewKeyDown" TextChanged="Duration_OnTextChanged"  BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="Duration" Height="20"/>
 
                 <!--Difficulty-->
-                <Label Grid.Row="6" Grid.Column="1" FontWeight="Bold" Content="Moeilijkheids niveau" HorizontalAlignment="Left" />
-                <fa:ImageAwesome Grid.Row="7" Grid.Column="0" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="eDifficulty"  Visibility="Hidden"/>
-                <ComboBox IsEditable="True" Grid.Row="7" Grid.Column="1" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
+                <Label Grid.Row="6" FontWeight="Bold" Content="Moeilijkheids niveau" HorizontalAlignment="Left" />
+                <ComboBox IsEditable="True" Grid.Row="7" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
+
+                <!--Max Participants-->
+                <Label Grid.Row="8" FontWeight="Bold" Content="Maximaal aantal deelnemers" HorizontalAlignment="Left"/>
+                <TextBox Grid.Row="9" BorderThickness="0 0 0 2" BorderBrush="#FF508CAA" x:Name="MaxParticipants" Height="20"/>
             </Grid>
 
             <!--Desscription-->
             <Grid Row="0" Column="1" Margin="10 0 10 10">
                 <!--Description-->
                 <Label Content="Beschrijving" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
-                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD0000" Name="ecDescription" Visibility="Hidden"/>
+                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD8500" Name="ecDescription" Visibility="Hidden"/>
                 <RichTextBox Margin="0 50 0 0" Height="175" VerticalAlignment="Top" x:Name="Description" BorderThickness="0 2 0 2" BorderBrush="#FF508CAA" Background="#EFEFEF">
                     <FlowDocument>
                         <Paragraph>

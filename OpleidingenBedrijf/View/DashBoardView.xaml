@@ -9,7 +9,7 @@
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="8*"/>
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid.Effect>
@@ -52,39 +52,24 @@
                 </Grid.Style>
             </Grid>
             <!--Google Maps-->
-            <Grid Grid.Row="1" Background="White" Width="650"  Margin="0,10,0,0">
-                <WebBrowser MaxWidth="650" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="wbMaps" HorizontalAlignment="Left" Width="605" LoadCompleted="wbMaps_LoadCompleted"/>
-
+            <Grid Grid.Row="1" Background="White" Margin="0,10,0,0">
+                <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="wbMaps" HorizontalAlignment="Left" LoadCompleted="wbMaps_LoadCompleted"/>
             </Grid>
         </Grid>
 
-        <Grid Column="1">
+        <Grid Column="1" Height="250" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--Updates-->
-            <Grid Column="0" Margin="10,10,10,328" Background="White">
-                <Label Content="Berichten" HorizontalContentAlignment="Center" FontSize="26" Background="#ffe6c9"/>
+            <ListBox Grid.Column="0" Margin="10" Background="White" DisplayMemberPath="Text" SelectedValuePath="Value" x:Name="lbCourses" SelectionChanged="lbCourses_SelectionChanged"/>
 
-            </Grid>
-
-            <Grid Grid.Column="0" Margin="10,329,10,10" Background="White">
+            <Grid Column="1">
+                <!--Course Description-->
                 <Label x:Name="lblCourseTitle" Content="" HorizontalContentAlignment="Center" FontSize="26" Background="#e8e8e8" />
-                <TextBlock x:Name="tbxCourseDesc" HorizontalAlignment="Left" Margin="37,64,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
-
+                <TextBlock x:Name="tbxCourseDesc" HorizontalAlignment="Left" Margin="37,64,0,0" TextWrapping="Wrap"/>
             </Grid>
-
-
-
-        <!--Upcoming-->
-            <Grid Column="1" Margin="10" Background="White" Width="200">
-                <Calendar HorizontalAlignment="Left" VerticalAlignment="Top" Height="171" Width="200" Margin="0,27,0,0"/>
-                <ListBox DisplayMemberPath="Text" SelectedValuePath="Value" x:Name="lbCourses" HorizontalAlignment="Left" Height="345" Margin="10,242,0,0" VerticalAlignment="Top" Width="180" SelectionChanged="lbCourses_SelectionChanged"/>
-
-            </Grid>
-            
         </Grid>
     </Grid>
 </view:BaseView>

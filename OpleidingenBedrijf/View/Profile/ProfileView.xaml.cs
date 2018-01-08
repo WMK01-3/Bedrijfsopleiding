@@ -17,21 +17,14 @@ namespace BedrijfsOpleiding.View.Profile
         }
 
         #endregion
-
-
+        
         public ProfileView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
 
-            if (!MainVM.IsTeacher || !MainVM.IsEmployee)
-            {
+
+            if (MainVM.IsTeacher == false || MainVM.IsEmployee == false)
                 TabProfession.Visibility = Visibility.Hidden;
-            }
-            // if (vm.CurUser.Role != User.RoleEnum.Teacher)
-            //    profileTab.SelectedIndex += 1;
         }
-
-
-
     }
 }

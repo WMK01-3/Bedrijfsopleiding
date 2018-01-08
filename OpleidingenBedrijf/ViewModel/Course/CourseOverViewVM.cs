@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.View;
 
 namespace BedrijfsOpleiding.ViewModel.Course
@@ -31,10 +32,14 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 OnPropertyChanged(nameof(CbxDifficultyList));
             }
         }
+
+        public bool IsEmployee =>
+            _user.Role == User.RoleEnum.Employee;
+
         private readonly User _user;
 
-        private string _nameFilter= "";
-        private string _difficultyFilter="";
+        private string _nameFilter = "";
+        private string _difficultyFilter = "";
         private string _locationFilter = "";
 
         public List<Models.Course.DifficultyEnum> GetDifficultyList()
@@ -51,6 +56,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public CourseOverViewVM(MainWindowVM vm, UserControl boundView) : base(vm)
         {
             _user = vm.CurUser;
+            OnPropertyChanged(nameof(IsEmployee));
         }
         public void UpdateDataGrid()
         {
@@ -79,13 +85,13 @@ namespace BedrijfsOpleiding.ViewModel.Course
                         );
                 }
 
-                    
+
                 foreach (Models.Course course in result)
                 {
                     course.Location = (from l in context.Locations
                                        where l.LocationID == course.LocationID
                                        select l).First();
-                   
+
                     if (course.Title.Contains(_nameFilter) && course.Difficulty.ToString().Contains(_difficultyFilter) && course.Location.City.ToLower().Contains(_locationFilter.ToLower()))
                     {
                         courseList.Add(course);

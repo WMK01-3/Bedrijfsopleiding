@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Controls;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.Tools;
 using BedrijfsOpleiding.View.CourseView;
@@ -42,7 +42,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public IEnumerable<DateTime> CourseDates => GetCourseDates();
 
-        public CourseInfoVM(int courseId, MainWindowVM vm, UserControl boundView) : base(vm)
+        public CourseInfoVM(int courseId, MainWindowVM vm) : base(vm)
         {
             _user = vm.CurUser;
 
@@ -83,7 +83,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                                                 where d.CourseID == Course.CourseID
                                                 select d.Date;
 
-                return dateList.Any() ? dateList.ToList() : null;
+                return dateList.Any() ? dateList.ToList() : new List<DateTime>();
             }
         }
         private string GetClassRoom()

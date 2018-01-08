@@ -3,71 +3,81 @@
              xmlns:behaviors="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BedrijfsOpleiding.View.CourseView.AddCourse"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="BedrijfsOpleiding.View.CourseView.AddCourse.LocationTab"
+             x:Class="BedrijfsOpleiding.View.CourseView.AddCourse.LocationTab"
              mc:Ignorable="d" 
              d:DesignHeight="640" d:DesignWidth="1250"
              DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}">
-    <Grid Width="500" Height="600">
-        <Grid.Effect>
-            <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
-        </Grid.Effect>
+
+    <Grid Background="#EEE">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height ="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.ColumnSpan="3" Grid.RowSpan="11" Background="White" MinHeight="700"/>
-        <Border Visibility="{Binding ErrorVisible}" HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#FFCC00" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,10,0,0" />
-        <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="12,-22,0,7" Width="15" Foreground="#FFF7F7F7" Grid.Column="1">
-            <fa:ImageAwesome.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.402"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="0.443"/>
-                </TransformGroup>
-            </fa:ImageAwesome.RenderTransform>
-        </fa:ImageAwesome>
-        <Label Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Margin="38,12,72,39" Grid.Column="1" Height="30"/>
-        <Label Grid.Row="1" Grid.Column="1" Content="Kies een locatie:"></Label>
-        <ComboBox Name="cboChooseLocation"
-                  ItemsSource="{Binding Path=locationList}"
+
+        <!--Location Grid-->
+        <Grid Grid.Row="0" Width="500" Height="250"  Background="White">
+            <Grid.Effect>
+                <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+            </Grid.Effect>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Border-->
+            <Border Visibility="{Binding ErrorVisible}" HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#FFCC00" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,10,0,0" />
+
+            <!--Error Message Icon-->
+            <fa:ImageAwesome Grid.Row="0" Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="12,-22,0,7" Width="15" Foreground="#FFF7F7F7" Grid.Column="1">
+                <fa:ImageAwesome.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.402"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.443"/>
+                    </TransformGroup>
+                </fa:ImageAwesome.RenderTransform>
+            </fa:ImageAwesome>
+
+            <!--Error Message Text-->
+            <Label Grid.Row="0" Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Width="190" Foreground="#FFEEEEEE" VerticalAlignment="Center" Margin="38,12,72,39" Grid.Column="1" Height="30"/>
+
+            <!--Choose Location Combobox-->
+            <Label Grid.Row="1" Grid.Column="1" Content="Kies een locatie:"></Label>
+            <ComboBox Name="cboChooseLocation"
+                  ItemsSource="{Binding Path=LocationList}"
                   Text="Bestaande locaties"
                   IsEditable="true"
                   Grid.Row="2"
                   Grid.Column="1"
                   IsReadOnly="true"/>
-        <Label Grid.Row="4" Grid.Column="1" Content="Locatie (Straat, Plaats, Land)" />
-        <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"/>
-        <fa:ImageAwesome Icon="ExclamationCircle" x:Name="ecNewLocation" Foreground="#FFCC00"  VerticalAlignment="Top" Height="18" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Left"/>
 
-        <Grid Grid.Row="9" Grid.ColumnSpan="3">
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="3*"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="btnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="btnPrevious_Click"/>
-                <Button Grid.Column="1" Height="30" Margin="10" Content="Daum Kiezen" Background="CornflowerBlue" Click="Button_Click"/>
-            </Grid>
+            <!--Choose Location Textbox-->
+            <Label Grid.Row="4" Grid.Column="1" Content="Locatie (Straat, Plaats, Land)" />
+            <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"/>
+        </Grid>
+        <!--Buttons-->
+        <Grid Width="500" Grid.Row="1" Height="100" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="BtnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="btnPrevious_Click"/>
+            <Button Grid.Column="1" Height="30" Margin="10" Content="Data Kiezen" Background="CornflowerBlue" Click="Button_Click"/>
         </Grid>
     </Grid>
 </view:BaseView>

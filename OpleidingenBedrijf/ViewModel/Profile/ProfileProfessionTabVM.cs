@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
 using System.Linq;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.Profile;
 

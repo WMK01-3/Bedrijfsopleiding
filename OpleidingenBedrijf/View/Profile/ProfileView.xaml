@@ -9,6 +9,18 @@
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
         <TabControl Name="profileTab">
+            <TabItem Header="Cursus Aanmeldingen">
+                <ContentControl Content="{Binding ProfileSubscriptions}"/>
+            </TabItem>
+            <TabItem Header="Berichten">
+                <ContentControl Content="{Binding MessageTab}"/>
+            </TabItem>
+            <TabItem Header="Account Instellingen">
+                <ContentControl Content="{Binding ProfileBasicTab}"/>
+            </TabItem>
+            <TabItem Header="Vakkundigheden" x:Name="TabProfession">
+                <ContentControl Content="{Binding ProfessionTab}"/>
+            </TabItem>
             <TabItem Header="Vakkundigheid">
                 <ContentControl Content="{Binding ProfessionTab}"/>
                 <TabItem.Style>
@@ -21,12 +33,6 @@
                         </Style.Triggers>
                     </Style>
                 </TabItem.Style>
-            </TabItem>
-            <TabItem Header="Berichten">
-                <ContentControl Content="{Binding MessageTab}"/>
-            </TabItem>
-            <TabItem Header="Change account">
-                <ContentControl Content="{Binding ProfileBasicTab}"/>
             </TabItem>
         </TabControl>
     </Grid>

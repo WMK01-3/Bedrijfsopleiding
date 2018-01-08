@@ -5,6 +5,7 @@ using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.Tools;
 using BedrijfsOpleiding.View;
 using System.Linq;
+using BedrijfsOpleiding.Database;
 
 namespace BedrijfsOpleiding
 {
@@ -30,16 +31,13 @@ namespace BedrijfsOpleiding
 
             using (CustomDbContext context = new CustomDbContext())
             {
+                context.SaveChanges();
+                
                 if (context.Database.Exists())
-                    Database.SetInitializer<CustomDbContext>(null);
+                    System.Data.Entity.Database.SetInitializer<CustomDbContext>(null);
 
-
-                /*
-                User user = (from u in context.Users
-                             select u).First();
-
-                Invoice invoice = new Invoice(DateTime.Now, user);
-                GenerateInvoice.NewPdf(invoice);*/
+                if (context.Users.Any() == false && context.Courses.Any() == false)
+                    DummyData.AddData();
             }
         }
     }

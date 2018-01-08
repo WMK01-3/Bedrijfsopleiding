@@ -10,15 +10,15 @@
         <Image Source="../images/Beautiful-Gradient-Wallpaper.jpg" Stretch="Fill"/>
         <Grid>
             <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!--The menu-->
-        <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
+            <!--The menu-->
+            <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
 
-        <!--Main Content-->
-        <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="1"/>
+            <!--Main Content-->
+            <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

@@ -96,6 +96,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="API\GoogleMaps\AutoCompleteLocations.cs" />
+    <Compile Include="Database\DummyData.cs" />
     <Compile Include="Models\Profession.cs" />
     <Compile Include="Models\CourseDate.cs" />
     <Compile Include="Models\Message.cs" />
@@ -195,7 +196,7 @@
     </Page>
     <Compile Include="API\AnimatedContent\AnimatedContentControl.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="CustomDbContext.cs" />
+    <Compile Include="Database\CustomDbContext.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Invoice.cs" />

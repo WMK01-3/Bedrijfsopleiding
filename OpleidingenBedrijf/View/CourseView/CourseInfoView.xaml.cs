@@ -9,14 +9,14 @@ namespace BedrijfsOpleiding.View.CourseView
 {
     public partial class CourseInfoView
     {
-        private readonly int courseID;
+        private readonly int _courseID;
 
         #region OwnViewModel : BaseViewModel
 
         private CourseInfoVM _viewModel;
         public CourseInfoVM ViewModel
         {
-            get => _viewModel = _viewModel ?? new CourseInfoVM(courseID, MainVM, this);
+            get => _viewModel = _viewModel ?? new CourseInfoVM(_courseID, MainVM);
             set => _viewModel = value;
         }
 
@@ -24,7 +24,7 @@ namespace BedrijfsOpleiding.View.CourseView
 
         public CourseInfoView(int courseId, MainWindowVM vm) : base(vm)
         {
-            courseID = courseId;
+            _courseID = courseId;
             InitializeComponent();
 
 
@@ -58,7 +58,7 @@ namespace BedrijfsOpleiding.View.CourseView
         /// <param name="e"></param>
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
-            bool isSignedUp = _viewModel.IsUserSignedUp(false);
+            _viewModel.IsUserSignedUp(false);
             btnSignUp.Visibility = Visibility.Hidden;
             SignedUp.Visibility = Visibility.Visible;
         }

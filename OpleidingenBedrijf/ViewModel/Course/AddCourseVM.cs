@@ -4,6 +4,7 @@ using System.Data.Entity.Migrations;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Documents;
+using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.CourseView;
 using BedrijfsOpleiding.View.CourseView.AddCourse;
@@ -94,6 +95,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 course.Difficulty = (Models.Course.DifficultyEnum)_mainTab.Difficulty.SelectedItem;
                 course.Duration = int.Parse(_mainTab.Duration.Text);
                 course.Price = decimal.Parse(_mainTab.Price.Text);
+                course.MaxParticipants = int.Parse(_mainTab.MaxParticipants.Text);
 
                 //Teacher
                 course.UserID = _teacherTab.ViewModel.SelectedTeacher.UserID;
@@ -138,6 +140,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 _mainTab.Difficulty.SelectedItem = course.Difficulty;
                 _mainTab.Duration.Text = course.Duration.ToString();
                 _mainTab.Price.Text = course.Price.ToString(CultureInfo.CurrentCulture);
+                _mainTab.MaxParticipants.Text = course.MaxParticipants.ToString();
 
                 //Teacher
                 var dataGridItems = (List<DataGridItem>)_teacherTab.teacherGrid.ItemsSource;
@@ -162,11 +165,17 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     index++;
                 }
 
-
                 //Location
-                _locationTab.cboChooseLocation.SelectedValue = course.Location;
+                var stringArray = new string[_locationTab.cboChooseLocation.Items.Count];
 
-                //Send message to the teacher and enrolled students that the course has been edited
+                for (var i = 0; i < _locationTab.cboChooseLocation.Items.Count; i++) stringArray[i] = _locationTab.cboChooseLocation.Items[i].ToString();
+
+                IEnumerable<string> locationList = from i in stringArray
+                                                   where i == $"{course.Location.Street},{course.Location.City},{course.Location.Country}"
+                                                   select i;
+
+                IEnumerable<string> enumerable = locationList as string[] ?? locationList.ToArray();
+                _locationTab.cboChooseLocation.SelectedValue = enumerable.Any() ? enumerable.First() : null;
 
                 MainVM.CurrentView = new CourseOverView(MainVM);
             }

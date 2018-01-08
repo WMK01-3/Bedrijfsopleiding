@@ -32,7 +32,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         public void CheckData()
         {
-            var textBlocks = new TextBox[] { _view.CourseName, _view.Price, _view.Duration };
+            var textBlocks = new TextBox[] { _view.CourseName, _view.Price, _view.Duration, _view.MaxParticipants };
             int errorAmount = textBlocks.Sum(item => item.Text.IsEmpty() ? 1 : 0);
 
             errorAmount += new TextRange(_view.Description.Document.ContentStart, _view.Description.Document.ContentEnd).Text.IsEmpty() ? 1 : 0;
