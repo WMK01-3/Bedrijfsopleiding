@@ -30,28 +30,6 @@ namespace BedrijfsOpleiding.ViewModel.Login
                                      select u.UserName).Count();
 
                 #region ErrorControllers
-
-                #region ErrorIcons
-
-                if (_view.tbUsername.Text.Length == 0)
-                    _view.ecUsername.Visibility = Visibility.Visible;
-                else
-                    _view.ecUsername.Visibility = userNameCount == 0 ? Visibility.Hidden : Visibility.Visible;
-
-                _view.ecBirthdate.Visibility = _view.dpBirthDate.ToString().Length == 0 ? Visibility.Visible : Visibility.Hidden;
-                _view.ecFirstName.Visibility = _view.tbFirstName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-                _view.ecEmail.Visibility = _view.tbEmail.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-                _view.ecLastName.Visibility = _view.tbLastName.Text.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-                _view.ecPassword.Visibility = _view.pbPassword.Password.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-                _view.ecRepeatPassword.Visibility = _view.pbPasswordRepeat.Password.Length == 0 ? Visibility.Visible : Visibility.Hidden;
-                _view.ecLastName.Visibility = _view.tbLastName.Text.IsName() ? Visibility.Hidden : Visibility.Visible;
-                _view.ecEmail.Visibility = _view.tbEmail.Text.IsEmail() ? Visibility.Hidden : Visibility.Visible;
-                _view.ecFirstName.Visibility = _view.tbFirstName.Text.IsName() ? Visibility.Hidden : Visibility.Visible;
-                _view.ecPassword.Visibility = _view.pbPassword.Password.IsPassword() ? Visibility.Hidden : Visibility.Visible;
-                _view.ecRepeatPassword.Visibility = _view.pbPasswordRepeat.Password.IsPassword() ? Visibility.Hidden : Visibility.Visible;
-
-                #endregion
-
                 #region ErrorBorders
 
                 _view.pbPassword.BorderBrush = _view.pbPassword.Password.Length == 0 ? _redBrush : _blueBrush;
@@ -115,7 +93,6 @@ namespace BedrijfsOpleiding.ViewModel.Login
 
                 #endregion
 
-
                 _errorCount += _view.tbEmail.Text.Length == 0 ? 1 : 0;
                 _errorCount += userNameCount == 0 ? 0 : 1;
                 _errorCount += _view.tbFirstName.Text.Length == 0 ? 1 : 0;
@@ -130,9 +107,6 @@ namespace BedrijfsOpleiding.ViewModel.Login
                 _errorCount += _view.tbFirstName.Text.IsName() ? 0 : 1;
                 _errorCount += _view.tbLastName.Text.IsName() ? 0 : 1;
 
-
-
-                
                 if (_errorCount != 0) return;
 
                 User addedUser = new User

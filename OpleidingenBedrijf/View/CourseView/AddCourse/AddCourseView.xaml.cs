@@ -27,7 +27,8 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         public AddCourseView(MainWindowVM vm, int id) : this(vm)
         {
-            throw new System.NotImplementedException();
+            CourseId = id;
+            ViewModel.FillTabsIn();
         }
     }
 }

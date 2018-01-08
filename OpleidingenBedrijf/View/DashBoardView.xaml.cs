@@ -33,7 +33,7 @@ namespace BedrijfsOpleiding.View
         }
 
         #endregion
-        public DashBoardView(MainWindowVM mainVM) : base(mainVM)
+         public DashBoardView(MainWindowVM mainVM) : base(mainVM)
         {
             InitializeComponent();
             DataContext = new DashBoardVM(mainVM, this);
@@ -44,7 +44,7 @@ namespace BedrijfsOpleiding.View
             Uri url = new Uri(String.Format("file:///{0}/View/GoogleMaps/map.html", curDir));     // development versie
             //Uri url = new Uri(String.Format("file:///{0}/Data/map.html", curDir));                  // Productie versie
 
-            wbMaps.Navigate(url);
+             wbMaps.Navigate(url);
 
             wbMaps.ObjectForScripting = new MapsFunctions();
 
@@ -53,7 +53,7 @@ namespace BedrijfsOpleiding.View
 
         private void wbMaps_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            wbMaps.InvokeScript("initialize");
+             wbMaps.InvokeScript("initialize");
 
             ((DashBoardVM) ViewModel).LoadMarkers(wbMaps);
         }

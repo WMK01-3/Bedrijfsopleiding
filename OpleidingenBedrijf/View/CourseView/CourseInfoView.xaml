@@ -108,7 +108,7 @@
                 <!--Only an Employee can see this-->
                 <Grid>
                     <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 150 0 0" Width="160" Click="BtnEditCourse_OnClick" x:Name="btnEditCourse" Content="Cursus Wijzigen"/>
-                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 250 0 0" Width="160" Click="BtnDelCourse_OnClick" x:Name="btnDelCourse" Content="{Binding Path=courseStatus, Mode=OneWay , UpdateSourceTrigger=PropertyChanged}">
+                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 250 0 0" Width="160" Click="BtnDelCourse_OnClick" x:Name="btnDelCourse" Content="{Binding Path=CourseStatus, Mode=OneWay , UpdateSourceTrigger=PropertyChanged}">
                         <uiElements:FlatButton.BindingGroup>
                             <BindingGroup/>
                         </uiElements:FlatButton.BindingGroup>

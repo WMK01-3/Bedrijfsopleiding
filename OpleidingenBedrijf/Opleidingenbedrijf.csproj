@@ -102,7 +102,7 @@
     <Compile Include="UIElements\FlatButton.cs" />
     <Compile Include="UIElements\SimpleButton.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
-    <Compile Include="ViewModel\Course\AddCourse\DateVM.cs" />
+    <Compile Include="ViewModel\Course\AddCourse\DateTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\LocationTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\MainTabVM.cs" />
     <Compile Include="ViewModel\Course\AddCourse\TeacherVM.cs" />
@@ -112,6 +112,7 @@
     <Compile Include="ViewModel\DashBoardVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileBasicTabVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileProfessionTabVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileSubscriptionsVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileVM.cs" />
     <Compile Include="View\CourseView\AddCourse\DateTab.xaml.cs">
       <DependentUpon>DateTab.xaml</DependentUpon>
@@ -137,6 +138,9 @@
     </Compile>
     <Compile Include="View\Profile\ProfileProfessionTab.xaml.cs">
       <DependentUpon>ProfileProfessionTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileSubscriptions.xaml.cs">
+      <DependentUpon>ProfileSubscriptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Profile\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
@@ -208,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Profile\ProfileProfessionTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Profile\ProfileSubscriptions.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Invoices\" />
+    <Folder Include="Themes\Calendar\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="docs\MySqlTransaction.xml" />
@@ -324,6 +333,10 @@
     <Resource Include="docs\MySqlCommand.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WpfUIPickerControl\WpfUIPickerLib.csproj">
+      <Project>{2dbf5938-6c20-448e-93f1-20d484fcb24a}</Project>
+      <Name>WpfUIPickerLib</Name>
+    </ProjectReference>
     <Resource Include="GoogleMaps.LocationServices.readme.txt" />
     <Content Include="View\GoogleMaps\map.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

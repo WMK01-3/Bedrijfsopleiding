@@ -20,7 +20,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         private LocationTabVM _viewModel;
         public LocationTabVM ViewModel
         {
-            get => _viewModel = _viewModel ?? new LocationTabVM(MainVM);
+            get => _viewModel = _viewModel ?? new LocationTabVM(this, MainVM, _view);
             set => _viewModel = value;
         }
 
@@ -40,12 +40,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int locID = (cboChooseLocation.SelectedValue.ToString() == "Nieuwe locatie toevoegen") ? ViewModel.AddLocation(tbCity.Text, tbClassroom.Text) : ViewModel.getLocation(cboChooseLocation.SelectedValue.ToString()); ;
-            if (locID > 0)
-            {
-                _view.ViewModel.AddCourse(locID);
-            } 
-            
+            ViewModel.CheckData();
         }
     }
 }

@@ -45,11 +45,11 @@
             <TabItem Header="Docent Koppelen" IsEnabled="False" Width="140">
                 <ContentControl Content="{Binding TeacherTab}" Margin="10"/>
             </TabItem>
-            <TabItem Header="Datum" IsEnabled="False" Width="100">
-                <ContentControl Content="{Binding DateTab}" Margin="10"/>
-            </TabItem>
             <TabItem Header="Locatie" IsEnabled="False" Width="100">
                 <ContentControl Content="{Binding LocationTab}" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Datum" IsEnabled="False" Width="100">
+                <ContentControl Content="{Binding DateTab}" Margin="10"/>
             </TabItem>
         </TabControl>
     </Grid>

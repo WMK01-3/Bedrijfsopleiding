@@ -4,24 +4,357 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+               xmlns:wpfUiPickerLib="clr-namespace:WpfUIPickerLib;assembly=WpfUIPickerLib"
+               xmlns:fa="http://schemas.fontawesome.io/icons/"
+               xmlns:system="clr-namespace:System;assembly=mscorlib"
                mc:Ignorable="d" 
-               d:DesignHeight="740" d:DesignWidth="1250">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="700"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+               d:DesignHeight="740" d:DesignWidth="1250"
+               DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+
+    <Grid Background="#EEE">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="90"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="270"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="90"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="5" Grid.Column="1" Click="ButtonBase_OnClick">Volgende</Button>
+
+        <Grid Margin="40 40 40 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Calendar-->
+                <Grid>
+                    <!--Calendar itself-->
+                    <Grid Background="White" Margin="10" VerticalAlignment="Top">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <!--Calendar Control buttons-->
+                            <Grid>
+                                <!-- Previous Week-->
+                                <fa:FontAwesome Width="40" Name="previousWeek" MouseUp="PreviousWeek_OnMouseUp">
+                                    <fa:FontAwesome.Style>
+                                        <Style TargetType="fa:FontAwesome">
+                                            <Setter Property="Width" Value="40"/>
+                                            <Setter Property="Icon" Value="CaretLeft"/>
+                                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                                            <Setter Property="Margin" Value="10 0 0 0"/>
+                                        </Style>
+                                    </fa:FontAwesome.Style>
+                                </fa:FontAwesome>
+                                <!-- Next Week-->
+                                <fa:FontAwesome Name="nextWeek" MouseUp="NextWeek_OnMouseUp">
+                                    <fa:FontAwesome.Style>
+                                        <Style TargetType="fa:FontAwesome">
+                                            <Setter Property="Width" Value="40"/>
+                                            <Setter Property="Height" Value="40"/>
+                                            <Setter Property="Icon" Value="CaretRight"/>
+                                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                                            <Setter Property="Margin" Value="0 0 10 0"/>
+                                        </Style>
+                                    </fa:FontAwesome.Style>
+                                </fa:FontAwesome>
+                                <!-- Current Month Label-->
+                                <Label Content="{Binding CalendarCurrentWeekLabel}" Width="300"/>
+                            </Grid>
+                        </Border>
+
+                        <Border Grid.Row="1" BorderThickness="1" BorderBrush="Gray" >
+                            <Grid>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="40"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Day Labels-->
+                                    <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!--Labels-->
+                                        <Label Grid.Row="0" Grid.Column="0" Content="Tijd" Background="Transparent"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding Path=DayDateStrings[0]}" ContentStringFormat="Ma {0}"/>
+                                        <Label Grid.Row="0" Grid.Column="2" Content="{Binding Path=DayDateStrings[1]}" ContentStringFormat="Di {0}"/>
+                                        <Label Grid.Row="0" Grid.Column="3" Content="{Binding Path=DayDateStrings[2]}" ContentStringFormat="Wo {0}"/>
+                                        <Label Grid.Row="0" Grid.Column="4" Content="{Binding Path=DayDateStrings[3]}" ContentStringFormat="Do {0}"/>
+                                        <Label Grid.Row="0" Grid.Column="5" Content="{Binding Path=DayDateStrings[4]}" ContentStringFormat="Vr {0}"/>
+                                        <Label Grid.Row="0" Grid.Column="6" Content="{Binding Path=DayDateStrings[5]}" ContentStringFormat="Za {0}"/>
+                                        <Label Grid.Row="0" Grid.Column="7" Content="{Binding Path=DayDateStrings[6]}" ContentStringFormat="Zo {0}"/>
+                                    </Grid>
+                                    <!-- Canvas-->
+                                    <ScrollViewer Grid.Row="1">
+                                        <Grid Height="576" x:Name="canvasMainGrid">
+                                            <ItemsControl ItemsSource="{Binding TimeLines}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <Canvas/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Line X1="60" X2="{Binding ElementName=canvasMainGrid, Path=ActualWidth}" Y1="{Binding Path=Y1}" Y2="{Binding Path=Y2}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--Time labels-->
+                                                <ItemsControl Grid.Column="0" ItemsSource="{Binding TimeLines}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <Canvas/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Grid>
+                                                                <Label Content="{Binding Text}" Height="24" VerticalContentAlignment="Center" VerticalAlignment="Top" Margin="{Binding Margin}"/>
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+
+                                                <!--Monday-->
+                                                <Canvas Grid.Column="1" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Monday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="1" Name="mondayGrid" MouseDown="MondayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[0]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                                <!--Tuesday-->
+                                                <Canvas Grid.Column="2" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Tuesday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="2" Name="tuesdayGrid" MouseDown="TuesdayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[1]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                                <!--Wednesday-->
+                                                <Canvas Grid.Column="3" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Wednesday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="3" Name="wednesdayGrid" MouseDown="WednesdayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[2]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                                <!--Thursday-->
+                                                <Canvas Grid.Column="4" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Thursday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="4" Name="thursdayGrid" MouseDown="ThursdayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[3]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                                <!--Friday-->
+                                                <Canvas Grid.Column="5" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Friday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="5" Name="fridayGrid" MouseDown="FridayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[4]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                                <!--Saturday-->
+                                                <Canvas Grid.Column="6" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Saturday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="6" Name="saturdayGrid" MouseDown="SaturdayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[5]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                                <!--Sunday-->
+                                                <Canvas  Grid.Column="7" Margin="10 0 10 0">
+                                                    <ContentPresenter Content="{Binding CalendarItem.Sunday}"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                </Canvas>
+                                                <Grid Grid.Column="7" Name="sundayGrid" MouseDown="SundayGrid_OnMouseDown">
+                                                    <Grid.Style>
+                                                        <Style TargetType="Grid">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsDaySelected[6]}" Value="True">
+                                                                    <Setter Property="Background" Value="DodgerBlue"/>
+                                                                    <Setter Property="Opacity" Value="0.1"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Grid.Style>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!--TimePicker-->
+                <Grid Grid.Column="1" Margin="10">
+                    <Grid Height="40" VerticalAlignment="Top">
+                        <fa:FontAwesome x:Name="triangle" Icon="ExclamationTriangle" Foreground="Orange" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <fa:FontAwesome.Style>
+                                <Style TargetType="fa:FontAwesome">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static system:String.Empty}">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </fa:FontAwesome.Style>
+                        </fa:FontAwesome>
+                        <Label Content="{Binding ErrorMessage}" FontWeight="Bold" Foreground="Orange" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                    </Grid>
+                    
+                    <Grid Background="White" Height="200" VerticalAlignment="Top" Margin="0 45 0 0">
+                        <Label Content="Klas lokaal"/>
+                        <TextBox Name="classRoom" VerticalAlignment="Top" Margin="0 20 0 0" TextChanged="ClassRoom_OnTextChanged"/>
+                        <wpfUiPickerLib:WpfUIPickerControl x:Name="wpfUiPickerControl" AlwaysOpen="True" Tumblers="{Binding TimeTumblers}" Margin="0 50 0 0"  HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    </Grid>
+
+                    <Grid Background="White" Height="200" VerticalAlignment="Bottom">
+                        <Grid Margin="10">
+                            <TextBlock Height="30" VerticalAlignment="Top" Text="Geselecteerde informatie"/>
+                            <TextBlock Height="30" VerticalAlignment="Top" Margin="0 30 0 0" Text="{Binding SelectedInfo.NLDate, StringFormat='Dag: {0}'}"/>
+                            <TextBlock Height="30" VerticalAlignment="Top" Margin="0 60 0 0" Text="{Binding SelectedInfo.Date, StringFormat='Datum: {0:dd/MM/yy}'}"/>
+                            <TextBlock Height="30" VerticalAlignment="Top" Margin="0 90 0 0" Text="{Binding SelectedInfo.Date.TimeOfDay, StringFormat='Tijd: {0:hh\\:mm}'}"/>
+                            <TextBlock Height="30" VerticalAlignment="Top" Margin="0 120 0 0" Text="{Binding SelectedInfo.ClassRoom, StringFormat='Lokaal: {0}'}"/>
+                            <Button Height="30" VerticalAlignment="Bottom" Background="DarkSeaGreen" Content="Toevoegen" Click="AddDate_OnClick"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="10" VerticalAlignment="Top" Height="512">
+                <ListView x:Name="dateListView" ItemsSource="{Binding DateItemList}" HorizontalContentAlignment="Stretch">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Focusable" Value="False"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0 0 0 1" BorderBrush="Gray">
+                                <Grid Height="100">
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 0 0 0" Text="{Binding NLDate, StringFormat='Dag: {0}'}"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 25 0 0" Text="{Binding Date, StringFormat='Datum: {0:dd/MM/yy}'}"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 50 0 0" Text="{Binding Date.TimeOfDay, StringFormat='Tijd: {0:hh\\:mm}'}"/>
+                                    <TextBlock Height="30" VerticalAlignment="Top" Margin="0 75 0 0" Text="{Binding ClassRoom, StringFormat='Lokaal: {0}'}"/>
+                                    <fa:FontAwesome Icon="Trash" Tag="{Binding ElementIndex}" VerticalAlignment="Center" HorizontalAlignment="Right" Width="40" Height="40" MouseUp="UIElement_OnMouseUp"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+
+        <!--Buttons-->
+        <Grid Width="500" Grid.Row="1" Height="100" VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="btnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="BtnPrevious_OnClick"/>
+            <Button Grid.Column="1" Height="30" Margin="10" Content="Cursus Toevoegen" Background="CornflowerBlue" Click="ButtonBase_OnClick"/>
+        </Grid>
     </Grid>
 </view:BaseView>
 
