@@ -25,8 +25,8 @@
             <TabItem Header="Berichten">
                 <ContentControl Content="{Binding MessageTab}"/>
             </TabItem>
-            <TabItem Header="Vakkundigheden" Name="TabProfession">
-                <ContentControl Content="{Binding ProfessionTab}"/>
+            <TabItem Header="Change account">
+                <ContentControl Content="{Binding ProfileBasicTab}"/>
             </TabItem>
         </TabControl>
     </Grid>

@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\Course\AddCourseVM.cs" />
     <Compile Include="ViewModel\CustomerVM.cs" />
     <Compile Include="ViewModel\DashBoardVM.cs" />
+    <Compile Include="ViewModel\Profile\ProfileBasicTabVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileProfessionTabVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileSubscriptionsVM.cs" />
     <Compile Include="ViewModel\Profile\ProfileVM.cs" />
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="View\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Profile\ProfileBasicTab.xaml.cs">
+      <DependentUpon>ProfileBasicTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Profile\ProfileProfessionTab.xaml.cs">
       <DependentUpon>ProfileProfessionTab.xaml</DependentUpon>
@@ -203,6 +207,10 @@
     <Compile Include="ViewModel\Login\LoginVM.cs" />
     <Compile Include="ViewModel\Login\RegistrationVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Page Include="View\Profile\ProfileBasicTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Profile\ProfileProfessionTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

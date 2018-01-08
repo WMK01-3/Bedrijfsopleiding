@@ -8,7 +8,9 @@ namespace BedrijfsOpleiding.ViewModel.Profile
     {
         private User _user;
 
+
         public bool IsTeacher => _user.Role == User.RoleEnum.Teacher;
+
 
         #region ProfessionTab : ProfileProfessionTab
 
@@ -17,8 +19,14 @@ namespace BedrijfsOpleiding.ViewModel.Profile
             _profileProfessionTab = _profileProfessionTab?? new ProfileProfessionTab(MainVM);
 
         #endregion
+        #region BasicTab : ProfileBasicTab
 
+        private ProfileBasicTab _profileBasicTab;
+        public ProfileBasicTab ProfileBasicTab =>
+            _profileBasicTab = _profileBasicTab ?? new ProfileBasicTab(MainVM);
 
+        #endregion
+        
         #region MessageT : MessageView
 
         private MessageView _profileMessageTab;
@@ -26,8 +34,6 @@ namespace BedrijfsOpleiding.ViewModel.Profile
             _profileMessageTab = _profileMessageTab ?? new MessageView(MainVM);
 
         #endregion
-
-
 
         public ProfileVM(MainWindowVM vm) : base(vm)
         {
