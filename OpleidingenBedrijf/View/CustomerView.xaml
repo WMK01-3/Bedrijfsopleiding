@@ -10,12 +10,26 @@
 
     <Grid>
         <!--Filter-->
-        <Grid Width="250" HorizontalAlignment="Left">
-            <Grid Margin="10 60 10 110" Background="White">
+        <Grid  Width="300" HorizontalAlignment="Left">
+            <Grid Margin="10 60 10 110" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height ="3*"/>
+                    <RowDefinition Height ="3*"/>
+                    <RowDefinition Height ="3*"/>
+                </Grid.RowDefinitions>
                 <Grid.Effect>
                     <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
                 </Grid.Effect>
-                <Label Content="Filter" HorizontalAlignment="Center" FontSize="25"/>
+                <Label Grid.Row="0" Content="Filter" HorizontalAlignment="Center" FontSize="25"/>
+                <Label Grid.Row="1" Content="Naam" FontSize="20" HorizontalAlignment="Center" Margin=" 0 20 0 0"/>
+                <TextBox BorderThickness="0" Grid.Row="1"  Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="Center" Name="txtName"/>
+                   
+                
+                <Label Grid.Row="2" Content="Rol" FontSize="20" HorizontalAlignment="Center" Margin=" 0 20 0 0"/>
+                <ComboBox Background="Blue" BorderThickness="0" Grid.Row="2"  Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="center" Name="cbxRole"/>
+               
+                <Button Content="Filter" FontSize="20" Grid.Row="3" Margin="30 60" Click="Button_Click"/>
                 <!--
                 For teachers
                 
@@ -33,18 +47,13 @@
         </Grid>
 
 
-        <Grid Width="500">
+        <Grid Width="600">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--Top-->
             <Grid Grid.Row="0">
-                <TextBox BorderThickness="0" Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="Left" TextChanged="TextBox_TextChanged">
-                    <TextBox.Effect>
-                        <DropShadowEffect BlurRadius="10" Direction="-90" Color="LightGray"/>
-                    </TextBox.Effect>
-                </TextBox>
                 <Button Name="btnSaveEdits" Click="BtnSaveEdits_OnClick">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -140,6 +149,26 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                   
+                    <!-- account status -->
+                    <DataGridTemplateColumn Width="2*" Header="  Status">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Path=Blocked}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <!--Profession-->
                     <DataGridTemplateColumn Width="3*" Header="  Rol">
                         <DataGridTemplateColumn.CellStyle>
@@ -161,6 +190,9 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+        </Grid>
+        <Grid Width="300" HorizontalAlignment="Right" Margin="20">
+            <Button Content="Blokeren" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="Button_Click_1" />
         </Grid>
 
 

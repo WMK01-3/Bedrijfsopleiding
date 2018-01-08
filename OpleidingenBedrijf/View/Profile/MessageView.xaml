@@ -1,0 +1,81 @@
+﻿<view:BaseView x:Class="BedrijfsOpleiding.View.Profile.MessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
+             xmlns:view="clr-namespace:BedrijfsOpleiding.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1250"
+               DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Column="0" Grid.Row="1" ItemsSource="{Binding MessageList}" Name="Messages" LoadingRow="Messages_OnLoadingRow" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="580" IsReadOnly="True" VerticalAlignment="Top" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Bericht" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <uiElements:FlatButton Grid.Row="0" Content="Nieuw Bericht" HorizontalAlignment="Center" VerticalAlignment="Center" Width="137" Grid.Column="0" Click="Btn_NewMessage_OnClick"/>
+                    <uiElements:FlatButton Grid.Row="0" Content="Verwijder" HorizontalAlignment="Center"  Grid.Column="1" VerticalAlignment="Center" Click="BtnDelete_Click" Width="138"/>
+                    <uiElements:FlatButton Grid.Row="0" Content="Openen" HorizontalAlignment="Center"  Grid.Column="2" Click="BtnOpen_Click" VerticalAlignment="Center" Width="137"/>
+                </Grid>
+            </Grid>
+
+            <!--MessageView-->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0"  Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox IsReadOnly="{Binding IsNotNewMessage}" Name="Title" Margin="5" Height="40" HorizontalContentAlignment="Center" FontSize="20"/>
+
+                    <Grid Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Style>
+                            <Style TargetType="Grid">
+                                <Setter Property="Visibility" Value="Hidden"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsNotNewMessage}" Value="False">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Style>
+
+                        <TextBox x:Name="NameTextBox" Grid.Column="0" Margin="5" Height="30"/>
+                        <uiElements:FlatButton Grid.Column="1" Margin="5" Height="40" x:Name="Btn_SendMessage" Content="Bericht Verzenden" Click="Btn_SendMessage_OnClick"/>
+                    </Grid>
+                </Grid>
+                <TextBox IsReadOnly="{Binding IsNotNewMessage}" Grid.Row="1" Margin="10" TextWrapping="Wrap" Name="MessageText"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</view:BaseView>

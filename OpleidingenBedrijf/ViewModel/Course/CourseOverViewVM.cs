@@ -36,7 +36,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public bool IsEmployee =>
             _user.Role == User.RoleEnum.Employee;
-        
+
         private readonly User _user;
 
         private string _nameFilter = "";
@@ -73,8 +73,9 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 IQueryable<Models.Course> result;
                 if (MainVM.CurUser.Role == User.RoleEnum.Employee)
                 {
-                    result = (from c in context.Courses
-                              select c);
+                    result = from c in context.Courses
+                             orderby c.Archived
+                             select c;
                 }
                 else
                 {

@@ -149,7 +149,7 @@
     <Compile Include="View\MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MessageView\MessageView.xaml.cs">
+    <Compile Include="View\Profile\MessageView.xaml.cs">
       <DependentUpon>MessageView.xaml</DependentUpon>
     </Compile>
     <Page Include="Themes\Generic.xaml">
@@ -261,7 +261,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MessageView\MessageView.xaml">
+    <Page Include="View\Profile\MessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

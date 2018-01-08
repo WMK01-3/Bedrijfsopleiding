@@ -28,7 +28,7 @@ namespace BedrijfsOpleiding.View
         public CustomerView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-
+            cbxRole.ItemsSource = Enum.GetValues(typeof(User.RoleEnum));
             //Set the Datagrid for the first time
             ViewModel.UpdateDataGrid();
         }
@@ -43,9 +43,22 @@ namespace BedrijfsOpleiding.View
             ViewModel.InfoChanged = ViewModel.IsInfoDifferent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.FilterText(((TextBox)sender).Text);
+            ViewModel.FilterText(txtName.Text.ToLower(), cbxRole.Text);
+            cbxRole.SelectedIndex = -1;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (customerGrid.SelectedItem == null) return;
+            Debug.WriteLine("ok1");
+            if (customerGrid.SelectedItem is CustomerDataGridItem == false) return;
+            Debug.WriteLine("ok2");
+            _viewModel.Block(((CustomerDataGridItem)customerGrid.SelectedItem).UserID);
+            Debug.WriteLine("ok3");
+            MainVM.CurrentView = new CustomerView(MainVM);
         }
     }
 
@@ -54,6 +67,7 @@ namespace BedrijfsOpleiding.View
         public int UserID { get; set; }
         public string FullName { get; set; }
         public User.RoleEnum OriginalRole { get; set; }
+        public string Blocked { get; set; }
 
         private User.RoleEnum _currentRole;
         public User.RoleEnum CurrentRole

@@ -17,6 +17,17 @@ namespace BedrijfsOpleiding.ViewModel.Message
         private string _title;
         public string Title { get => _title; set => OnPropertyChanged(); }
 
+        private bool _isNewMessage;
+        public bool IsNotNewMessage
+        {
+            get => _isNewMessage;
+            set
+            {
+                _isNewMessage = value;
+                OnPropertyChanged(nameof(IsNotNewMessage));
+            }
+        }
+
         public MessageVM(MainWindowVM vm, UserControl boundView) : base(vm)
         {
             _user = vm.CurUser;

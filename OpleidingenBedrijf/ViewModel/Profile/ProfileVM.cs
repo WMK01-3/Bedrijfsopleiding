@@ -1,6 +1,6 @@
 ﻿using BedrijfsOpleiding.Models;
-using BedrijfsOpleiding.View.MessageView;
 using BedrijfsOpleiding.View.Profile;
+using MessageView = BedrijfsOpleiding.View.Profile.MessageView;
 
 namespace BedrijfsOpleiding.ViewModel.Profile
 {

@@ -44,11 +44,18 @@ namespace BedrijfsOpleiding.ViewModel.Login
                     {
                         _view.ErrorMessage.Visibility = Visibility.Visible;
                         _view.Username.BorderBrush = _redBrush;
-                        _view.ErrorMessageMessage.Content = "Gebruikersnaam bestaat niet";
+                        _view.ErrorMessageMessage.Content = "Gebruikersnaam bestaat niet ";
                         return;
                     }
-
+                    
                     User user = result.First();
+                    if (user.Blocked)
+                    {
+                        _view.ErrorMessage.Visibility = Visibility.Visible;
+                        _view.Username.BorderBrush = _redBrush;
+                        _view.ErrorMessageMessage.Content = "Dit account is geblokkeerd.";
+                        return;
+                    }
 
                     if (user.PassWord == _view.Password.Password)
                         MainVM.Login(user);

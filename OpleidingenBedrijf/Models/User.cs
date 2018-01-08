@@ -20,6 +20,8 @@ namespace BedrijfsOpleiding.Models
         public RoleEnum Role { get; set; }
         public virtual ICollection<int> EnrollMentID { get; set; }
 
+        public bool Blocked { get; set; }
+
         public User()
         {
 
