@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="690" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
-    <Grid>
+    <Grid Name="BossGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="3*"/>
@@ -92,14 +92,176 @@
 
             </Grid>
 
-            <DataGrid ItemsSource="{Binding CourseList}" Grid.Row="1"  IsReadOnly="True" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray" RowBackground="CornflowerBlue" AlternatingRowBackground="White">
+            <DataGrid ItemsSource="{Binding CourseList}" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray">
+                <DataGrid.Style>
+                    <Style TargetType="{x:Type DataGrid}">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Margin" Value="10"></Setter>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="RowHeaderWidth" Value="0"/>
+                        <Setter Property="AutoGenerateColumns" Value="False"/>
+                        <Setter Property="GridLinesVisibility" Value="None"/>
+                        <!--Can User-->
+                        <Setter Property="CanUserReorderColumns" Value="True"/>
+                        <Setter Property="CanUserDeleteRows" Value="False"/>
+                        <Setter Property="CanUserResizeRows" Value="False"/>
+                        <Setter Property="CanUserResizeColumns" Value="False"/>
+                        <Setter Property="CanUserAddRows" Value="False"/>
+
+                        <Setter Property="ColumnHeaderStyle">
+                            <Setter.Value>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <!--The header style-->
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Height" Value="35"/>
+                                    <Setter Property="FontSize" Value="16"/>
+                                    <Setter Property="BorderThickness" Value="0 0 0 1"/>
+                                    <Setter Property="BorderBrush" Value="#AFAFAF"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Effect">
+                            <Setter.Value>
+                                <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="CellStyle">
+                            <Setter.Value>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Setter Property="BorderBrush" Value="#CFCFCF"/>
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                </Style>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.Style>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden"/>
-                    <DataGridTextColumn Header="Naam" IsReadOnly="True" Binding="{Binding Title}" Width="2*"/>
-                    <DataGridTextColumn Header="Prijs" IsReadOnly="True" Binding="{Binding Price}" Width="1*"/>
-                    <DataGridTextColumn Header="Locatie" IsReadOnly="True" Binding="{Binding Location}" Width="2*"/>
-                    <DataGridTextColumn Header="Moeilijkheid" IsReadOnly="True" Binding="{Binding Difficulty}" Width="1*"/>
-                    <DataGridTextColumn Header="Gearchiveerd" IsReadOnly="True" Binding="{Binding Archived}" Width="1*"/>
+                    <!-- Unused-->
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Binding="{Binding CourseID}" Visibility="Hidden" Width="0"/>
+                    <DataGridTextColumn Header="Gearchiveerd" IsReadOnly="True" Binding="{Binding Archived}" Visibility="Hidden"/>
+
+                    <!--Course Name-->
+                    <DataGridTemplateColumn Header="Naam" IsReadOnly="True" Width="2*">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Archived}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#DDD"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0 0 0 2"  BorderBrush="#CFCFCF">
+                                    <Label Content="{Binding Path=Title}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Price-->
+                    <DataGridTemplateColumn Header="Prijs" IsReadOnly="True" Width="1*">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Archived}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#DDD"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0 0 0 2"  BorderBrush="#CFCFCF">
+                                    <Label Content="{Binding Path=Price}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Location-->
+                    <DataGridTemplateColumn Header="Locatie" IsReadOnly="True" Width="2*">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Archived}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#DDD"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0 0 0 2"  BorderBrush="#CFCFCF">
+                                    <Label Content="{Binding Path=Location}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--Difficulty-->
+                    <DataGridTemplateColumn Header="Moeilijkheid" IsReadOnly="True" Width="1*">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0"></Setter>
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Archived}" Value="True"/>
+                                        </MultiDataTrigger.Conditions>
+                                        <MultiDataTrigger.Setters>
+                                            <Setter Property="Background" Value="#DDD"/>
+                                        </MultiDataTrigger.Setters>
+                                    </MultiDataTrigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#7F61C1CB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="0 0 0 2"  BorderBrush="#CFCFCF">
+                                    <Label Content="{Binding Path=Difficulty}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

@@ -104,14 +104,9 @@
 
         <Grid Row="0">
             <!-- Top Error Message-->
-            <Border Height="40" CornerRadius="13"  Background="#FFFFB700" VerticalAlignment="Top" Width="300">
-                <Grid x:Name="errorMessage">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.Style>
-                        <Style TargetType="Grid">
+            <Border x:Name="errorMessage" Height="40" CornerRadius="13"  Background="#FFFFB700" VerticalAlignment="Top" Width="300">
+               <Border.Style>
+                        <Style TargetType="Border">
                             <Setter Property="Visibility" Value="Visible"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static SystemColors:String.Empty}">
@@ -119,8 +114,12 @@
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </Grid.Style>
-
+                    </Border.Style>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
                     <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Width="15" Foreground="#FFF7F7F7"/>
                     <Label Grid.Column="1" Content="{Binding ErrorMessage}" Name="ErrorMessageMessage" FontSize="12" FontWeight="Bold" Foreground="#FFEEEEEE"/>
                 </Grid>

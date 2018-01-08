@@ -3,6 +3,7 @@ using BedrijfsOpleiding.Models;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.View;
@@ -35,7 +36,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public bool IsEmployee =>
             _user.Role == User.RoleEnum.Employee;
-
+        
         private readonly User _user;
 
         private string _nameFilter = "";
