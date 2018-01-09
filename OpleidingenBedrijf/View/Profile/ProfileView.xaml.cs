@@ -29,7 +29,7 @@ namespace BedrijfsOpleiding.View.Profile
 
         public ProfileView(MainWindowVM mainVM, int tabIndex) : this(mainVM)
         {
-            profileTab.SelectedIndex = tabIndex;
+            ProfileTab.SelectedIndex = tabIndex;
         }
     }
 }

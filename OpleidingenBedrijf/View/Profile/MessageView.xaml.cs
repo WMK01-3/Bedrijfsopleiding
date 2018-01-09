@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
-using BedrijfsOpleiding.ViewModel.Message;
+using BedrijfsOpleiding.ViewModel.Profile;
 using Message = BedrijfsOpleiding.Models.Message;
-
 
 namespace BedrijfsOpleiding.View.Profile
 {
@@ -60,6 +54,10 @@ namespace BedrijfsOpleiding.View.Profile
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
+            ViewModel.IsNotNewMessage = true;
+
+            if (Messages.SelectedItem == null) return;
+
             using (CustomDbContext context = new CustomDbContext())
             {
                 IQueryable<Message> deleteMessage = (from message in context.Messages
@@ -103,6 +101,8 @@ namespace BedrijfsOpleiding.View.Profile
 
         private void Btn_NewMessage_OnClick(object sender, RoutedEventArgs e)
         {
+            Title.Text = "";
+            MessageText.Text = "";
             ViewModel.IsNotNewMessage = false;
         }
     }

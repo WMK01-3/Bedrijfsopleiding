@@ -38,33 +38,33 @@ namespace BedrijfsOpleiding.View
         {
             InitializeComponent();
             DataContext = new DashBoardVM(mainVM, this);
-            ListBox = lbCourses;
+            ListBox = LbCourses;
 
             string curDir = Directory.GetCurrentDirectory();
 
             Uri url = new Uri(String.Format("file:///{0}/View/GoogleMaps/map.html", curDir));     // development versie
             //Uri url = new Uri(String.Format("file:///{0}/Data/map.html", curDir));                  // Productie versie
 
-             wbMaps.Navigate(url);
+             WbMaps.Navigate(url);
 
-            wbMaps.ObjectForScripting = new MapsFunctions();
+            WbMaps.ObjectForScripting = new MapsFunctions();
 
             ((DashBoardVM) ViewModel).LoadStandardDataBoxes(DataLabel1, DataLabel2, DataLabel3);
         }
 
         private void wbMaps_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-             wbMaps.InvokeScript("initialize");
+             WbMaps.InvokeScript("initialize");
 
-            ((DashBoardVM) ViewModel).LoadMarkers(wbMaps);
+            ((DashBoardVM) ViewModel).LoadMarkers(WbMaps);
         }
 
         private void lbCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (lbItem item in lbCourses.SelectedItems)
+            foreach (lbItem item in LbCourses.SelectedItems)
             {
 
-                ((DashBoardVM)ViewModel).LoadCourseBox(lblCourseTitle, tbxCourseDesc, item.Value);
+                ((DashBoardVM)ViewModel).LoadCourseBox(LblCourseTitle, TbxCourseDesc, item.Value);
             }
         }
 

@@ -57,7 +57,7 @@
 
             <!--Choose Location Combobox-->
             <Label Grid.Row="1" Grid.Column="1" Content="Kies een locatie:"></Label>
-            <ComboBox Name="cboChooseLocation"
+            <ComboBox Name="CboChooseLocation"
                   ItemsSource="{Binding Path=LocationList}"
                   Text="Bestaande locaties"
                   IsEditable="true"
@@ -67,7 +67,7 @@
 
             <!--Choose Location Textbox-->
             <Label Grid.Row="4" Grid.Column="1" Content="Locatie (Straat, Plaats, Land)" />
-            <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="tbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox Grid.Row="5" Grid.Column="1" Height="20" BorderBrush="CornflowerBlue"  BorderThickness="0 0 0 2" x:Name="TbCity" Text="{Binding TbCityValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  behaviors:AutoCompleteBehavior.AutoCompleteItemsSource="{Binding Suggestions}"/>
         </Grid>
         <!--Buttons-->

@@ -32,12 +32,12 @@ namespace BedrijfsOpleiding.View.CourseView
 
             if (isSignedUp)
             {
-                btnSignUp.Visibility = Visibility.Hidden;
+                BtnSignUp.Visibility = Visibility.Hidden;
                 SignedUp.Visibility = Visibility.Visible;
             }
             else
             {
-                btnSignUp.Visibility = Visibility.Visible;
+                BtnSignUp.Visibility = Visibility.Visible;
             }
         }
 
@@ -59,7 +59,7 @@ namespace BedrijfsOpleiding.View.CourseView
         private void BtnSignUp_OnClick(object sender, RoutedEventArgs e)
         {
             _viewModel.IsUserSignedUp(false);
-            btnSignUp.Visibility = Visibility.Hidden;
+            BtnSignUp.Visibility = Visibility.Hidden;
             SignedUp.Visibility = Visibility.Visible;
         }
     }

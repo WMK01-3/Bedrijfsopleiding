@@ -19,7 +19,7 @@ namespace BedrijfsOpleiding.View
         private CustomerVM _viewModel;
         public CustomerVM ViewModel
         {
-            get => _viewModel = _viewModel ?? new CustomerVM(MainVM);
+            get => _viewModel = _viewModel ?? new CustomerVM(MainVM, this);
             set => _viewModel = value;
         }
 
@@ -28,7 +28,17 @@ namespace BedrijfsOpleiding.View
         public CustomerView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-            cbxRole.ItemsSource = Enum.GetValues(typeof(User.RoleEnum));
+
+            //courses.ItemsSource = _viewModel.CourseList;
+
+            var str = new List<string> { "" };
+            Array enums = Enum.GetValues(typeof(User.RoleEnum));
+
+            foreach (object enumItem in enums)
+                str.Add(enumItem.ToString());
+
+            CbxRole.ItemsSource = str;
+            
             //Set the Datagrid for the first time
             ViewModel.UpdateDataGrid();
         }
@@ -43,22 +53,22 @@ namespace BedrijfsOpleiding.View
             ViewModel.InfoChanged = ViewModel.IsInfoDifferent();
         }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.FilterText(txtName.Text.ToLower(), cbxRole.Text);
-            cbxRole.SelectedIndex = -1;
-        }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (customerGrid.SelectedItem == null) return;
-            Debug.WriteLine("ok1");
-            if (customerGrid.SelectedItem is CustomerDataGridItem == false) return;
-            Debug.WriteLine("ok2");
-            _viewModel.Block(((CustomerDataGridItem)customerGrid.SelectedItem).UserID);
-            Debug.WriteLine("ok3");
+            if (CustomerGrid.SelectedItem == null) return;
+            if (CustomerGrid.SelectedItem is CustomerDataGridItem == false) return;
+            _viewModel.Block(((CustomerDataGridItem)CustomerGrid.SelectedItem).UserID);
             MainVM.CurrentView = new CustomerView(MainVM);
+        }
+
+        private void TxtUserFullName_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.FilterText();
+        }
+
+        private void CbxRole_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.FilterText();
         }
     }
 

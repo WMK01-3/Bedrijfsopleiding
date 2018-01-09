@@ -18,9 +18,9 @@
 
             <!--Button Grid-->
             <Grid Margin="75 0 0 0">
-                <uiElements:SimpleButton x:Name="btnDashBoard" HorizontalAlignment="Left" Width="150" Content="DashBoard" Click="BtnDashBoard_Click"/>
-                <uiElements:SimpleButton x:Name="btnCourseOverview" HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Content="Cursussen" Click="BtnCourseOverview_Click"/>
-                <uiElements:SimpleButton x:Name="btnCustomerOverview" HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Content="Klanten" Click="BtnCustomerOverview_Click">
+                <uiElements:SimpleButton x:Name="BtnDashBoard" HorizontalAlignment="Left" Width="150" Content="DashBoard" Click="BtnDashBoard_Click"/>
+                <uiElements:SimpleButton x:Name="BtnCourseOverview" HorizontalAlignment="Left" Margin="180 0 0 0" Width="150" Content="Cursussen" Click="BtnCourseOverview_Click"/>
+                <uiElements:SimpleButton x:Name="BtnCustomerOverview" HorizontalAlignment="Left" Margin="360 0 0 0" Width="150" Content="Klanten" Click="BtnCustomerOverview_Click">
                     <uiElements:SimpleButton.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Visibility" Value="Visible"/>

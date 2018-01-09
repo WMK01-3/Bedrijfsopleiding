@@ -28,17 +28,17 @@ namespace BedrijfsOpleiding.View.Profile
 
         private void ToCourseInfo(object sender, RoutedEventArgs e)
         {
-            if (dgdCourse.SelectedItem == null) return;
-            if (dgdCourse.SelectedItem is EnrolledCourses == false) return;
+            if (DgdCourse.SelectedItem == null) return;
+            if (DgdCourse.SelectedItem is EnrolledCourses == false) return;
             MainVM.CurrentView =
-                new CourseInfoView(((EnrolledCourses)dgdCourse.SelectedItem).Course.CourseID, MainVM);
+                new CourseInfoView(((EnrolledCourses)DgdCourse.SelectedItem).Course.CourseID, MainVM);
         }
 
         private void WriteOut(object sender, RoutedEventArgs e)
         {
-            if (dgdCourse.SelectedItem == null) return;
-            if (dgdCourse.SelectedItem is EnrolledCourses == false) return;
-            _viewModel.WriteOut(((EnrolledCourses)dgdCourse.SelectedItem).Course.CourseID, (((EnrolledCourses)dgdCourse.SelectedItem).Enrollments.UserID));
+            if (DgdCourse.SelectedItem == null) return;
+            if (DgdCourse.SelectedItem is EnrolledCourses == false) return;
+            _viewModel.WriteOut(((EnrolledCourses)DgdCourse.SelectedItem).Course.CourseID, (((EnrolledCourses)DgdCourse.SelectedItem).Enrollments.UserID));
             MainVM.CurrentView = new ProfileSubscriptions(MainVM);
         }
     }

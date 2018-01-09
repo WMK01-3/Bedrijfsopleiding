@@ -141,11 +141,11 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
         public void CheckData()
         {
-            if (_view.tbCity.Text.IsEmpty() == false || (string)_view.cboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen")
-                _addCourseView.tabControl.SelectedIndex += 1;
+            if (_view.TbCity.Text.IsEmpty() == false || (string)_view.CboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen")
+                _addCourseView.TabControl.SelectedIndex += 1;
         }
 
         public string[] GetLocationArray() =>
-            (string)_view.cboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen" ? _view.cboChooseLocation.SelectedValue.ToString().Split(',') : _view.tbCity.Text.Split(',');
+            (string)_view.CboChooseLocation.SelectedValue != "Nieuwe locatie toevoegen" ? _view.CboChooseLocation.SelectedValue.ToString().Split(',') : _view.TbCity.Text.Split(',');
     }
 }

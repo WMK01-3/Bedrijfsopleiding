@@ -1,6 +1,8 @@
 using System.Windows;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Controls;
 using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Course;
@@ -23,19 +25,25 @@ namespace BedrijfsOpleiding.View.CourseView
         public CourseOverView(MainWindowVM vm) : base(vm)
         {
             InitializeComponent();
-            //courses.ItemsSource = _viewModel.CourseList;
-            cbxDifficulty.ItemsSource = Enum.GetValues(typeof(Course.DifficultyEnum));
+
+            var str = new List<string> {""};
+            Array enums = Enum.GetValues(typeof(Course.DifficultyEnum));
+
+            foreach (object enumItem in enums)
+                str.Add(enumItem.ToString());
+
+            CbxDifficulty.ItemsSource = str;
         }
 
         private void ToCourseInfo(object sender, RoutedEventArgs e)
         {
-            if (courses.SelectedItem == null) return;
+            if (Courses.SelectedItem == null) return;
 
-            if (courses.SelectedItem is Course == false) return;
+            if (Courses.SelectedItem is Course == false) return;
 
 
             MainVM.CurrentView =
-                new CourseInfoView(((Course)courses.SelectedItem).CourseID, MainVM);
+                new CourseInfoView(((Course)Courses.SelectedItem).CourseID, MainVM);
         }
 
         private void BtnAddCourse_OnClick(object sender, RoutedEventArgs e)
@@ -44,10 +52,19 @@ namespace BedrijfsOpleiding.View.CourseView
             MainVM.CurrentView = new AddCourse.AddCourseView(MainVM);
         }
 
-        private void SearchCourses(object sender, RoutedEventArgs e)
+        private void TxtCourseName_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            _viewModel.FilterText(TxtCourseName.Text, cbxDifficulty.Text, TxtLocation.Text);
-            cbxDifficulty.SelectedIndex = -1;
+            ViewModel.FilterText();
+        }
+
+        private void TxtLocation_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.FilterText();
+        }
+
+        private void CbxDifficulty_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.FilterText();
         }
     }
 }

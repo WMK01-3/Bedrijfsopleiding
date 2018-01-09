@@ -62,8 +62,13 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void Duration_OnPreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if ((e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key == Key.Delete || e.Key == Key.Back) == false)
+            if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
                 e.Handled = true;
+            else
+            {
+                if ((e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key == Key.Delete || e.Key == Key.Back) == false)
+                    e.Handled = true;
+            }
         }
 
         private void Duration_OnTextChanged(object sender, TextChangedEventArgs e)

@@ -227,9 +227,9 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             //See if the classroom has any other courses, so it cannot be overbooked
             using (CustomDbContext context = new CustomDbContext())
             {
-                if (_view.classRoom != null)
+                if (_view.ClassRoom != null)
                 {
-                    string classroomText = _view.classRoom.Text;
+                    string classroomText = _view.ClassRoom.Text;
 
                     LocationTabVM locTab = _addCourseView.ViewModel.LocationTab.ViewModel;
                     string[] locStr = locTab.GetLocationArray();
@@ -376,7 +376,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
 
                 SelectedInfo.Date = new DateTime(1, 1, 1, 0, 0, 0);
                 SelectedInfo.ClassRoom = "";
-                _view.classRoom.Text = "";
+                _view.ClassRoom.Text = "";
             }
         }
 

@@ -7,45 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="740" d:DesignWidth="1250"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
-
     <Grid>
-        <!--Filter-->
-        <Grid  Width="300" HorizontalAlignment="Left">
-            <Grid Margin="10 60 10 110" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height ="3*"/>
-                    <RowDefinition Height ="3*"/>
-                    <RowDefinition Height ="3*"/>
-                </Grid.RowDefinitions>
-                <Grid.Effect>
-                    <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
-                </Grid.Effect>
-                <Label Grid.Row="0" Content="Filter" HorizontalAlignment="Center" FontSize="25"/>
-                <Label Grid.Row="1" Content="Naam" FontSize="20" HorizontalAlignment="Center" Margin=" 0 20 0 0"/>
-                <TextBox BorderThickness="0" Grid.Row="1"  Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="Center" Name="txtName"/>
-                   
-                
-                <Label Grid.Row="2" Content="Rol" FontSize="20" HorizontalAlignment="Center" Margin=" 0 20 0 0"/>
-                <ComboBox Background="Blue" BorderThickness="0" Grid.Row="2"  Margin="10" Width="200" VerticalContentAlignment="Center" Foreground="#333" Height="30" HorizontalAlignment="center" Name="cbxRole"/>
-               
-                <Button Content="Filter" FontSize="20" Grid.Row="3" Margin="30 60" Click="Button_Click"/>
-                <!--
-                For teachers
-                
-                <ScrollViewer Margin="10 50 10 10" VerticalScrollBarVisibility="Auto">
-                    <ListBox x:Name="categoryListBox" ItemsSource="{Binding Categories}" Background="#FAFAFA">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <CheckBox Unchecked="ToggleButton_OnUnchecked" Checked="ToggleButton_OnChecked" Content="{Binding Name}" IsChecked="{Binding IsChecked}"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </ScrollViewer>
-                -->
-            </Grid>
-        </Grid>
+        <!--Filter grid-->
+        <Grid Background="White" Height="300" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <Label Content="Filter" HorizontalAlignment="Center" FontSize="20"/>
 
+            <!--User Full Name-->
+            <Label Content="Naam" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBox TextChanged="TxtUserFullName_OnTextChanged" Name="TxtUserFullName" Width="160" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1"/>
+
+            <!--Roles-->
+            <Label Content="Rol" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top"/>
+            <ComboBox SelectionChanged="CbxRole_OnSelectionChanged" HorizontalAlignment="Center"  Grid.Row="3"  VerticalAlignment="Bottom" Width="170" Name="CbxRole"/>
+        </Grid>
 
         <Grid Width="600">
             <Grid.RowDefinitions>
@@ -54,7 +35,7 @@
             </Grid.RowDefinitions>
             <!--Top-->
             <Grid Grid.Row="0">
-                <Button Name="btnSaveEdits" Click="BtnSaveEdits_OnClick">
+                <Button Name="BtnSaveEdits" Click="BtnSaveEdits_OnClick">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
                             <Setter Property="Content" Value="Sla Wijzigingen op"/>
@@ -84,7 +65,7 @@
                 </Button>
             </Grid>
             <!--DataGrid-->
-            <DataGrid ItemsSource="{Binding GridItems}" x:Name="customerGrid" Grid.Row="1">
+            <DataGrid ItemsSource="{Binding GridItems}" x:Name="CustomerGrid" Grid.Row="1">
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="Background" Value="White"/>
@@ -149,9 +130,9 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                   
+
                     <!-- account status -->
-                    <DataGridTemplateColumn Width="2*" Header="  Status">
+                    <DataGridTemplateColumn Width="2*" Header="Geblokkeerd">
                         <DataGridTemplateColumn.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
                                 <Setter Property="Background" Value="White"/>
@@ -192,9 +173,7 @@
             </DataGrid>
         </Grid>
         <Grid Width="300" HorizontalAlignment="Right" Margin="20">
-            <Button Content="Blokkeren" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="Button_Click_1" />
+            <Button Content="(De)Blokkeren" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="30" Width="150" Click="Button_Click_1" />
         </Grid>
-
-
     </Grid>
 </local:BaseView>

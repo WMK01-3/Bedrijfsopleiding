@@ -15,28 +15,28 @@
             </Grid.Effect>
             <Label Content="Registreren" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="131,92,0,583" RenderTransformOrigin="0.482,0.169" >Gebruikersnaam</Label>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbUsername"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbUsername"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="130,162,0,509" Content="Voornaam" />
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="318,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="147" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="155" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbFirstName"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="318,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="147" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbLastName"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="131,225,0,450" Content="Geboortedatum" />
-            <DatePicker HorizontalAlignment="Left" Margin="135,255,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="dpBirthDate"/>
-            <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
+            <DatePicker HorizontalAlignment="Left" Margin="135,255,0,0" VerticalAlignment="Top" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="DpBirthDate"/>
+            <TextBox  HorizontalAlignment="Left" Height="23" Margin="135,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbEmail"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="129,389,0,287" Content="Wachtwoord" />
-            <PasswordBox  HorizontalAlignment="Left" Height="23" Margin="135,413,0,0"  VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbPassword"  />
+            <PasswordBox  HorizontalAlignment="Left" Height="23" Margin="135,413,0,0"  VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="PbPassword"  />
             <Label FontSize="12" HorizontalAlignment="Left" Margin="130,465,0,212" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,488,0,0"  VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
+            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,488,0,0"  VerticalAlignment="Top" KeyDown="OnKeyDownHandler" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="PbPasswordRepeat"/>
             <Label FontSize="12" HorizontalAlignment="Left" Margin="316,160,0,511" Content="Achternaam" />
             <Label FontSize="12" HorizontalAlignment="Left" Margin="131,305,0,370" Content="E-mail adres" />
-            <Label Name="elbUsername"  HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbFirstName"  HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name ="elbLastName"  HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbBirthDate"  HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbEmail"  HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbPassword"  HorizontalAlignment="Left" Margin="130,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Label Name="elbPasswordRepeat"  HorizontalAlignment="Left" Margin="130,509,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
-            <Button Name="btnRegister"  Content="Registreer" HorizontalAlignment="Left" Margin="108,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click" RenderTransformOrigin="0.472,2.48"/>
-            <Button Name="btnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="366,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
+            <Label Name="ElbUsername"  HorizontalAlignment="Left" Margin="130,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="ElbFirstName"  HorizontalAlignment="Left" Margin="130,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name ="ElbLastName"  HorizontalAlignment="Left" Margin="316,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="ElbBirthDate"  HorizontalAlignment="Left" Margin="130,277,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="ElbEmail"  HorizontalAlignment="Left" Margin="130,352,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="ElbPassword"  HorizontalAlignment="Left" Margin="130,433,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Label Name="ElbPasswordRepeat"  HorizontalAlignment="Left" Margin="130,509,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.484,0.242" FontSize="10" Foreground="Red" />
+            <Button Name="BtnRegister"  Content="Registreer" HorizontalAlignment="Left" Margin="108,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnRegister_Click" RenderTransformOrigin="0.472,2.48"/>
+            <Button Name="BtnCancel" Content="Annuleren" HorizontalAlignment="Left" Margin="366,603,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="btnCancel_Click"/>
         </Grid>
     </Grid>
 </view:BaseView>

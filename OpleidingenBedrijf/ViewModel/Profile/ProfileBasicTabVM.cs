@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.Migrations;
 using System.Windows;
 using BedrijfsOpleiding.Database;
-using BedrijfsOpleiding.Models;
 using BedrijfsOpleiding.View.Profile;
-using Google.Protobuf.WellKnownTypes;
 
 namespace BedrijfsOpleiding.ViewModel.Profile
 {
@@ -60,62 +53,77 @@ namespace BedrijfsOpleiding.ViewModel.Profile
             TxtEmail = MainVM.CurUser.Email;
         }
 
-        public void UpdateAccount()
+        public void UpdateName()
         {
+            ErrorVisible = Visibility.Hidden;
+
             using (CustomDbContext context = new CustomDbContext())
             {
-                // get user
-                var account = context.Users.First(d => d.UserID == MainVM.CurUser.UserID);
-
-
-                string inputCheck = "";
-                string pwCheck = "";
-                ErrorMessage = "";
-
-                // check input values
-                inputCheck = string.IsNullOrWhiteSpace(TxtFirstName) ? "First name cannot be empty" : inputCheck;
-                inputCheck = string.IsNullOrWhiteSpace(TxtLastName) ? "Last name cannot be empty" : inputCheck;
-                inputCheck = string.IsNullOrWhiteSpace(TxtEmail) ? "Email cannot be empty" : inputCheck;
-
-                inputCheck = !(TxtEmail.IsEmail()) ? "Email is not valid" : inputCheck;
-
-                // update default values
-                if (inputCheck == "")
+                if (TxtFirstName.IsName() && TxtLastName.IsName())
                 {
-                    account.FirstName = TxtFirstName;
-                    account.LastName = TxtLastName;
-                    account.Email = TxtEmail;
-
-
-                    // check pw
-                    if (!string.IsNullOrWhiteSpace(_view.pbPassword.Password))
-                    {
-                        pwCheck = (_view.pbPassword.Password.IsPassword())
-                            ? pwCheck
-                            : "Wachtwoord voldoet niet aan de eisen";
-                        pwCheck = (_view.pbPassword.Password == _view.pbPasswordRepeat.Password)
-                            ? pwCheck
-                            : "Wachtwoorden matchen niet";
-
-                        account.PassWord = (pwCheck == "") ? _view.pbPassword.Password : account.PassWord;
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(inputCheck) || !string.IsNullOrEmpty(pwCheck))
-                {
-                    ErrorMessage += inputCheck;
-                    ErrorMessage += pwCheck;
-                    ErrorVisible = Visibility.Visible;
+                    MainVM.CurUser.FirstName = TxtFirstName;
+                    MainVM.CurUser.LastName = TxtLastName;
+                    context.Users.AddOrUpdate(MainVM.CurUser);
+                    context.SaveChanges();
+                    MainVM.CurrentView = new ProfileView(MainVM, 2);
                 }
                 else
                 {
-                    ErrorVisible = Visibility.Hidden;
-                    context.SaveChanges();
-                    ProfileView view = new ProfileView(MainVM, 2);
-                    MainVM.CurrentView = view;
+                    ErrorMessage = "Voornaam of Achternaam niet correct";
+                    ErrorVisible = Visibility.Visible;
                 }
             }
         }
 
+        public void UpdateEmail()
+        {
+            ErrorVisible = Visibility.Hidden;
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                if (TxtEmail.IsEmail())
+                {
+                    MainVM.CurUser.Email = TxtEmail;
+                    context.Users.AddOrUpdate(MainVM.CurUser);
+                    context.SaveChanges();
+                    MainVM.CurrentView = new ProfileView(MainVM, 2);
+                }
+                else
+                {
+                    ErrorMessage = "Email niet correct";
+                    ErrorVisible = Visibility.Visible;
+                }
+            }
+        }
+
+        public void UpdatePassword()
+        {
+            ErrorVisible = Visibility.Hidden;
+
+            using (CustomDbContext context = new CustomDbContext())
+            {
+                if (_view.PbPassword.Password.IsPassword() != _view.PbPasswordRepeat.Password.IsPassword())
+                {
+
+                    if (_view.PbPassword.Password.IsPassword() && _view.PbPasswordRepeat.Password.IsPassword())
+                    {
+                        MainVM.CurUser.FirstName = TxtFirstName;
+                        context.Users.AddOrUpdate(MainVM.CurUser);
+                        context.SaveChanges();
+                        MainVM.CurrentView = new ProfileView(MainVM, 2);
+                    }
+                    else
+                    {
+                        ErrorMessage = "Wachtwoord is geen wachtwoord";
+                        ErrorVisible = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    ErrorMessage = "Wachtwoorden zijn niet hetzelfde";
+                    ErrorVisible = Visibility.Visible;
+                }
+            }
+        }
     }
 }

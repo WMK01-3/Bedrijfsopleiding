@@ -40,7 +40,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             ErrorMessage = errorAmount > 0 ? "Een of meerdere velden zijn leeg" : "";
             
             if (errorAmount == 0)
-                _view.View.tabControl.SelectedIndex += 1;
+                _view.View.TabControl.SelectedIndex += 1;
         }
     }
 }

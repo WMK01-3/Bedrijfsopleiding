@@ -147,8 +147,8 @@ namespace BedrijfsOpleiding.Tools
 
         private static void DrawImage(XGraphics gfx, string jpegSamplePath, int x, int y, int width, int height)
         {
-            XImage image = XImage.FromFile(jpegSamplePath);
-            gfx.DrawImage(image, x, y, width, height);
+            //XImage image = XImage.FromFile(jpegSamplePath);
+            //gfx.DrawImage(image, x, y, width, height);
         }
 
         public static void mailInvoice(string pdf, Invoice invoice, string toAddress)

@@ -26,7 +26,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
 
         public string CourseParticipants =>
             Course.Enrollments == null
-                ? "Aantal deelnemers: ONBEKEND"
+                ? $"Aantal deelnemers: 0/{Course.MaxParticipants}"
                 : $"Aantal deelnemers: {Course.Enrollments.Count}/{Course.MaxParticipants}";
 
         public string CourseLevel => $"Niveau: {Course.Difficulty}";
@@ -40,7 +40,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
         public string CourseCity => $"{_location.City} , {_location.Country}";
         public string CourseClassRoom => GetClassRoom();
 
-        public IEnumerable<DateTime> CourseDates => GetCourseDates();
+        public IEnumerable<string> CourseDates => GetCourseDatesStrings();
 
         public CourseInfoVM(int courseId, MainWindowVM vm) : base(vm)
         {
@@ -65,8 +65,8 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     MaxParticipants = c.MaxParticipants,
                     Price = c.Price,
                     Title = c.Title,
-                    Archived = c.Archived
-
+                    Archived = c.Archived,
+                    Enrollments = c.Enrollments
                 };
 
                 _location = (from location in context.Locations
@@ -86,6 +86,10 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 return dateList.Any() ? dateList.ToList() : new List<DateTime>();
             }
         }
+
+        private IEnumerable<string> GetCourseDatesStrings() =>
+         GetCourseDates().Select(dateTime => dateTime.ToString(CultureInfo.CurrentCulture)).ToList();
+
         private string GetClassRoom()
         {
             using (CustomDbContext context = new CustomDbContext())

@@ -98,18 +98,18 @@ namespace WpfUIPickerLib
 
         private void mainGrid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (mainGrid.IsMouseCaptured == false)
+            if (MainGrid.IsMouseCaptured == false)
             {
                 IsOpen = true;
-                mainGrid.CaptureMouse();
+                MainGrid.CaptureMouse();
                 StartDrag();
             }            
-            else if (mainGrid.ContainsMouse())
+            else if (MainGrid.ContainsMouse())
                 StartDrag();
             else
             { 
                 // close ui picker
-                mainGrid.ReleaseMouseCapture();
+                MainGrid.ReleaseMouseCapture();
                 IsOpen = false;
             }
         }
@@ -117,7 +117,7 @@ namespace WpfUIPickerLib
         private void StartDrag()
         {
             _dragTumbler = GetTargetTumbler();
-            _dragPt = Mouse.GetPosition(mainGrid);
+            _dragPt = Mouse.GetPosition(MainGrid);
             _originalDragOffset = Canvas.GetTop(_dragTumbler);
         }
 
@@ -136,11 +136,11 @@ namespace WpfUIPickerLib
             {
                 double offset = -Canvas.GetTop(_dragTumbler);
 
-                Point mousePt = Mouse.GetPosition(mainGrid);
+                Point mousePt = Mouse.GetPosition(MainGrid);
                 if (mousePt.Equals(_dragPt))
                 {
                     // user clicked on tumbler without dragging, select the clicked-on value
-                    offset += mousePt.Y - mainGrid.ActualHeight / 2;
+                    offset += mousePt.Y - MainGrid.ActualHeight / 2;
                 }
                 // find the Canvas offset for the value closest to where the drag ended
 
@@ -158,8 +158,8 @@ namespace WpfUIPickerLib
                 _dragTumbler = null;
             }
 
-            if (mainGrid.IsMouseCaptured && AlwaysOpen)
-                mainGrid.ReleaseMouseCapture();
+            if (MainGrid.IsMouseCaptured && AlwaysOpen)
+                MainGrid.ReleaseMouseCapture();
         }
 
         private void mainGrid_PreviewMouseMove(object sender, MouseEventArgs e)
@@ -167,7 +167,7 @@ namespace WpfUIPickerLib
             // are we dragging a tumbler?
             if (Mouse.LeftButton != MouseButtonState.Pressed || _dragTumbler == null) return;
 
-            Point pt = Mouse.GetPosition(mainGrid);
+            Point pt = Mouse.GetPosition(MainGrid);
             double diff = pt.Y - _dragPt.Y;
             // have to remove the animation before setting it manually (otherwise nothing happens because
             // the animation fill behavior is set to HoldEnd)
@@ -184,7 +184,7 @@ namespace WpfUIPickerLib
             Grid targetTumbler = null;
             for (var i = 0; i < Tumblers.Count; ++i)
             {
-                Border foundTumbler = mainGrid.FindChild<Border>("tumblerBorder", i);
+                Border foundTumbler = MainGrid.FindChild<Border>("tumblerBorder", i);
                 if (foundTumbler == null || !foundTumbler.ContainsMouse()) continue;
                 targetTumbler = foundTumbler.FindChild<Grid>("itemsGrid", 0);
                 break;

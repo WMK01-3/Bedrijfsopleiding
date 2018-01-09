@@ -48,7 +48,7 @@ namespace BedrijfsOpleiding.View.Profile
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddProfession(txtBoxNewCategory.Text);
+            _viewModel.AddProfession(TxtBoxNewCategory.Text);
         }
     }
 }

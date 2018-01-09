@@ -52,7 +52,9 @@
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="9*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox IsReadOnly="{Binding IsNotNewMessage}" Name="Title" Margin="5" Height="40" HorizontalContentAlignment="Center" FontSize="20"/>
+
+                    <Label VerticalAlignment="Top" FontSize="16"  Content="Titel" Grid.Column="0"></Label>
+                    <TextBox Grid.Column="0" VerticalAlignment="Bottom" IsReadOnly="{Binding IsNotNewMessage}" Name="Title" Margin="5" Height="40" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="20"/>
 
                     <Grid Column="1">
                         <Grid.ColumnDefinitions>
@@ -70,8 +72,9 @@
                             </Style>
                         </Grid.Style>
 
-                        <TextBox x:Name="NameTextBox" Grid.Column="0" Margin="5" Height="30"/>
-                        <uiElements:FlatButton Grid.Column="1" Margin="5" Height="40" x:Name="Btn_SendMessage" Content="Bericht Verzenden" Click="Btn_SendMessage_OnClick"/>
+                        <Label VerticalAlignment="Top" FontSize="12"  Content="Ontvanger Gebruikersnaam" Grid.ColumnSpan="2" Grid.Column="0"/>
+                        <TextBox VerticalAlignment="Bottom" x:Name="NameTextBox" Grid.Column="0" Margin="5" Height="30"/>
+                        <uiElements:FlatButton VerticalAlignment="Bottom" Grid.Column="1" Margin="5" Height="40" x:Name="BtnSendMessage" Content="Bericht Verzenden" Click="Btn_SendMessage_OnClick"/>
                     </Grid>
                 </Grid>
                 <TextBox IsReadOnly="{Binding IsNotNewMessage}" Grid.Row="1" Margin="10" TextWrapping="Wrap" Name="MessageText"/>

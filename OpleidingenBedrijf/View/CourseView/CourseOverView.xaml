@@ -14,32 +14,27 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-
         <!--Filter grid-->
-        <Grid Grid.Column="0">
-            <Grid Height="500" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="55"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
+        <Grid  Grid.Column="0" Height="500" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
 
-                <!--Name-->
-                <Label Content="Naam" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top"/>
-                <TextBox Name="TxtCourseName" Width="160" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1"/>
+            <!--Name-->
+            <Label Content="Naam" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top"/>
+            <TextBox TextChanged="TxtCourseName_OnTextChanged" Name="TxtCourseName" Width="160" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="1"/>
 
-                <!--Difficulty-->
-                <Label Content="Niveau" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Center"  Grid.Row="3"  VerticalAlignment="Bottom" Width="170" Name="cbxDifficulty"/>
+            <!--Location-->
+            <Label Content="Locatie" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top"/>
+            <TextBox TextChanged="TxtLocation_OnTextChanged" Name="TxtLocation" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Bottom" Width="170"/>
 
-                <!--Location-->
-                <Label Content="Locatie" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top"/>
-                <TextBox Name="TxtLocation" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Bottom" Width="170"/>
-
-                <Button Content="Zoeken" HorizontalAlignment="center" Grid.Row="4" VerticalAlignment="center" Width="150" Click="SearchCourses"/>
-            </Grid>
+            <!--Difficulty-->
+            <Label Content="Niveau" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top"/>
+            <ComboBox SelectionChanged="CbxDifficulty_OnSelectionChanged" HorizontalAlignment="Center"  Grid.Row="3"  VerticalAlignment="Bottom" Width="170" Name="CbxDifficulty"/>
         </Grid>
 
         <!--Middle Grid-->
@@ -66,7 +61,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" x:Name="btnAddCourse" Click="BtnAddCourse_OnClick" FontWeight="Bold">
+                <Button Grid.Column="0" x:Name="BtnAddCourse" Click="BtnAddCourse_OnClick" FontWeight="Bold">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="LimeGreen"/>
@@ -92,7 +87,7 @@
 
             </Grid>
 
-            <DataGrid ItemsSource="{Binding CourseList}" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" Name="courses" Margin="10 0 10 10" Background="LightGray">
+            <DataGrid ItemsSource="{Binding CourseList}" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="False" Name="Courses" Margin="10 0 10 10" Background="LightGray">
                 <DataGrid.Style>
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="Background" Value="White"/>
@@ -151,7 +146,7 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=Courses}" Value="True"/>
                                             <Condition Binding="{Binding Archived}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
@@ -181,7 +176,7 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=Courses}" Value="True"/>
                                             <Condition Binding="{Binding Archived}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
@@ -211,7 +206,7 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=Courses}" Value="True"/>
                                             <Condition Binding="{Binding Archived}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>
@@ -241,7 +236,7 @@
                                 <Style.Triggers>
                                     <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
-                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=courses}" Value="True"/>
+                                            <Condition Binding="{Binding Path=DataContext.IsEmployee, ElementName=Courses}" Value="True"/>
                                             <Condition Binding="{Binding Archived}" Value="True"/>
                                         </MultiDataTrigger.Conditions>
                                         <MultiDataTrigger.Setters>

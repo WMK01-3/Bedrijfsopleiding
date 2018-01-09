@@ -127,7 +127,7 @@
     <Compile Include="View\CourseView\AddCourse\TeacherTab.xaml.cs">
       <DependentUpon>TeacherTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Message\MessageVM.cs" />
+    <Compile Include="ViewModel\Profile\MessageVM.cs" />
     <Compile Include="View\CourseView\CourseInfoView.xaml.cs">
       <DependentUpon>CourseInfoView.xaml</DependentUpon>
     </Compile>

@@ -90,7 +90,7 @@
                 <Grid>
                     <Label Height="30" VerticalAlignment="Center" Margin="20 0 0 70" Content="Factuur verzenden naar:" FontSize="16"/>
                     <TextBox Height="30" Width="260" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" HorizontalAlignment="Left" Margin="20 0 0 0" x:Name="EmailText" Text="{Binding UserEmail, Mode=OneTime}"/>
-                    <uiElements:FlatButton Height="30" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Right" Margin="0 0 10 40" Content="Inschrijven" x:Name="btnSignUp" Click="BtnSignUp_OnClick"/>
+                    <uiElements:FlatButton Height="30" VerticalAlignment="Bottom" Width="120" HorizontalAlignment="Right" Margin="0 0 10 40" Content="Inschrijven" x:Name="BtnSignUp" Click="BtnSignUp_OnClick"/>
                     <Grid.Style>
                         <Style TargetType="{x:Type Grid}">
                             <Setter Property="Visibility" Value="Hidden"/>
@@ -105,8 +105,8 @@
 
                 <!--Only an Employee can see this-->
                 <Grid>
-                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 150 0 0" Width="160" Click="BtnEditCourse_OnClick" x:Name="btnEditCourse" Content="Cursus Wijzigen"/>
-                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 250 0 0" Width="160" Click="BtnDelCourse_OnClick" x:Name="btnDelCourse" Content="{Binding Path=CourseStatus, Mode=OneWay , UpdateSourceTrigger=PropertyChanged}">
+                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 150 0 0" Width="160" Click="BtnEditCourse_OnClick" x:Name="BtnEditCourse" Content="Cursus Wijzigen"/>
+                    <uiElements:FlatButton Height="30" VerticalAlignment="Top" Margin="0 250 0 0" Width="160" Click="BtnDelCourse_OnClick" x:Name="BtnDelCourse" Content="{Binding Path=CourseStatus, Mode=OneWay , UpdateSourceTrigger=PropertyChanged}">
                         <uiElements:FlatButton.BindingGroup>
                             <BindingGroup/>
                         </uiElements:FlatButton.BindingGroup>

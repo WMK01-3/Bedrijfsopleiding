@@ -110,7 +110,7 @@ namespace BedrijfsOpleiding.ViewModel.Course.AddCourse
             if (SelectedTeacher != null)
             {
                 IsNoTeacherSelected = false;
-                _view.tabControl.SelectedIndex += 1;
+                _view.TabControl.SelectedIndex += 1;
             }
             else
                 IsNoTeacherSelected = true;

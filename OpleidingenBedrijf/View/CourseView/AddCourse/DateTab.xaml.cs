@@ -28,7 +28,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         {
             _view = view;
             InitializeComponent();
-            triangle.Visibility = Visibility.Hidden;
+            Triangle.Visibility = Visibility.Hidden;
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -38,7 +38,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void BtnPrevious_OnClick(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex -= 1;
+            _view.TabControl.SelectedIndex -= 1;
         }
 
         private void PreviousWeek_OnMouseUp(object sender, MouseButtonEventArgs e)

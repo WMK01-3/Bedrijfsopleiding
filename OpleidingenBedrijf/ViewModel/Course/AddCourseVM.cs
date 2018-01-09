@@ -116,7 +116,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     context.CourseDates.Add(new CourseDate { CourseID = course.CourseID, Date = dateItem.Date, ClassRoom = dateItem.ClassRoom });
 
                 //Location
-                int locID = _locationTab.cboChooseLocation.SelectedValue.ToString() == "Nieuwe locatie toevoegen" ? _locationTab.ViewModel.AddLocation(_locationTab.tbCity.Text) : _locationTab.ViewModel.GetLocation(_locationTab.cboChooseLocation.SelectedValue.ToString());
+                int locID = _locationTab.CboChooseLocation.SelectedValue.ToString() == "Nieuwe locatie toevoegen" ? _locationTab.ViewModel.AddLocation(_locationTab.TbCity.Text) : _locationTab.ViewModel.GetLocation(_locationTab.CboChooseLocation.SelectedValue.ToString());
                 course.LocationID = locID;
 
                 //Send message to the teacher
@@ -156,7 +156,7 @@ namespace BedrijfsOpleiding.ViewModel.Course
                 _mainTab.MaxParticipants.Text = course.MaxParticipants.ToString();
 
                 //Teacher
-                var dataGridItems = (List<DataGridItem>)_teacherTab.teacherGrid.ItemsSource;
+                var dataGridItems = (List<DataGridItem>)_teacherTab.TeacherGrid.ItemsSource;
 
                 IEnumerable<DataGridItem> teacherItem = from t in dataGridItems
                                                         where t.UserID == course.UserID
@@ -178,19 +178,19 @@ namespace BedrijfsOpleiding.ViewModel.Course
                     index++;
                 }
 
-                _dateTab.btnAddCourse.Content = "Update cursus";
+                _dateTab.BtnAddCourse.Content = "Update cursus";
 
                 //Location
-                var stringArray = new string[_locationTab.cboChooseLocation.Items.Count];
+                var stringArray = new string[_locationTab.CboChooseLocation.Items.Count];
 
-                for (var i = 0; i < _locationTab.cboChooseLocation.Items.Count; i++) stringArray[i] = _locationTab.cboChooseLocation.Items[i].ToString();
+                for (var i = 0; i < _locationTab.CboChooseLocation.Items.Count; i++) stringArray[i] = _locationTab.CboChooseLocation.Items[i].ToString();
 
                 IEnumerable<string> locationList = from i in stringArray
                                                    where i == $"{course.Location.Street},{course.Location.City},{course.Location.Country}"
                                                    select i;
 
                 IEnumerable<string> enumerable = locationList as string[] ?? locationList.ToArray();
-                _locationTab.cboChooseLocation.SelectedValue = enumerable.Any() ? enumerable.First() : null;
+                _locationTab.CboChooseLocation.SelectedValue = enumerable.Any() ? enumerable.First() : null;
 
                 MainVM.CurrentView = new CourseOverView(MainVM);
             }

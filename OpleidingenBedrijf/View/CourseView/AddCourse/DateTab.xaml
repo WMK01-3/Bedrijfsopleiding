@@ -42,7 +42,7 @@
                             <!--Calendar Control buttons-->
                             <Grid>
                                 <!-- Previous Week-->
-                                <fa:FontAwesome FontSize="30" Name="previousWeek" MouseUp="PreviousWeek_OnMouseUp">
+                                <fa:FontAwesome FontSize="30" Name="PreviousWeek" MouseUp="PreviousWeek_OnMouseUp">
                                     <fa:FontAwesome.Style>
                                         <Style TargetType="fa:FontAwesome">
                                             <Setter Property="Width" Value="40"/>
@@ -53,7 +53,7 @@
                                     </fa:FontAwesome.Style>
                                 </fa:FontAwesome>
                                 <!-- Next Week-->
-                                <fa:FontAwesome FontSize="30" Name="nextWeek" MouseUp="NextWeek_OnMouseUp">
+                                <fa:FontAwesome FontSize="30" Name="NextWeek" MouseUp="NextWeek_OnMouseUp">
                                     <fa:FontAwesome.Style>
                                         <Style TargetType="fa:FontAwesome">
                                             <Setter Property="Width" Value="40"/>
@@ -102,7 +102,7 @@
                                     </Grid>
                                     <!-- Canvas-->
                                     <ScrollViewer Grid.Row="1">
-                                        <Grid Height="576" x:Name="canvasMainGrid">
+                                        <Grid Height="576" x:Name="CanvasMainGrid">
                                             <ItemsControl ItemsSource="{Binding TimeLines}">
                                                 <ItemsControl.ItemsPanel>
                                                     <ItemsPanelTemplate>
@@ -111,7 +111,7 @@
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
-                                                        <Line X1="60" X2="{Binding ElementName=canvasMainGrid, Path=ActualWidth}" Y1="{Binding Path=Y1}" Y2="{Binding Path=Y2}" Stroke="LightGray" StrokeThickness="1"/>
+                                                        <Line X1="60" X2="{Binding ElementName=CanvasMainGrid, Path=ActualWidth}" Y1="{Binding Path=Y1}" Y2="{Binding Path=Y2}" Stroke="LightGray" StrokeThickness="1"/>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
                                             </ItemsControl>
@@ -147,9 +147,9 @@
                                                 <!--Monday-->
                                                 <Canvas Grid.Column="1" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Monday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="1" Name="mondayGrid" MouseDown="MondayGrid_OnMouseDown">
+                                                <Grid Grid.Column="1" Name="MondayGrid" MouseDown="MondayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -166,9 +166,9 @@
                                                 <!--Tuesday-->
                                                 <Canvas Grid.Column="2" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Tuesday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="2" Name="tuesdayGrid" MouseDown="TuesdayGrid_OnMouseDown">
+                                                <Grid Grid.Column="2" Name="TuesdayGrid" MouseDown="TuesdayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -185,9 +185,9 @@
                                                 <!--Wednesday-->
                                                 <Canvas Grid.Column="3" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Wednesday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="3" Name="wednesdayGrid" MouseDown="WednesdayGrid_OnMouseDown">
+                                                <Grid Grid.Column="3" Name="WednesdayGrid" MouseDown="WednesdayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -204,9 +204,9 @@
                                                 <!--Thursday-->
                                                 <Canvas Grid.Column="4" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Thursday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="4" Name="thursdayGrid" MouseDown="ThursdayGrid_OnMouseDown">
+                                                <Grid Grid.Column="4" Name="ThursdayGrid" MouseDown="ThursdayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -223,9 +223,9 @@
                                                 <!--Friday-->
                                                 <Canvas Grid.Column="5" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Friday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="5" Name="fridayGrid" MouseDown="FridayGrid_OnMouseDown">
+                                                <Grid Grid.Column="5" Name="FridayGrid" MouseDown="FridayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -242,9 +242,9 @@
                                                 <!--Saturday-->
                                                 <Canvas Grid.Column="6" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Saturday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="6" Name="saturdayGrid" MouseDown="SaturdayGrid_OnMouseDown">
+                                                <Grid Grid.Column="6" Name="SaturdayGrid" MouseDown="SaturdayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -261,9 +261,9 @@
                                                 <!--Sunday-->
                                                 <Canvas  Grid.Column="7" Margin="10 0 10 0">
                                                     <ContentPresenter Content="{Binding CalendarItem.Sunday}"/>
-                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=canvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
+                                                    <Line X1="-10" X2="-10" Y1="0" Y2="{Binding ElementName=CanvasMainGrid, Path=Height}" Stroke="LightGray" StrokeThickness="1"/>
                                                 </Canvas>
-                                                <Grid Grid.Column="7" Name="sundayGrid" MouseDown="SundayGrid_OnMouseDown">
+                                                <Grid Grid.Column="7" Name="SundayGrid" MouseDown="SundayGrid_OnMouseDown">
                                                     <Grid.Style>
                                                         <Style TargetType="Grid">
                                                             <Setter Property="Background" Value="White"/>
@@ -289,7 +289,7 @@
                 <!--TimePicker-->
                 <Grid Grid.Column="1" Margin="10">
                     <Grid Height="40" VerticalAlignment="Top">
-                        <fa:FontAwesome x:Name="triangle" Icon="ExclamationTriangle" Foreground="Orange" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <fa:FontAwesome x:Name="Triangle" Icon="ExclamationTriangle" Foreground="Orange" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center">
                             <fa:FontAwesome.Style>
                                 <Style TargetType="fa:FontAwesome">
                                     <Setter Property="Visibility" Value="Visible"/>
@@ -306,8 +306,8 @@
                     
                     <Grid Background="White" Height="200" VerticalAlignment="Top" Margin="0 45 0 0">
                         <Label Content="Klas lokaal"/>
-                        <TextBox Name="classRoom" VerticalAlignment="Top" Margin="0 20 0 0" TextChanged="ClassRoom_OnTextChanged"/>
-                        <wpfUiPickerLib:WpfUIPickerControl x:Name="wpfUiPickerControl" AlwaysOpen="True" Tumblers="{Binding TimeTumblers}" Margin="0 50 0 0"  HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <TextBox Name="ClassRoom" VerticalAlignment="Top" Margin="0 20 0 0" TextChanged="ClassRoom_OnTextChanged"/>
+                        <wpfUiPickerLib:WpfUIPickerControl x:Name="WpfUiPickerControl" AlwaysOpen="True" Tumblers="{Binding TimeTumblers}" Margin="0 50 0 0"  HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     </Grid>
 
                     <Grid Background="White" Height="200" VerticalAlignment="Bottom">
@@ -323,7 +323,7 @@
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" Margin="10" VerticalAlignment="Top" Height="512">
-                <ListView x:Name="dateListView" ItemsSource="{Binding DateItemList}" HorizontalContentAlignment="Stretch">
+                <ListView x:Name="DateListView" ItemsSource="{Binding DateItemList}" HorizontalContentAlignment="Stretch">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="Focusable" Value="False"/>
@@ -352,8 +352,8 @@
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Button Name="btnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="BtnPrevious_OnClick"/>
-            <Button x:Name="btnAddCourse" Grid.Column="1" Height="30" Margin="10" Content="Cursus Toevoegen" Background="CornflowerBlue" Click="ButtonBase_OnClick"/>
+            <Button Name="BtnPrevious" Grid.Column="0" Height="30" Margin="10" Content="Vorige" Click="BtnPrevious_OnClick"/>
+            <Button x:Name="BtnAddCourse" Grid.Column="1" Height="30" Margin="10" Content="Cursus Toevoegen" Background="CornflowerBlue" Click="ButtonBase_OnClick"/>
         </Grid>
     </Grid>
 </view:BaseView>

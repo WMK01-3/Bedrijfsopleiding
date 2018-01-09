@@ -6,7 +6,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
-             xmlns:SystemColors="clr-namespace:System;assembly=mscorlib"
+             xmlns:systemColors="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="740" d:DesignWidth="1250"
              DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
@@ -43,7 +43,7 @@
         </ControlTemplate>
 
         <!--combobox-->
-        <Style x:Key="combobox_style" TargetType="ComboBox">
+        <Style x:Key="ComboboxStyle" TargetType="ComboBox">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate  TargetType="ComboBox">
@@ -104,12 +104,12 @@
 
         <Grid Row="0">
             <!-- Top Error Message-->
-            <Border x:Name="errorMessage" Height="40" CornerRadius="13"  Background="#FFFFB700" VerticalAlignment="Top" Width="300">
+            <Border x:Name="ErrorMessage" Height="40" CornerRadius="13"  Background="#FFFFB700" VerticalAlignment="Top" Width="300">
                <Border.Style>
                         <Style TargetType="Border">
                             <Setter Property="Visibility" Value="Visible"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static SystemColors:String.Empty}">
+                                <DataTrigger Binding="{Binding ErrorMessage}" Value="{x:Static systemColors:String.Empty}">
                                     <Setter Property="Visibility" Value="Hidden"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -166,7 +166,7 @@
 
                 <!--Difficulty-->
                 <Label Grid.Row="6" FontWeight="Bold" Content="Moeilijkheids niveau" HorizontalAlignment="Left" />
-                <ComboBox IsEditable="True" Grid.Row="7" Style="{StaticResource combobox_style}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
+                <ComboBox IsEditable="True" Grid.Row="7" Style="{StaticResource ComboboxStyle}" x:Name="Difficulty" Height="25" Loaded="Difficulty_Loaded"/>
 
                 <!--Max Participants-->
                 <Label Grid.Row="8" FontWeight="Bold" Content="Maximaal aantal deelnemers" HorizontalAlignment="Left"/>
@@ -177,7 +177,7 @@
             <Grid Row="0" Column="1" Margin="10 0 10 10">
                 <!--Description-->
                 <Label Content="Beschrijving" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Top"/>
-                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD8500" Name="ecDescription" Visibility="Hidden"/>
+                <fa:ImageAwesome HorizontalAlignment="Right" VerticalAlignment="Top" Icon="ExclamationCircle" Height="20" Foreground="#FFCD8500" Name="EcDescription" Visibility="Hidden"/>
                 <RichTextBox Margin="0 50 0 0" Height="175" VerticalAlignment="Top" x:Name="Description" BorderThickness="0 2 0 2" BorderBrush="#FF508CAA" Background="#EFEFEF">
                     <FlowDocument>
                         <Paragraph>
@@ -188,11 +188,11 @@
             </Grid>
             <!--Save Button-->
             <Grid Column="1" Row="1" Margin="10">
-                <uiElements:FlatButton x:Name="btnChooseTeacher" Content="Docent Koppelen" Height="30" Click="btnChooseTeacher_Click"/>
+                <uiElements:FlatButton x:Name="BtnChooseTeacher" Content="Docent Koppelen" Height="30" Click="btnChooseTeacher_Click"/>
             </Grid>
             <!--Cancel Button-->
             <Grid Column="0" Row="1" Margin="10">
-                <Button Background="Transparent" BorderThickness="0" Foreground="DodgerBlue" FontSize="15" x:Name="btnCancel" Content="Annuleren" Height="30" Click="btnCancel_Click"/>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DodgerBlue" FontSize="15" x:Name="BtnCancel" Content="Annuleren" Height="30" Click="btnCancel_Click"/>
             </Grid>
         </Grid>
 

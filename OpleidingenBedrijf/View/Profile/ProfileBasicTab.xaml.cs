@@ -1,12 +1,6 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using BedrijfsOpleiding.Models;
+﻿using System.Windows;
 using BedrijfsOpleiding.ViewModel;
 using BedrijfsOpleiding.ViewModel.Profile;
-
 
 namespace BedrijfsOpleiding.View.Profile
 {
@@ -34,9 +28,19 @@ namespace BedrijfsOpleiding.View.Profile
             InitializeComponent();
         }
 
-        private void BtnUpdateAcc_OnClick(object sender, RoutedEventArgs e)
+        private void BtnUpdateName_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.UpdateAccount();
+            ViewModel.UpdateName();
+        }
+
+        private void BtnUpdateEmail_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.UpdateEmail();
+        }
+
+        private void BtnUpdatePassword_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.UpdatePassword();
         }
     }
 

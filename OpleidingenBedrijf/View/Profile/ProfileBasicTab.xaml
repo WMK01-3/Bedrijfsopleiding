@@ -9,42 +9,91 @@
                DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}">
 
     <Grid>
-        <Grid Width="600" Background="White" Margin="0,0,0,-114" Height="697" VerticalAlignment="Top">
+        <Grid Width="600" Height="600" Background="White">
             <Grid.Effect>
                 <DropShadowEffect BlurRadius="20" Direction="-90" Color="LightGray"/>
             </Grid.Effect>
-            <Label Content="Profiel wijzigen" Height="50" VerticalAlignment="Top" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center" Margin="214,37,230,0"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
+            <!--Profile Label-->
+            <Label Grid.Row="0" Content="Profiel wijzigen" Height="50" FontSize="22" FontFamily="Arial" HorizontalAlignment="Center"/>
 
-            <Border Visibility="{Binding ErrorVisible}" HorizontalAlignment="Left" Height="32" CornerRadius="10" Background="#ff9933" VerticalAlignment="Top" Width="330" Margin="135,92,0,0" />
-            <fa:ImageAwesome Icon="ExclamationCircle" HorizontalAlignment="Left" Margin="147,-249,0,234" Width="15" Foreground="#FFF7F7F7">
-                <fa:ImageAwesome.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.402"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="0.443"/>
-                    </TransformGroup>
-                </fa:ImageAwesome.RenderTransform>
-            </fa:ImageAwesome>
-            <Label Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Foreground="#FFEEEEEE" VerticalAlignment="Center" Margin="166,94,147,573"  Height="30"/>
+            <Grid Grid.Row="1">
+                <Border Visibility="{Binding ErrorVisible}" Height="32" CornerRadius="10" Background="#ff9933" Width="330" />
+                <fa:ImageAwesome Icon="ExclamationCircle" Margin="147,-249,0,234" Width="15" Foreground="#FFF7F7F7"/>
+                <Label Content="{Binding ErrorMessage}" Name="ErrorMessageMessage"  FontSize="11" Foreground="#FFEEEEEE" VerticalAlignment="Center"  Height="30"/>
+            </Grid>
 
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="130,163,0,508" Content="Voornaam" />
-            <TextBox HorizontalAlignment="Left" Text="{Binding TxtFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="135,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="93" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbFirstName"/>
+            <Grid Grid.Row="2" Height="350" Width="500">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
 
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="260,160,0,511" Content="Achternaam" />
-            <TextBox HorizontalAlignment="Left" Text="{Binding TxtLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="263,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbLastName"/>
+                <!--User First and Last name-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="131,240,0,370" Content="E-mail adres" />
-            <TextBox  HorizontalAlignment="Left" Text="{Binding TxtEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="23" Margin="135,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="tbEmail"/>
+                    <Label VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0" FontSize="12" Content="Voornaam" />
+                    <TextBox Margin="30 0 5 0" Grid.Column="0" Grid.Row="1" Text="{Binding TxtFirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" TextWrapping="Wrap" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbFirstName"/>
 
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="131,320,0,281" Content="Wachtwoord" />
-            <PasswordBox  HorizontalAlignment="Left"  Height="23" Margin="135,340,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="pbPassword"  />
+                    <Label VerticalAlignment="Bottom" Grid.Column="1" Grid.Row="0" FontSize="12"  Content="Achternaam" />
+                    <TextBox Margin="5 0 30 0" Grid.Column="1" Grid.Row="1" Text="{Binding TxtLastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="23" TextWrapping="Wrap" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbLastName"/>
+                    <Button Grid.Column="2" Grid.Row="0" Name="BtnUpdateName" Content="Naam Wijzigen" Height="25" Width="150" Margin="10" Click="BtnUpdateName_OnClick"/>
 
-            <Label FontSize="12" HorizontalAlignment="Left" Margin="130,400,0,212" Content="Wachtwoord herhalen" RenderTransformOrigin="0.519,0.528" />
-            <PasswordBox HorizontalAlignment="Left" Height="23" Margin="135,420,0,0"  VerticalAlignment="Top" Width="330" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" RenderTransformOrigin="0.508,2.374" Name="pbPasswordRepeat"/>
+                </Grid>
 
-            <Button Name="btnUpdateAcc"  Content="Wijzigen" HorizontalAlignment="Left" Margin="135,460,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="BtnUpdateAcc_OnClick" RenderTransformOrigin="0.472,2.48"/>
+                <!--Users Email-->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="138*"/>
+                        <ColumnDefinition Width="29*"/>
+                        <ColumnDefinition Width="83*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" FontSize="12" HorizontalAlignment="Left" Content="E-mail adres" Margin="0,0,0,50" Grid.RowSpan="2" />
+                    <TextBox Grid.Row="1" Grid.Column="0" Text="{Binding TxtEmail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Margin="30,0,30,0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="TbEmail" Grid.ColumnSpan="2"/>
+                    <Button Grid.Row="0" Grid.Column="2" Name="BtnUpdateEmail" Content="Email Wijzigen" Height="25" Width="150" Margin="10.4,12,6,12.6" Click="BtnUpdateEmail_OnClick"/>
+                </Grid>
+
+                <!--Password-->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--First Password-->
+                    <Label VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="0" FontSize="12" HorizontalAlignment="Left" Content="Wachtwoord" />
+                    <PasswordBox Grid.Column="0" Grid.Row="1" Height="23" Margin="30 0 30 0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="PbPassword"  />
+                    <!--Repeat-->
+                    <Label VerticalAlignment="Bottom" Grid.Column="0" Grid.Row="2" FontSize="12" Content="Wachtwoord herhalen" />
+                    <PasswordBox Grid.Column="0" Grid.Row="3" Height="23" Margin="30 0 30 0" BorderThickness="0 0 0 2" BorderBrush="CornflowerBlue" Name="PbPasswordRepeat"/>
+                    <Button Grid.Column="1" Grid.Row="3" Name="BtnUpdateAcc" Content="Wachtwoord Wijzigen" Width="150" Height="25" Click="BtnUpdatePassword_OnClick"/>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </view:BaseView>

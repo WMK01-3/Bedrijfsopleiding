@@ -10,7 +10,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
 
     <Grid>
-        <TabControl x:Name="tabControl" Background="White">
+        <TabControl x:Name="TabControl" Background="White">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">

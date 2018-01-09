@@ -8,7 +8,7 @@
              d:DesignHeight="740" d:DesignWidth="1250"
                DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
     <Grid>
-        <TabControl Name="profileTab">
+        <TabControl Name="ProfileTab">
             <TabItem Header="Cursus Aanmeldingen">
                 <ContentControl Content="{Binding ProfileSubscriptions}"/>
             </TabItem>

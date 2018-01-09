@@ -18,7 +18,7 @@
             <ContentControl Content="{Binding MenuView}" x:Name="CntMenu" Grid.Row="0"/>
 
             <!--Main Content-->
-            <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="animatedContentControl" Grid.Row="1"/>
+            <animatedContent:AnimatedContentControl Content="{Binding CurrentView}" x:Name="AnimatedContentControl" Grid.Row="1"/>
         </Grid>
     </Grid>
 </Window>

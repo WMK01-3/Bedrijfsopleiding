@@ -34,7 +34,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
         }
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex -= 2;
+            _view.TabControl.SelectedIndex -= 2;
         }
 
 

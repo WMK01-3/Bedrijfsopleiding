@@ -53,7 +53,7 @@
             </Grid>
             <!--Google Maps-->
             <Grid Grid.Row="1" Background="White" Margin="0,10,0,0">
-                <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="wbMaps" HorizontalAlignment="Left" LoadCompleted="wbMaps_LoadCompleted"/>
+                <WebBrowser ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Name="WbMaps" HorizontalAlignment="Left" LoadCompleted="wbMaps_LoadCompleted"/>
             </Grid>
         </Grid>
 
@@ -63,12 +63,28 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <ListBox Grid.Column="0" Margin="10" Background="White" DisplayMemberPath="Text" SelectedValuePath="Value" x:Name="lbCourses" SelectionChanged="lbCourses_SelectionChanged"/>
+            <Grid  Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Cursussen op geselecteerde locatie"/>
+                <ListBox Grid.Row="1" Margin="10" Background="White" DisplayMemberPath="Text" SelectedValuePath="Value" x:Name="LbCourses" SelectionChanged="lbCourses_SelectionChanged"/>
+            </Grid>
 
             <Grid Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Cursus details"/>
+
+
                 <!--Course Description-->
-                <Label x:Name="lblCourseTitle" Content="" HorizontalContentAlignment="Center" FontSize="26" Background="#e8e8e8" />
-                <TextBlock x:Name="tbxCourseDesc" HorizontalAlignment="Left" Margin="37,64,0,0" TextWrapping="Wrap"/>
+                <Label Grid.Row="1" x:Name="LblCourseTitle" Content="" HorizontalContentAlignment="Center" FontSize="26" Background="#e8e8e8" />
+                <TextBlock Grid.Row="1" x:Name="TbxCourseDesc" HorizontalAlignment="Left" Margin="37,64,0,0" TextWrapping="Wrap"/>
             </Grid>
         </Grid>
     </Grid>

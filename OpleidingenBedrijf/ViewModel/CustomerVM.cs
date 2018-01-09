@@ -9,7 +9,8 @@ namespace BedrijfsOpleiding.ViewModel
 {
     public class CustomerVM : BaseViewModel
     {
-        private string _nameFilter= "";
+        private CustomerView _view;
+        private string _nameFilter = "";
         private string _roleFilter = "";
 
         #region GridItems : List<CustomerDataGridItem>
@@ -38,8 +39,9 @@ namespace BedrijfsOpleiding.ViewModel
 
         #endregion
 
-        public CustomerVM(MainWindowVM vm) : base(vm)
+        public CustomerVM(MainWindowVM vm, CustomerView view) : base(vm)
         {
+            _view = view;
         }
 
         public void UpdateDataGrid()
@@ -50,7 +52,7 @@ namespace BedrijfsOpleiding.ViewModel
         public List<CustomerDataGridItem> GetGridItems()
         {
             List<User> users = GetUsers();
-            return users.Select(user => new CustomerDataGridItem(user.UserID) { FullName = user.FullName, Blocked = user.Blocked.ToString(),  OriginalRole = user.Role, CurrentRole = user.Role }).ToList();
+            return users.Select(user => new CustomerDataGridItem(user.UserID) { FullName = user.FullName, Blocked = user.Blocked.ToString(), OriginalRole = user.Role, CurrentRole = user.Role }).ToList();
         }
 
         /// <summary>
@@ -64,11 +66,13 @@ namespace BedrijfsOpleiding.ViewModel
             using (CustomDbContext context = new CustomDbContext())
             {
                 IQueryable<User> userList = from u in context.Users
-                    select u;
+                                            select u;
                 foreach (User user in userList)
                 {
-                    if ((user.FirstName.Contains(_nameFilter) ||
-                        user.LastName.Contains(_nameFilter)) && user.Role.ToString().Contains(_roleFilter)) { users.Add(user); }                
+                    if ($"{user.FirstName} {user.LastName}".Contains(_nameFilter) == false) continue;
+                    if (user.Role.ToString().Contains(_roleFilter) == false) continue;
+
+                    users.Add(user);
                 }
             }
             return users;
@@ -100,19 +104,22 @@ namespace BedrijfsOpleiding.ViewModel
         public bool IsInfoDifferent() =>
             GridItems.Any(gridItem => gridItem.CurrentRole != gridItem.OriginalRole);
 
-        public void FilterText(string name, string role)
+        public void FilterText()
         {
-            _nameFilter = name;
-            _roleFilter = role;
+            _nameFilter = _view.TxtUserFullName.Text;
+
+            if (_view.CbxRole.SelectedValue != null)
+                _roleFilter = _view.CbxRole.SelectedValue.ToString();
             UpdateDataGrid();
         }
         public void Block(int userID)
         {
             using (CustomDbContext context = new CustomDbContext())
             {
-                IQueryable<User> userResults = (from u in context.Users
-                    where userID == u.UserID
-                    select u);
+                IQueryable<User> userResults = from u in context.Users
+                                               where userID == u.UserID
+                                               select u;
+
                 userResults.First().Blocked = !userResults.First().Blocked;
                 context.SaveChanges();
             }

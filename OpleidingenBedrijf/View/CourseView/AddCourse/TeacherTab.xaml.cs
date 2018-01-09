@@ -32,7 +32,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
 
         private void BtnPrevious_OnClick(object sender, RoutedEventArgs e)
         {
-            _view.tabControl.SelectedIndex -= 1;
+            _view.TabControl.SelectedIndex -= 1;
         }
 
         public void UpdateDataGrid()
@@ -55,7 +55,7 @@ namespace BedrijfsOpleiding.View.CourseView.AddCourse
                 items.Add(data);
             }
 
-            teacherGrid.ItemsSource = items;
+            TeacherGrid.ItemsSource = items;
         }
 
         private void ToggleButton_OnChecked(object sender, RoutedEventArgs e)
