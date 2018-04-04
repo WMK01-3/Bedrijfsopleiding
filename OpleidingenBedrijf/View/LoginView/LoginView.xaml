@@ -7,7 +7,7 @@
              xmlns:view="clr-namespace:BedrijfsOpleiding.View"
              xmlns:uiElements="clr-namespace:BedrijfsOpleiding.UIElements"
              mc:Ignorable="d"
-               DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
+             DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ViewModel}">
 
     <Grid>
         <Border BorderThickness="1" BorderBrush="Gray" Width="350" Height="320" VerticalAlignment="Top">

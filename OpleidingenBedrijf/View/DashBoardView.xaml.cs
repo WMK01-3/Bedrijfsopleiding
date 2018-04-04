@@ -1,22 +1,10 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net.Mime;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
 using BedrijfsOpleiding.Database;
 using BedrijfsOpleiding.ViewModel;
-using GoogleMaps.LocationServices;
-using Newtonsoft.Json;
-using Label = System.Windows.Controls.Label;
-using MessageBox = System.Windows.MessageBox;
-using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace BedrijfsOpleiding.View
 {
@@ -25,8 +13,6 @@ namespace BedrijfsOpleiding.View
         #region OwnViewModel : BaseViewModel
 
         private DashBoardVM _viewModel;
-        public static System.Windows.Controls.ListBox ListBox;
-
         public DashBoardVM ViewModel
         {
             get => _viewModel = _viewModel ?? new DashBoardVM(MainVM, this);
@@ -34,7 +20,10 @@ namespace BedrijfsOpleiding.View
         }
 
         #endregion
-         public DashBoardView(MainWindowVM mainVM) : base(mainVM)
+
+        public static ListBox ListBox;
+
+        public DashBoardView(MainWindowVM mainVM) : base(mainVM)
         {
             InitializeComponent();
             DataContext = new DashBoardVM(mainVM, this);
@@ -42,35 +31,32 @@ namespace BedrijfsOpleiding.View
 
             string curDir = Directory.GetCurrentDirectory();
 
-            Uri url = new Uri(String.Format("file:///{0}/View/GoogleMaps/map.html", curDir));     // development versie
-            //Uri url = new Uri(String.Format("file:///{0}/Data/map.html", curDir));                  // Productie versie
+            Uri url = new Uri($"file:///{curDir}/View/GoogleMaps/map.html");     // development versie
+                                                                                 //Uri url = new Uri(String.Format("file:///{0}/Data/map.html", curDir));                  // Productie versie
 
-             WbMaps.Navigate(url);
+            WbMaps.Navigate(url);
 
             WbMaps.ObjectForScripting = new MapsFunctions();
 
-            ((DashBoardVM) ViewModel).LoadStandardDataBoxes(DataLabel1, DataLabel2, DataLabel3);
+            ViewModel.LoadStandardDataBoxes(DataLabel1, DataLabel2, DataLabel3);
         }
 
         private void wbMaps_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-             WbMaps.InvokeScript("initialize");
+            WbMaps.InvokeScript("initialize");
 
-            ((DashBoardVM) ViewModel).LoadMarkers(WbMaps);
+            ViewModel.LoadMarkers(WbMaps);
         }
 
         private void lbCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (lbItem item in LbCourses.SelectedItems)
-            {
-
-                ((DashBoardVM)ViewModel).LoadCourseBox(LblCourseTitle, TbxCourseDesc, item.Value);
-            }
+            foreach (LbItem item in LbCourses.SelectedItems)
+                ViewModel.LoadCourseBox(LblCourseTitle, TbxCourseDesc, item.Value);
         }
 
     }
 
-    public class lbItem
+    public class LbItem
     {
         public int Value { get; set; }
         public string Text { get; set; }
@@ -91,8 +77,8 @@ namespace BedrijfsOpleiding.View
             using (var context = new CustomDbContext())
             {
                 var courses = (from c in context.Courses
-                    where c.LocationID == location_id
-                    select c).ToList();
+                               where c.LocationID == location_id
+                               select c).ToList();
 
                 if (ListBox.Items.Count > 0)
                 {
@@ -101,7 +87,7 @@ namespace BedrijfsOpleiding.View
 
                 foreach (var course in courses)
                 {
-                    ListBox.Items.Add(new lbItem() { Value = course.CourseID, Text = course.Title });
+                    ListBox.Items.Add(new LbItem() { Value = course.CourseID, Text = course.Title });
                 }
                 ListBox.SelectedIndex = 0;
             }
